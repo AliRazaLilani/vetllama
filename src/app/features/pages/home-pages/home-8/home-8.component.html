@@ -1,0 +1,1349 @@
+<div class="hero-section-eight">
+  <!-- Header -->
+  <app-home-header />
+  <!-- /Header -->
+
+  <!-- Banner Section -->
+  <section class="banner-section-eight">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="banner-content-eight">
+            <div class="section-header section-header-eight">
+              <div class="section-sub-title">
+                <span class="dot"></span>Welcome to Doccure
+              </div>
+              <h1 class="section-title mb-0">
+                Advanced Eye <br />
+                Care for
+                <span class="img-container"
+                  ><img
+                    src="assets/img/banner/banner-six-img1.jpg"
+                    alt="banner-icon"
+                    class="img-fluid img-one"
+                /></span>
+                <br />
+                <span class="text-gradient">Clearer Vision</span>
+              </h1>
+            </div>
+            <div
+              class="banner-btn-eight d-flex align-items-center gap-3 flex-wrap"
+            >
+              <a [routerLink]="" class="btn btn-primary theme-8-btn"
+                ><span class="icon"
+                  ><i class="isax isax-arrow-right-3"></i></span
+                >View All Services</a
+              >
+              <a [routerLink]="" class="btn btn-white theme-8-btn"
+                ><span class="icon"
+                  ><i class="isax isax-arrow-right-3"></i></span
+                >Meet Our Team</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="banner-img">
+            <img
+              src="assets/img/banner/banner-img-8.png"
+              alt="banner-icon"
+              class="img-fluid img-one"
+            />
+            <img
+              src="assets/img/banner/banner-img-9.png"
+              alt="banner-icon"
+              class="img-fluid img-two"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <img
+      src="assets/img/banner/banner-element-8.png"
+      alt="banner-icon"
+      class="img-fluid element-eight-01"
+    />
+  </section>
+</div>
+<!-- Banner Section -->
+
+<!-- Slider Section -->
+<section class="slider-section-eight wow fadeInUp" data-wow-duration="1s">
+  <div
+    class="horizontal-slide slide-one bg-dark d-flex"
+    data-direction="left"
+    data-speed="slow"
+  >
+    <div class="slide-list d-flex gap-4">
+      <div class="services-slide">
+        <h3>Laser-Assisted Surgeries</h3>
+      </div>
+      <div class="services-slide">
+        <h3>Sterile & Safe Surgical Environment</h3>
+      </div>
+      <div class="services-slide">
+        <h3>Advanced Retina & Diabetic Eye Care</h3>
+      </div>
+      <div class="services-slide">
+        <h3>Advanced Treatments</h3>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Slider Section -->
+
+<!-- Service Section -->
+<section
+  class="services-section-eight section wow fadeInUp"
+  data-wow-duration="1s"
+>
+  <div class="container-fluid">
+    <div class="section-header section-header-eight text-center">
+      <h2 class="section-title">
+        Advanced Vision <br />
+        <span class="img-container">
+          <img
+            src="assets/img/banner/banner-six-img2.jpg"
+            alt="banner-icon"
+            class="img-fluid img-one"
+        /></span>
+        <span class="text-gradient">Care Solutions</span>
+      </h2>
+    </div>
+
+    <!-- start row -->
+    <div class="services">
+      <div class="service-slider-eight slick-initialized slick-slider">
+        <div class="slick-list draggable">
+          <div class="slick-track">
+            <owl-carousel-o
+              #owl
+              class="service-slider-eight aos"
+              data-aos="fade-up"
+              [options]="ourSliderOptions"
+            >
+              <ng-template carouselSlide>
+                <!-- Item -->
+                <div class="slide-item">
+                  <div
+                    class="services-item-eight wow fadeInUp"
+                    data-wow-duration="1s"
+                    data-wow-delay="0.5s"
+                  >
+                    <div class="services-overlay">
+                      <img
+                        src="assets/img/service/services-img-1.jpg"
+                        alt="services-img"
+                        class="img-fluid img-one"
+                      />
+                      <div class="services-icon">
+                        <img
+                          src="assets/img/icons/services-icon-5.svg"
+                          alt="service-icon"
+                          class="img-fluid"
+                        />
+                        <a [routerLink]="" class="icon"
+                          ><i class="isax isax-arrow-right-1"></i
+                        ></a>
+                      </div>
+                    </div>
+                    <div class="services-content">
+                      <h3 class="custom-title">
+                        <a [routerLink]="">Cataract Surgery</a>
+                      </h3>
+                      <p class="description">Laser-assisted cataract removal</p>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+
+              <ng-template carouselSlide>
+                <!-- Item -->
+                <div class="slide-item">
+                  <div
+                    class="services-item-eight wow fadeInUp"
+                    data-wow-duration="1s"
+                    data-wow-delay="0.5s"
+                  >
+                    <div class="services-overlay">
+                      <img
+                        src="assets/img/service/services-img-2.jpg"
+                        alt="services-img"
+                        class="img-fluid img-one"
+                      />
+                      <div class="services-icon">
+                        <img
+                          src="assets/img/icons/services-icon-6.svg"
+                          alt="service-icon"
+                          class="img-fluid"
+                        />
+                        <a [routerLink]="" class="icon"
+                          ><i class="isax isax-arrow-right-1"></i
+                        ></a>
+                      </div>
+                    </div>
+                    <div class="services-content">
+                      <h3 class="custom-title">
+                        <a [routerLink]="">LASIK & Surgery</a>
+                      </h3>
+                      <p class="description">
+                        Safe & precise vision correction
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+
+              <ng-template carouselSlide>
+                <!-- Item -->
+                <div class="slide-item">
+                  <div
+                    class="services-item-eight wow fadeInUp"
+                    data-wow-duration="1s"
+                    data-wow-delay="0.5s"
+                  >
+                    <div class="services-overlay">
+                      <img
+                        src="assets/img/service/services-img-3.jpg"
+                        alt="services-img"
+                        class="img-fluid img-one"
+                      />
+                      <div class="services-icon">
+                        <img
+                          src="assets/img/icons/services-icon-7.svg"
+                          alt="service-icon"
+                          class="img-fluid"
+                        />
+                        <a [routerLink]="" class="icon"
+                          ><i class="isax isax-arrow-right-1"></i
+                        ></a>
+                      </div>
+                    </div>
+                    <div class="services-content">
+                      <h3 class="custom-title">
+                        <a [routerLink]="">Retina Care</a>
+                      </h3>
+                      <p class="description">Diabetic & retinal disorders</p>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+
+              <ng-template carouselSlide>
+                <!-- Item -->
+                <div class="slide-item">
+                  <div
+                    class="services-item-eight wow fadeInUp"
+                    data-wow-duration="1s"
+                    data-wow-delay="0.5s"
+                  >
+                    <div class="services-overlay">
+                      <img
+                        src="assets/img/service/services-img-1.jpg"
+                        alt="services-img"
+                        class="img-fluid img-one"
+                      />
+                      <div class="services-icon">
+                        <img
+                          src="assets/img/icons/services-icon-5.svg"
+                          alt="service-icon"
+                          class="img-fluid"
+                        />
+                        <a [routerLink]="" class="icon"
+                          ><i class="isax isax-arrow-right-1"></i
+                        ></a>
+                      </div>
+                    </div>
+                    <div class="services-content">
+                      <h3 class="custom-title">
+                        <a [routerLink]="">Cataract Surgery</a>
+                      </h3>
+                      <p class="description">Laser-assisted cataract removal</p>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+
+              <ng-template carouselSlide>
+                <!-- Item -->
+                <div class="slide-item">
+                  <div
+                    class="services-item-eight wow fadeInUp"
+                    data-wow-duration="1s"
+                    data-wow-delay="0.5s"
+                  >
+                    <div class="services-overlay">
+                      <img
+                        src="assets/img/service/services-img-3.jpg"
+                        alt="services-img"
+                        class="img-fluid img-one"
+                      />
+                      <div class="services-icon">
+                        <img
+                          src="assets/img/icons/services-icon-7.svg"
+                          alt="service-icon"
+                          class="img-fluid"
+                        />
+                        <a [routerLink]="" class="icon"
+                          ><i class="isax isax-arrow-right-1"></i
+                        ></a>
+                      </div>
+                    </div>
+                    <div class="services-content">
+                      <h3 class="custom-title">
+                        <a [routerLink]="">Retina Care</a>
+                      </h3>
+                      <p class="description">Diabetic & retinal disorders</p>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </owl-carousel-o>
+          </div>
+        </div>
+      </div>
+      <div class="slide-btn">
+        <button
+          type="button"
+          class="slick-arrow services-prev"
+          (click)="goPrev()"
+        >
+          <i class="isax isax-arrow-left-2"></i>
+        </button>
+        <button
+          type="button"
+          class="slick-arrow services-next"
+          (click)="goNext()"
+        >
+          <i class="isax isax-arrow-right-3"></i>
+        </button>
+      </div>
+    </div>
+    <!-- end row -->
+  </div>
+
+  <div class="container">
+    <!-- Counter Section -->
+    <div class="testimonial-counter testimonial-counter-eight section pb-0">
+      <div class="row row-cols-2 row-cols-sm-2 row-cols-md-4 row-cols-lg-4 g-4">
+        <div class="counter-item text-center wow zoomIn" data-wow-duration="1s">
+          <h4 class="display-6 primary-count">
+            <span
+              class="count-digit counter-loaded"
+              [countUp]="12"
+              [options]="{ enableScrollSpy: true }"
+              >12</span
+            >+
+          </h4>
+          <p>Years Experience</p>
+        </div>
+        <div class="counter-item text-center wow zoomIn" data-wow-duration="1s">
+          <h4 class="display-6 secondary-count">
+            <span
+              class="count-digit counter-loaded"
+              [countUp]="25"
+              [options]="{ enableScrollSpy: true }"
+              >25</span
+            >K+
+          </h4>
+          <p>Patients Treated</p>
+        </div>
+        <div class="counter-item text-center wow zoomIn" data-wow-duration="1s">
+          <h4 class="display-6 secondary-count">
+            <span
+              class="count-digit counter-loaded"
+              [countUp]="30"
+              [options]="{ enableScrollSpy: true }"
+              >30</span
+            >K
+          </h4>
+          <p>Success Rate</p>
+        </div>
+        <div class="counter-item text-center wow zoomIn" data-wow-duration="1s">
+          <h4 class="display-6 secondary-count">
+            <span
+              class="count-digit counter-loaded"
+              [countUp]="98"
+              [options]="{ enableScrollSpy: true }"
+              >98</span
+            >%
+          </h4>
+          <p>Cardiology Services</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Service Section -->
+
+<!-- AboutUs Section -->
+<section
+  class="about-section-eight section wow fadeInUp"
+  data-wow-duration="1s"
+>
+  <div class="container">
+    <!-- start row -->
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="about-img">
+          <img
+            src="assets/img/about/about-img-3.png"
+            alt="about-img"
+            class="img-fluid img-1"
+          />
+          <h4 class="rotate-text">
+            <span class="text-gradient">12+</span> Years of Experience
+          </h4>
+          <button
+            class="animate-button"
+            data-text="About&nbsp;Doccure&nbsp;Eyecare"
+          >
+            <p class="button-text"></p>
+            <span class="button-circle"></span>
+          </button>
+        </div>
+      </div>
+      <div class="col-lg-6 ps-lg-5">
+        <div class="section-header section-header-eight">
+          <div class="section-sub-title"><span class="dot"></span>About Us</div>
+          <h2 class="section-title">
+            Compassionate care to provide <br />
+            the quality <span class="line"> eye care services.  </span>
+          </h2>
+          <p class="para">
+            Our state-of-the-art facility is equipped with the latest diagnostic
+            and treatment technology, ensuring accurate diagnoses and effective
+            treatment plans.
+          </p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <div class="about-item">
+              <h3 class="custom-title">Mission</h3>
+              <p>
+                To deliver advanced, compassionate eye care using innovative
+                technology, skilled specialists
+              </p>
+              <img
+                src="assets/img/service/about-icon-1.svg"
+                alt="about-icon-1"
+                class="img-fluid img-1"
+              />
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="about-item">
+              <h3 class="custom-title">Vision</h3>
+              <p>
+                To be a leading eye care center for world-class clinical
+                excellence, patient-focused care
+              </p>
+              <img
+                src="assets/img/service/about-icon-2.svg"
+                alt="about-icon-1"
+                class="img-fluid img-1"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="view-all">
+          <a [routerLink]="" class="btn btn-primary theme-8-btn"
+            ><span class="icon"><i class="isax isax-arrow-right-3"></i></span
+            >View All Services</a
+          >
+        </div>
+      </div>
+    </div>
+    <!-- end row -->
+  </div>
+</section>
+<!-- AboutUs Section -->
+
+<!-- Team Section -->
+<section class="team-section-eight section wow fadeInUp" data-wow-duration="1s">
+  <div class="container">
+    <div class="section-header section-header-eight text-center">
+      <h2 class="section-title">
+        Explore Team Of <br />
+        <span class="img-container">
+          <img
+            src="assets/img/banner/banner-six-img3.jpg"
+            alt="banner-icon"
+            class="img-fluid img-one"
+        /></span>
+        <span class="text-gradient">Expert Doctors</span>
+      </h2>
+    </div>
+
+    <!-- start row -->
+    <div class="row g-4">
+      <!-- Item -->
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div
+          class="team-item-eight wow fadeInUp"
+          data-wow-duration="1s"
+          data-wow-delay="0.5s"
+        >
+          <div class="team-overlay">
+            <img
+              src="assets/img/team/team-img-one.jpg"
+              alt="team-img"
+              class="img-fluid img-one"
+            />
+            <a [routerLink]="" class="team-icon"
+              ><i class="isax isax-arrow-right-1"></i
+            ></a>
+          </div>
+          <div class="team-content">
+            <h3 class="custom-title">
+              <a [routerLink]="">Dr. Anthony Perez</a>
+            </h3>
+            <p class="description">Macular Degeneration Expert</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item -->
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div
+          class="team-item-eight wow fadeInUp"
+          data-wow-duration="1s"
+          data-wow-delay="0.5s"
+        >
+          <div class="team-overlay">
+            <img
+              src="assets/img/team/team-img-two.jpg"
+              alt="team-img"
+              class="img-fluid img-one"
+            />
+            <a [routerLink]="" class="team-icon"
+              ><i class="isax isax-arrow-right-1"></i
+            ></a>
+          </div>
+          <div class="team-content">
+            <h3 class="custom-title">
+              <a [routerLink]="">Dr. Olivia Martinez</a>
+            </h3>
+            <p class="description">Retina Surgeon</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item -->
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div
+          class="team-item-eight wow fadeInUp"
+          data-wow-duration="1s"
+          data-wow-delay="0.5s"
+        >
+          <div class="team-overlay">
+            <img
+              src="assets/img/team/team-img-three.jpg"
+              alt="team-img"
+              class="img-fluid img-one"
+            />
+            <a [routerLink]="" class="team-icon"
+              ><i class="isax isax-arrow-right-1"></i
+            ></a>
+          </div>
+          <div class="team-content">
+            <h3 class="custom-title"><a [routerLink]="">Dr. Karen Perez</a></h3>
+            <p class="description">Glaucoma Specialist</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item -->
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div
+          class="team-item-eight wow fadeInUp"
+          data-wow-duration="1s"
+          data-wow-delay="0.5s"
+        >
+          <div class="team-overlay">
+            <img
+              src="assets/img/team/team-img-four.jpg"
+              alt="team-img"
+              class="img-fluid img-one"
+            />
+            <a [routerLink]="" class="team-icon"
+              ><i class="isax isax-arrow-right-1"></i
+            ></a>
+          </div>
+          <div class="team-content">
+            <h3 class="custom-title">
+              <a [routerLink]="">Dr. Tyler Morgan</a>
+            </h3>
+            <p class="description">Vision Therapy Specialist</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end row -->
+
+    <div class="view-all text-center">
+      <a [routerLink]="routes.doctorGrid" class="btn btn-primary theme-8-btn"
+        ><span class="icon"><i class="isax isax-arrow-right-3"></i></span>View
+        All Doctors</a
+      >
+    </div>
+  </div>
+</section>
+<!-- Team Section -->
+
+<!-- support Section -->
+<section
+  class="journey-section-eight section wow fadeInUp"
+  data-wow-duration="1s"
+>
+  <div class="container">
+    <!-- start row -->
+    <div class="row g-5">
+      <div class="col-xl-4 col-lg-6">
+        <div class="journey-item-eight">
+          <div class="journey-icon">
+            <i class="isax isax-profile-tick5"></i>
+          </div>
+          <div class="journey-content">
+            <h3 class="custom-title">
+              Expert Professionals and World Class Facilities
+            </h3>
+            <a [routerLink]="routes.doctorAppointmentGrid"
+              >Find Doctors<i class="isax isax-arrow-right-3"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-lg-6">
+        <div class="journey-item-eight">
+          <div class="journey-icon">
+            <i class="isax isax-ticket-star5"></i>
+          </div>
+          <div class="journey-content">
+            <h3 class="custom-title">Specialty Eyecare treatment for all</h3>
+            <a [routerLink]="routes.doctorAppointmentGrid"
+              >Book an Appointment<i class="isax isax-arrow-right-3"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-lg-6">
+        <div class="journey-item-eight">
+          <div class="journey-icon">
+            <i class="isax isax-calendar-15"></i>
+          </div>
+          <div class="journey-content">
+            <h3 class="custom-title">
+              Online Appointment and Excellent Treatment
+            </h3>
+            <a [routerLink]="routes.doctorAppointmentGrid"
+              >View all Services<i class="isax isax-arrow-right-3"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end row -->
+  </div>
+</section>
+<!-- support Section -->
+
+<!-- Book Section -->
+<section class="book-section-eight section wow fadeInUp" data-wow-duration="1s">
+  <div class="container">
+    <!-- start row -->
+    <div class="row mb-4">
+      <div class="col-lg-6">
+        <div class="section-header section-header-eight">
+          <div class="section-sub-title">
+            <span class="dot"></span>Simple Booking Process
+          </div>
+          <h3 class="section-title mb-0">
+            How to Book Your
+            <br />
+            Eye <span class="line">Care Appointment</span>
+          </h3>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <img
+          src="assets/img/team/team-img.jpg"
+          alt="team"
+          class="img-fluid rounded d-lg-block d-none"
+        />
+      </div>
+    </div>
+    <!-- end row -->
+
+    <!-- start row -->
+    <div class="row g-4 justify-content-center">
+      <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+        <div class="book-item-eight">
+          <div class="book-icon">
+            <i class="isax isax-additem5"></i>
+          </div>
+          <h3 class="custom-title">Select Your Service</h3>
+          <p>
+            Choose from vision tests, LASIK screening, cataract evaluation,
+            retina care & more.
+          </p>
+          <h4 class="count">01</h4>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+        <div class="book-item-eight">
+          <div class="book-icon">
+            <i class="isax isax-security-user5"></i>
+          </div>
+          <h3 class="custom-title">Pick Your Specialist</h3>
+          <p>
+            Choose from vision tests, LASIK screening, cataract evaluation,
+            retina care & more.
+          </p>
+          <h4 class="count">02</h4>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+        <div class="book-item-eight">
+          <div class="book-icon">
+            <i class="isax isax-calendar-tick5"></i>
+          </div>
+          <h3 class="custom-title">Choose Date & Time</h3>
+          <p>
+            Browse available slots and book a time that fits your schedule no
+            waiting.
+          </p>
+          <h4 class="count">03</h4>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+        <div class="book-item-eight">
+          <div class="book-icon">
+            <i class="isax isax-tick-circle5"></i>
+          </div>
+          <h3 class="custom-title">Select Your Service</h3>
+          <p>
+            Choose from vision tests, LASIK screening, cataract evaluation,
+            retina care & more.
+          </p>
+          <h4 class="count">04</h4>
+        </div>
+      </div>
+    </div>
+    <!-- end row -->
+  </div>
+</section>
+<!-- Book Section -->
+
+<!-- Video Section -->
+<section class="video-section-eight">
+  <img
+    src="assets/img/bg/video-8-bg.jpg"
+    alt="video-bg"
+    class="img-fluid img-1"
+  />
+  <lightgallery [settings]="settings" [onInit]="onInit" size="1400-933">
+    <a src="https://youtu.be/MyQxnFgPgQU?si=Z9y2WdynImbFnqL2" data-fancybox="">
+      <button
+        class="animate-button"
+        data-text="Play Video&nbsp;Play Video&nbsp;"
+      >
+        <p class="button-text"></p>
+        <span class="button-circle">
+          <i class="isax isax-pause"></i>
+        </span>
+      </button>
+    </a>
+  </lightgallery>
+</section>
+<!-- Video Section -->
+
+<!-- Company Section -->
+<div
+  class="company-section company-section-eight wow fadeOut"
+  data-wow-duration="1s"
+>
+  <div class="container">
+    <div class="company-slider">
+      <owl-carousel-o
+        [options]="companySliderOption"
+        class="partner-item-seven"
+      >
+        <ng-template carouselSlide>
+          <img src="assets/img/company/company-02.svg" alt="img" />
+        </ng-template>
+        <ng-template carouselSlide>
+          <img src="assets/img/company/company-03.svg" alt="img" />
+        </ng-template>
+        <ng-template carouselSlide>
+          <img src="assets/img/company/company-04.svg" alt="img" />
+        </ng-template>
+        <ng-template carouselSlide>
+          <img src="assets/img/company/company-05.svg" alt="img" />
+        </ng-template>
+        <ng-template carouselSlide>
+          <img src="assets/img/company/company-06.svg" alt="img" />
+        </ng-template>
+        <ng-template carouselSlide>
+          <img src="assets/img/company/company-07.svg" alt="img" />
+        </ng-template>
+      </owl-carousel-o>
+    </div>
+  </div>
+</div>
+<!-- /Company Section -->
+
+<!-- Start Faq -->
+<section class="faq-section-eight section">
+  <div class="container">
+    <!-- start row -->
+    <div class="row">
+      <div class="col-lg-5">
+        <div class="faq-support">
+          <img
+            src="assets/img/company/faq-img-3.jpg"
+            alt="faq-img"
+            class="img-fluid img-1"
+          />
+          <img
+            src="assets/img/company/faq-img-4.jpg"
+            alt="faq-img"
+            class="img-fluid img-2"
+          />
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <div class="section-header section-header-eight">
+          <div class="section-sub-title">
+            <span class="dot"></span>Our Experts Respond
+          </div>
+          <h2 class="section-title">
+            Commonly <span class="line">Asked Questions</span>
+          </h2>
+        </div>
+        <div class="faq-info wow zoomIn" data-wow-duration="1s">
+          <div class="accordion" id="faq-details-one">
+            <!-- FAQ Item -->
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="headingOne">
+                <a
+                  [routerLink]=""
+                  class="accordion-button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseOne"
+                  aria-expanded="true"
+                  aria-controls="collapseOne"
+                >
+                  How do I book an appointment with a doctor?
+                </a>
+              </h3>
+              <div
+                id="collapseOne"
+                class="accordion-collapse collapse show"
+                data-bs-parent="#faq-details-one"
+              >
+                <div class="accordion-body">
+                  <div class="accordion-content">
+                    <p>
+                      Yes, simply visit our website and log in or create an
+                      account. Search for a doctor based on specialization,
+                      location, or availability & confirm your booking.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /FAQ Item -->
+
+            <!-- FAQ Item -->
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="headingTwo">
+                <a
+                  [routerLink]=""
+                  class="accordion-button collapsed"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseTwo"
+                  aria-expanded="false"
+                  aria-controls="collapseTwo"
+                >
+                  Can I request a specific doctor when booking my appointment?
+                </a>
+              </h3>
+              <div
+                id="collapseTwo"
+                class="accordion-collapse collapse"
+                data-bs-parent="#faq-details-one"
+              >
+                <div class="accordion-body">
+                  <div class="accordion-content">
+                    <p>
+                      Yes, you can usually request a specific doctor when
+                      booking your appointment, though availability may vary
+                      based on their schedule.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /FAQ Item -->
+
+            <!-- FAQ Item -->
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="headingThree">
+                <a
+                  [routerLink]=""
+                  class="accordion-button collapsed"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseThree"
+                  aria-expanded="false"
+                  aria-controls="collapseThree"
+                >
+                  What should I do if I need to cancel or reschedule my
+                  appointment?
+                </a>
+              </h3>
+              <div
+                id="collapseThree"
+                class="accordion-collapse collapse"
+                data-bs-parent="#faq-details-one"
+              >
+                <div class="accordion-body">
+                  <div class="accordion-content">
+                    <p>
+                      If you need to cancel or reschedule your appointment,
+                      contact the doctor as soon as possible to inform them and
+                      to reschedule for another available time slot.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /FAQ Item -->
+
+            <!-- FAQ Item -->
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="headingFour">
+                <a
+                  [routerLink]=""
+                  class="accordion-button collapsed"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseFour"
+                  aria-expanded="false"
+                  aria-controls="collapseFour"
+                >
+                  What if I'm running late for my appointment?
+                </a>
+              </h3>
+              <div
+                id="collapseFour"
+                class="accordion-collapse collapse"
+                data-bs-parent="#faq-details-one"
+              >
+                <div class="accordion-body">
+                  <div class="accordion-content">
+                    <p>
+                      If you know you will be late, it's courteous to call the
+                      doctor's office and inform them. Depending on their policy
+                      and schedule, they may be able to accommodate you or
+                      reschedule your appointment.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /FAQ Item -->
+
+            <!-- FAQ Item -->
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="headingFive">
+                <a
+                  [routerLink]=""
+                  class="accordion-button collapsed"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseFive"
+                  aria-expanded="false"
+                  aria-controls="collapseFive"
+                >
+                  Can I book appointments for family members or dependents?
+                </a>
+              </h3>
+              <div
+                id="collapseFive"
+                class="accordion-collapse collapse"
+                data-bs-parent="#faq-details-one"
+              >
+                <div class="accordion-body">
+                  <div class="accordion-content">
+                    <p>
+                      Yes, in many cases, you can book appointments for family
+                      members or dependents. However, you may need to provide
+                      their personal information and consent to do so.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /FAQ Item -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end row -->
+  </div>
+</section>
+<!-- End Faq -->
+
+<!-- Blog Section -->
+<section class="blog-section-eight section wow fadeInUp" data-wow-duration="1s">
+  <div class="section-header section-header-eight text-center">
+    <h2 class="section-title">
+      Our Updated <br />
+      <span class="img-container">
+        <img
+          src="assets/img/banner/banner-six-img4.jpg"
+          alt="banner-icon"
+          class="img-fluid img-one"
+      /></span>
+      <span class="text-gradient">Blogs & Articles</span>
+    </h2>
+  </div>
+  <div class="blog-slide">
+    <div
+      class="blog-slider-eight slick-initialized slick-slider slick-list draggable"
+    >
+      <div class="slick-track">
+        <owl-carousel-o
+          #owl2
+          [options]="blogSliderOption"
+          class="blog-slider-eight"
+        >
+          <ng-template carouselSlide>
+            <div class="slide-item">
+              <div class="blog-item-eight">
+                <div class="blog-overlay">
+                  <img
+                    src="assets/img/blog/blog-img-one.jpg"
+                    alt="blog-img"
+                    class="img-fluid"
+                  />
+                </div>
+                <div class="blog-content">
+                  <span class="badge">Digital Eye Strain</span>
+                  <h3 class="custom-title">
+                    <a [routerLink]="routes.blogDetails">
+                      Computer Eye Strain: Causes, Symptoms
+                    </a>
+                  </h3>
+                  <p class="description">
+                    Extended screen time reduces blinking, causes dryness, and
+                    strains...
+                  </p>
+                  <div class="blog-icon">
+                    <i class="isax isax-calendar"></i>25, Nov 2026
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template carouselSlide>
+            <div class="slide-item">
+              <div class="blog-item-eight">
+                <div class="blog-overlay">
+                  <img
+                    src="assets/img/blog/blog-img-two.jpg"
+                    alt="blog-img"
+                    class="img-fluid"
+                  />
+                </div>
+                <div class="blog-content">
+                  <span class="badge">Treatments</span>
+                  <h3 class="custom-title">
+                    <a [routerLink]="routes.blogDetails">
+                      Expect Before & After Cataract Surgery
+                    </a>
+                  </h3>
+                  <p class="description">
+                    Cataract surgery replaces the cloudy natural lens with an
+                    artificial...
+                  </p>
+                  <div class="blog-icon">
+                    <i class="isax isax-calendar"></i>25, Nov 2026
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template carouselSlide>
+            <div class="slide-item">
+              <div class="blog-item-eight">
+                <div class="blog-overlay">
+                  <img
+                    src="assets/img/blog/blog-img-three.jpg"
+                    alt="blog-img"
+                    class="img-fluid"
+                  />
+                </div>
+                <div class="blog-content">
+                  <span class="badge">Wellness</span>
+                  <h3 class="custom-title">
+                    <a [routerLink]="routes.blogDetails">
+                      Daily Habits That Help Maintain Healthy Vision
+                    </a>
+                  </h3>
+                  <p class="description">
+                    Simple lifestyle changes like proper nutrition, screen
+                    breaks, and...
+                  </p>
+                  <div class="blog-icon">
+                    <i class="isax isax-calendar"></i>28, Nov 2026
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </owl-carousel-o>
+      </div>
+    </div>
+    <div class="slide-btn">
+      <button type="button" class="slick-arrow blogs-prev" (click)="goPrev2()">
+        <i class="isax isax-arrow-left-2"></i>
+      </button>
+      <button type="button" class="slick-arrow blogs-next" (click)="goNext2()">
+        <i class="isax isax-arrow-right-3"></i>
+      </button>
+    </div>
+  </div>
+</section>
+<!-- Blog Section -->
+
+<!-- Footer -->
+<footer class="footer-eight footer position-relative">
+  <!-- Slide Section -->
+  <div
+    class="horizontal-slide slide-eight d-flex"
+    data-direction="left"
+    data-speed="slow"
+  >
+    <div class="slide-list d-flex gap-4">
+      <div class="services-slide">
+        <h2>PERSONALIZED CARE PLANS</h2>
+      </div>
+      <div class="services-slide">
+        <i class="fa-solid fa-circle"></i>
+      </div>
+      <div class="services-slide">
+        <h2>EXPERIENCED SPECIALISTS</h2>
+      </div>
+      <div class="services-slide">
+        <i class="fa-solid fa-circle"></i>
+      </div>
+      <div class="services-slide">
+        <h2>PERSONALIZED CARE PLANS</h2>
+      </div>
+      <div class="services-slide">
+        <i class="fa-solid fa-circle"></i>
+      </div>
+      <div class="services-slide">
+        <h2>EXPERIENCED SPECIALISTS</h2>
+      </div>
+      <div class="services-slide">
+        <i class="fa-solid fa-circle"></i>
+      </div>
+    </div>
+  </div>
+  <!-- /Slide Section -->
+
+  <!-- Footer Top -->
+  <div class="footer-top">
+    <div class="container">
+      <div class="row g-md-5 g-4">
+        <div class="col-xl-5 col-lg-12 col-md-6">
+          <!-- Footer Widget -->
+          <div class="footer-widget footer-about">
+            <div class="footer-logo mb-4">
+              <img src="assets/img/logo-08.svg" alt="logo" />
+            </div>
+            <div class="footer-about-content mb-3">
+              <p class="description">
+                We are a dedicated Eye Care and Vision Health Center committed
+                to providing advanced, compassionate, and personalized treatment
+              </p>
+            </div>
+            <div class="footer-available">
+              <h4 class="title">We Are Available !!</h4>
+              <p class="date">Monday - Friday : 8:30 AM to 6:30 PM</p>
+            </div>
+          </div>
+          <!-- Footer Widget End -->
+        </div>
+
+        <div class="col-xl-2 col-lg-4 col-md-6">
+          <!-- Footer Widget -->
+          <div class="footer-widget">
+            <h5 class="footer-title">Company</h5>
+            <ul class="footer-menu">
+              <li>
+                <a [routerLink]="routes.aboutUs"
+                  ><i class="isax isax-arrow-right-3"></i>About</a
+                >
+              </li>
+              <li>
+                <a [routerLink]="routes.Clinic"
+                  ><i class="isax isax-arrow-right-3"></i>Clinics</a
+                >
+              </li>
+              <li>
+                <a [routerLink]="routes.Hospitals"
+                  ><i class="isax isax-arrow-right-3"></i>Hospitals</a
+                >
+              </li>
+              <li>
+                <a [routerLink]="routes.Speciality"
+                  ><i class="isax isax-arrow-right-3"></i>Specialities</a
+                >
+              </li>
+              <li>
+                <a [routerLink]="routes.contactUs"
+                  ><i class="isax isax-arrow-right-3"></i>Contact Us</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- Footer Widget End -->
+        </div>
+
+        <div class="col-xl-2 col-lg-4 col-md-6">
+          <!-- Footer Widget -->
+          <div class="footer-widget">
+            <h5 class="footer-title">Our Services</h5>
+            <ul class="footer-menu">
+              <li>
+                <a [routerLink]=""
+                  ><i class="isax isax-arrow-right-3"></i>Cataract Evaluation</a
+                >
+              </li>
+              <li>
+                <a [routerLink]=""
+                  ><i class="isax isax-arrow-right-3"></i>Pediatric Eye Care</a
+                >
+              </li>
+              <li>
+                <a [routerLink]=""
+                  ><i class="isax isax-arrow-right-3"></i>LASIK Surgery</a
+                >
+              </li>
+              <li>
+                <a [routerLink]=""
+                  ><i class="isax isax-arrow-right-3"></i>Glaucoma Screening</a
+                >
+              </li>
+              <li>
+                <a [routerLink]=""
+                  ><i class="isax isax-arrow-right-3"></i>Diabetic Eye Care</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- Footer Widget End -->
+        </div>
+
+        <div class="col-xl-3 col-lg-4 col-md-6">
+          <!-- Footer Widget -->
+          <div class="footer-widget">
+            <h5 class="footer-title">Keep in touch with us</h5>
+            <div class="footer-support">
+              <div class="support-item mb-3">
+                <div
+                  class="avatar avatar-lg bg-secondary rounded-circle flex-shrink-0"
+                >
+                  <i class="isax isax-location-tick4"></i>
+                </div>
+                <div>
+                  <p class="title">Visit Our Clinic</p>
+                  <h5 class="link">1250 Sunset Boulevard, USA</h5>
+                </div>
+              </div>
+              <div class="support-item mb-3">
+                <div
+                  class="avatar avatar-lg bg-secondary rounded-circle flex-shrink-0"
+                >
+                  <i class="isax isax-messages-3"></i>
+                </div>
+                <div>
+                  <p class="title">General Inquiries</p>
+                  <h5 class="link">
+                    <a href="mailto:info@example.com">info@example.com</a>
+                  </h5>
+                </div>
+              </div>
+              <div class="support-item mb-3">
+                <div
+                  class="avatar avatar-lg bg-secondary rounded-circle flex-shrink-0"
+                >
+                  <i class="isax isax-call-calling"></i>
+                </div>
+                <div>
+                  <p class="title">Emergency Cases</p>
+                  <h5 class="link">+1 24565 89856</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Footer Widget End -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /Footer Top -->
+
+  <!-- Footer Bottom -->
+  <div class="footer-bottom">
+    <div class="container">
+      <!-- Copyright -->
+      <div class="copyright">
+        <div class="copyright-text">
+          <p class="mb-0">Copyright &copy; 2025 Doccure. All Rights Reserved</p>
+        </div>
+        <div class="social-icon">
+          <ul class="d-flex align-items-center gap-2 social-item">
+            <li>
+              <a [routerLink]="" class="social-icon"
+                ><i class="fa-brands fa-facebook"></i
+              ></a>
+            </li>
+            <li>
+              <a [routerLink]="" class="social-icon"
+                ><i class="fa-brands fa-x-twitter"></i
+              ></a>
+            </li>
+            <li>
+              <a [routerLink]="" class="social-icon"
+                ><i class="fa-brands fa-instagram"></i
+              ></a>
+            </li>
+            <li>
+              <a [routerLink]="" class="social-icon"
+                ><i class="fa-brands fa-linkedin"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- Copyright End -->
+    </div>
+    <img
+      src="assets/img/bg/footer-1.png"
+      alt="footer-bg"
+      class="img-fluid shadow-1"
+    />
+    <img
+      src="assets/img/bg/footer-2.png"
+      alt="footer-bg"
+      class="img-fluid shadow-2"
+    />
+  </div>
+  <!-- Footer Bottom End -->
+</footer>
+<!-- Footer End -->

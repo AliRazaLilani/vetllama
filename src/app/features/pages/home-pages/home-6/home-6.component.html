@@ -1,0 +1,1232 @@
+<!-- Start Banner -->
+<section class="banner-section-six section">
+  <div class="container">
+    <!-- start row -->
+    <div class="row">
+      <div class="col-lg-7">
+        <div class="section-header section-header-six">
+          <h1 class="section-title">
+            Your Pet’s
+            <img
+              src="assets/img/icons/banner-icon-4.png"
+              alt="banner-icon"
+              class="img-fluid img-one"
+            />
+            <br />
+            Health, Our Top <br />
+            <img
+              src="assets/img/icons/banner-icon-5.png"
+              alt="banner-icon"
+              class="img-fluid img-one"
+            />
+            Priority
+          </h1>
+          <p>
+            Providing expert veterinary care with compassion, dedication, and
+            love. From routine checkups to emergency care, we’re here to keep
+            your pets happy
+          </p>
+        </div>
+        <a [routerLink]="" class="btn btn-primary"
+          ><span><i class="isax isax-category"></i>View All Services</span></a
+        >
+      </div>
+      <div class="col-lg-5">
+        <div class="banner-img">
+          <img
+            src="assets/img/banner/banner-img-7.png"
+            alt="banner-img"
+            class="img-fluid img-one"
+          />
+          <img
+            src="assets/img/bg/banner-img-1.png"
+            alt="banner-img"
+            class="img-fluid img-two"
+          />
+        </div>
+      </div>
+    </div>
+    <!-- end row -->
+  </div>
+  <img
+    src="assets/img/icons/banner-icon-6.png"
+    alt="banner-icon"
+    class="img-fluid icon-one"
+  />
+  <img
+    src="assets/img/icons/banner-icon-7.png"
+    alt="banner-icon"
+    class="img-fluid icon-two"
+  />
+</section>
+<!-- End Banner -->
+
+<!-- Start Aboutus -->
+<section class="about-section-six section">
+  <div class="container">
+    <!-- start row -->
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="about-img-six">
+          <img
+            src="assets/img/about/about-03.jpg"
+            alt="about"
+            class="img-fluid img-one"
+          />
+          <img
+            src="assets/img/about/about-04.png"
+            alt="about"
+            class="img-fluid img-two"
+          />
+          <lightgallery [settings]="settings" [onInit]="onInit" size="1400-933">
+            <a src="https://youtu.be/MyQxnFgPgQU?si=Z9y2WdynImbFnqL2">
+              <button class="animate-button" data-text="Play Video Play Video">
+                <p class="button-text"></p>
+                <span class="button-circle">
+                  <i class="isax isax-play"></i>
+                </span>
+              </button>
+            </a>
+          </lightgallery>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="about-content-six">
+          <div class="section-header section-header-six">
+            <div class="section-sub-title ms-0">About Us</div>
+            <h2 class="section-title">
+              Our Story of <span class="line-6">Compassionate</span> Veterinary
+              Care
+            </h2>
+            <p>
+              At Doccure, we are passionate about providing compassionate,
+              high-quality veterinary care for your beloved pets. With a team of
+              experienced veterinarians, technicians, and support staff, we are
+              dedicated to ensuring the health and well being of animals.
+            </p>
+          </div>
+          <div class="about d-flex align-items-center gap-4">
+            <div class="about-vision" [class.active]="activeIndex === 1" (mouseenter)="setActive(1)">
+              <h3 class="custom-title">Our Mission</h3>
+              <p class="para">
+                Our mission is to provide exceptional veterinary care through
+                personalized services and advanced treatments. We are dedicated
+                to fostering long-term relationships with pets.
+              </p>
+              <img
+                src="assets/img/icons/banner-icon-6.png"
+                alt="banner-icon"
+                class="img-fluid icon-one"
+              />
+            </div>
+            <div class="about-vision" [class.active]="activeIndex === 2" (mouseenter)="setActive(2)">
+              <h3 class="custom-title">Our Vision</h3>
+              <p class="para">
+                Our mission is to provide exceptional veterinary care through
+                personalized services and advanced treatments. We are dedicated
+                to fostering long-term relationships with pets.
+              </p>
+              <img
+                src="assets/img/icons/banner-icon-6.png"
+                alt="banner-icon"
+                class="img-fluid icon-one"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end row -->
+  </div>
+  <img
+    src="assets/img/about/about-img-2.png"
+    alt="about-img"
+    class="img-fluid element-1"
+  />
+  <img
+    src="assets/img/icons/foot-prints-1.png"
+    alt="about-img"
+    class="img-fluid element-2"
+  />
+  <img
+    src="assets/img/icons/about-icons-1.svg"
+    alt="about-img"
+    class="img-fluid element-3"
+  />
+</section>
+<!-- End Aboutus -->
+
+<!-- Start Service -->
+<section class="services-section-six section">
+  <div class="container">
+    <div class="section-header-six section-white text-center">
+      <div class="section-sub-title">Services</div>
+      <h2 class="section-title">
+        Our <span class="line-6">Veterinary</span> Services
+      </h2>
+    </div>
+
+    <!-- start row -->
+    <div class="row g-4">
+      <!-- Item 1 -->
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="services-item-six">
+          <div class="services-icon">
+            <img
+              src="assets/img/icons/services-icon-1.png"
+              alt="services"
+              class="img-fluid icon-1"
+            />
+            <div class="shape-one"></div>
+            <div class="shape-two"></div>
+          </div>
+          <div class="services-content">
+            <h3 class="custom-title">Pet Consultation</h3>
+            <p class="description">
+              Comprehensive health check ups & expert medical advice for your
+              pets
+            </p>
+          </div>
+          <img
+            src="assets/img/service/service-img-1.jpg"
+            alt="service-img"
+            class="img-fluid overlay-img"
+          />
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="services-item-six">
+          <div class="services-icon">
+            <img
+              src="assets/img/icons/services-icon-2.png"
+              alt="services"
+              class="img-fluid icon-1"
+            />
+          </div>
+          <div class="services-content">
+            <h3 class="custom-title">Vaccination</h3>
+            <p class="description">
+              Essential immunizations to protect your pets from common diseases
+            </p>
+          </div>
+          <img
+            src="assets/img/service/service-img-2.jpg"
+            alt="service-img"
+            class="img-fluid overlay-img"
+          />
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="services-item-six">
+          <div class="services-icon">
+            <img
+              src="assets/img/icons/services-icon-3.png"
+              alt="services"
+              class="img-fluid icon-1"
+            />
+          </div>
+          <div class="services-content">
+            <h3 class="custom-title">Grooming</h3>
+            <p class="description">
+              Professional care to keep your pets clean and comfortable
+            </p>
+          </div>
+          <img
+            src="assets/img/service/service-img-3.jpg"
+            alt="service-img"
+            class="img-fluid overlay-img"
+          />
+        </div>
+      </div>
+
+      <!-- Item 4 -->
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="services-item-six">
+          <div class="services-icon">
+            <img
+              src="assets/img/icons/services-icon-4.png"
+              alt="services"
+              class="img-fluid icon-1"
+            />
+          </div>
+          <div class="services-content">
+            <h3 class="custom-title">Nutrition</h3>
+            <p class="description">
+              Personalized diet plans to support your pet’s healthy growth
+            </p>
+          </div>
+          <img
+            src="assets/img/service/service-img-4.jpg"
+            alt="service-img"
+            class="img-fluid overlay-img"
+          />
+        </div>
+      </div>
+    </div>
+    <!-- end row -->
+  </div>
+  <img
+    src="assets/img/icons/banner-icon-7.png"
+    alt="banner-icon"
+    class="img-fluid icon-one"
+  />
+</section>
+<!-- End Service -->
+
+<!-- Start Team -->
+<section class="team-section-six section">
+  <div class="container">
+    <div class="section-header-six text-center">
+      <div class="section-sub-title">Teams</div>
+      <h2 class="section-title">
+        Meet Our <span class="line-6">Expert</span> Veterinarians
+      </h2>
+    </div>
+
+    <!-- start row -->
+    <div class="row g-5">
+      <!-- Item 1 -->
+      <div class="col-xl-3 col-md-6 col-sm-6">
+        <div class="team-item-six">
+          <div class="team-overly-img">
+            <img
+              src="assets/img/team/team-img-one.png"
+              alt="team"
+              class="img-fluid img-two"
+            />
+            <img
+              src="assets/img/icons/team-icon.svg"
+              alt="team"
+              class="img-fluid img-three"
+            />
+          </div>
+          <div class="team-content">
+            <h3 class="custom-title">
+              <a [routerLink]="">Dr. Brenda Ramsey</a>
+            </h3>
+            <p>Veterinary Surgeon</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="col-xl-3 col-md-6 col-sm-6">
+        <div class="team-item-six">
+          <div class="team-overly-img">
+            <img
+              src="assets/img/team/team-img-two.png"
+              alt="team"
+              class="img-fluid img-two"
+            />
+            <img
+              src="assets/img/icons/team-icon.svg"
+              alt="team"
+              class="img-fluid img-three"
+            />
+          </div>
+          <div class="team-content">
+            <h3 class="custom-title"><a [routerLink]="">Dr. John Smith</a></h3>
+            <p>Veterinary Neurologist</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="col-xl-3 col-md-6 col-sm-6">
+        <div class="team-item-six">
+          <div class="team-overly-img">
+            <img
+              src="assets/img/team/team-img-three.png"
+              alt="team"
+              class="img-fluid img-two"
+            />
+            <img
+              src="assets/img/icons/team-icon.svg"
+              alt="team"
+              class="img-fluid img-three"
+            />
+          </div>
+          <div class="team-content">
+            <h3 class="custom-title"><a [routerLink]="">Dr. Karen Perez</a></h3>
+            <p>Veterinary Dermatologist</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 4 -->
+      <div class="col-xl-3 col-md-6 col-sm-6">
+        <div class="team-item-six">
+          <div class="team-overly-img">
+            <img
+              src="assets/img/team/team-img-four.png"
+              alt="team"
+              class="img-fluid img-two"
+            />
+            <img
+              src="assets/img/icons/team-icon.svg"
+              alt="team"
+              class="img-fluid img-three"
+            />
+          </div>
+          <div class="team-content">
+            <h3 class="custom-title">
+              <a [routerLink]="">Dr. Steven Johnson</a>
+            </h3>
+            <p>Veterinary Nutritionist</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- end row -->
+  </div>
+  <img
+    src="assets/img/icons/foot-prints-1.png"
+    alt="foot-prints"
+    class="img-fluid element-one"
+  />
+</section>
+<!-- End Team -->
+
+<!-- Start Why -->
+<section class="whychoose-section-six section">
+  <div class="container">
+    <!-- start row -->
+    <div class="row">
+      <div class="col-xl-6">
+        <div class="section-header-six">
+          <div class="section-sub-title ms-0">Benefits</div>
+          <h2 class="section-title">
+            Why Pet Owners <span class="line-6">Trust Us</span>
+          </h2>
+          <p>
+            At our clinic, we blend years of veterinary expertise with genuine
+            compassion to deliver care that goes beyond treatment
+          </p>
+        </div>
+        <!-- Item 1 -->
+        <div class="choose-item-six">
+          <div class="choose-item-count">
+            <span>01</span>
+          </div>
+          <div class="choose-item-content">
+            <h3 class="custom-title">Experienced Veterinarians</h3>
+            <p>
+              Our team of highly qualified veterinarians brings years of
+              hands-on experience and deep compassion for animals
+            </p>
+          </div>
+        </div>
+        <!-- Item 2 -->
+        <div class="choose-item-six">
+          <div class="choose-item-count">
+            <span>02</span>
+          </div>
+          <div class="choose-item-content">
+            <h3 class="custom-title">24/7 Emergency Support</h3>
+            <p>
+              Whether it’s a late-night injury or sudden illness, our emergency
+              care unit is equipped to respond quickly.
+            </p>
+          </div>
+        </div>
+        <!-- Item 3 -->
+        <div class="choose-item-six">
+          <div class="choose-item-count">
+            <span>03</span>
+          </div>
+          <div class="choose-item-content">
+            <h3 class="custom-title">Modern Facilities</h3>
+            <p>
+              We combine the latest medical technology with advanced diagnostic
+              & tools to deliver comfortable treatments
+            </p>
+          </div>
+        </div>
+        <!-- Item 4 -->
+        <div class="choose-item-six mb-0">
+          <div class="choose-item-count">
+            <span>04</span>
+          </div>
+          <div class="choose-item-content">
+            <h3 class="custom-title">Compassionate Care</h3>
+            <p>
+              Our gentle approach, friendly staff, and nurturing environment
+              ensure that both pets & their owners feel safe
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-6">
+        <div class="whychoose-img">
+          <img
+            src="assets/img/about/choose-img-8.png"
+            alt="choose-img"
+            class="img-fluid img-one"
+          />
+          <img
+            src="assets/img/about/choose-img-9.png"
+            alt="choose-img"
+            class="img-fluid img-two"
+          />
+        </div>
+      </div>
+    </div>
+    <!-- end row -->
+  </div>
+  <img
+    src="assets/img/about/choose-img-10.png"
+    alt="choose-img"
+    class="img-fluid element-1"
+  />
+</section>
+<!-- End Why -->
+
+<!-- Start Testimonial -->
+<section class="testimonial-section-six section">
+  <div class="container">
+    <div class="section-header-six text-center">
+      <div class="section-sub-title">Testimonials</div>
+      <h2 class="section-title">
+        What <span class="line-6"> Pet Parents </span> Says Worldwide
+      </h2>
+    </div>
+
+    <!-- start row -->
+    <div class="row g-5">
+      <!-- Item 1 -->
+      <div class="col-xxl-4 col-xl-6 col-lg-6 col-md-6">
+        <div class="testimonial-item-six">
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">
+              <img
+                src="assets/img/patients/patient2.jpg"
+                alt="patient1"
+                class="img-fluid img-1"
+              />
+            </div>
+            <div class="author">
+              <h3 class="custom-title author-name">
+                <a [routerLink]="">Gregg Lewis</a>
+              </h3>
+              <p class="author-location">San Diego, CA</p>
+            </div>
+          </div>
+          <div class="testimonial-content">
+            <p>
+              Our cat, Milo, was nervous, but the vet handled him so gently.
+              We’re so grateful for the kindness and expertise here.
+            </p>
+          </div>
+          <div class="review">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="col-xxl-4 col-xl-6 col-lg-6 col-md-6">
+        <div class="testimonial-item-six">
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">
+              <img
+                src="assets/img/patients/patient3.jpg"
+                alt="patient1"
+                class="img-fluid img-1"
+              />
+            </div>
+            <div class="author">
+              <h3 class="custom-title author-name">
+                <a [routerLink]="">William Andre</a>
+              </h3>
+              <p class="author-location">New York</p>
+            </div>
+          </div>
+          <div class="testimonial-content">
+            <p>
+              Our golden retriever, Max, had a severe ear infection, and the
+              team here handled it with such care and patience.
+            </p>
+          </div>
+          <div class="review">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="col-xxl-4 col-xl-6 col-lg-6 col-md-6">
+        <div class="testimonial-item-six">
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">
+              <img
+                src="assets/img/patients/patient4.jpg"
+                alt="patient1"
+                class="img-fluid img-1"
+              />
+            </div>
+            <div class="author">
+              <h3 class="custom-title author-name">
+                <a [routerLink]="">Teresa Martin</a>
+              </h3>
+              <p class="author-location">Austin</p>
+            </div>
+          </div>
+          <div class="testimonial-content">
+            <p>
+              I’ve been bringing my pets here for over five years. Every visit
+              feels personal, and I know my pets are in good hands.
+            </p>
+          </div>
+          <div class="review">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 4 -->
+      <div class="col-xxl-4 col-xl-6 col-lg-6 col-md-6">
+        <div class="testimonial-item-six">
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">
+              <img
+                src="assets/img/patients/patient5.jpg"
+                alt="patient1"
+                class="img-fluid img-1"
+              />
+            </div>
+            <div class="author">
+              <h3 class="custom-title author-name">
+                <a [routerLink]="">Leslie Nichols</a>
+              </h3>
+              <p class="author-location">San Francisco</p>
+            </div>
+          </div>
+          <div class="testimonial-content">
+            <p>
+              You can tell they genuinely love animals. The staff takes time to
+              explain each procedure and follow up after visits.
+            </p>
+          </div>
+          <div class="review">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 5 -->
+      <div class="col-xxl-4 col-xl-6 col-lg-6 col-md-6">
+        <div class="testimonial-item-six">
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">
+              <img
+                src="assets/img/patients/patient6.jpg"
+                alt="patient1"
+                class="img-fluid img-1"
+              />
+            </div>
+            <div class="author">
+              <h3 class="custom-title author-name">
+                <a [routerLink]="">Leslie Nichols</a>
+              </h3>
+              <p class="author-location">San Francisco</p>
+            </div>
+          </div>
+          <div class="testimonial-content">
+            <p>
+              You can tell they genuinely love animals. The staff takes time to
+              explain each procedure and follow up after visits.
+            </p>
+          </div>
+          <div class="review">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 6 -->
+      <div class="col-xxl-4 col-xl-6 col-lg-6 col-md-6">
+        <div class="testimonial-item-six">
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">
+              <img
+                src="assets/img/patients/patient7.jpg"
+                alt="patient1"
+                class="img-fluid img-1"
+              />
+            </div>
+            <div class="author">
+              <h3 class="custom-title author-name">
+                <a [routerLink]="">William Stark</a>
+              </h3>
+              <p class="author-location">Seattle</p>
+            </div>
+          </div>
+          <div class="testimonial-content">
+            <p>
+              The clinic is spotless and well-equipped. I feel confident knowing
+              my pet is getting the best care available.
+            </p>
+          </div>
+          <div class="review">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end row -->
+    <img
+      src="assets/img/reviews/testimonial-img.png"
+      alt="testimonial-img"
+      class="img-fluid testimonial-img-1"
+    />
+  </div>
+  <img
+    src="assets/img/icons/foot-prints-2.png"
+    alt="foot-prints"
+    class="img-fluid element-1"
+  />
+  <img
+    src="assets/img/icons/foot-prints-3.png"
+    alt="foot-prints"
+    class="img-fluid element-2"
+  />
+</section>
+<!-- Start Testimonial -->
+
+<!-- Start Faq -->
+<section class="faq-section-six section">
+  <div class="container">
+    <div class="section-header-six text-center">
+      <div class="section-sub-title">FAQ</div>
+      <h2 class="section-title">
+        Frequently Asked <span class="line-6"> Questions </span>
+      </h2>
+    </div>
+
+    <!-- start row -->
+    <div class="row g-4">
+      <div class="col-lg-5">
+        <div class="faq-support">
+          <img
+            src="assets/img/icons/support-icon.svg"
+            alt="choose-img"
+            class="img-fluid element-1"
+          />
+          <h3 class="custom-title">
+            We’re here to help with all your pet care concerns.
+          </h3>
+          <p class="description">
+            Our team will respond quickly with the best advice for your furry
+            friend.
+          </p>
+          <a [routerLink]="" class="btn btn-primary theme-5-btn"
+            ><span>Contact Us<i class="isax isax-arrow-right-3"></i></span
+          ></a>
+        </div>
+        <div class="faq-help">
+          <!-- Item 1 -->
+          <div class="about-popup-item border-0 pb-0 mb-0">
+            <div class="support-item">
+              <div
+                class="avatar avatar-lg bg-primary rounded-circle flex-shrink-0"
+              >
+                <i class="isax isax-call5"></i>
+              </div>
+              <div>
+                <p class="title">General Inquiries</p>
+                <h4 class="link"><a [routerLink]="">info@example.com</a></h4>
+              </div>
+              <img
+                src="assets/img/service/support-img-1.png"
+                alt="support-img-1"
+                class="img-fluid img-1"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <div class="faq-info wow zoomIn" data-wow-duration="1s">
+          <div class="accordion" id="faq-details-one">
+            <!-- FAQ Item -->
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="headingOne">
+                <a
+                  [routerLink]=""
+                  class="accordion-button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseOne"
+                  aria-expanded="true"
+                  aria-controls="collapseOne"
+                >
+                  How do I book an appointment with a doctor?
+                </a>
+              </h3>
+              <div
+                id="collapseOne"
+                class="accordion-collapse collapse show"
+                data-bs-parent="#faq-details-one"
+              >
+                <div class="accordion-body">
+                  <div class="accordion-content">
+                    <p>
+                      Yes, simply visit our website and log in or create an
+                      account. Search for a doctor based on specialization,
+                      location, or availability & confirm your booking.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /FAQ Item -->
+
+            <!-- FAQ Item -->
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="headingTwo">
+                <a
+                  [routerLink]=""
+                  class="accordion-button collapsed"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseTwo"
+                  aria-expanded="false"
+                  aria-controls="collapseTwo"
+                >
+                  Can I request a specific doctor when booking my appointment?
+                </a>
+              </h3>
+              <div
+                id="collapseTwo"
+                class="accordion-collapse collapse"
+                data-bs-parent="#faq-details-one"
+              >
+                <div class="accordion-body">
+                  <div class="accordion-content">
+                    <p>
+                      Yes, you can usually request a specific doctor when
+                      booking your appointment, though availability may vary
+                      based on their schedule.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /FAQ Item -->
+
+            <!-- FAQ Item -->
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="headingThree">
+                <a
+                  [routerLink]=""
+                  class="accordion-button collapsed"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseThree"
+                  aria-expanded="false"
+                  aria-controls="collapseThree"
+                >
+                  What should I do if I need to cancel or reschedule my
+                  appointment?
+                </a>
+              </h3>
+              <div
+                id="collapseThree"
+                class="accordion-collapse collapse"
+                data-bs-parent="#faq-details-one"
+              >
+                <div class="accordion-body">
+                  <div class="accordion-content">
+                    <p>
+                      If you need to cancel or reschedule your appointment,
+                      contact the doctor as soon as possible to inform them and
+                      to reschedule for another available time slot.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /FAQ Item -->
+
+            <!-- FAQ Item -->
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="headingFour">
+                <a
+                  [routerLink]=""
+                  class="accordion-button collapsed"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseFour"
+                  aria-expanded="false"
+                  aria-controls="collapseFour"
+                >
+                  What if I'm running late for my appointment?
+                </a>
+              </h3>
+              <div
+                id="collapseFour"
+                class="accordion-collapse collapse"
+                data-bs-parent="#faq-details-one"
+              >
+                <div class="accordion-body">
+                  <div class="accordion-content">
+                    <p>
+                      If you know you will be late, it's courteous to call the
+                      doctor's office and inform them. Depending on their policy
+                      and schedule, they may be able to accommodate you or
+                      reschedule your appointment.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /FAQ Item -->
+
+            <!-- FAQ Item -->
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="headingFive">
+                <a
+                  [routerLink]=""
+                  class="accordion-button collapsed"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseFive"
+                  aria-expanded="false"
+                  aria-controls="collapseFive"
+                >
+                  Can I book appointments for family members or dependents?
+                </a>
+              </h3>
+              <div
+                id="collapseFive"
+                class="accordion-collapse collapse"
+                data-bs-parent="#faq-details-one"
+              >
+                <div class="accordion-body">
+                  <div class="accordion-content">
+                    <p>
+                      Yes, in many cases, you can book appointments for family
+                      members or dependents. However, you may need to provide
+                      their personal information and consent to do so.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /FAQ Item -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end row -->
+  </div>
+</section>
+<!-- End Faq -->
+
+<!-- Start Slide -->
+<div
+  class="horizontal-slide slide-one slide-six d-flex"
+  data-direction="left"
+  data-speed="slow"
+>
+  <div class="slide-list d-flex gap-4">
+    <div class="services-slide">
+      <h3>Certified Medical Professionals</h3>
+    </div>
+    <div class="services-slide">
+      <h3>Advanced Diagnostic Tools</h3>
+    </div>
+    <div class="services-slide">
+      <h3>Online Appointment Booking</h3>
+    </div>
+    <div class="services-slide">
+      <h3>Electronic Health Records</h3>
+    </div>
+  </div>
+</div>
+<!-- End Slide -->
+
+<!-- Start Testimonial -->
+<section class="article-section-six section">
+  <div class="container">
+    <div class="section-header-six text-center">
+      <div class="section-sub-title">Latest Blogs</div>
+      <h2 class="section-title">
+        Explore Our Latest <span class="line-6"> Articles </span>
+      </h2>
+    </div>
+
+    <!-- start row -->
+    <div class="row justify-content-center g-5">
+      <!-- Item 1 -->
+      <div class="col-xl-4 col-md-6">
+        <div class="blog-item-six">
+          <div class="blog-image">
+            <a [routerLink]="routes.blogDetails"
+              ><img
+                class="img-fluid"
+                src="assets/img/blog/blog-img-1.png"
+                alt="Post Image"
+            /></a>
+            <div class="post-author">
+              <a [routerLink]="routes.doctorProfile1"
+                ><img
+                  src="assets/img/patients/patient5.jpg"
+                  alt="Post Author"
+                />
+                <span>Daniel Scott</span>
+              </a>
+            </div>
+          </div>
+          <div class="blog-content">
+            <h3 class="custom-title line-clamp-2">
+              <a [routerLink]="routes.blogDetails"
+                >How to Keep Your Pet Healthy All Year Round</a
+              >
+            </h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="col-xl-4 col-md-6">
+        <div class="blog-item-six">
+          <div class="blog-image">
+            <a [routerLink]="routes.blogDetails"
+              ><img
+                class="img-fluid"
+                src="assets/img/blog/blog-img-2.png"
+                alt="Post Image"
+            /></a>
+            <div class="post-author">
+              <a [routerLink]="routes.doctorProfile1"
+                ><img
+                  src="assets/img/patients/patient6.jpg"
+                  alt="Post Author"
+                />
+                <span> Sofia Doe</span>
+              </a>
+            </div>
+          </div>
+          <div class="blog-content">
+            <h3 class="custom-title line-clamp-2">
+              <a [routerLink]="routes.blogDetails"
+                >The Ultimate Guide to Pet Nutrition and Diet</a
+              >
+            </h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="col-xl-4 col-md-6">
+        <div class="blog-item-six">
+          <div class="blog-image">
+            <a [routerLink]="routes.blogDetails"
+              ><img
+                class="img-fluid"
+                src="assets/img/blog/blog-img-3.png"
+                alt="Post Image"
+            /></a>
+            <div class="post-author">
+              <a [routerLink]="routes.doctorProfile1"
+                ><img
+                  src="assets/img/patients/patient7.jpg"
+                  alt="Post Author"
+                />
+                <span>Lisa Labon</span>
+              </a>
+            </div>
+          </div>
+          <div class="blog-content">
+            <h3 class="custom-title line-clamp-2">
+              <a [routerLink]="routes.blogDetails"
+                >Building a Strong Bond with Your Pet Through Proper Care</a
+              >
+            </h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end row -->
+  </div>
+</section>
+
+<!-- Start Subscribe -->
+<section class="subscribe-section-six">
+  <div class="container">
+    <div class="subscribe-item-six">
+      <!-- start row -->
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <h2>Subscribe Newsletter</h2>
+        </div>
+        <div class="col-lg-6">
+          <div class="subscribe-input">
+            <form action="#" class="flex-grow-1">
+              <input
+                type="email"
+                class="form-control"
+                placeholder="Enter Email Address"
+              />
+              <button type="submit" class="btn-icon btn btn-secondary">
+                <i class="isax isax-arrow-right-1"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- end row -->
+    </div>
+  </div>
+</section>
+<!-- End Subscribe -->
+
+<!-- Footer -->
+<footer class="footer-six footer">
+  <!-- Footer Top -->
+  <div class="footer-top">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-xl-5 col-lg-4 col-md-4">
+          <!-- Footer Widget -->
+          <div class="footer-widget footer-about">
+            <div class="footer-logo">
+              <img src="assets/img/logo-06.svg" alt="logo" />
+            </div>
+            <p class="description">
+              We’re a trusted veterinary clinic dedicated to keeping<span
+                class="d-block"
+              >
+                your pets healthy and happy.</span
+              >
+            </p>
+            <div class="footer-about-content">
+              <ul class="social-icon">
+                <li>
+                  <a [routerLink]=""><i class="fa-brands fa-facebook"></i></a>
+                </li>
+                <li>
+                  <a [routerLink]=""><i class="fa-brands fa-x-twitter"></i></a>
+                </li>
+                <li>
+                  <a [routerLink]=""><i class="fa-brands fa-instagram"></i></a>
+                </li>
+                <li>
+                  <a [routerLink]=""><i class="fa-brands fa-linkedin"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- /Footer Widget -->
+        </div>
+
+        <div class="col-xl-2 col-lg-4 col-md-4">
+          <!-- Footer Widget -->
+          <div class="footer-widget">
+            <h5 class="footer-title">Company</h5>
+            <ul class="footer-menu">
+              <li><a [routerLink]="routes.aboutUs">About</a></li>
+              <li><a [routerLink]="routes.Clinic">Clinics</a></li>
+              <li><a [routerLink]="routes.Hospitals">Hospitals</a></li>
+              <li><a [routerLink]="routes.Speciality">Specialities</a></li>
+              <li><a [routerLink]="routes.contactUs">Contact Us</a></li>
+            </ul>
+          </div>
+          <!-- /Footer Widget -->
+        </div>
+
+        <div class="col-xl-3 col-lg-4 col-md-4">
+          <!-- Footer Widget -->
+          <div class="footer-widget">
+            <h5 class="footer-title">Veterinary Services</h5>
+            <ul class="footer-menu">
+              <li><a [routerLink]="routes.aboutUs">Pet Health Checkups</a></li>
+              <li>
+                <a [routerLink]="routes.Clinic">Vaccinations & Preventions</a>
+              </li>
+              <li>
+                <a [routerLink]="routes.Hospitals">Surgery & Orthopedics</a>
+              </li>
+              <li>
+                <a [routerLink]="routes.Speciality">Dental Care for Pets</a>
+              </li>
+              <li>
+                <a [routerLink]="routes.contactUs">Emergency & Critical Care</a>
+              </li>
+            </ul>
+          </div>
+          <!-- /Footer Widget -->
+        </div>
+      </div>
+    </div>
+    <img
+      src="assets/img/bg/footer-img-1.png"
+      alt="footer-img-1"
+      class="img-fluid footer-img-1"
+    />
+    <img
+      src="assets/img/icons/banner-icon-6.png"
+      alt="banner-icon"
+      class="img-fluid icon-one"
+    />
+    <img
+      src="assets/img/icons/foot-prints-4.png"
+      alt="banner-icon"
+      class="img-fluid icon-two"
+    />
+  </div>
+  <!-- /Footer Top -->
+
+  <!-- Footer Bottom -->
+  <div class="footer-bottom">
+    <div class="container">
+      <!-- Copyright -->
+      <div class="copyright">
+        <div class="row justify-content-center g-4">
+          <div class="col-lg-6">
+            <div class="copyright-text">
+              <p class="mb-0">
+                Copyright &copy; 2025 Doccure. All Rights Reserved
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="footer-links">
+              <a [routerLink]="routes.termsCondition">Terms & Conditions</a>
+              <span>/</span>
+              <a [routerLink]="routes.privacyPolicy">Privacy Policy</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /Copyright -->
+    </div>
+  </div>
+  <!-- /Footer Bottom -->
+</footer>
+<!-- /Footer -->
