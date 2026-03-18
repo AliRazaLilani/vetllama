@@ -11,7 +11,7 @@ export const Page_Routes: Routes = [
         children: [
           {
             path: 'index',
-            loadComponent: () => import('./home-pages/home-1/home-1.component').then((m) => m.Home1Component),
+            loadComponent: () => import('./home-pages/home-6/home-6.component').then((m) => m.Home6Component),
           },
           {
             path: 'index-2',
