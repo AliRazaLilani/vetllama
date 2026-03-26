@@ -1,6 +1,6 @@
 <app-patient-breadcrumb></app-patient-breadcrumb>
 <!-- Page Content -->
-<div class="content content-space">
+<div class="content content-space pet-bg">
   <div class="container">
     <!-- Booking -->
     <div class="row">
@@ -170,14 +170,20 @@
             </div>
           </div>
         </div>
-        <div class="booking-btn">
-          <a
-            [routerLink]="routes.patientDetails"
-            class="btn btn-primary prime-btn justify-content-center align-items-center"
-          >
+
+        <button
+          [routerLink]="routes.patientDetails"
+          class="theme-btn btn-primary"
+        >
+          <i class="feather icon-arrow-right-circle"></i>
+          Next
+        </button>
+
+        <!-- <div>
+          <a [routerLink]="routes.patientDetails" class="theme-btn btn-primary">
             Next <i class="feather icon-arrow-right-circle"></i>
           </a>
-        </div>
+        </div> -->
       </div>
       <div class="col-lg-4 col-md-12">
         <div class="booking-header">
@@ -211,7 +217,7 @@
             </div>
           </div>
         </div>
-        <div class="card booking-card">
+        <!-- <div class="card booking-card">
           <div class="card-body booking-card-body">
             <div class="booking-doctor-details">
               <div class="booking-device">
@@ -232,8 +238,8 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="card booking-card mb-0">
+        </div> -->
+        <!-- <div class="card booking-card mb-0">
           <div class="card-body booking-card-body">
             <div class="booking-doctor-details">
               <div class="booking-device">
@@ -260,7 +266,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
     <!-- /Booking -->

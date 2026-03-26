@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { Component, OnInit } from '@angular/core';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { MatSelectModule } from '@angular/material/select';
 import { RouterLink } from '@angular/router';
 import { routes } from 'src/app/core/routes/routes';
-import { GoogleMapsModule } from '@angular/google-maps';
+import { CommonService } from 'src/app/core/services/common/common.service';
 import { BreadcrumbSearchComponent } from '../../common/breadcrumb-search/breadcrumb-search.component';
-import { MatSelectModule } from '@angular/material/select';
 interface data {
   value: string;
 }
@@ -23,6 +24,11 @@ interface data {
 })
 export class MapGridComponent implements OnInit {
   public routes = routes;
+  public base = 'index-6';
+
+  constructor(private commonService: CommonService) {
+    this.commonService.base.next('index-6');
+  }
   public isClassAdded: boolean[] = [false];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   slider: any;
@@ -265,7 +271,7 @@ export class MapGridComponent implements OnInit {
     };
     this.map = new google.maps.Map(
       document.getElementById('map') as HTMLElement,
-      mapOptions
+      mapOptions,
     );
     this.map['slide'] = true;
     this.infowindow = new google.maps.InfoWindow({ content: 'loading...' });

@@ -1,29 +1,40 @@
 <!-- Common Theme Changer -->
 
-<div class="header-theme header-theme-two" [ngClass]="{
+<div
+  class="header-theme header-theme-two"
+  [ngClass]="{
     'd-none':
       base === 'index-3' ||
       base === 'index-4' ||
       base === 'index-9' ||
-      base === 'index-11'
-  }">
-  <a [routerLink]="" id="dark-mode-toggle" class="theme-toggle moon"
+      base === 'index-11',
+  }"
+>
+  <a
+    [routerLink]=""
+    id="dark-mode-toggle"
+    class="theme-toggle moon"
     [ngClass]="{ activate: (sidebar.themeColor | async) === 'light-mode' }"
-    (click)="sidebar.changeThemeColor('dark-mode')">
+    (click)="sidebar.changeThemeColor('dark-mode')"
+  >
     <i class="isax isax-moon5"></i>
   </a>
-  <a [routerLink]="" id="light-mode-toggle " class="theme-toggle sun"
+  <a
+    [routerLink]=""
+    id="light-mode-toggle "
+    class="theme-toggle sun"
     [ngClass]="{ activate: (sidebar.themeColor | async) === 'dark-mode' }"
-    (click)="sidebar.changeThemeColor('light-mode')">
+    (click)="sidebar.changeThemeColor('light-mode')"
+  >
     <i class="isax isax-sun-15"></i>
   </a>
 </div>
 
 <!-- /Common Theme Changer End -->
 
-@if(base !== 'index-13'){
-<!-- Header TopBar -->
-<!-- <div class="header-topbar" [class]="{ 'd-none': base !== 'index' }">
+@if (base !== "index-13") {
+  <!-- Header TopBar -->
+  <!-- <div class="header-topbar" [class]="{ 'd-none': base !== 'index' }">
   <div class="container">
     <div class="topbar-info">
       <div class="header-info">
@@ -67,43 +78,51 @@
     </div>
   </div>
 </div> -->
-<!-- /Header TopBar End -->
+  <!-- /Header TopBar End -->
 
-<div [ngClass]="{ 'main-header': base === 'index-4' || base === 'index-7' }">
+  <div [ngClass]="{ 'main-header': base === 'index-4' || base === 'index-7' }">
+    <!-- /Header 7 Topbar End -->
 
-  <!-- /Header 7 Topbar End -->
+    <!-- Header -->
+    <header
+      class="header"
+      [ngClass]="{
+        'header-default': base === 'index',
+        'home-menu':
+          base === 'index-2' ||
+          base === 'index-4' ||
+          base === 'index-7' ||
+          base === 'index-10',
+        'header-two': base === 'index-2',
+        fixed: isFixed,
+        'header-three': base === 'index-3',
+        'header-four': base === 'index-4',
+        'header-five': base === 'index-5',
+        'header-six': base === 'index',
+        'header-seven': base === 'index-7',
+        'header-eight': base === 'index-8',
+        'header-nine top-0': base === 'index-9',
+        'header-eleven': base === 'index-11',
+        'header-ten': base === 'index-10',
+        'header-twelve top-0': base === 'index-12',
+      }"
+    >
+      <div
+        [ngClass]="
+          base === 'index-5' || base === 'index-11'
+            ? 'container-fluid'
+            : 'container'
+        "
+      >
+        <nav class="navbar navbar-expand-lg header-nav">
+          <ng-template #headerContent>
+            <div class="navbar-header">
+              <a id="mobile_btn" [routerLink]="" (click)="toggleSidebar()">
+                <i class="fa-solid fa-bars"></i>
+              </a>
 
-  <!-- Header -->
-  <header class="header" [ngClass]="{
-    'header-default': base === 'index',
-    'home-menu': base === 'index-2' || base === 'index-4' || base === 'index-7' || base === 'index-10',
-    'header-two': base === 'index-2',
-    'fixed': isFixed,
-    'header-three': base === 'index-3',
-    'header-four': base === 'index-4',
-    'header-five': base === 'index-5',
-    'header-six': base === 'index',
-    'header-seven': base === 'index-7',
-    'header-eight': base === 'index-8',
-    'header-nine top-0': base === 'index-9',
-    'header-eleven': base === 'index-11',
-    'header-ten': base === 'index-10',
-    'header-twelve top-0': base === 'index-12',
-  }">
-    <div [ngClass]="
-        base === 'index-5' || base === 'index-11'
-          ? 'container-fluid'
-          : 'container'
-      ">
-      <nav class="navbar navbar-expand-lg header-nav">
-        <ng-template #headerContent>
-          <div class="navbar-header">
-            <a id="mobile_btn" [routerLink]="" (click)="toggleSidebar()">
-              <i class="fa-solid fa-bars"></i>
-            </a>
-
-            @if(base === 'index'){
-            <!-- <div class="header-tabs-logo">
+              @if (base === "index") {
+                <!-- <div class="header-tabs-logo">
               <ul class="nav nav-tabs-header">
                 <li class="nav-item">
                   <a class="nav-link" [routerLink]="routes.index" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Pet parents</a>
@@ -112,475 +131,797 @@
                   <a class="nav-link" [routerLink]="routes.register" routerLinkActive="active">Veterinarians</a>
                 </li>
               </ul> -->
-            <a [routerLink]="routes.index" class="navbar-brand logo">
-              <img src="assets/img/logo.svg" class="img-fluid" alt="Logo" />
-            </a>
-            <!-- </div> -->
-            } @if(base === 'index-2'){
-            <a [routerLink]="routes.index" class="navbar-brand logo">
-              <img src="assets/img/logo-white-02.svg" class="img-fluid white-logo" alt="Logo" />
-              <img src="assets/img/logo-02.svg" class="img-fluid normal-logo" alt="Logo" />
-            </a>
-            } @if(base === 'index-3'){
-            <a [routerLink]="routes.index4" class="navbar-brand logo">
-              <img src="assets/img/logo-03.svg" class="img-fluid" alt="Logo" />
-            </a>
-            } @if(base === 'index-4'){
-            <a [routerLink]="routes.index4" class="navbar-brand logo">
-              <img src="assets/img/logo-04.svg" class="img-fluid" alt="Logo" />
-            </a>
-            } @if(base === 'index-5'){
-            <a [routerLink]="routes.index5" class="navbar-brand logo">
-              <img src="assets/img/logo-05.svg" class="img-fluid" alt="Logo" />
-            </a>
-            } @if(base === 'index-6'){
-
-            <a [routerLink]="routes.index" class="navbar-brand logo">
-              <img src="assets/img/logo-06.svg" class="img-fluid" alt="Logo" />
-            </a>
-            } @if(base === 'index-7'){
-            <a [routerLink]="routes.index7" class="navbar-brand logo">
-              <img src="assets/img/logo-white-02.svg" class="img-fluid white-logo" alt="Logo" />
-              <img src="assets/img/logo-07.svg" class="img-fluid normal-logo" alt="Logo" />
-            </a>
-            } @if(base === 'index-8'){
-            <a [routerLink]="routes.index8" class="navbar-brand logo">
-              <img src="assets/img/logo-08.svg" class="img-fluid" alt="Logo" />
-            </a>
-            } @if(base === 'index-9'){
-            <a [routerLink]="routes.index9" class="navbar-brand logo">
-              <img src="assets/img/logo-dark-09.svg" class="img-fluid" alt="Logo" />
-            </a>
-            } @if(base === 'index-10'){
-            <a [routerLink]="routes.index10" class="navbar-brand logo">
-              <img src="assets/img/logo-10.svg" class="img-fluid" alt="Logo" />
-            </a>
-            } @if(base === 'index-11'){
-            <a [routerLink]="routes.index11" class="navbar-brand logo">
-              <img src="assets/img/logo-11.svg" class="img-fluid" alt="Logo" />
-            </a>
-            } @if(base === 'index-12'){
-            <a [routerLink]="routes.index12" class="navbar-brand logo">
-              <img src="assets/img/logo-12.svg" class="img-fluid" alt="Logo" />
-            </a>
-            } @if(base === 'index-9'){
-            <a [routerLink]="routes.index9" class="navbar-brand dark-logo">
-              <img src="assets/img/logo-dark-09.svg" class="img-fluid" alt="Logo" />
-            </a>
-            }
-          </div>
-          <div class="header-menu">
-            <div class="main-menu-wrapper">
-              <div class="menu-header">
-                @if(base === 'index'){
                 <a [routerLink]="routes.index" class="navbar-brand logo">
                   <img src="assets/img/logo.svg" class="img-fluid" alt="Logo" />
                 </a>
-                } @if(base === 'index-2'){
+                <!-- </div> -->
+              }
+              @if (base === "index-2") {
                 <a [routerLink]="routes.index" class="navbar-brand logo">
-                  <img src="assets/img/logo-white-02.svg" class="img-fluid white-logo" alt="Logo" />
-                  <img src="assets/img/logo-02.svg" class="img-fluid normal-logo" alt="Logo" />
+                  <img
+                    src="assets/img/logo-white-02.svg"
+                    class="img-fluid white-logo"
+                    alt="Logo"
+                  />
+                  <img
+                    src="assets/img/logo-02.svg"
+                    class="img-fluid normal-logo"
+                    alt="Logo"
+                  />
                 </a>
-                } @if(base === 'index-3'){
+              }
+              @if (base === "index-3") {
                 <a [routerLink]="routes.index4" class="navbar-brand logo">
-                  <img src="assets/img/logo-03.svg" class="img-fluid" alt="Logo" />
+                  <img
+                    src="assets/img/logo-03.svg"
+                    class="img-fluid"
+                    alt="Logo"
+                  />
                 </a>
-                } @if(base === 'index-4'){
+              }
+              @if (base === "index-4") {
                 <a [routerLink]="routes.index4" class="navbar-brand logo">
-                  <img src="assets/img/logo-04.svg" class="img-fluid" alt="Logo" />
+                  <img
+                    src="assets/img/logo-04.svg"
+                    class="img-fluid"
+                    alt="Logo"
+                  />
                 </a>
-                } @if(base === 'index-5'){
+              }
+              @if (base === "index-5") {
                 <a [routerLink]="routes.index5" class="navbar-brand logo">
-                  <img src="assets/img/logo-05.svg" class="img-fluid" alt="Logo" />
+                  <img
+                    src="assets/img/logo-05.svg"
+                    class="img-fluid"
+                    alt="Logo"
+                  />
                 </a>
-                } @if(base === 'index'){
-
+              }
+              @if (base === "index-6") {
                 <a [routerLink]="routes.index" class="navbar-brand logo">
-                  <img src="assets/img/logo-06.svg" class="img-fluid" alt="Logo" />
+                  <img
+                    src="assets/img/logo-3.png"
+                    class="img-fluid"
+                    alt="Logo"
+                  />
                 </a>
-                } @if(base === 'index-7'){
+              }
+              @if (base === "index-7") {
                 <a [routerLink]="routes.index7" class="navbar-brand logo">
-                  <img src="assets/img/logo-white-02.svg" class="img-fluid white-logo" alt="Logo" />
-                  <img src="assets/img/logo-07.svg" class="img-fluid normal-logo" alt="Logo" />
+                  <img
+                    src="assets/img/logo-white-02.svg"
+                    class="img-fluid white-logo"
+                    alt="Logo"
+                  />
+                  <img
+                    src="assets/img/logo-07.svg"
+                    class="img-fluid normal-logo"
+                    alt="Logo"
+                  />
                 </a>
-                } @if(base === 'index-8'){
+              }
+              @if (base === "index-8") {
                 <a [routerLink]="routes.index8" class="navbar-brand logo">
-                  <img src="assets/img/logo-08.svg" class="img-fluid" alt="Logo" />
+                  <img
+                    src="assets/img/logo-08.svg"
+                    class="img-fluid"
+                    alt="Logo"
+                  />
                 </a>
-                } @if(base === 'index-9'){
+              }
+              @if (base === "index-9") {
                 <a [routerLink]="routes.index9" class="navbar-brand logo">
-                  <img src="assets/img/logo-dark-09.svg" class="img-fluid" alt="Logo" />
+                  <img
+                    src="assets/img/logo-dark-09.svg"
+                    class="img-fluid"
+                    alt="Logo"
+                  />
                 </a>
-                } @if(base === 'index-10'){
+              }
+              @if (base === "index-10") {
                 <a [routerLink]="routes.index10" class="navbar-brand logo">
-                  <img src="assets/img/logo-10.svg" class="img-fluid" alt="Logo" />
+                  <img
+                    src="assets/img/logo-10.svg"
+                    class="img-fluid"
+                    alt="Logo"
+                  />
                 </a>
-                } @if(base === 'index-11'){
+              }
+              @if (base === "index-11") {
                 <a [routerLink]="routes.index11" class="navbar-brand logo">
-                  <img src="assets/img/logo-11.svg" class="img-fluid" alt="Logo" />
+                  <img
+                    src="assets/img/logo-11.svg"
+                    class="img-fluid"
+                    alt="Logo"
+                  />
                 </a>
-                } @if(base === 'index-12'){
+              }
+              @if (base === "index-12") {
                 <a [routerLink]="routes.index12" class="navbar-brand logo">
-                  <img src="assets/img/logo-12.svg" class="img-fluid" alt="Logo" />
+                  <img
+                    src="assets/img/logo-12.svg"
+                    class="img-fluid"
+                    alt="Logo"
+                  />
                 </a>
-                } @if(base === 'index-9'){
+              }
+              @if (base === "index-9") {
                 <a [routerLink]="routes.index9" class="navbar-brand dark-logo">
-                  <img src="assets/img/logo-dark-09.svg" class="img-fluid" alt="Logo" />
+                  <img
+                    src="assets/img/logo-dark-09.svg"
+                    class="img-fluid"
+                    alt="Logo"
+                  />
                 </a>
-                }
-                <a id="menu_close" class="menu-close" [routerLink]="" (click)="hideSidebar()">
-                  <i class="fas fa-times"></i>
-                </a>
-              </div>
-              <ul class="main-nav">
-                @for (mainMenus of header; track mainMenus; let i = $index) {
-                <li class="has-submenu" routerLinkActive="active" [ngClass]="{
-                    megamenu:
-                      mainMenus.tittle === 'Home' ||
-                      mainMenus.tittle === 'Pages'
-                  }">
-                  <a [routerLink]="" class="main-menu" (click)="mainMenus.showAsTab = !mainMenus.showAsTab"
-                    [ngClass]="{ submenu: openDropdownIndex === i }" (click)="toggleSubMenu(i)">
-                    {{ mainMenus.tittle }}
-                    <span><i [ngClass]="
-                          base === 'index-4' ||
-                          base === 'index-5' ||
-                          base === 'index-6'
-                            ? 'fa-solid fa-plus'
-                            : 'fa-solid fa-chevron-down'
-                        "></i></span>
+              }
+            </div>
+            <div class="header-menu">
+              <div class="main-menu-wrapper">
+                <div class="menu-header">
+                  @if (base === "index") {
+                    <a [routerLink]="routes.index" class="navbar-brand logo">
+                      <img
+                        src="assets/img/logo.svg"
+                        class="img-fluid"
+                        alt="Logo"
+                      />
+                    </a>
+                  }
+                  @if (base === "index-2") {
+                    <a [routerLink]="routes.index" class="navbar-brand logo">
+                      <img
+                        src="assets/img/logo-white-02.svg"
+                        class="img-fluid white-logo"
+                        alt="Logo"
+                      />
+                      <img
+                        src="assets/img/logo-02.svg"
+                        class="img-fluid normal-logo"
+                        alt="Logo"
+                      />
+                    </a>
+                  }
+                  @if (base === "index-3") {
+                    <a [routerLink]="routes.index4" class="navbar-brand logo">
+                      <img
+                        src="assets/img/logo-03.svg"
+                        class="img-fluid"
+                        alt="Logo"
+                      />
+                    </a>
+                  }
+                  @if (base === "index-4") {
+                    <a [routerLink]="routes.index4" class="navbar-brand logo">
+                      <img
+                        src="assets/img/logo-04.svg"
+                        class="img-fluid"
+                        alt="Logo"
+                      />
+                    </a>
+                  }
+                  @if (base === "index-5") {
+                    <a [routerLink]="routes.index5" class="navbar-brand logo">
+                      <img
+                        src="assets/img/logo-05.svg"
+                        class="img-fluid"
+                        alt="Logo"
+                      />
+                    </a>
+                  }
+                  @if (base === "index") {
+                    <a [routerLink]="routes.index" class="navbar-brand logo">
+                      <img
+                        src="assets/img/logo-06.svg"
+                        class="img-fluid"
+                        alt="Logo"
+                      />
+                    </a>
+                  }
+                  @if (base === "index-7") {
+                    <a [routerLink]="routes.index7" class="navbar-brand logo">
+                      <img
+                        src="assets/img/logo-white-02.svg"
+                        class="img-fluid white-logo"
+                        alt="Logo"
+                      />
+                      <img
+                        src="assets/img/logo-07.svg"
+                        class="img-fluid normal-logo"
+                        alt="Logo"
+                      />
+                    </a>
+                  }
+                  @if (base === "index-8") {
+                    <a [routerLink]="routes.index8" class="navbar-brand logo">
+                      <img
+                        src="assets/img/logo-08.svg"
+                        class="img-fluid"
+                        alt="Logo"
+                      />
+                    </a>
+                  }
+                  @if (base === "index-9") {
+                    <a [routerLink]="routes.index9" class="navbar-brand logo">
+                      <img
+                        src="assets/img/logo-dark-09.svg"
+                        class="img-fluid"
+                        alt="Logo"
+                      />
+                    </a>
+                  }
+                  @if (base === "index-10") {
+                    <a [routerLink]="routes.index10" class="navbar-brand logo">
+                      <img
+                        src="assets/img/logo-10.svg"
+                        class="img-fluid"
+                        alt="Logo"
+                      />
+                    </a>
+                  }
+                  @if (base === "index-11") {
+                    <a [routerLink]="routes.index11" class="navbar-brand logo">
+                      <img
+                        src="assets/img/logo-11.svg"
+                        class="img-fluid"
+                        alt="Logo"
+                      />
+                    </a>
+                  }
+                  @if (base === "index-12") {
+                    <a [routerLink]="routes.index12" class="navbar-brand logo">
+                      <img
+                        src="assets/img/logo-12.svg"
+                        class="img-fluid"
+                        alt="Logo"
+                      />
+                    </a>
+                  }
+                  @if (base === "index-9") {
+                    <a
+                      [routerLink]="routes.index9"
+                      class="navbar-brand dark-logo"
+                    >
+                      <img
+                        src="assets/img/logo-dark-09.svg"
+                        class="img-fluid"
+                        alt="Logo"
+                      />
+                    </a>
+                  }
+                  <a
+                    id="menu_close"
+                    class="menu-close"
+                    [routerLink]=""
+                    (click)="hideSidebar()"
+                  >
+                    <i class="fas fa-times"></i>
                   </a>
-                  <ul class="submenu" [ngClass]="
-                      mainMenus.tittle === 'Home' ||
-                      mainMenus.tittle === 'Pages'
-                        ? 'mega-submenu'
-                        : mainMenus.row === '1' &&
-                          mainMenus.tittle !== 'Pharmacy'
-                        ? 'sub-menu-one'
-                        : mainMenus.row === '2'
-                        ? ' sub-menu-one sub-menu-two'
-                        : mainMenus.tittle === 'Pharmacy'
-                        ? 'sub-menu-one sub-menu-three'
-                        : 'sub-menu-one sub-menu-default'
-                    " [ngStyle]="{
-                      display: openDropdownIndex === i ? 'block' : ''
-                    }">
-                    <li>
-                      @if(mainMenus.tittle === 'Home'){
-                      <div class="megamenu-wrapper">
-                        <div class="row">
-                          @for (menu of mainMenus.menu; track menu) {
-                          <div class="col">
-                            <div class="single-demo" routerLinkActive="active">
-                              <div class="demo-img">
-                                <a [routerLink]="menu.route" class="inner-demo-img"><img [src]="menu.img"
-                                    class="img-fluid" alt="img" /></a>
-                              </div>
-                              <div class="demo-info">
-                                <a class="inner-demo-img" [routerLink]="menu.route">{{ menu.menuValue }}</a>
+                </div>
+                <ul class="main-nav">
+                  @for (mainMenus of header; track mainMenus; let i = $index) {
+                    <li
+                      class="has-submenu"
+                      routerLinkActive="active"
+                      [ngClass]="{
+                        megamenu:
+                          mainMenus.tittle === 'Home' ||
+                          mainMenus.tittle === 'Pages',
+                      }"
+                    >
+                      <a
+                        [routerLink]=""
+                        class="main-menu"
+                        (click)="mainMenus.showAsTab = !mainMenus.showAsTab"
+                        [ngClass]="{ submenu: openDropdownIndex === i }"
+                        (click)="toggleSubMenu(i)"
+                      >
+                        {{ mainMenus.tittle }}
+                        <span
+                          ><i
+                            [ngClass]="
+                              base === 'index-4' ||
+                              base === 'index-5' ||
+                              base === 'index-6'
+                                ? 'fa-solid fa-plus'
+                                : 'fa-solid fa-chevron-down'
+                            "
+                          ></i
+                        ></span>
+                      </a>
+                      <ul
+                        class="submenu"
+                        [ngClass]="
+                          mainMenus.tittle === 'Home' ||
+                          mainMenus.tittle === 'Pages'
+                            ? 'mega-submenu'
+                            : mainMenus.row === '1' &&
+                                mainMenus.tittle !== 'Pharmacy'
+                              ? 'sub-menu-one'
+                              : mainMenus.row === '2'
+                                ? ' sub-menu-one sub-menu-two'
+                                : mainMenus.tittle === 'Pharmacy'
+                                  ? 'sub-menu-one sub-menu-three'
+                                  : 'sub-menu-one sub-menu-default'
+                        "
+                        [ngStyle]="{
+                          display: openDropdownIndex === i ? 'block' : '',
+                        }"
+                      >
+                        <li>
+                          @if (mainMenus.tittle === "Home") {
+                            <div class="megamenu-wrapper">
+                              <div class="row">
+                                @for (menu of mainMenus.menu; track menu) {
+                                  <div class="col">
+                                    <div
+                                      class="single-demo"
+                                      routerLinkActive="active"
+                                    >
+                                      <div class="demo-img">
+                                        <a
+                                          [routerLink]="menu.route"
+                                          class="inner-demo-img"
+                                          ><img
+                                            [src]="menu.img"
+                                            class="img-fluid"
+                                            alt="img"
+                                        /></a>
+                                      </div>
+                                      <div class="demo-info">
+                                        <a
+                                          class="inner-demo-img"
+                                          [routerLink]="menu.route"
+                                          >{{ menu.menuValue }}</a
+                                        >
+                                      </div>
+                                    </div>
+                                  </div>
+                                }
                               </div>
                             </div>
-                          </div>
+                          } @else {
+                            <div
+                              [ngClass]="{
+                                'megamenu-wrapper megamenu-wrapper-one':
+                                  mainMenus.row === '3',
+                              }"
+                            >
+                              <div class="row">
+                                @if (mainMenus.row === "1") {
+                                  <div class="col-lg-6">
+                                    <ul class="sub-menu-list">
+                                      @for (
+                                        menu of mainMenus.menu;
+                                        track menu
+                                      ) {
+                                        <li>
+                                          <a [routerLink]="menu.route">{{
+                                            menu.menuValue
+                                          }}</a>
+                                        </li>
+                                      }
+                                    </ul>
+                                  </div>
+                                  <div class="col-lg-6">
+                                    <div class="menu-img">
+                                      <img
+                                        src="assets/img/home/menu-img-1.jpg"
+                                        alt="listing"
+                                        class="img-fluid"
+                                      />
+                                    </div>
+                                  </div>
+                                }
+                                @if (mainMenus.row === "2") {
+                                  @for (menu of mainMenus.menu; track menu) {
+                                    @if (menu.col === "1") {
+                                      <div class="col-lg-4 sub-menu-left">
+                                        <ul class="sub-menu-list">
+                                          @for (
+                                            subMenu of menu.subMenus;
+                                            track subMenu
+                                          ) {
+                                            <li>
+                                              <a [routerLink]="subMenu.route">{{
+                                                subMenu.menuValue
+                                              }}</a>
+                                            </li>
+                                          }
+                                        </ul>
+                                      </div>
+                                    }
+                                    @if (menu.col === "2") {
+                                      <div class="col-lg-4">
+                                        <ul class="sub-menu-list">
+                                          @for (
+                                            subMenu of menu.subMenus;
+                                            track subMenu
+                                          ) {
+                                            <li>
+                                              <a [routerLink]="subMenu.route">{{
+                                                subMenu.menuValue
+                                              }}</a>
+                                            </li>
+                                          }
+                                        </ul>
+                                      </div>
+                                    }
+                                  }
+                                  <div class="col-lg-4">
+                                    <div class="menu-img">
+                                      <img
+                                        [src]="mainMenus.img"
+                                        alt="listing"
+                                        class="img-fluid"
+                                      />
+                                    </div>
+                                  </div>
+                                }
+                                @if (mainMenus.row === "3") {
+                                  @for (menu of mainMenus.menu; track menu) {
+                                    @if (menu.col === "1") {
+                                      <div class="col-lg-3 sub-menu-left">
+                                        <ul class="sub-menu-list">
+                                          @for (
+                                            subMenu of menu.subMenus;
+                                            track subMenu
+                                          ) {
+                                            <li>
+                                              <a [routerLink]="subMenu.route">{{
+                                                subMenu.menuValue
+                                              }}</a>
+                                            </li>
+                                          }
+                                        </ul>
+                                      </div>
+                                    }
+                                    @if (menu.col === "2") {
+                                      <div class="col-lg-3 sub-menu-left">
+                                        <ul class="sub-menu-list">
+                                          @for (
+                                            subMenu of menu.subMenus;
+                                            track subMenu
+                                          ) {
+                                            <li>
+                                              <a [routerLink]="subMenu.route">{{
+                                                subMenu.menuValue
+                                              }}</a>
+                                            </li>
+                                          }
+                                        </ul>
+                                      </div>
+                                    }
+                                    @if (menu.col === "3") {
+                                      <div class="col-lg-3 sub-menu-left">
+                                        <ul class="sub-menu-list">
+                                          @for (
+                                            subMenu of menu.subMenus;
+                                            track subMenu
+                                          ) {
+                                            <li>
+                                              <a [routerLink]="subMenu.route">{{
+                                                subMenu.menuValue
+                                              }}</a>
+                                            </li>
+                                          }
+                                        </ul>
+                                      </div>
+                                    }
+                                    @if (menu.col === "4") {
+                                      <div class="col-lg-3">
+                                        <ul class="sub-menu-list">
+                                          @for (
+                                            subMenu of menu.subMenus;
+                                            track subMenu
+                                          ) {
+                                            <li>
+                                              <a [routerLink]="subMenu.route">{{
+                                                subMenu.menuValue
+                                              }}</a>
+                                            </li>
+                                          }
+                                        </ul>
+                                      </div>
+                                    }
+                                  }
+                                }
+                              </div>
+                            </div>
                           }
-                        </div>
-                      </div>
-                      } @else{
-                      <div [ngClass]="{
-                          'megamenu-wrapper megamenu-wrapper-one':
-                            mainMenus.row === '3'
-                        }">
-                        <div class="row">
-                          @if(mainMenus.row === '1'){
-                          <div class="col-lg-6">
-                            <ul class="sub-menu-list">
-                              @for (menu of mainMenus.menu; track menu) {
-                              <li>
-                                <a [routerLink]="menu.route">{{
-                                  menu.menuValue
-                                  }}</a>
-                              </li>
-                              }
-                            </ul>
-                          </div>
-                          <div class="col-lg-6">
-                            <div class="menu-img">
-                              <img src="assets/img/home/menu-img-1.jpg" alt="listing" class="img-fluid" />
-                            </div>
-                          </div>
-                          } @if(mainMenus.row === '2'){ @for (menu of
-                          mainMenus.menu; track menu) { @if(menu.col === '1'){
-                          <div class="col-lg-4 sub-menu-left">
-                            <ul class="sub-menu-list">
-                              @for (subMenu of menu.subMenus; track subMenu) {
-                              <li>
-                                <a [routerLink]="subMenu.route">{{
-                                  subMenu.menuValue
-                                  }}</a>
-                              </li>
-                              }
-                            </ul>
-                          </div>
-                          } @if(menu.col === '2'){
-                          <div class="col-lg-4">
-                            <ul class="sub-menu-list">
-                              @for (subMenu of menu.subMenus; track subMenu) {
-                              <li>
-                                <a [routerLink]="subMenu.route">{{
-                                  subMenu.menuValue
-                                  }}</a>
-                              </li>
-                              }
-                            </ul>
-                          </div>
-                          } }
-                          <div class="col-lg-4">
-                            <div class="menu-img">
-                              <img [src]="mainMenus.img" alt="listing" class="img-fluid" />
-                            </div>
-                          </div>
-                          } @if(mainMenus.row === '3'){ @for (menu of
-                          mainMenus.menu; track menu) { @if(menu.col === '1'){
-                          <div class="col-lg-3 sub-menu-left">
-                            <ul class="sub-menu-list">
-                              @for (subMenu of menu.subMenus; track subMenu) {
-                              <li>
-                                <a [routerLink]="subMenu.route">{{
-                                  subMenu.menuValue
-                                  }}</a>
-                              </li>
-                              }
-                            </ul>
-                          </div>
-                          } @if(menu.col === '2'){
-                          <div class="col-lg-3 sub-menu-left">
-                            <ul class="sub-menu-list">
-                              @for (subMenu of menu.subMenus; track subMenu) {
-                              <li>
-                                <a [routerLink]="subMenu.route">{{
-                                  subMenu.menuValue
-                                  }}</a>
-                              </li>
-                              }
-                            </ul>
-                          </div>
-                          } @if(menu.col === '3'){
-                          <div class="col-lg-3 sub-menu-left">
-                            <ul class="sub-menu-list">
-                              @for (subMenu of menu.subMenus; track subMenu) {
-                              <li>
-                                <a [routerLink]="subMenu.route">{{
-                                  subMenu.menuValue
-                                  }}</a>
-                              </li>
-                              }
-                            </ul>
-                          </div>
-                          } @if(menu.col === '4'){
-                          <div class="col-lg-3">
-                            <ul class="sub-menu-list">
-                              @for (subMenu of menu.subMenus; track subMenu) {
-                              <li>
-                                <a [routerLink]="subMenu.route">{{
-                                  subMenu.menuValue
-                                  }}</a>
-                              </li>
-                              }
-                            </ul>
-                          </div>
-                          } } }
-                        </div>
-                      </div>
-                      }
+                        </li>
+                        @if (
+                          mainMenus.tittle === "Blog" ||
+                          mainMenus.tittle === "Admin"
+                        ) {
+                          @for (menu of mainMenus.menu; track menu) {
+                            <li>
+                              <a [routerLink]="menu.route">{{
+                                menu.menuValue
+                              }}</a>
+                            </li>
+                          }
+                        }
+                      </ul>
                     </li>
-                    @if(mainMenus.tittle === 'Blog' || mainMenus.tittle ===
-                    'Admin'){ @for (menu of mainMenus.menu; track menu) {
-                    <li>
-                      <a [routerLink]="menu.route">{{ menu.menuValue }}</a>
-                    </li>
-                    } }
-                  </ul>
-                </li>
-                }
-              </ul>
-              <div class="header-items">
-                <!-- Item 1 -->
-                <div class="about-popup-item border-0 pb-0">
-                  <h3 class="title">Contact Information</h3>
-                  <div class="support-item mb-3">
-                    <div class="avatar avatar-lg bg-primary rounded-circle">
-                      <i class="isax isax-messages-3"></i>
+                  }
+                </ul>
+                <div class="header-items">
+                  <!-- Item 1 -->
+                  <div class="about-popup-item border-0 pb-0">
+                    <h3 class="title">Contact Information</h3>
+                    <div class="support-item mb-3">
+                      <div class="avatar avatar-lg bg-primary rounded-circle">
+                        <i class="isax isax-messages-3"></i>
+                      </div>
+                      <div>
+                        <p class="title">General Inquiries</p>
+                        <h5 class="link">info@example.com</h5>
+                      </div>
                     </div>
-                    <div>
-                      <p class="title">General Inquiries</p>
-                      <h5 class="link">info@example.com</h5>
+                    <div class="support-item">
+                      <div class="avatar avatar-lg bg-primary rounded-circle">
+                        <i class="isax isax-call-calling"></i>
+                      </div>
+                      <div>
+                        <p class="title">Emergency Cases</p>
+                        <h5 class="link">+1 24565 89856</h5>
+                      </div>
                     </div>
                   </div>
-                  <div class="support-item">
-                    <div class="avatar avatar-lg bg-primary rounded-circle">
-                      <i class="isax isax-call-calling"></i>
-                    </div>
-                    <div>
-                      <p class="title">Emergency Cases</p>
-                      <h5 class="link">+1 24565 89856</h5>
-                    </div>
+                  <!-- Item 2 -->
+                  <div class="about-popup-item border-0 pb-0">
+                    <h3 class="title">Follow Us</h3>
+                    <ul class="d-flex align-items-center gap-2 social-iyem">
+                      <li>
+                        <a [routerLink]="" class="social-icon"
+                          ><i class="fa-brands fa-facebook"></i
+                        ></a>
+                      </li>
+                      <li>
+                        <a [routerLink]="" class="social-icon"
+                          ><i class="fa-brands fa-x-twitter"></i
+                        ></a>
+                      </li>
+                      <li>
+                        <a [routerLink]="" class="social-icon"
+                          ><i class="fa-brands fa-instagram"></i
+                        ></a>
+                      </li>
+                      <li>
+                        <a [routerLink]="" class="social-icon"
+                          ><i class="fa-brands fa-linkedin"></i
+                        ></a>
+                      </li>
+                    </ul>
                   </div>
-                </div>
-                <!-- Item 2 -->
-                <div class="about-popup-item border-0 pb-0">
-                  <h3 class="title">Follow Us</h3>
-                  <ul class="d-flex align-items-center gap-2 social-iyem">
-                    <li>
-                      <a [routerLink]="" class="social-icon"><i class="fa-brands fa-facebook"></i></a>
-                    </li>
-                    <li>
-                      <a [routerLink]="" class="social-icon"><i class="fa-brands fa-x-twitter"></i></a>
-                    </li>
-                    <li>
-                      <a [routerLink]="" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
-                    </li>
-                    <li>
-                      <a [routerLink]="" class="social-icon"><i class="fa-brands fa-linkedin"></i></a>
-                    </li>
-                  </ul>
-                </div>
 
-                <div class="header-items-button">
-                  <a [routerLink]="routes.userLogin" class="btn btn-primary btn-primary-gradient"><i
-                      class="isax isax-lock-1 me-2"></i>Sign In</a>
-                  <a [routerLink]="routes.register" class="btn btn-dark"><i class="isax isax-user-tick4 me-2"></i>Sign
-                    Up</a>
+                  <div class="header-items-button">
+                    <a
+                      [routerLink]="routes.userLogin"
+                      class="btn btn-primary btn-primary-gradient"
+                      ><i class="isax isax-lock-1 me-2"></i>Sign In</a
+                    >
+                    <a [routerLink]="routes.register" class="btn btn-dark"
+                      ><i class="isax isax-user-tick4 me-2"></i>Sign Up</a
+                    >
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </ng-template>
-        <ng-container *ngIf="base === 'index-11'; else noWrap">
-          <div class="navbar-left-header">
+          </ng-template>
+          <ng-container *ngIf="base === 'index-11'; else noWrap">
+            <div class="navbar-left-header">
+              <ng-container *ngTemplateOutlet="headerContent"></ng-container>
+            </div>
+          </ng-container>
+
+          <ng-template #noWrap>
             <ng-container *ngTemplateOutlet="headerContent"></ng-container>
-          </div>
-        </ng-container>
-
-        <ng-template #noWrap>
-          <ng-container *ngTemplateOutlet="headerContent"></ng-container>
-        </ng-template>
-        @if(base === 'index-6'){
-        <ul class="nav header-navbar-rht">
-          <li>
-            <a [routerLink]="routes.userLogin" class="btn btn-md btn-primary-gradient">
-              <i class="isax isax-lock-1 me-2"></i><span>Sign Up</span>
-            </a>
-          </li>
-          <li>
-            <a [routerLink]="routes.register" class="btn btn-md btn-dark">
-              <i class="isax isax-user-tick me-2"></i><span>Register</span>
-            </a>
-          </li>
-          <li>
-            <a [routerLink]="" class="details-btn" data-bs-toggle="offcanvas" data-bs-target="#support_item">
-              <i class="isax isax-menu5"></i>
-            </a>
-          </li>
-        </ul>
-        } @if(base === 'index-2'){
-        <ul class="nav header-navbar-rht">
-          <li>
-            <a [routerLink]="routes.userLogin" class="btn btn-md btn-primary">
-              <i class="isax isax-lock-1"></i> <span>Sign Up</span>
-            </a>
-          </li>
-          <li>
-            <a [routerLink]="routes.register" class="btn btn-md btn-secondary">
-              <i class="isax isax-user-tick"></i> <span>Register</span>
-            </a>
-          </li>
-        </ul>
-        } @if(base === 'index-3'){
-        <ul class="nav header-navbar-rht">
-          <li>
-            <a [routerLink]="" class="details-btn" tabindex="-1" data-bs-toggle="offcanvas"
-              data-bs-target="#search_popup" aria-controls="search_popup">
-              <i class="isax isax-search-normal-1"></i>
-            </a>
-          </li>
-          <li class="header-theme">
-            <a [routerLink]="" id="dark-mode-toggle" class="theme-toggle" [ngClass]="{
-                activate: (sidebar.themeColor | async) === 'light-mode'
-              }" (click)="sidebar.changeThemeColor('dark-mode')">
-              <i class="isax isax-sun-1"></i>
-            </a>
-            <a [routerLink]="" id="light-mode-toggle" class="theme-toggle" [ngClass]="{
-                activate: (sidebar.themeColor | async) === 'dark-mode'
-              }" (click)="sidebar.changeThemeColor('light-mode')">
-              <i class="isax isax-moon"></i>
-            </a>
-          </li>
-          <li>
-            <a [routerLink]="routes.register" class="btn btn-primary theme-2-btn"><span>Book Appointment<span
-                  class="icon"><i class="isax isax-arrow-up-34"></i></span></span></a>
-          </li>
-          <li class="">
-            <a [routerLink]="" class="details-btn" data-bs-toggle="offcanvas" data-bs-target="#support_item">
-              <i class="isax isax-menu5"></i>
-            </a>
-          </li>
-        </ul>
-        } @if(base === 'index-4'){
-        <ul class="nav header-navbar-rht">
-          <li class="header-theme">
-            <a [routerLink]="" id="dark-mode-toggle" class="theme-toggle" [ngClass]="{
-                activate: (sidebar.themeColor | async) === 'light-mode'
-              }" (click)="sidebar.changeThemeColor('dark-mode')">
-              <i class="isax isax-sun-1"></i>
-            </a>
-            <a [routerLink]="" id="light-mode-toggle" class="theme-toggle" [ngClass]="{
-                activate: (sidebar.themeColor | async) === 'dark-mode'
-              }" (click)="sidebar.changeThemeColor('light-mode')">
-              <i class="isax isax-moon"></i>
-            </a>
-          </li>
-          <li>
-            <a [routerLink]="" class="search-btn" tabindex="-1" data-bs-toggle="offcanvas"
-              data-bs-target="#search_popup" aria-controls="search_popup">
-              <i class="isax isax-search-normal-1"></i>
-            </a>
-          </li>
-          <li>
-            <a [routerLink]="routes.register" class="btn btn-secondary"><i
-                class="isax isax-calendar-tick5"></i><span>Book Appointment</span></a>
-          </li>
-          <li>
-            <a [routerLink]="" class="details-btn" data-bs-toggle="offcanvas" data-bs-target="#support_item">
-              <i class="isax isax-menu-14"></i>
-            </a>
-          </li>
-        </ul>
-        } @if(base === 'index-5'){
-        <ul class="nav header-navbar-rht">
-          <li>
-            <div class="support-icon">
-              <div class="icon">
-                <i class="isax isax-call"></i>
-              </div>
-              <div>
-                <span>Call Us</span>
-                <p class="number"><a [routerLink]="">+1 24565 89856</a></p>
-              </div>
-            </div>
-          </li>
-          <li>
-            <a [routerLink]="routes.register" class="btn btn-primary">
-              <span>Register</span> <i class="isax isax-arrow-right-1 ms-2"></i>
-            </a>
-          </li>
-        </ul>
-        } @if(base === 'index'){
-        <ul class="nav header-navbar-rht">
-          <li>
-            <a [routerLink]="routes.register" class="btn btn-primary theme-5-btn">
-              <span class="icon"><i class="isax isax-calendar-edit me-2"></i></span>
-              <span>Book Appointment</span>
-            </a>
-            <!-- <a [routerLink]="routes.register" class="btn btn-primary theme-5-btn m-10">
+          </ng-template>
+          @if (base === "index-6") {
+            <ul class="nav header-navbar-rht">
+              <li>
+                <a
+                  [routerLink]="routes.mapGrid"
+                  class="btn btn-md btn-primary-gradient"
+                >
+                  <i class="isax isax-calendar-tick5 me-2"></i><span>Book</span>
+                </a>
+              </li>
+              <!-- <li>
+                <a
+                  [routerLink]="routes.userLogin"
+                  class="btn btn-md btn-primary-gradient"
+                >
+                  <i class="isax isax-lock-1 me-2"></i><span>Sign Up</span>
+                </a>
+              </li>
+              <li>
+                <a [routerLink]="routes.register" class="btn btn-md btn-dark">
+                  <i class="isax isax-user-tick me-2"></i><span>Register</span>
+                </a>
+              </li> -->
+              <li>
+                <a
+                  [routerLink]=""
+                  class="details-btn"
+                  data-bs-toggle="offcanvas"
+                  data-bs-target="#support_item"
+                >
+                  <i class="isax isax-menu5"></i>
+                </a>
+              </li>
+            </ul>
+          }
+          @if (base === "index-2") {
+            <ul class="nav header-navbar-rht">
+              <li>
+                <a
+                  [routerLink]="routes.userLogin"
+                  class="btn btn-md btn-primary"
+                >
+                  <i class="isax isax-lock-1"></i> <span>Sign Up</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  [routerLink]="routes.register"
+                  class="btn btn-md btn-secondary"
+                >
+                  <i class="isax isax-user-tick"></i> <span>Register</span>
+                </a>
+              </li>
+            </ul>
+          }
+          @if (base === "index-3") {
+            <ul class="nav header-navbar-rht">
+              <li>
+                <a
+                  [routerLink]=""
+                  class="details-btn"
+                  tabindex="-1"
+                  data-bs-toggle="offcanvas"
+                  data-bs-target="#search_popup"
+                  aria-controls="search_popup"
+                >
+                  <i class="isax isax-search-normal-1"></i>
+                </a>
+              </li>
+              <li class="header-theme">
+                <a
+                  [routerLink]=""
+                  id="dark-mode-toggle"
+                  class="theme-toggle"
+                  [ngClass]="{
+                    activate: (sidebar.themeColor | async) === 'light-mode',
+                  }"
+                  (click)="sidebar.changeThemeColor('dark-mode')"
+                >
+                  <i class="isax isax-sun-1"></i>
+                </a>
+                <a
+                  [routerLink]=""
+                  id="light-mode-toggle"
+                  class="theme-toggle"
+                  [ngClass]="{
+                    activate: (sidebar.themeColor | async) === 'dark-mode',
+                  }"
+                  (click)="sidebar.changeThemeColor('light-mode')"
+                >
+                  <i class="isax isax-moon"></i>
+                </a>
+              </li>
+              <li>
+                <a
+                  [routerLink]="routes.register"
+                  class="btn btn-primary theme-2-btn"
+                  ><span
+                    >Book Appointment<span class="icon"
+                      ><i class="isax isax-arrow-up-34"></i></span></span
+                ></a>
+              </li>
+              <li class="">
+                <a
+                  [routerLink]=""
+                  class="details-btn"
+                  data-bs-toggle="offcanvas"
+                  data-bs-target="#support_item"
+                >
+                  <i class="isax isax-menu5"></i>
+                </a>
+              </li>
+            </ul>
+          }
+          @if (base === "index-4") {
+            <ul class="nav header-navbar-rht">
+              <li class="header-theme">
+                <a
+                  [routerLink]=""
+                  id="dark-mode-toggle"
+                  class="theme-toggle"
+                  [ngClass]="{
+                    activate: (sidebar.themeColor | async) === 'light-mode',
+                  }"
+                  (click)="sidebar.changeThemeColor('dark-mode')"
+                >
+                  <i class="isax isax-sun-1"></i>
+                </a>
+                <a
+                  [routerLink]=""
+                  id="light-mode-toggle"
+                  class="theme-toggle"
+                  [ngClass]="{
+                    activate: (sidebar.themeColor | async) === 'dark-mode',
+                  }"
+                  (click)="sidebar.changeThemeColor('light-mode')"
+                >
+                  <i class="isax isax-moon"></i>
+                </a>
+              </li>
+              <li>
+                <a
+                  [routerLink]=""
+                  class="search-btn"
+                  tabindex="-1"
+                  data-bs-toggle="offcanvas"
+                  data-bs-target="#search_popup"
+                  aria-controls="search_popup"
+                >
+                  <i class="isax isax-search-normal-1"></i>
+                </a>
+              </li>
+              <li>
+                <a [routerLink]="routes.register" class="btn btn-secondary"
+                  ><i class="isax isax-calendar-tick5"></i
+                  ><span>Book Appointment</span></a
+                >
+              </li>
+              <li>
+                <a
+                  [routerLink]=""
+                  class="details-btn"
+                  data-bs-toggle="offcanvas"
+                  data-bs-target="#support_item"
+                >
+                  <i class="isax isax-menu-14"></i>
+                </a>
+              </li>
+            </ul>
+          }
+          @if (base === "index-5") {
+            <ul class="nav header-navbar-rht">
+              <li>
+                <div class="support-icon">
+                  <div class="icon">
+                    <i class="isax isax-call"></i>
+                  </div>
+                  <div>
+                    <span>Call Us</span>
+                    <p class="number"><a [routerLink]="">+1 24565 89856</a></p>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <a [routerLink]="routes.register" class="btn btn-primary">
+                  <span>Register</span>
+                  <i class="isax isax-arrow-right-1 ms-2"></i>
+                </a>
+              </li>
+            </ul>
+          }
+          @if (base === "index") {
+            <ul class="nav header-navbar-rht">
+              <li>
+                <a
+                  [routerLink]="routes.register"
+                  class="btn btn-primary theme-5-btn"
+                >
+                  <span class="icon"
+                    ><i class="isax isax-calendar-edit me-2"></i
+                  ></span>
+                  <span>Book Appointment</span>
+                </a>
+                <!-- <a [routerLink]="routes.register" class="btn btn-primary theme-5-btn m-10">
               <span class="icon"><i class="isax isax-user-square me-2"></i></span>
               <span>Vet Registration</span>
             </a>
@@ -588,153 +929,257 @@
               <span class="icon"> <i class="isax isax-heart me-2"></i></span>
               <span>Pet Parent</span>
             </a> -->
-          </li>
-        </ul>
-        } @if(base === 'index-7'){
-        <ul class="nav header-navbar-rht">
-          <li>
-            <a [routerLink]="" class="search-btn" tabindex="-1" data-bs-toggle="offcanvas"
-              data-bs-target="#search_popup" aria-controls="search_popup">
-              <i class="isax isax-search-normal-1"></i>
-            </a>
-          </li>
-          <li>
-            <a [routerLink]="routes.booking" class="btn btn-primary theme-7-btn"><span>Book Appointment</span><span
-                class="icon"><i class="isax isax-arrow-right-3"></i></span></a>
-          </li>
-          <li>
-            <a [routerLink]="" class="details-btn" data-bs-toggle="offcanvas" data-bs-target="#support_item">
-              <i class="isax isax-menu"></i>
-            </a>
-          </li>
-        </ul>
-        } @if(base === 'index-8'){
-        <ul class="nav header-navbar-rht">
-          <li>
-            <div class="support-icon">
-              <p class="number">
-                <span class="icon"><i class="isax isax-call-calling"></i></span><a href="callto:+12456589856">+1 24565
-                  89856</a>
-              </p>
-            </div>
-          </li>
-          <li>
-            <a [routerLink]="routes.booking" class="btn btn-primary">
-              <i class="isax isax-arrow-right-3"></i><span>Book Consultation</span>
-            </a>
-          </li>
-        </ul>
-        } @if(base === 'index-9'){
-        <ul class="nav header-navbar-rht">
-          <li class="header-theme">
-            <a [routerLink]="" id="dark-mode-toggle" class="theme-toggle" [ngClass]="{
-                activate: (sidebar.themeColor | async) === 'light-mode'
-              }" (click)="sidebar.changeThemeColor('dark-mode')">
-              <i class="isax isax-sun-1"></i>
-            </a>
-            <a [routerLink]="" id="light-mode-toggle" class="theme-toggle" [ngClass]="{
-                activate: (sidebar.themeColor | async) === 'dark-mode'
-              }" (click)="sidebar.changeThemeColor('light-mode')">
-              <i class="isax isax-moon"></i>
-            </a>
-          </li>
-          <li>
-            <a [routerLink]="routes.booking" class="btn btn-primary-gradient"><i
-                class="isax isax-calendar-tick5 me-2"></i><span>Book Appointment</span></a>
-          </li>
-          <li>
-            <a [routerLink]="" class="details-btn" data-bs-toggle="offcanvas" data-bs-target="#support_item">
-              <i class="isax isax-menu-1"></i>
-            </a>
-          </li>
-        </ul>
-        } @if(base === 'index-11'){
-        <ul class="nav header-navbar-rht">
-          <li class="header-theme">
-            <a [routerLink]="" id="dark-mode-toggle" class="theme-toggle" [ngClass]="{
-                activate: (sidebar.themeColor | async) === 'light-mode'
-              }" (click)="sidebar.changeThemeColor('dark-mode')">
-              <i class="isax isax-sun-1"></i>
-            </a>
-            <a [routerLink]="" id="light-mode-toggle" class="theme-toggle" [ngClass]="{
-                activate: (sidebar.themeColor | async) === 'dark-mode'
-              }" (click)="sidebar.changeThemeColor('light-mode')">
-              <i class="isax isax-moon"></i>
-            </a>
-          </li>
-          <li>
-            <a [routerLink]="" class="search-btn" tabindex="-1" data-bs-toggle="offcanvas"
-              data-bs-target="#search_popup" aria-controls="search_popup">
-              <i class="isax isax-search-normal-1"></i>
-            </a>
-          </li>
-          <li>
-            <a [routerLink]="routes.booking" class="btn btn-secondary"><span class="text"> Book Appointment</span>
-              <span class="icon"><i class="isax isax-arrow-right-3"></i></span></a>
-          </li>
-          <li>
-            <a [routerLink]="" class="details-btn" data-bs-toggle="offcanvas" data-bs-target="#support_item">
-              <i class="isax isax-menu-14"></i>
-            </a>
-          </li>
-        </ul>
-        } @if(base === 'index-10'){
-        <ul class="nav header-navbar-rht">
-          <li>
-            <a [routerLink]="routes.booking" class="btn btn-secondary"><i class="isax isax-calendar-edit"></i><span>Book
-                Consultaion</span></a>
-          </li>
-        </ul>
-        } @if(base === 'index-12'){
-        <ul class="nav header-navbar-rht">
-          <li>
-            <a [routerLink]="routes.booking" class="btn btn-primary theme-11-btn">
-              <span class="icon one"><i class="isax isax-arrow-right-1"></i>
-              </span>
-              <span class="content">Book Test Now</span>
-              <span class="icon two"><i class="isax isax-arrow-right-1"></i>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a [routerLink]="" class="details-btn" data-bs-toggle="offcanvas" data-bs-target="#support_item">
-              <i class="isax isax-menu-1"></i>
-            </a>
-          </li>
-        </ul>
-        }
-      </nav>
-    </div>
-  </header>
-  <!-- /Header -->
-</div>
+              </li>
+            </ul>
+          }
+          @if (base === "index-7") {
+            <ul class="nav header-navbar-rht">
+              <li>
+                <a
+                  [routerLink]=""
+                  class="search-btn"
+                  tabindex="-1"
+                  data-bs-toggle="offcanvas"
+                  data-bs-target="#search_popup"
+                  aria-controls="search_popup"
+                >
+                  <i class="isax isax-search-normal-1"></i>
+                </a>
+              </li>
+              <li>
+                <a
+                  [routerLink]="routes.booking"
+                  class="btn btn-primary theme-7-btn"
+                  ><span>Book Appointment</span
+                  ><span class="icon"
+                    ><i class="isax isax-arrow-right-3"></i></span
+                ></a>
+              </li>
+              <li>
+                <a
+                  [routerLink]=""
+                  class="details-btn"
+                  data-bs-toggle="offcanvas"
+                  data-bs-target="#support_item"
+                >
+                  <i class="isax isax-menu"></i>
+                </a>
+              </li>
+            </ul>
+          }
+          @if (base === "index-8") {
+            <ul class="nav header-navbar-rht">
+              <li>
+                <div class="support-icon">
+                  <p class="number">
+                    <span class="icon"
+                      ><i class="isax isax-call-calling"></i></span
+                    ><a href="callto:+12456589856">+1 24565 89856</a>
+                  </p>
+                </div>
+              </li>
+              <li>
+                <a [routerLink]="routes.booking" class="btn btn-primary">
+                  <i class="isax isax-arrow-right-3"></i
+                  ><span>Book Consultation</span>
+                </a>
+              </li>
+            </ul>
+          }
+          @if (base === "index-9") {
+            <ul class="nav header-navbar-rht">
+              <li class="header-theme">
+                <a
+                  [routerLink]=""
+                  id="dark-mode-toggle"
+                  class="theme-toggle"
+                  [ngClass]="{
+                    activate: (sidebar.themeColor | async) === 'light-mode',
+                  }"
+                  (click)="sidebar.changeThemeColor('dark-mode')"
+                >
+                  <i class="isax isax-sun-1"></i>
+                </a>
+                <a
+                  [routerLink]=""
+                  id="light-mode-toggle"
+                  class="theme-toggle"
+                  [ngClass]="{
+                    activate: (sidebar.themeColor | async) === 'dark-mode',
+                  }"
+                  (click)="sidebar.changeThemeColor('light-mode')"
+                >
+                  <i class="isax isax-moon"></i>
+                </a>
+              </li>
+              <li>
+                <a
+                  [routerLink]="routes.booking"
+                  class="btn btn-primary-gradient"
+                  ><i class="isax isax-calendar-tick5 me-2"></i
+                  ><span>Book Appointment</span></a
+                >
+              </li>
+              <li>
+                <a
+                  [routerLink]=""
+                  class="details-btn"
+                  data-bs-toggle="offcanvas"
+                  data-bs-target="#support_item"
+                >
+                  <i class="isax isax-menu-1"></i>
+                </a>
+              </li>
+            </ul>
+          }
+          @if (base === "index-11") {
+            <ul class="nav header-navbar-rht">
+              <li class="header-theme">
+                <a
+                  [routerLink]=""
+                  id="dark-mode-toggle"
+                  class="theme-toggle"
+                  [ngClass]="{
+                    activate: (sidebar.themeColor | async) === 'light-mode',
+                  }"
+                  (click)="sidebar.changeThemeColor('dark-mode')"
+                >
+                  <i class="isax isax-sun-1"></i>
+                </a>
+                <a
+                  [routerLink]=""
+                  id="light-mode-toggle"
+                  class="theme-toggle"
+                  [ngClass]="{
+                    activate: (sidebar.themeColor | async) === 'dark-mode',
+                  }"
+                  (click)="sidebar.changeThemeColor('light-mode')"
+                >
+                  <i class="isax isax-moon"></i>
+                </a>
+              </li>
+              <li>
+                <a
+                  [routerLink]=""
+                  class="search-btn"
+                  tabindex="-1"
+                  data-bs-toggle="offcanvas"
+                  data-bs-target="#search_popup"
+                  aria-controls="search_popup"
+                >
+                  <i class="isax isax-search-normal-1"></i>
+                </a>
+              </li>
+              <li>
+                <a [routerLink]="routes.booking" class="btn btn-secondary"
+                  ><span class="text"> Book Appointment</span>
+                  <span class="icon"
+                    ><i class="isax isax-arrow-right-3"></i></span
+                ></a>
+              </li>
+              <li>
+                <a
+                  [routerLink]=""
+                  class="details-btn"
+                  data-bs-toggle="offcanvas"
+                  data-bs-target="#support_item"
+                >
+                  <i class="isax isax-menu-14"></i>
+                </a>
+              </li>
+            </ul>
+          }
+          @if (base === "index-10") {
+            <ul class="nav header-navbar-rht">
+              <li>
+                <a [routerLink]="routes.booking" class="btn btn-secondary"
+                  ><i class="isax isax-calendar-edit"></i
+                  ><span>Book Consultaion</span></a
+                >
+              </li>
+            </ul>
+          }
+          @if (base === "index-12") {
+            <ul class="nav header-navbar-rht">
+              <li>
+                <a
+                  [routerLink]="routes.booking"
+                  class="btn btn-primary theme-11-btn"
+                >
+                  <span class="icon one"
+                    ><i class="isax isax-arrow-right-1"></i>
+                  </span>
+                  <span class="content">Book Test Now</span>
+                  <span class="icon two"
+                    ><i class="isax isax-arrow-right-1"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  [routerLink]=""
+                  class="details-btn"
+                  data-bs-toggle="offcanvas"
+                  data-bs-target="#support_item"
+                >
+                  <i class="isax isax-menu-1"></i>
+                </a>
+              </li>
+            </ul>
+          }
+        </nav>
+      </div>
+    </header>
+    <!-- /Header -->
+  </div>
 }
 <!-- start offcanvas -->
-<div class="offcanvas offcanvas-offset offcanvas-end support_popup" tabindex="-1" id="support_item">
+<div
+  class="offcanvas offcanvas-offset offcanvas-end support_popup"
+  tabindex="-1"
+  id="support_item"
+>
   <div class="offcanvas-header">
-    @if(base !== 'index-7' && base !== 'index-9' && base !== 'index-11' && base
-    !== 'index-12'){
-    <a [routerLink]="routes.index">
-      <img src="assets/img/logo.svg" alt="logo" class="img-fluid logo" />
-    </a>
-    } @if(base === 'index-7'){
-    <a [routerLink]="routes.index7">
-      <img src="assets/img/logo-07.svg" alt="logo" class="img-fluid logo" />
-    </a>
-    } @if(base === 'index-9'){
-    <a [routerLink]="routes.index9">
-      <img src="assets/img/logo-dark-09.svg" alt="logo" class="img-fluid logo" />
-    </a>
-    } @if(base === 'index-11'){
-    <a [routerLink]="routes.index11">
-      <img src="assets/img/logo-11.svg" alt="logo" class="img-fluid logo" />
-    </a>
-    } @if(base === 'index-12'){
-    <a [routerLink]="routes.index12">
-      <img src="assets/img/logo-12.svg" class="img-fluid" alt="Logo" />
-    </a>
+    @if (
+      base !== "index-7" &&
+      base !== "index-9" &&
+      base !== "index-11" &&
+      base !== "index-12"
+    ) {
+      <a [routerLink]="routes.index">
+        <img src="assets/img/logo.svg" alt="logo" class="img-fluid logo" />
+      </a>
     }
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
+    @if (base === "index-7") {
+      <a [routerLink]="routes.index7">
+        <img src="assets/img/logo-07.svg" alt="logo" class="img-fluid logo" />
+      </a>
+    }
+    @if (base === "index-9") {
+      <a [routerLink]="routes.index9">
+        <img
+          src="assets/img/logo-dark-09.svg"
+          alt="logo"
+          class="img-fluid logo"
+        />
+      </a>
+    }
+    @if (base === "index-11") {
+      <a [routerLink]="routes.index11">
+        <img src="assets/img/logo-11.svg" alt="logo" class="img-fluid logo" />
+      </a>
+    }
+    @if (base === "index-12") {
+      <a [routerLink]="routes.index12">
+        <img src="assets/img/logo-12.svg" class="img-fluid" alt="Logo" />
+      </a>
+    }
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    >
       <i class="isax isax-close-circle"></i>
     </button>
   </div>
@@ -747,14 +1192,30 @@
         Modern healthcare platform designed to simplify the way patients connect
         with doctors, clinics & medical services.
       </p>
-      <div class="about-img d-flex align-items-center gap-2 justify-content-between">
-        <lightgallery class="about-img d-flex align-items-center gap-2 justify-content-between">
-          <a href="assets/img/banner/about-img-1.jpg" data-fancybox="gallery"><img
-              src="assets/img/banner/about-img-1.jpg" alt="about-img-1" class="img-fluid" /></a>
-          <a href="assets/img/banner/about-img-2.jpg" data-fancybox="gallery"><img
-              src="assets/img/banner/about-img-2.jpg" alt="about-img-1" class="img-fluid" /></a>
-          <a href="assets/img/banner/about-img-3.jpg" data-fancybox="gallery"><img
-              src="assets/img/banner/about-img-3.jpg" alt="about-img-1" class="img-fluid" /></a>
+      <div
+        class="about-img d-flex align-items-center gap-2 justify-content-between"
+      >
+        <lightgallery
+          class="about-img d-flex align-items-center gap-2 justify-content-between"
+        >
+          <a href="assets/img/banner/about-img-1.jpg" data-fancybox="gallery"
+            ><img
+              src="assets/img/banner/about-img-1.jpg"
+              alt="about-img-1"
+              class="img-fluid"
+          /></a>
+          <a href="assets/img/banner/about-img-2.jpg" data-fancybox="gallery"
+            ><img
+              src="assets/img/banner/about-img-2.jpg"
+              alt="about-img-1"
+              class="img-fluid"
+          /></a>
+          <a href="assets/img/banner/about-img-3.jpg" data-fancybox="gallery"
+            ><img
+              src="assets/img/banner/about-img-3.jpg"
+              alt="about-img-1"
+              class="img-fluid"
+          /></a>
         </lightgallery>
       </div>
     </div>
@@ -799,16 +1260,24 @@
       <h3 class="title">Follow Us</h3>
       <ul class="d-flex align-items-center gap-2 social-iyem">
         <li>
-          <a [routerLink]="" class="social-icon"><i class="fa-brands fa-facebook"></i></a>
+          <a [routerLink]="" class="social-icon"
+            ><i class="fa-brands fa-facebook"></i
+          ></a>
         </li>
         <li>
-          <a [routerLink]="" class="social-icon"><i class="fa-brands fa-x-twitter"></i></a>
+          <a [routerLink]="" class="social-icon"
+            ><i class="fa-brands fa-x-twitter"></i
+          ></a>
         </li>
         <li>
-          <a [routerLink]="" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+          <a [routerLink]="" class="social-icon"
+            ><i class="fa-brands fa-instagram"></i
+          ></a>
         </li>
         <li>
-          <a [routerLink]="" class="social-icon"><i class="fa-brands fa-linkedin"></i></a>
+          <a [routerLink]="" class="social-icon"
+            ><i class="fa-brands fa-linkedin"></i
+          ></a>
         </li>
       </ul>
     </div>
@@ -818,9 +1287,18 @@
 <!-- end offcanvas -->
 
 <!-- start offcanvas -->
-<div class="offcanvas offcanvas-top search_popup" tabindex="-1" id="search_popup">
+<div
+  class="offcanvas offcanvas-top search_popup"
+  tabindex="-1"
+  id="search_popup"
+>
   <div class="offcanvas-header">
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    >
       <i class="isax isax-close-circle"></i>
     </button>
   </div>
@@ -828,9 +1306,14 @@
     <div class="support-item-three w-50">
       <input type="text" class="inpts" placeholder="Search Your Keywords" />
       <a [routerLink]="" class="submit btn">
-        <i class="isax isax-arrow-right-1"></i></a>
+        <i class="isax isax-arrow-right-1"></i
+      ></a>
     </div>
   </div>
 </div>
 
-<div class="sidebar-overlay" [ngClass]="{ opened: isMenuOpened }" (click)="hideSidebar()"></div>
+<div
+  class="sidebar-overlay"
+  [ngClass]="{ opened: isMenuOpened }"
+  (click)="hideSidebar()"
+></div>

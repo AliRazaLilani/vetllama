@@ -1,0 +1,9 @@
+.time-slot.time-slot-blk li .timing.active {
+  background-color: var(--primary);
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.time-slot.time-slot-blk li .timing:hover {
+  background-color: #ffc269 !important;
+}

@@ -1,5 +1,5 @@
 <!-- Page Content -->
-<div class="doctor-content">
+<div class="doctor-content pet-bg">
   <div class="container">
     <!-- Patient -->
     <div class="row">
@@ -18,7 +18,205 @@
         </div>
         <div class="paitent-appointment">
           <form>
+            <!-- PERSONAL INFORMATION -->
             <div class="forms-block">
+              <h5 class="form-section-title">Personal Information</h5>
+            </div>
+            <div class="forms-block">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-group-title" for="firstName"
+                    >First Name <span class="text-danger">*</span></label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="firstName"
+                    placeholder="e.g. Sarah"
+                  />
+                </div>
+                <div class="form-group">
+                  <label class="form-group-title" for="lastName"
+                    >Last Name <span class="text-danger">*</span></label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="lastName"
+                    placeholder="e.g. Mitchell"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="forms-block">
+              <label class="form-group-title" for="email"
+                >Email Address <span class="text-danger">*</span></label
+              >
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                placeholder="you@clinic.com"
+              />
+            </div>
+
+            <!-- LICENSE & CREDENTIALS -->
+            <div class="forms-block mt-4">
+              <h5 class="form-section-title">License & Credentials</h5>
+            </div>
+            <div class="forms-block">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-group-title" for="licenseType"
+                    >License Type <span class="text-danger">*</span></label
+                  >
+                  <mat-select
+                    [(ngModel)]="selectedValue1"
+                    [ngModelOptions]="{ standalone: true }"
+                    panelClass="patientDetailsSelect"
+                    class="select"
+                    id="licenseType"
+                  >
+                    @for (data of licenseTypes; track data) {
+                      <mat-option [value]="data.value">
+                        {{ data.value }}
+                      </mat-option>
+                    }
+                  </mat-select>
+                </div>
+                <div class="form-group">
+                  <label class="form-group-title" for="licenseNumber"
+                    >License Number <span class="text-danger">*</span></label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="licenseNumber"
+                    placeholder="e.g. VET-2024-08321"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="forms-block">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-group-title" for="licenseState"
+                    >License State / Location
+                    <span class="text-danger">*</span></label
+                  >
+                  <mat-select
+                    [(ngModel)]="selectedValue1"
+                    [ngModelOptions]="{ standalone: true }"
+                    panelClass="patientDetailsSelect"
+                    class="select"
+                    id="licenseState"
+                  >
+                    @for (data of states; track data) {
+                      <mat-option [value]="data.value">
+                        {{ data.value }}
+                      </mat-option>
+                    }
+                  </mat-select>
+                </div>
+                <div class="form-group">
+                  <label class="form-group-title" for="yearsOfPractice"
+                    >Years of Practice</label
+                  >
+                  <mat-select
+                    [(ngModel)]="selectedValue1"
+                    [ngModelOptions]="{ standalone: true }"
+                    panelClass="patientDetailsSelect"
+                    class="select"
+                    id="yearsOfPractice"
+                  >
+                    @for (data of yearsOfPractice; track data) {
+                      <mat-option [value]="data.value">
+                        {{ data.value }}
+                      </mat-option>
+                    }
+                  </mat-select>
+                </div>
+              </div>
+            </div>
+
+            <!-- PRESCRIBER STATUS -->
+            <div class="forms-block mt-4">
+              <h5 class="form-section-title">Prescriber Status</h5>
+            </div>
+            <div class="forms-block">
+              <div class="prescriber-options">
+                <label class="custom-option-label">
+                  <input
+                    type="radio"
+                    name="prescriberStatus"
+                    value="can-prescribe"
+                  />
+                  <span class="option-radio"></span>
+                  <span class="option-text">
+                    <i class="fa fa-check-circle"></i> Prescriber - can
+                    prescribe medications
+                  </span>
+                </label>
+                <label class="custom-option-label">
+                  <input
+                    type="radio"
+                    name="prescriberStatus"
+                    value="non-prescriber"
+                  />
+                  <span class="option-radio"></span>
+                  <span class="option-text">
+                    <i class="fa fa-circle-o"></i> Non-Prescriber - consultation
+                    only
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <!-- SPECIES YOU TREAT -->
+            <div class="forms-block mt-4">
+              <h5 class="form-section-title">
+                Species You Treat <span class="text-danger">*</span>
+              </h5>
+            </div>
+            <div class="forms-block">
+              <div class="checkbox-grid species-grid">
+                @for (item of species; track item.id) {
+                  <label class="checkbox-item">
+                    <input type="checkbox" [id]="item.id" />
+                    <span class="checkbox-mark"></span>
+                    <span class="checkbox-label">
+                      <i class="fa" [ngClass]="item.icon"></i>
+                      {{ item.label }}
+                    </span>
+                  </label>
+                }
+              </div>
+            </div>
+
+            <!-- AREAS OF CONCERN / SPECIALIZATION -->
+            <div class="forms-block mt-4">
+              <h5 class="form-section-title">
+                Areas of Concern / Specialization
+                <span class="text-danger">*</span>
+              </h5>
+            </div>
+            <div class="forms-block mb-0">
+              <div class="checkbox-grid specialization-grid">
+                @for (item of specializations; track item.id) {
+                  <label class="checkbox-item">
+                    <input type="checkbox" [id]="item.id" />
+                    <span class="checkbox-mark"></span>
+                    <span class="checkbox-label">
+                      <i class="fa" [ngClass]="item.icon"></i>
+                      {{ item.label }}
+                    </span>
+                  </label>
+                }
+              </div>
+            </div>
+
+            <!-- APPOINTMENT DETAILS (ORIGINAL) -->
+            <div class="forms-block mt-4">
               <label class="form-group-title" for="appointment"
                 >Appointment for</label
               >
@@ -49,9 +247,9 @@
                   placeholder="Select"
                 >
                   @for (data of selectedList1; track data) {
-                  <mat-option [value]="data.value">
-                    {{ data.value }}
-                  </mat-option>
+                    <mat-option [value]="data.value">
+                      {{ data.value }}
+                    </mat-option>
                   }
                 </mat-select>
               </div>
@@ -99,16 +297,6 @@
                 </div>
               </div>
             </div>
-            <div class="forms-block">
-              <label class="form-group-title" for="symptoms"
-                >Symptoms <span>(Optional)</span></label
-              >
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Skin Allergy"
-              />
-            </div>
             <div class="forms-block mb-0">
               <div class="booking-btn">
                 <button
@@ -116,7 +304,7 @@
                   (click)="navigation()"
                   (keydown)="navigation()"
                   tabindex="1"
-                  class="btn btn-primary prime-btn justify-content-center align-items-center"
+                  class="theme-btn btn-primary"
                 >
                   Next <i class="feather icon-arrow-right-circle"></i>
                 </button>

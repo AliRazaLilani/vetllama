@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import { DataService } from 'src/app/core/services/data/data.service';
 import { booking2 } from 'src/app/core/models/models';
 import { routes } from 'src/app/core/routes/routes';
+import { CommonService } from 'src/app/core/services/common/common.service';
+import { DataService } from 'src/app/core/services/data/data.service';
 import { PatientBreadcrumbComponent } from '../../common/patient-breadcrumb/patient-breadcrumb.component';
 @Component({
   selector: 'app-booking2',
@@ -19,6 +20,8 @@ import { PatientBreadcrumbComponent } from '../../common/patient-breadcrumb/pati
 })
 export class Booking2Component {
   public routes = routes;
+  public base = 'index-6';
+
   bsValue = new Date();
   bsRangeValue: Date[];
   maxDate = new Date();
@@ -69,11 +72,18 @@ export class Booking2Component {
       },
     ],
   };
-  constructor(private data: DataService) {
+
+  constructor(
+    private router: Router,
+    private commonService: CommonService,
+    private data: DataService,
+  ) {
+    this.commonService.base.next('index-6');
     this.maxDate.setDate(this.maxDate.getDate() + 7);
     this.bsRangeValue = [this.bsValue, this.maxDate];
     this.booking2 = this.data.booking2;
   }
+
   visibleItems: { [key: number]: boolean } = {};
 
   toggleItemVisibility(index: number) {

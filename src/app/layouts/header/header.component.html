@@ -1,7 +1,4 @@
-<div
-  class="header-theme header-theme-two"
- 
->
+<div class="header-theme header-theme-two">
   <a
     [routerLink]=""
     id="dark-mode-toggle"
@@ -21,738 +18,887 @@
     <i class="isax isax-sun-15"></i>
   </a>
 </div>
-@if (page !== 'consultation' && page !== 'patient-details' && page !== 'payment'
-&& page !== 'signup' && page !== 'pharmacy-index' && base!=='index' && page!=='booking') {
-
-<header
-  [hidden]="
-    last === 'booking' ||
-    last === 'booking-popup' ||
-    last === 'booking-success-one' ||
-    page === 'login-email' ||
-    page === 'doctor-signup' ||
-    page === 'signup-success' ||
-    page === 'patient-signup' ||
-    page === 'login-email-otp' ||
-    page === 'login-phone' ||
-    page === 'email-otp' ||
-    page === 'login-phone-otp' ||
-    page === 'mobile-otp' ||
-    page === 'forgot-password2'
-  "
-  class="header header-custom header-default inner-header header-fixed relative" [ngClass]="{'fixed': isFixed}"
->
-  <div class="container">
-    <nav class="navbar navbar-expand-lg header-nav">
-      <div class="navbar-header">
-        <a (click)="toggleSidebar()" id="mobile_btn" [routerLink]="">
-          <i class="fa-solid fa-bars"></i>
-        </a>
-        <a [routerLink]="routes.index" class="navbar-brand logo">
-          <img src="assets/img/logo.svg" class="img-fluid" alt="Logo" />
-        </a>
-      </div>
-      <div class="header-menu">
-        <div class="main-menu-wrapper">
-          <div class="menu-header">
-            <a [routerLink]="routes.index" class="menu-logo">
-              <img src="assets/img/logo.svg" class="img-fluid" alt="Logo" />
-            </a>
-            <a
-              id="menu_close"
-              (click)="hideSidebar()"
-              class="menu-close"
-              [routerLink]=""
-            >
-              <i class="fas fa-times"></i
-            ></a>
-          </div>
-          <ul class="main-nav">
-            @for (mainMenus of header; track mainMenus; let i = $index) {
-            <li
-              class="has-submenu"
-              routerLinkActive="active"
-              [ngClass]="{
-                megamenu:
-                  mainMenus.tittle === 'Home' || mainMenus.tittle === 'Pages'
-              }"
-            >
-              <a
-                [routerLink]=""
-                class="main-menu"
-                (click)="mainMenus.showAsTab = !mainMenus.showAsTab"
-                [ngClass]="{ submenu: openDropdownIndex === i }"
-                (click)="toggleSubMenu(i)"
-              >
-                {{ mainMenus.tittle }}
-                <span
-                  ><i
-                    [ngClass]="
-                      base === 'index-4' ||
-                      base === 'index-5' ||
-                      base === 'index-6'
-                        ? 'fa-solid fa-plus'
-                        : 'fa-solid fa-chevron-down'
-                    "
-                  ></i
-                ></span>
+@if (
+  page !== "consultation" &&
+  page !== "patient-details" &&
+  page !== "payment" &&
+  page !== "signup" &&
+  page !== "pharmacy-index" &&
+  base !== "index" &&
+  page !== "booking"
+) {
+  <header
+    [hidden]="
+      last === 'booking' ||
+      last === 'booking-popup' ||
+      last === 'booking-success-one' ||
+      page === 'login-email' ||
+      page === 'doctor-signup' ||
+      page === 'signup-success' ||
+      page === 'patient-signup' ||
+      page === 'login-email-otp' ||
+      page === 'login-phone' ||
+      page === 'email-otp' ||
+      page === 'login-phone-otp' ||
+      page === 'mobile-otp' ||
+      page === 'forgot-password2'
+    "
+    class="header header-custom header-default inner-header header-fixed relative"
+    [ngClass]="{ fixed: isFixed }"
+  >
+    <div class="container">
+      <nav class="navbar navbar-expand-lg header-nav">
+        <div class="navbar-header">
+          <a (click)="toggleSidebar()" id="mobile_btn" [routerLink]="">
+            <i class="fa-solid fa-bars"></i>
+          </a>
+          <!-- <a [routerLink]="routes.index" class="navbar-brand logo">
+            <img src="assets/img/logo.svg" class="img-fluid" alt="Logo" />
+          </a> -->
+          <a [routerLink]="routes.index" class="navbar-brand logo">
+            <img src="assets/img/logo-3.png" class="img-fluid" alt="Logo" />
+          </a>
+        </div>
+        <div class="header-menu">
+          <div class="main-menu-wrapper">
+            <div class="menu-header">
+              <a [routerLink]="routes.index" class="menu-logo">
+                <img src="assets/img/logo.svg" class="img-fluid" alt="Logo" />
               </a>
-              <ul
-                class="submenu"
-                [ngClass]="
-                  mainMenus.tittle === 'Home' || mainMenus.tittle === 'Pages'
-                    ? 'mega-submenu'
-                    : mainMenus.row === '1' && mainMenus.tittle !== 'Pharmacy'
-                    ? 'sub-menu-one'
-                    : mainMenus.row === '2'
-                    ? ' sub-menu-one sub-menu-two'
-                    : mainMenus.tittle === 'Pharmacy'
-                    ? 'sub-menu-one sub-menu-three'
-                    : 'sub-menu-one sub-menu-default'
-                "
-                [ngStyle]="{ display: openDropdownIndex === i ? 'block' : '' }"
+              <a
+                id="menu_close"
+                (click)="hideSidebar()"
+                class="menu-close"
+                [routerLink]=""
               >
-                <li>
-                  @if(mainMenus.tittle === 'Home'){
-                  <div class="megamenu-wrapper">
-                    <div class="row">
-                      @for (menu of mainMenus.menu; track menu) {
-                      <div class="col">
-                        <div class="single-demo" routerLinkActive="active">
-                          <div class="demo-img">
-                            <a [routerLink]="menu.route" class="inner-demo-img"
-                              ><img
-                                [src]="menu.img"
-                                class="img-fluid"
-                                alt="img"
-                            /></a>
-                          </div>
-                          <div class="demo-info">
-                            <a
-                              class="inner-demo-img"
-                              [routerLink]="menu.route"
-                              >{{ menu.menuValue }}</a
-                            >
-                          </div>
-                        </div>
-                      </div>
-                      }
-                    </div>
-                  </div>
-                  } @else{
-                  <div
-                    [ngClass]="{
-                      'megamenu-wrapper megamenu-wrapper-one':
-                        mainMenus.row === '3'
+                <i class="fas fa-times"></i
+              ></a>
+            </div>
+            <ul class="main-nav">
+              @for (mainMenus of header; track mainMenus; let i = $index) {
+                <li
+                  class="has-submenu"
+                  routerLinkActive="active"
+                  [ngClass]="{
+                    megamenu:
+                      mainMenus.tittle === 'Home' ||
+                      mainMenus.tittle === 'Pages',
+                  }"
+                >
+                  <a
+                    [routerLink]=""
+                    class="main-menu"
+                    (click)="mainMenus.showAsTab = !mainMenus.showAsTab"
+                    [ngClass]="{ submenu: openDropdownIndex === i }"
+                    (click)="toggleSubMenu(i)"
+                  >
+                    {{ mainMenus.tittle }}
+                    <span
+                      ><i
+                        [ngClass]="
+                          base === 'index-4' ||
+                          base === 'index-5' ||
+                          base === 'index-6'
+                            ? 'fa-solid fa-plus'
+                            : 'fa-solid fa-chevron-down'
+                        "
+                      ></i
+                    ></span>
+                  </a>
+                  <ul
+                    class="submenu"
+                    [ngClass]="
+                      mainMenus.tittle === 'Home' ||
+                      mainMenus.tittle === 'Pages'
+                        ? 'mega-submenu'
+                        : mainMenus.row === '1' &&
+                            mainMenus.tittle !== 'Pharmacy'
+                          ? 'sub-menu-one'
+                          : mainMenus.row === '2'
+                            ? ' sub-menu-one sub-menu-two'
+                            : mainMenus.tittle === 'Pharmacy'
+                              ? 'sub-menu-one sub-menu-three'
+                              : 'sub-menu-one sub-menu-default'
+                    "
+                    [ngStyle]="{
+                      display: openDropdownIndex === i ? 'block' : '',
                     }"
                   >
-                    <div class="row">
-                      @if(mainMenus.row === '1'){
-                      <div class="col-lg-6">
-                        <ul class="sub-menu-list">
-                          @for (menu of mainMenus.menu; track menu) {
-                          <li>
-                            <a [routerLink]="menu.route" routerLinkActive="active">{{
-                              menu.menuValue
-                            }}</a>
-                          </li>
-                          }
-                        </ul>
-                      </div>
-                      <div class="col-lg-6">
-                        <div class="menu-img">
-                          <img
-                            src="assets/img/home/menu-img-1.jpg"
-                            alt="listing"
-                            class="img-fluid"
-                          />
+                    <li>
+                      @if (mainMenus.tittle === "Home") {
+                        <div class="megamenu-wrapper">
+                          <div class="row">
+                            @for (menu of mainMenus.menu; track menu) {
+                              <div class="col">
+                                <div
+                                  class="single-demo"
+                                  routerLinkActive="active"
+                                >
+                                  <div class="demo-img">
+                                    <a
+                                      [routerLink]="menu.route"
+                                      class="inner-demo-img"
+                                      ><img
+                                        [src]="menu.img"
+                                        class="img-fluid"
+                                        alt="img"
+                                    /></a>
+                                  </div>
+                                  <div class="demo-info">
+                                    <a
+                                      class="inner-demo-img"
+                                      [routerLink]="menu.route"
+                                      >{{ menu.menuValue }}</a
+                                    >
+                                  </div>
+                                </div>
+                              </div>
+                            }
+                          </div>
                         </div>
-                      </div>
-                      } @if(mainMenus.row === '2'){ @for (menu of
-                      mainMenus.menu; track menu) { @if(menu.col === '1'){
-                      <div class="col-lg-4 sub-menu-left">
-                        <ul class="sub-menu-list">
-                          @for (subMenu of menu.subMenus; track subMenu) {
-                          <li>
-                            <a [routerLink]="subMenu.route" routerLinkActive="active">{{
-                              subMenu.menuValue
-                            }}</a>
-                          </li>
-                          }
-                        </ul>
-                      </div>
-                      } @if(menu.col === '2'){
-                      <div class="col-lg-4">
-                        <ul class="sub-menu-list">
-                          @for (subMenu of menu.subMenus; track subMenu) {
-                          <li>
-                            <a [routerLink]="subMenu.route" routerLinkActive="active">{{
-                              subMenu.menuValue
-                            }}</a>
-                          </li>
-                          }
-                        </ul>
-                      </div>
-                      } }
-                      <div class="col-lg-4">
-                        <div class="menu-img">
-                          <img
-                            [src]="mainMenus.img"
-                            alt="listing"
-                            class="img-fluid"
-                          />
+                      } @else {
+                        <div
+                          [ngClass]="{
+                            'megamenu-wrapper megamenu-wrapper-one':
+                              mainMenus.row === '3',
+                          }"
+                        >
+                          <div class="row">
+                            @if (mainMenus.row === "1") {
+                              <div class="col-lg-6">
+                                <ul class="sub-menu-list">
+                                  @for (menu of mainMenus.menu; track menu) {
+                                    <li>
+                                      <a
+                                        [routerLink]="menu.route"
+                                        routerLinkActive="active"
+                                        >{{ menu.menuValue }}</a
+                                      >
+                                    </li>
+                                  }
+                                </ul>
+                              </div>
+                              <div class="col-lg-6">
+                                <div class="menu-img">
+                                  <img
+                                    src="assets/img/home/menu-img-1.jpg"
+                                    alt="listing"
+                                    class="img-fluid"
+                                  />
+                                </div>
+                              </div>
+                            }
+                            @if (mainMenus.row === "2") {
+                              @for (menu of mainMenus.menu; track menu) {
+                                @if (menu.col === "1") {
+                                  <div class="col-lg-4 sub-menu-left">
+                                    <ul class="sub-menu-list">
+                                      @for (
+                                        subMenu of menu.subMenus;
+                                        track subMenu
+                                      ) {
+                                        <li>
+                                          <a
+                                            [routerLink]="subMenu.route"
+                                            routerLinkActive="active"
+                                            >{{ subMenu.menuValue }}</a
+                                          >
+                                        </li>
+                                      }
+                                    </ul>
+                                  </div>
+                                }
+                                @if (menu.col === "2") {
+                                  <div class="col-lg-4">
+                                    <ul class="sub-menu-list">
+                                      @for (
+                                        subMenu of menu.subMenus;
+                                        track subMenu
+                                      ) {
+                                        <li>
+                                          <a
+                                            [routerLink]="subMenu.route"
+                                            routerLinkActive="active"
+                                            >{{ subMenu.menuValue }}</a
+                                          >
+                                        </li>
+                                      }
+                                    </ul>
+                                  </div>
+                                }
+                              }
+                              <div class="col-lg-4">
+                                <div class="menu-img">
+                                  <img
+                                    [src]="mainMenus.img"
+                                    alt="listing"
+                                    class="img-fluid"
+                                  />
+                                </div>
+                              </div>
+                            }
+                            @if (mainMenus.row === "3") {
+                              @for (menu of mainMenus.menu; track menu) {
+                                @if (menu.col === "1") {
+                                  <div class="col-lg-3 sub-menu-left">
+                                    <ul class="sub-menu-list">
+                                      @for (
+                                        subMenu of menu.subMenus;
+                                        track subMenu
+                                      ) {
+                                        <li>
+                                          <a
+                                            [routerLink]="subMenu.route"
+                                            routerLinkActive="active"
+                                            >{{ subMenu.menuValue }}</a
+                                          >
+                                        </li>
+                                      }
+                                    </ul>
+                                  </div>
+                                }
+                                @if (menu.col === "2") {
+                                  <div class="col-lg-3 sub-menu-left">
+                                    <ul class="sub-menu-list">
+                                      @for (
+                                        subMenu of menu.subMenus;
+                                        track subMenu
+                                      ) {
+                                        <li>
+                                          <a
+                                            [routerLink]="subMenu.route"
+                                            routerLinkActive="active"
+                                            >{{ subMenu.menuValue }}</a
+                                          >
+                                        </li>
+                                      }
+                                    </ul>
+                                  </div>
+                                }
+                                @if (menu.col === "3") {
+                                  <div class="col-lg-3 sub-menu-left">
+                                    <ul class="sub-menu-list">
+                                      @for (
+                                        subMenu of menu.subMenus;
+                                        track subMenu
+                                      ) {
+                                        <li>
+                                          <a
+                                            [routerLink]="subMenu.route"
+                                            routerLinkActive="active"
+                                            >{{ subMenu.menuValue }}</a
+                                          >
+                                        </li>
+                                      }
+                                    </ul>
+                                  </div>
+                                }
+                                @if (menu.col === "4") {
+                                  <div class="col-lg-3">
+                                    <ul class="sub-menu-list">
+                                      @for (
+                                        subMenu of menu.subMenus;
+                                        track subMenu
+                                      ) {
+                                        <li>
+                                          <a
+                                            [routerLink]="subMenu.route"
+                                            routerLinkActive="active"
+                                            >{{ subMenu.menuValue }}</a
+                                          >
+                                        </li>
+                                      }
+                                    </ul>
+                                  </div>
+                                }
+                              }
+                            }
+                          </div>
                         </div>
-                      </div>
-                      } @if(mainMenus.row === '3'){ @for (menu of
-                      mainMenus.menu; track menu) { @if(menu.col === '1'){
-                      <div class="col-lg-3 sub-menu-left">
-                        <ul class="sub-menu-list">
-                          @for (subMenu of menu.subMenus; track subMenu) {
-                          <li>
-                            <a [routerLink]="subMenu.route" routerLinkActive="active">{{
-                              subMenu.menuValue
-                            }}</a>
-                          </li>
-                          }
-                        </ul>
-                      </div>
-                      } @if(menu.col === '2'){
-                      <div class="col-lg-3 sub-menu-left">
-                        <ul class="sub-menu-list">
-                          @for (subMenu of menu.subMenus; track subMenu) {
-                          <li>
-                            <a [routerLink]="subMenu.route" routerLinkActive="active">{{
-                              subMenu.menuValue
-                            }}</a>
-                          </li>
-                          }
-                        </ul>
-                      </div>
-                      } @if(menu.col === '3'){
-                      <div class="col-lg-3 sub-menu-left">
-                        <ul class="sub-menu-list">
-                          @for (subMenu of menu.subMenus; track subMenu) {
-                          <li>
-                            <a [routerLink]="subMenu.route" routerLinkActive="active">{{
-                              subMenu.menuValue
-                            }}</a>
-                          </li>
-                          }
-                        </ul>
-                      </div>
-                      } @if(menu.col === '4'){
-                      <div class="col-lg-3">
-                        <ul class="sub-menu-list">
-                          @for (subMenu of menu.subMenus; track subMenu) {
-                          <li>
-                            <a [routerLink]="subMenu.route" routerLinkActive="active">{{
-                              subMenu.menuValue
-                            }}</a>
-                          </li>
-                          }
-                        </ul>
-                      </div>
-                      } } }
-                    </div>
+                      }
+                    </li>
+                    @if (
+                      mainMenus.tittle === "Blog" ||
+                      mainMenus.tittle === "Admin"
+                    ) {
+                      @for (menu of mainMenus.menu; track menu) {
+                        <li routerLinkActive="active">
+                          <a [routerLink]="menu.route">{{ menu.menuValue }}</a>
+                        </li>
+                      }
+                    }
+                  </ul>
+                </li>
+              }
+            </ul>
+            <div class="header-items">
+              <!-- Item 1 -->
+              <div class="about-popup-item border-0 pb-0">
+                <h3 class="title">Contact Information</h3>
+                <div class="support-item mb-3">
+                  <div class="avatar avatar-lg bg-primary rounded-circle">
+                    <i class="isax isax-messages-3"></i>
                   </div>
-                  }
-                </li>
-                @if(mainMenus.tittle === 'Blog' || mainMenus.tittle ===
-                'Admin'){ @for (menu of mainMenus.menu; track menu) {
-                <li routerLinkActive="active">
-                  <a [routerLink]="menu.route" >{{ menu.menuValue }}</a>
-                </li>
-                } }
-              </ul>
-            </li>
-            }
-          </ul>
-          <div class="header-items">
-            <!-- Item 1 -->
-            <div class="about-popup-item border-0 pb-0">
-              <h3 class="title">Contact Information</h3>
-              <div class="support-item mb-3">
-                <div class="avatar avatar-lg bg-primary rounded-circle">
-                  <i class="isax isax-messages-3"></i>
+                  <div>
+                    <p class="title">General Inquiries</p>
+                    <h5 class="link">info@example.com</h5>
+                  </div>
                 </div>
-                <div>
-                  <p class="title">General Inquiries</p>
-                  <h5 class="link">info@example.com</h5>
+                <div class="support-item">
+                  <div class="avatar avatar-lg bg-primary rounded-circle">
+                    <i class="isax isax-call-calling"></i>
+                  </div>
+                  <div>
+                    <p class="title">Emergency Cases</p>
+                    <h5 class="link">+1 24565 89856</h5>
+                  </div>
                 </div>
               </div>
-              <div class="support-item">
-                <div class="avatar avatar-lg bg-primary rounded-circle">
-                  <i class="isax isax-call-calling"></i>
-                </div>
-                <div>
-                  <p class="title">Emergency Cases</p>
-                  <h5 class="link">+1 24565 89856</h5>
-                </div>
+              <!-- Item 2 -->
+              <div class="about-popup-item border-0 pb-0">
+                <h3 class="title">Follow Us</h3>
+                <ul class="d-flex align-items-center gap-2 social-iyem">
+                  <li>
+                    <a [routerLink]="" class="social-icon"
+                      ><i class="fa-brands fa-facebook"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a [routerLink]="" class="social-icon"
+                      ><i class="fa-brands fa-x-twitter"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a [routerLink]="" class="social-icon"
+                      ><i class="fa-brands fa-instagram"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a [routerLink]="" class="social-icon"
+                      ><i class="fa-brands fa-linkedin"></i
+                    ></a>
+                  </li>
+                </ul>
               </div>
-            </div>
-            <!-- Item 2 -->
-            <div class="about-popup-item border-0 pb-0">
-              <h3 class="title">Follow Us</h3>
-              <ul class="d-flex align-items-center gap-2 social-iyem">
-                <li>
-                  <a [routerLink]="" class="social-icon"
-                    ><i class="fa-brands fa-facebook"></i
-                  ></a>
-                </li>
-                <li>
-                  <a [routerLink]="" class="social-icon"
-                    ><i class="fa-brands fa-x-twitter"></i
-                  ></a>
-                </li>
-                <li>
-                  <a [routerLink]="" class="social-icon"
-                    ><i class="fa-brands fa-instagram"></i
-                  ></a>
-                </li>
-                <li>
-                  <a [routerLink]="" class="social-icon"
-                    ><i class="fa-brands fa-linkedin"></i
-                  ></a>
-                </li>
-              </ul>
-            </div>
 
-            <div class="header-items-button">
-              <a
-                [routerLink]="routes.userLogin"
-                class="btn btn-primary btn-primary-gradient"
-                ><i class="isax isax-lock-1 me-2"></i>Logout</a
-              >
+              <div class="header-items-button">
+                <a
+                  [routerLink]="routes.userLogin"
+                  class="btn btn-primary btn-primary-gradient"
+                  ><i class="isax isax-lock-1 me-2"></i>Logout</a
+                >
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <ul class="nav header-navbar-rht">
-        @if(base !== 'pharmacy' && base !== 'pages' && base !== 'blog'){
-        <li class="search-item">
-          <a
-            [routerLink]=""
-            class="details-btn"
-            tabindex="-1"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#search_popup"
-            aria-controls="search_popup"
-          >
-            <i class="isax isax-search-normal-1"></i>
-          </a>
-        </li>
-        <li class="noti-nav dropdown">
-          <a
-            [routerLink]=""
-            class="details-btn"
-            data-bs-toggle="dropdown"
-            aria-label="Notification"
-          >
-            <i class="isax isax-notification-bing"></i>
-            <span class="badge"></span>
-          </a>
-          <div class="dropdown-menu notifications dropdown-menu-end">
-            <div class="topnav-dropdown-header">
-              <span class="notification-title">Notifications</span>
-            </div>
-            <div class="noti-content">
-              <ul class="notification-list">
-                <li class="notification-message">
-                  <a [routerLink]="">
-                    <div class="notify-block d-flex">
-                      <span class="avatar">
-                        <img
-                          class="avatar-img"
-                          alt="Ruby perin"
-                          src="assets/img/clients/client-01.jpg"
-                        />
-                      </span>
-                      <div class="media-body">
-                        <h6>
-                          Travis Tremble
-                          <span class="notification-time">18.30 PM</span>
-                        </h6>
-                        <p class="noti-details">
-                          Sent a amount of $210 for his Appointment
-                          <span class="noti-title">Dr.Ruby perin </span>
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li class="notification-message">
-                  <a [routerLink]="">
-                    <div class="notify-block d-flex">
-                      <span class="avatar">
-                        <img
-                          class="avatar-img"
-                          alt="Hendry Watt"
-                          src="assets/img/clients/client-02.jpg"
-                        />
-                      </span>
-                      <div class="media-body">
-                        <h6>
-                          Kelly Stevens
-                          <span class="notification-time">12 Min Ago</span>
-                        </h6>
-                        <p class="noti-details">
-                          has booked her appointment to
-                          <span class="noti-title">Dr. Hendry Watt</span>
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li class="notification-message">
-                  <a [routerLink]="">
-                    <div class="notify-block d-flex">
-                      <div class="avatar">
-                        <img
-                          class="avatar-img"
-                          alt="Maria Dyen"
-                          src="assets/img/clients/client-03.jpg"
-                        />
-                      </div>
-                      <div class="media-body">
-                        <h6>
-                          Robert Joe
-                          <span class="notification-time">6 Min Ago</span>
-                        </h6>
-                        <p class="noti-details">
-                          Sent a amount $210 for his Appointment
-                          <span class="noti-title">Dr.Maria Dyen</span>
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li class="notification-message">
-                  <a [routerLink]="">
-                    <div class="notify-block d-flex">
-                      <div class="avatar avatar-sm">
-                        <img
-                          class="avatar-img"
-                          alt="client-image"
-                          src="assets/img/clients/client-04.jpg"
-                        />
-                      </div>
-                      <div class="media-body">
-                        <h6>
-                          Samuel Jord
-                          <span class="notification-time">8.30 AM</span>
-                        </h6>
-                        <p class="noti-details">Send a message to his doctor</p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </li>
-        } @if(page !=='cart' && page !=='product-checkout' && page !==
-        'payment-success'){ @if(base !== 'doctors' && base !== 'patients'){
-        <li>
-          <a
-            [routerLink]="routes.userLogin"
-            class="btn btn-md btn-primary-gradient"
-          >
-            <i class="isax isax-lock-1 me-2"></i><span>Sign Up</span>
-          </a>
-        </li>
-        <li>
-          <a [routerLink]="routes.register" class="btn btn-md btn-dark">
-            <i class="isax isax-user-tick me-2"></i><span>Register</span>
-          </a>
-        </li>
-        }
-        <li>
-          <a
-            [routerLink]=""
-            class="details-btn"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#support_item"
-          >
-            <i class="isax isax-menu5"></i>
-          </a>
-        </li>
-        } @if(base === 'doctors'){
-        <li class="dropdown has-arrow logged-item">
-          <a [routerLink]="" data-bs-toggle="dropdown">
-            <span class="user-img">
-              <img
-                class="rounded-circle"
-                src="assets/img/doctors-dashboard/doctor-profile-img.jpg"
-                alt="Darren Elder"
-              />
-            </span>
-          </a>
-          <div class="dropdown-menu dropdown-menu-end">
-            <div class="user-header">
-              <div class="avatar">
-                <img
-                  src="assets/img/doctors-dashboard/doctor-profile-img.jpg"
-                  alt="User Image"
-                  class="avatar-img rounded-circle"
-                />
+        <ul class="nav header-navbar-rht">
+          @if (base !== "pharmacy" && base !== "pages" && base !== "blog") {
+            <li class="search-item">
+              <a
+                [routerLink]=""
+                class="details-btn"
+                tabindex="-1"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#search_popup"
+                aria-controls="search_popup"
+              >
+                <i class="isax isax-search-normal-1"></i>
+              </a>
+            </li>
+            <li class="noti-nav dropdown">
+              <a
+                [routerLink]=""
+                class="details-btn"
+                data-bs-toggle="dropdown"
+                aria-label="Notification"
+              >
+                <i class="isax isax-notification-bing"></i>
+                <span class="badge"></span>
+              </a>
+              <div class="dropdown-menu notifications dropdown-menu-end">
+                <div class="topnav-dropdown-header">
+                  <span class="notification-title">Notifications</span>
+                </div>
+                <div class="noti-content">
+                  <ul class="notification-list">
+                    <li class="notification-message">
+                      <a [routerLink]="">
+                        <div class="notify-block d-flex">
+                          <span class="avatar">
+                            <img
+                              class="avatar-img"
+                              alt="Ruby perin"
+                              src="assets/img/clients/client-01.jpg"
+                            />
+                          </span>
+                          <div class="media-body">
+                            <h6>
+                              Travis Tremble
+                              <span class="notification-time">18.30 PM</span>
+                            </h6>
+                            <p class="noti-details">
+                              Sent a amount of $210 for his Appointment
+                              <span class="noti-title">Dr.Ruby perin </span>
+                            </p>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li class="notification-message">
+                      <a [routerLink]="">
+                        <div class="notify-block d-flex">
+                          <span class="avatar">
+                            <img
+                              class="avatar-img"
+                              alt="Hendry Watt"
+                              src="assets/img/clients/client-02.jpg"
+                            />
+                          </span>
+                          <div class="media-body">
+                            <h6>
+                              Kelly Stevens
+                              <span class="notification-time">12 Min Ago</span>
+                            </h6>
+                            <p class="noti-details">
+                              has booked her appointment to
+                              <span class="noti-title">Dr. Hendry Watt</span>
+                            </p>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li class="notification-message">
+                      <a [routerLink]="">
+                        <div class="notify-block d-flex">
+                          <div class="avatar">
+                            <img
+                              class="avatar-img"
+                              alt="Maria Dyen"
+                              src="assets/img/clients/client-03.jpg"
+                            />
+                          </div>
+                          <div class="media-body">
+                            <h6>
+                              Robert Joe
+                              <span class="notification-time">6 Min Ago</span>
+                            </h6>
+                            <p class="noti-details">
+                              Sent a amount $210 for his Appointment
+                              <span class="noti-title">Dr.Maria Dyen</span>
+                            </p>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li class="notification-message">
+                      <a [routerLink]="">
+                        <div class="notify-block d-flex">
+                          <div class="avatar avatar-sm">
+                            <img
+                              class="avatar-img"
+                              alt="client-image"
+                              src="assets/img/clients/client-04.jpg"
+                            />
+                          </div>
+                          <div class="media-body">
+                            <h6>
+                              Samuel Jord
+                              <span class="notification-time">8.30 AM</span>
+                            </h6>
+                            <p class="noti-details">
+                              Send a message to his doctor
+                            </p>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               </div>
-              <div class="user-text">
-                <h6>Dr Edalin Hendry</h6>
-                <p class="text-muted mb-0">Doctor</p>
+            </li>
+          }
+          @if (
+            page !== "cart" &&
+            page !== "product-checkout" &&
+            page !== "payment-success"
+          ) {
+            @if (base !== "doctors" && base !== "patients") {
+              <li>
+                <a
+                  [routerLink]="routes.userLogin"
+                  class="btn btn-md btn-primary-gradient"
+                >
+                  <i class="isax isax-lock-1 me-2"></i><span>Sign Up</span>
+                </a>
+              </li>
+              <li>
+                <a [routerLink]="routes.register" class="btn btn-md btn-dark">
+                  <i class="isax isax-user-tick me-2"></i><span>Register</span>
+                </a>
+              </li>
+            }
+            <li>
+              <a
+                [routerLink]=""
+                class="details-btn"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#support_item"
+              >
+                <i class="isax isax-menu5"></i>
+              </a>
+            </li>
+          }
+          @if (base === "doctors") {
+            <li class="dropdown has-arrow logged-item">
+              <a [routerLink]="" data-bs-toggle="dropdown">
+                <span class="user-img">
+                  <img
+                    class="rounded-circle"
+                    src="assets/img/doctors-dashboard/doctor-profile-img.jpg"
+                    alt="Darren Elder"
+                  />
+                </span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-end">
+                <div class="user-header">
+                  <div class="avatar">
+                    <img
+                      src="assets/img/doctors-dashboard/doctor-profile-img.jpg"
+                      alt="User Image"
+                      class="avatar-img rounded-circle"
+                    />
+                  </div>
+                  <div class="user-text">
+                    <h6>Dr Edalin Hendry</h6>
+                    <p class="text-muted mb-0">Doctor</p>
+                  </div>
+                </div>
+                <a class="dropdown-item" [routerLink]="routes.doctorDashboard"
+                  >Dashboard</a
+                >
+                <a
+                  class="dropdown-item"
+                  [routerLink]="routes.doctorProfileSettings"
+                  >Profile Settings</a
+                >
+                <a class="dropdown-item" [routerLink]="routes.userLogin"
+                  >Logout</a
+                >
               </div>
-            </div>
-            <a class="dropdown-item" [routerLink]="routes.doctorDashboard"
-              >Dashboard</a
-            >
-            <a class="dropdown-item" [routerLink]="routes.doctorProfileSettings"
-              >Profile Settings</a
-            >
-            <a class="dropdown-item" [routerLink]="routes.userLogin">Logout</a>
-          </div>
-        </li>
-        } @if(base == 'patients'){
-        <li class="dropdown has-arrow logged-item">
-          <a [routerLink]="" data-bs-toggle="dropdown">
-            <span class="user-img">
-              <img
-                class="rounded-circle"
-                src="assets/img/doctors-dashboard/profile-06.jpg"
-                alt="Darren Elder"
-              />
-            </span>
-          </a>
-          <div class="dropdown-menu dropdown-menu-end">
-            <div class="user-header">
-              <div class="avatar">
-                <img
-                  src="assets/img/doctors-dashboard/profile-06.jpg"
-                  alt="User Image"
-                  class="avatar-img rounded-circle"
-                />
+            </li>
+          }
+          @if (base == "patients") {
+            <li class="dropdown has-arrow logged-item">
+              <a [routerLink]="" data-bs-toggle="dropdown">
+                <span class="user-img">
+                  <img
+                    class="rounded-circle"
+                    src="assets/img/doctors-dashboard/profile-06.jpg"
+                    alt="Darren Elder"
+                  />
+                </span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-end">
+                <div class="user-header">
+                  <div class="avatar">
+                    <img
+                      src="assets/img/doctors-dashboard/profile-06.jpg"
+                      alt="User Image"
+                      class="avatar-img rounded-circle"
+                    />
+                  </div>
+                  <div class="user-text">
+                    <h6>Hendrita Hayes</h6>
+                    <p class="text-muted mb-0">Patient</p>
+                  </div>
+                </div>
+                <a class="dropdown-item" [routerLink]="routes.patientDashboard"
+                  >Dashboard</a
+                >
+                <a class="dropdown-item" [routerLink]="routes.profileSettings"
+                  >Profile Settings</a
+                >
+                <a class="dropdown-item" [routerLink]="routes.userLogin"
+                  >Logout</a
+                >
               </div>
-              <div class="user-text">
-                <h6>Hendrita Hayes</h6>
-                <p class="text-muted mb-0">Patient</p>
+            </li>
+          }
+          @if (
+            page === "cart" ||
+            page === "product-checkout" ||
+            page === "payment-success"
+          ) {
+            <li class="search-item">
+              <a
+                [routerLink]=""
+                class="details-btn"
+                tabindex="-1"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#search_popup"
+                aria-controls="search_popup"
+              >
+                <i class="isax isax-search-normal-1"></i>
+              </a>
+            </li>
+            <li class="noti-nav dropdown">
+              <a
+                [routerLink]=""
+                class="details-btn"
+                data-bs-toggle="dropdown"
+                aria-label="Notification"
+              >
+                <i class="isax isax-notification-bing"></i>
+                <span class="badge"></span>
+              </a>
+              <div class="dropdown-menu notifications dropdown-menu-end">
+                <div class="topnav-dropdown-header">
+                  <span class="notification-title">Notifications</span>
+                </div>
+                <div class="noti-content">
+                  <ul class="notification-list">
+                    <li class="notification-message">
+                      <a [routerLink]="">
+                        <div class="notify-block d-flex">
+                          <span class="avatar">
+                            <img
+                              class="avatar-img"
+                              alt="Ruby perin"
+                              src="assets/img/clients/client-01.jpg"
+                            />
+                          </span>
+                          <div class="media-body">
+                            <h6>
+                              Travis Tremble
+                              <span class="notification-time">18.30 PM</span>
+                            </h6>
+                            <p class="noti-details">
+                              Sent a amount of $210 for his Appointment
+                              <span class="noti-title">Dr.Ruby perin </span>
+                            </p>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li class="notification-message">
+                      <a [routerLink]="">
+                        <div class="notify-block d-flex">
+                          <span class="avatar">
+                            <img
+                              class="avatar-img"
+                              alt="Hendry Watt"
+                              src="assets/img/clients/client-02.jpg"
+                            />
+                          </span>
+                          <div class="media-body">
+                            <h6>
+                              Kelly Stevens
+                              <span class="notification-time">12 Min Ago</span>
+                            </h6>
+                            <p class="noti-details">
+                              has booked her appointment to
+                              <span class="noti-title">Dr. Hendry Watt</span>
+                            </p>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li class="notification-message">
+                      <a [routerLink]="">
+                        <div class="notify-block d-flex">
+                          <div class="avatar">
+                            <img
+                              class="avatar-img"
+                              alt="Maria Dyen"
+                              src="assets/img/clients/client-03.jpg"
+                            />
+                          </div>
+                          <div class="media-body">
+                            <h6>
+                              Robert Joe
+                              <span class="notification-time">6 Min Ago</span>
+                            </h6>
+                            <p class="noti-details">
+                              Sent a amount $210 for his Appointment
+                              <span class="noti-title">Dr.Maria Dyen</span>
+                            </p>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li class="notification-message">
+                      <a [routerLink]="">
+                        <div class="notify-block d-flex">
+                          <div class="avatar avatar-sm">
+                            <img
+                              class="avatar-img"
+                              alt="client-image"
+                              src="assets/img/clients/client-04.jpg"
+                            />
+                          </div>
+                          <div class="media-body">
+                            <h6>
+                              Samuel Jord
+                              <span class="notification-time">8.30 AM</span>
+                            </h6>
+                            <p class="noti-details">
+                              Send a message to his doctor
+                            </p>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               </div>
-            </div>
-            <a class="dropdown-item" [routerLink]="routes.patientDashboard"
-              >Dashboard</a
-            >
-            <a class="dropdown-item" [routerLink]="routes.profileSettings"
-              >Profile Settings</a
-            >
-            <a class="dropdown-item" [routerLink]="routes.userLogin">Logout</a>
-          </div>
-        </li>
-        } @if(page ==='cart' || page ==='product-checkout' || page ===
-        'payment-success'){
-        <li class="search-item">
-          <a
-            [routerLink]=""
-            class="details-btn"
-            tabindex="-1"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#search_popup"
-            aria-controls="search_popup"
-          >
-            <i class="isax isax-search-normal-1"></i>
-          </a>
-        </li>
-        <li class="noti-nav dropdown">
-          <a
-            [routerLink]=""
-            class="details-btn"
-            data-bs-toggle="dropdown"
-            aria-label="Notification"
-          >
-            <i class="isax isax-notification-bing"></i>
-            <span class="badge"></span>
-          </a>
-          <div class="dropdown-menu notifications dropdown-menu-end">
-            <div class="topnav-dropdown-header">
-              <span class="notification-title">Notifications</span>
-            </div>
-            <div class="noti-content">
-              <ul class="notification-list">
-                <li class="notification-message">
-                  <a [routerLink]="">
-                    <div class="notify-block d-flex">
-                      <span class="avatar">
-                        <img
-                          class="avatar-img"
-                          alt="Ruby perin"
-                          src="assets/img/clients/client-01.jpg"
-                        />
-                      </span>
-                      <div class="media-body">
-                        <h6>
-                          Travis Tremble
-                          <span class="notification-time">18.30 PM</span>
-                        </h6>
-                        <p class="noti-details">
-                          Sent a amount of $210 for his Appointment
-                          <span class="noti-title">Dr.Ruby perin </span>
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li class="notification-message">
-                  <a [routerLink]="">
-                    <div class="notify-block d-flex">
-                      <span class="avatar">
-                        <img
-                          class="avatar-img"
-                          alt="Hendry Watt"
-                          src="assets/img/clients/client-02.jpg"
-                        />
-                      </span>
-                      <div class="media-body">
-                        <h6>
-                          Kelly Stevens
-                          <span class="notification-time">12 Min Ago</span>
-                        </h6>
-                        <p class="noti-details">
-                          has booked her appointment to
-                          <span class="noti-title">Dr. Hendry Watt</span>
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li class="notification-message">
-                  <a [routerLink]="">
-                    <div class="notify-block d-flex">
-                      <div class="avatar">
-                        <img
-                          class="avatar-img"
-                          alt="Maria Dyen"
-                          src="assets/img/clients/client-03.jpg"
-                        />
-                      </div>
-                      <div class="media-body">
-                        <h6>
-                          Robert Joe
-                          <span class="notification-time">6 Min Ago</span>
-                        </h6>
-                        <p class="noti-details">
-                          Sent a amount $210 for his Appointment
-                          <span class="noti-title">Dr.Maria Dyen</span>
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li class="notification-message">
-                  <a [routerLink]="">
-                    <div class="notify-block d-flex">
-                      <div class="avatar avatar-sm">
-                        <img
-                          class="avatar-img"
-                          alt="client-image"
-                          src="assets/img/clients/client-04.jpg"
-                        />
-                      </div>
-                      <div class="media-body">
-                        <h6>
-                          Samuel Jord
-                          <span class="notification-time">8.30 AM</span>
-                        </h6>
-                        <p class="noti-details">Send a message to his doctor</p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </li>
-        <li>
-          <a [routerLink]="routes.cart" class="details-btn">
-            <i class="isax isax-shopping-cart"></i>
-            <span class="badge"></span>
-          </a>
-        </li>
-        <li class="dropdown has-arrow logged-item">
-          <a [routerLink]="" data-bs-toggle="dropdown">
-            <span class="user-img">
-              <img
-                class="rounded-circle"
-                src="assets/img/doctors-dashboard/profile-06.jpg"
-                alt="Darren Elder"
-              />
-            </span>
-          </a>
-          <div class="dropdown-menu dropdown-menu-end">
-            <div class="user-header">
-              <div class="avatar">
-                <img
-                  src="assets/img/doctors-dashboard/profile-06.jpg"
-                  alt="User Image"
-                  class="avatar-img rounded-circle"
-                />
+            </li>
+            <li>
+              <a [routerLink]="routes.cart" class="details-btn">
+                <i class="isax isax-shopping-cart"></i>
+                <span class="badge"></span>
+              </a>
+            </li>
+            <li class="dropdown has-arrow logged-item">
+              <a [routerLink]="" data-bs-toggle="dropdown">
+                <span class="user-img">
+                  <img
+                    class="rounded-circle"
+                    src="assets/img/doctors-dashboard/profile-06.jpg"
+                    alt="Darren Elder"
+                  />
+                </span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-end">
+                <div class="user-header">
+                  <div class="avatar">
+                    <img
+                      src="assets/img/doctors-dashboard/profile-06.jpg"
+                      alt="User Image"
+                      class="avatar-img rounded-circle"
+                    />
+                  </div>
+                  <div class="user-text">
+                    <h6>Hendrita Hayes</h6>
+                    <p class="text-muted mb-0">Patient</p>
+                  </div>
+                </div>
+                <a class="dropdown-item" [routerLink]="routes.patientDashboard"
+                  >Dashboard</a
+                >
+                <a class="dropdown-item" [routerLink]="routes.profileSettings"
+                  >Profile Settings</a
+                >
+                <a class="dropdown-item" [routerLink]="routes.userLogin"
+                  >Logout</a
+                >
               </div>
-              <div class="user-text">
-                <h6>Hendrita Hayes</h6>
-                <p class="text-muted mb-0">Patient</p>
-              </div>
-            </div>
-            <a class="dropdown-item" [routerLink]="routes.patientDashboard"
-              >Dashboard</a
-            >
-            <a class="dropdown-item" [routerLink]="routes.profileSettings"
-              >Profile Settings</a
-            >
-            <a class="dropdown-item" [routerLink]="routes.userLogin">Logout</a>
-          </div>
-        </li>
-        }
-      </ul>
-    </nav>
-  </div>
-</header>
-} @if (last==='booking-success-one' ||
-(base==='patients'&&(page==='consultation' || page==='payment')) || page ===
-'patient-details') {
-<header class="header login-header-info">
-  <nav class="navbar navbar-expand-lg header-nav">
-    <div class="navbar-header">
-      <a (click)="toggleSidebar()" id="mobile_btn" [routerLink]="">
-        <span class="bar-icon">
-          <span></span>
-          <span></span>
-          <span></span>
-        </span>
-      </a>
-      <a [routerLink]="routes.index" class="navbar-brand logo">
-        <img src="assets/img/logo.png" class="img-fluid" alt="Logo" />
-      </a>
+            </li>
+          }
+        </ul>
+      </nav>
     </div>
-    <div class="main-menu-wrapper">
-      <div class="menu-header">
-        <a [routerLink]="routes.index" class="menu-logo">
+  </header>
+}
+@if (
+  last === "booking-success-one" ||
+  (base === "patients" && (page === "consultation" || page === "payment")) ||
+  page === "patient-details"
+) {
+  <header class="header login-header-info">
+    <nav class="navbar navbar-expand-lg header-nav">
+      <div class="navbar-header">
+        <a (click)="toggleSidebar()" id="mobile_btn" [routerLink]="">
+          <span class="bar-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </a>
+        <a [routerLink]="routes.index" class="navbar-brand logo">
           <img src="assets/img/logo.png" class="img-fluid" alt="Logo" />
         </a>
-        <a
-          id="menu_close"
-          (click)="hideSidebar()"
-          class="menu-close"
-          [routerLink]=""
-        >
-          <i class="fas fa-times"></i>
-        </a>
       </div>
-      <ul class="main-nav">
-        <li>
-          <a [routerLink]="routes.faq">FAQ</a>
-        </li>
-        <li>
-          <a [routerLink]="routes.loginEmail">Login</a>
-        </li>
-        <li class="flag-dropdown-hide">
+      <div class="main-menu-wrapper">
+        <div class="menu-header">
+          <a [routerLink]="routes.index" class="menu-logo">
+            <img src="assets/img/logo.png" class="img-fluid" alt="Logo" />
+          </a>
+          <a
+            id="menu_close"
+            (click)="hideSidebar()"
+            class="menu-close"
+            [routerLink]=""
+          >
+            <i class="fas fa-times"></i>
+          </a>
+        </div>
+        <ul class="main-nav">
+          <li>
+            <a [routerLink]="routes.faq">FAQ</a>
+          </li>
+          <li>
+            <a [routerLink]="routes.loginEmail">Login</a>
+          </li>
+          <li class="flag-dropdown-hide">
+            <div class="flag-dropdown">
+              <a
+                class="dropdown-toggle"
+                data-bs-toggle="dropdown"
+                [routerLink]=""
+                role="button"
+                aria-expanded="false"
+              >
+                <img
+                  src="assets/img/flags/flag-01.png"
+                  alt="flag-image"
+                  height="20"
+                  class="flag-img"
+                />
+                <span>English</span>
+              </a>
+              <div class="dropdown-menu">
+                <a [routerLink]="" class="dropdown-item">
+                  <img
+                    src="assets/img/flags/flag-01.png"
+                    alt="flag-image"
+                    height="16"
+                  />
+                  English
+                </a>
+                <a [routerLink]="" class="dropdown-item">
+                  <img
+                    src="assets/img/flags/flag-02.png"
+                    alt="flag-image"
+                    height="16"
+                  />
+                  French
+                </a>
+                <a [routerLink]="" class="dropdown-item">
+                  <img
+                    src="assets/img/flags/flag-03.png"
+                    alt="flag-image"
+                    height="16"
+                  />
+                  Spanish
+                </a>
+                <a [routerLink]="" class="dropdown-item">
+                  <img
+                    src="assets/img/flags/flag-05.png"
+                    alt="flag-image"
+                    height="16"
+                  />
+                  German
+                </a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <ul class="nav header-navbar-rht">
+        <li class="nav-item dropdown">
           <div class="flag-dropdown">
             <a
-              class="dropdown-toggle"
+              class="dropdown-toggle nav-link"
               data-bs-toggle="dropdown"
               [routerLink]=""
               role="button"
@@ -803,64 +949,8 @@
           </div>
         </li>
       </ul>
-    </div>
-    <ul class="nav header-navbar-rht">
-      <li class="nav-item dropdown">
-        <div class="flag-dropdown">
-          <a
-            class="dropdown-toggle nav-link"
-            data-bs-toggle="dropdown"
-            [routerLink]=""
-            role="button"
-            aria-expanded="false"
-          >
-            <img
-              src="assets/img/flags/flag-01.png"
-              alt="flag-image"
-              height="20"
-              class="flag-img"
-            />
-            <span>English</span>
-          </a>
-          <div class="dropdown-menu">
-            <a [routerLink]="" class="dropdown-item">
-              <img
-                src="assets/img/flags/flag-01.png"
-                alt="flag-image"
-                height="16"
-              />
-              English
-            </a>
-            <a [routerLink]="" class="dropdown-item">
-              <img
-                src="assets/img/flags/flag-02.png"
-                alt="flag-image"
-                height="16"
-              />
-              French
-            </a>
-            <a [routerLink]="" class="dropdown-item">
-              <img
-                src="assets/img/flags/flag-03.png"
-                alt="flag-image"
-                height="16"
-              />
-              Spanish
-            </a>
-            <a [routerLink]="" class="dropdown-item">
-              <img
-                src="assets/img/flags/flag-05.png"
-                alt="flag-image"
-                height="16"
-              />
-              German
-            </a>
-          </div>
-        </div>
-      </li>
-    </ul>
-  </nav>
-</header>
+    </nav>
+  </header>
 }
 <!-- start offcanvas -->
 <div
