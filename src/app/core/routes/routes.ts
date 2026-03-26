@@ -194,9 +194,12 @@ export const routes = {
   doctorPayment: '/doctors/doctor-payment',
   doctorSpecialities: '/doctors/doctor-specialities',
   doctorGrid: '/patients/search-doctor/doctor-grid',
-  doctorCancelledAppointment: '/doctors/appointments/doctor-cancelled-appointment',
-  doctorCancelledAppointment2: '/doctors/appointments/doctor-cancelled-appointment2',
-  doctorCompletedAppointment: '/doctors/appointments/doctor-completed-appointment',
+  doctorCancelledAppointment:
+    '/doctors/appointments/doctor-cancelled-appointment',
+  doctorCancelledAppointment2:
+    '/doctors/appointments/doctor-cancelled-appointment2',
+  doctorCompletedAppointment:
+    '/doctors/appointments/doctor-completed-appointment',
   doctorBusinessSettings: '/doctors/settings/doctor-business-settings',
   doctorClinicSettings: '/doctors/settings/doctor-clinics-settings',
   doctorEducationSettings: '/doctors/settings/doctor-education-settings',
@@ -205,14 +208,19 @@ export const routes = {
   doctorInsuranceSettings: '/doctors/settings/doctor-insurance-settings',
   patientAppointment: '/patients/appointments/patient-appointments',
   patientAppointmentsGrid: '/patients/appointments/patient-appointment-grid',
-  patientCancelledAppointment: '/patients/appointments/patient-cancelled-appointment',
-  patientCompletedAppointment: '/patients/appointments/patient-completed-appointment',
+  patientCancelledAppointment:
+    '/patients/appointments/patient-cancelled-appointment',
+  patientCompletedAppointment:
+    '/patients/appointments/patient-completed-appointment',
   patientInvoice: '/patients/patient-invoice',
-  patientUpcomingAppointment: '/patients/appointments/patient-upcoming-appointment',
+  patientUpcomingAppointment:
+    '/patients/appointments/patient-upcoming-appointment',
   appointmentsListUser: '/doctors/appointments/appointment-list',
-  doctorUpcomingAppointment: '/doctors/appointments/doctor-upcoming-appointment',
+  doctorUpcomingAppointment:
+    '/doctors/appointments/doctor-upcoming-appointment',
   doctorAppointmentStart: '/doctors/appointments/doctor-appointment-start',
   doctorAppointmentGrid: '/doctors/appointments/doctor-appointments-grid',
   doctorAppointmentDetails: '/doctors/appointments/doctor-appointment-details',
-  patientAppointmentDetails: '/patients/appointments/patient-appointment-details',
+  patientAppointmentDetails:
+    '/patients/appointments/patient-appointment-details',
 };

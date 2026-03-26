@@ -10,103 +10,103 @@ export const Page_Routes: Routes = [
       {
         path: '',
         loadComponent: () =>
-          import('./home-pages/home-pages.component').then(
-            (m) => m.HomePagesComponent,
+          import('./home-pages/home-6/home-6.component').then(
+            (m) => m.Home6Component,
           ),
-        children: [
-          {
-            path: 'index',
-            loadComponent: () =>
-              import('./home-pages/home-6/home-6.component').then(
-                (m) => m.Home6Component,
-              ),
-          },
-          {
-            path: 'index-2',
-            loadComponent: () =>
-              import('./home-pages/home-2/home-2.component').then(
-                (m) => m.Home2Component,
-              ),
-          },
+        // children: [
+        //   {
+        //     path: 'index',
+        //     loadComponent: () =>
+        //       import('./home-pages/home-6/home-6.component').then(
+        //         (m) => m.Home6Component,
+        //       ),
+        //   },
+        //   {
+        //     path: 'index-2',
+        //     loadComponent: () =>
+        //       import('./home-pages/home-2/home-2.component').then(
+        //         (m) => m.Home2Component,
+        //       ),
+        //   },
 
-          {
-            path: 'index-3',
-            loadComponent: () =>
-              import('./home-pages/home-3/home-3.component').then(
-                (m) => m.Home3Component,
-              ),
-          },
-          {
-            path: 'index-4',
-            loadComponent: () =>
-              import('./home-pages/home-4/home-4.component').then(
-                (m) => m.Home4Component,
-              ),
-          },
-          {
-            path: 'index-5',
-            loadComponent: () =>
-              import('./home-pages/home-5/home-5.component').then(
-                (m) => m.Home5Component,
-              ),
-          },
-          {
-            path: 'index-6',
-            loadComponent: () =>
-              import('./home-pages/home-6/home-6.component').then(
-                (m) => m.Home6Component,
-              ),
-          },
-          {
-            path: 'index-7',
-            loadComponent: () =>
-              import('./home-pages/home-7/home-7.component').then(
-                (m) => m.Home7Component,
-              ),
-          },
-          {
-            path: 'index-8',
-            loadComponent: () =>
-              import('./home-pages/home-8/home-8.component').then(
-                (m) => m.Home8Component,
-              ),
-          },
-          {
-            path: 'index-9',
-            loadComponent: () =>
-              import('./home-pages/home-9/home-9.component').then(
-                (m) => m.Home9Component,
-              ),
-          },
-          {
-            path: 'index-10',
-            loadComponent: () =>
-              import('./home-pages/home-10/home-10.component').then(
-                (m) => m.Home10Component,
-              ),
-          },
-          {
-            path: 'index-11',
-            loadComponent: () =>
-              import('./home-pages/home-11/home-11.component').then(
-                (m) => m.Home11Component,
-              ),
-          },
-          {
-            path: 'index-12',
-            loadComponent: () =>
-              import('./home-pages/home-12/home-12.component').then(
-                (m) => m.Home12Component,
-              ),
-          },
-          {
-            path: 'index-13',
-            loadComponent: () =>
-              import('./home-pages/home-13/home-13.component').then(
-                (m) => m.Home13Component,
-              ),
-          },
-        ],
+        //   {
+        //     path: 'index-3',
+        //     loadComponent: () =>
+        //       import('./home-pages/home-3/home-3.component').then(
+        //         (m) => m.Home3Component,
+        //       ),
+        //   },
+        //   {
+        //     path: 'index-4',
+        //     loadComponent: () =>
+        //       import('./home-pages/home-4/home-4.component').then(
+        //         (m) => m.Home4Component,
+        //       ),
+        //   },
+        //   {
+        //     path: 'index-5',
+        //     loadComponent: () =>
+        //       import('./home-pages/home-5/home-5.component').then(
+        //         (m) => m.Home5Component,
+        //       ),
+        //   },
+        //   {
+        //     path: 'index-6',
+        //     loadComponent: () =>
+        //       import('./home-pages/home-6/home-6.component').then(
+        //         (m) => m.Home6Component,
+        //       ),
+        //   },
+        //   {
+        //     path: 'index-7',
+        //     loadComponent: () =>
+        //       import('./home-pages/home-7/home-7.component').then(
+        //         (m) => m.Home7Component,
+        //       ),
+        //   },
+        //   {
+        //     path: 'index-8',
+        //     loadComponent: () =>
+        //       import('./home-pages/home-8/home-8.component').then(
+        //         (m) => m.Home8Component,
+        //       ),
+        //   },
+        //   {
+        //     path: 'index-9',
+        //     loadComponent: () =>
+        //       import('./home-pages/home-9/home-9.component').then(
+        //         (m) => m.Home9Component,
+        //       ),
+        //   },
+        //   {
+        //     path: 'index-10',
+        //     loadComponent: () =>
+        //       import('./home-pages/home-10/home-10.component').then(
+        //         (m) => m.Home10Component,
+        //       ),
+        //   },
+        //   {
+        //     path: 'index-11',
+        //     loadComponent: () =>
+        //       import('./home-pages/home-11/home-11.component').then(
+        //         (m) => m.Home11Component,
+        //       ),
+        //   },
+        //   {
+        //     path: 'index-12',
+        //     loadComponent: () =>
+        //       import('./home-pages/home-12/home-12.component').then(
+        //         (m) => m.Home12Component,
+        //       ),
+        //   },
+        //   {
+        //     path: 'index-13',
+        //     loadComponent: () =>
+        //       import('./home-pages/home-13/home-13.component').then(
+        //         (m) => m.Home13Component,
+        //       ),
+        //   },
+        // ],
       },
       {
         path: 'doctors',
