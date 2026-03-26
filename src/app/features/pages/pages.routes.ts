@@ -635,6 +635,13 @@ export const Page_Routes: Routes = [
               ),
           },
           {
+            path: 'vet-registration',
+            loadComponent: () =>
+              import('./patients/vet-registration/vet-registration.component').then(
+                (m) => m.VetRegistrationComponent,
+              ),
+          },
+          {
             path: 'booking-success',
             loadComponent: () =>
               import('./patients/booking/booking-success/booking-success.component').then(

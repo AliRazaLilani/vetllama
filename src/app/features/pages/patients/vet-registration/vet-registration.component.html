@@ -1,0 +1,259 @@
+<div class="vet-registration-page pet-bg">
+  <div class="container">
+    <div class="row justify-content-center ctm-bg">
+      <div class="col-lg-8 col-md-12">
+        <div class="paitent-header">
+          <h4 class="paitent-title">Join VETLLAMA</h4>
+          <p class="sub-title">
+            Register your practice and connect with pet parents in your area.
+          </p>
+        </div>
+
+        <ng-container *ngIf="!isSubmitted; else successCard">
+          <div class="paitent-appointment">
+            <form (ngSubmit)="submitRegistration()">
+              <div class="forms-block">
+                <h5 class="form-section-title">Personal Information</h5>
+              </div>
+
+              <div class="forms-block">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-group-title" for="firstName"
+                      >First Name <span class="text-danger">*</span></label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="firstName"
+                      name="firstName"
+                      placeholder="e.g. Sarah"
+                      [(ngModel)]="firstName"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-group-title" for="lastName"
+                      >Last Name <span class="text-danger">*</span></label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="lastName"
+                      name="lastName"
+                      placeholder="e.g. Mitchell"
+                      [(ngModel)]="lastName"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="forms-block">
+                <label class="form-group-title" for="email"
+                  >Email Address <span class="text-danger">*</span></label
+                >
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  name="email"
+                  placeholder="you@clinic.com"
+                  [(ngModel)]="email"
+                  required
+                />
+              </div>
+
+              <div class="forms-block mt-4">
+                <h5 class="form-section-title">License & Credentials</h5>
+              </div>
+
+              <div class="forms-block">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-group-title" for="licenseType"
+                      >License Type <span class="text-danger">*</span></label
+                    >
+                    <mat-select
+                      class="select"
+                      id="licenseType"
+                      name="licenseType"
+                      [(ngModel)]="licenseType"
+                      required
+                    >
+                      @for (data of licenseTypes; track data) {
+                        <mat-option [value]="data.value">{{
+                          data.value
+                        }}</mat-option>
+                      }
+                    </mat-select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-group-title" for="licenseNumber"
+                      >License Number <span class="text-danger">*</span></label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="licenseNumber"
+                      name="licenseNumber"
+                      placeholder="e.g. VET-2024-08321"
+                      [(ngModel)]="licenseNumber"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="forms-block">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-group-title" for="licenseState"
+                      >License State / Location
+                      <span class="text-danger">*</span></label
+                    >
+                    <mat-select
+                      class="select"
+                      id="licenseState"
+                      name="licenseState"
+                      [(ngModel)]="licenseState"
+                      required
+                    >
+                      @for (data of states; track data) {
+                        <mat-option [value]="data.value">{{
+                          data.value
+                        }}</mat-option>
+                      }
+                    </mat-select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-group-title" for="yearsOfPractice"
+                      >Years of Practice</label
+                    >
+                    <mat-select
+                      class="select"
+                      id="yearsOfPractice"
+                      name="yearsOfPractice"
+                      [(ngModel)]="practiceYears"
+                    >
+                      @for (data of practiceYearsOptions; track data) {
+                        <mat-option [value]="data.value">{{
+                          data.value
+                        }}</mat-option>
+                      }
+                    </mat-select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="forms-block mt-4">
+                <h5 class="form-section-title">Prescriber Status</h5>
+              </div>
+              <div class="forms-block">
+                <div class="prescriber-options">
+                  <label class="custom-option-label">
+                    <input
+                      type="radio"
+                      name="prescriberStatus"
+                      value="can-prescribe"
+                      [(ngModel)]="prescriberStatus"
+                    />
+                    <span class="option-radio"></span>
+                    <span class="option-text"> Prescriber</span>
+                  </label>
+                  <label class="custom-option-label">
+                    <input
+                      type="radio"
+                      name="prescriberStatus"
+                      value="non-prescriber"
+                      [(ngModel)]="prescriberStatus"
+                    />
+                    <span class="option-radio"></span>
+                    <span class="option-text"> Non-Prescriber</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="forms-block mt-4">
+                <h5 class="form-section-title">
+                  Species You Treat <span class="text-danger">*</span>
+                </h5>
+              </div>
+              <div class="forms-block">
+                <div class="checkbox-grid species-grid">
+                  @for (item of species; track item.id) {
+                    <label class="checkbox-item">
+                      <input
+                        type="checkbox"
+                        [checked]="selectedSpecies.includes(item.id)"
+                        (change)="toggleSpecies(item.id)"
+                      />
+                      <span class="checkbox-mark"></span>
+                      <span class="checkbox-label"
+                        ><i class="fa" [ngClass]="item.icon"></i>
+                        {{ item.label }}</span
+                      >
+                    </label>
+                  }
+                </div>
+              </div>
+
+              <div class="forms-block mt-4">
+                <h5 class="form-section-title">
+                  Areas of Concern / Specialization
+                  <span class="text-danger">*</span>
+                </h5>
+              </div>
+              <div class="forms-block mb-0">
+                <div class="checkbox-grid specialization-grid">
+                  @for (item of specializations; track item.id) {
+                    <label class="checkbox-item">
+                      <input
+                        type="checkbox"
+                        [checked]="selectedSpecializations.includes(item.id)"
+                        (change)="toggleSpecialization(item.id)"
+                      />
+                      <span class="checkbox-mark"></span>
+                      <span class="checkbox-label"
+                        ><i class="fa" [ngClass]="item.icon"></i>
+                        {{ item.label }}</span
+                      >
+                    </label>
+                  }
+                </div>
+              </div>
+
+              <div class="forms-block mt-4">
+                <button
+                  type="button"
+                  class="btn btn-primary w-100"
+                  (click)="submitRegistration()"
+                >
+                  Submit Registration Request
+                </button>
+              </div>
+            </form>
+          </div>
+        </ng-container>
+
+        <ng-template #successCard>
+          <div class="card p-4 mt-4 success-card">
+            <h5 class="mb-3">✓ Application Received!</h5>
+            <p>
+              Thank you for joining VETLLAMA. Your registration is under review
+              by our team. We verify every license and credential to ensure
+              quality care for pet parents. You'll receive a confirmation email
+              within 1–2 business days.
+            </p>
+            <h6 class="mt-4">⏳ Pending Admin Review & Approval</h6>
+            <p>
+              <strong>What happens next?</strong> Our admin team will verify
+              your license, review your profile, and activate your account.
+              You'll be notified at the email address you provided.
+            </p>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

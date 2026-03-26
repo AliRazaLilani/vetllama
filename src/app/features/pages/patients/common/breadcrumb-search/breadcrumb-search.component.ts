@@ -3,8 +3,8 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import { CommonService } from 'src/app/core/services/common/common.service';
 import { routes } from 'src/app/core/routes/routes';
+import { CommonService } from 'src/app/core/services/common/common.service';
 
 @Component({
   selector: 'app-breadcrumb-search',
@@ -19,11 +19,15 @@ export class BreadcrumbSearchComponent {
   base = '';
   page = '';
   last = '';
-  constructor(private common: CommonService, private router: Router) {
+  constructor(
+    private common: CommonService,
+    private router: Router,
+  ) {
     this.common.base.subscribe((res: string) => {
       this.base = res?.replaceAll('-', ' ');
     });
     this.common.page.subscribe((res: string) => {
+      console.warn('ssss', res);
       if (res === 'chat') {
         this.page = 'Message';
       } else if (res === 'appointments') {
@@ -32,6 +36,8 @@ export class BreadcrumbSearchComponent {
         this.page = 'Accounts';
       } else if (res === 'patient-invoice') {
         this.page = 'Invoices';
+      } else if (res === 'doctors') {
+        this.page = 'Book Appointment';
       } else {
         this.last = this.page;
         this.page = res?.replaceAll('-', ' ');

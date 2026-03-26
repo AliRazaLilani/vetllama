@@ -83,10 +83,10 @@
               <div class="mb-3">
                 <label class="custom_radio">
                   <input type="radio" name="payment" />
-                  <span class="checkmark"></span> Cash on Visit
+                  <span class="checkmark"></span> Stripe
                 </label>
               </div>
-              <div class="mb-3">
+              <!-- <div class="mb-3">
                 <label class="custom_radio">
                   <input type="radio" name="payment" />
                   <span class="checkmark"></span> Bank Transfer
@@ -97,7 +97,7 @@
                   <input type="radio" name="payment" />
                   <span class="checkmark"></span> UPI
                 </label>
-              </div>
+              </div> -->
             </div>
             <div class="mb-3 mb-0">
               <div class="booking-btn">
@@ -108,7 +108,8 @@
                   tabindex="1"
                   class="theme-btn btn-primary"
                 >
-                  Next <i class="feather icon-arrow-right-circle"></i>
+                  Proceed to Pay $163.00
+                  <i class="feather icon-arrow-right-circle"></i>
                 </button>
               </div>
             </div>
@@ -124,7 +125,7 @@
             <div class="booking-doctor-details">
               <div class="booking-doctor-left">
                 <div class="booking-doctor-img">
-                  <a [routerLink]="routes.doctorProfile2">
+                  <a [routerLink]="routes.mapGrid">
                     <img
                       src="assets/img/doctors/doctor-02.jpg"
                       alt="John Doe"
@@ -141,7 +142,7 @@
               <div class="booking-doctor-right">
                 <p>
                   <i class="fas fa-circle-check"></i>
-                  <a [routerLink]="routes.doctorProfileSettings">Edit</a>
+                  <a [routerLink]="routes.mapGrid">Edit</a>
                 </p>
               </div>
             </div>
@@ -158,7 +159,7 @@
               </div>
               <div class="booking-doctor-right">
                 <p>
-                  <a [routerLink]="routes.booking1">Edit</a>
+                  <a [routerLink]="routes.booking2">Edit</a>
                 </p>
               </div>
             </div>
@@ -197,14 +198,14 @@
             </div>
           </div>
         </div>
-        <div class="booking-btn proceed-btn">
+        <!-- <div class="booking-btn proceed-btn">
           <button
             [routerLink]="routes.bookingSuccessOne"
             class="theme-btn btn-primary"
           >
             Proceed to Pay $163.00
           </button>
-        </div>
+        </div> -->
       </div>
     </div>
     <!-- /Payment -->

@@ -2977,6 +2977,13 @@ mat-select.custom-mat-select.home14
 .pet-bg {
   background-image: url("/assets/img/icons/foot-bg.png");
   background-size: cover;
+
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  // border: 1px solid rgba(255, 255, 255, 0.2);
+  // border-radius: 16px;
+  // box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
 .theme-btn {

@@ -186,34 +186,56 @@
         </div> -->
       </div>
       <div class="col-lg-4 col-md-12">
-        <div class="booking-header">
-          <h4 class="booking-title">Booking Summary</h4>
-        </div>
-        <div class="card booking-card">
+        <div class="card booking-card booking-card-large">
           <div class="card-body booking-card-body">
-            <div class="booking-doctor-details">
+            <div class="booking-doctor-details booking-doctor-details-large">
               <div class="booking-doctor-left">
                 <div class="booking-doctor-img">
                   <a [routerLink]="routes.doctorProfile2">
                     <img
                       src="assets/img/doctors/doctor-01.jpg"
-                      alt="John Doe"
+                      alt="Dr. Sarah Mitchell"
                     />
                   </a>
                 </div>
                 <div class="booking-doctor-info">
                   <h4>
-                    <a [routerLink]="routes.doctorProfile2">Dr. John Doe</a>
+                    <a [routerLink]="routes.doctorProfile2"
+                      >Dr. Sarah Mitchell</a
+                    >
                   </h4>
-                  <p>MBBS, Dentist</p>
+                  <p class="small text-muted">
+                    DVM · California · 8 Years Experience
+                  </p>
+                  <div class="doctor-badges" style="margin-top: 6px">
+                    <span class="badge bg-success me-1"
+                      ><i class="fas fa-check-circle"></i> License
+                      Verified</span
+                    >
+                    <span class="badge bg-primary"
+                      ><i class="fas fa-prescription"></i> Prescriber</span
+                    >
+                  </div>
                 </div>
               </div>
-              <div class="booking-doctor-right">
-                <p>
-                  <i class="fas fa-check-circle"></i>
-                  <a [routerLink]="routes.doctorProfileSettings">Edit</a>
-                </p>
-              </div>
+            </div>
+
+            <div class="doctor-about mt-3">
+              <h5>About</h5>
+              <p class="mb-0 text-muted">
+                Dr. Sarah Mitchell is a compassionate veterinarian specializing
+                in small animal medicine, dermatology, and preventive care. She
+                completed her DVM at UC Davis and has been practicing telehealth
+                since 2019. She’s passionate about making quality vet care
+                accessible for every pet parent.
+              </p>
+            </div>
+
+            <div class="doctor-meta mt-3">
+              <p class="mb-1">
+                <i class="fas fa-map-marker-alt"></i> San Francisco, CA
+              </p>
+              <p class="mb-0"><i class="fas fa-heart"></i> 4.8 (420 reviews)</p>
             </div>
           </div>
         </div>

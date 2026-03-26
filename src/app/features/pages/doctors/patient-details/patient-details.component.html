@@ -71,6 +71,7 @@
                     >License Type <span class="text-danger">*</span></label
                   >
                   <mat-select
+                    class="select"
                     [(ngModel)]="selectedValue1"
                     [ngModelOptions]="{ standalone: true }"
                     panelClass="patientDetailsSelect"
@@ -105,6 +106,7 @@
                     <span class="text-danger">*</span></label
                   >
                   <mat-select
+                    class="select"
                     [(ngModel)]="selectedValue1"
                     [ngModelOptions]="{ standalone: true }"
                     panelClass="patientDetailsSelect"
@@ -123,6 +125,7 @@
                     >Years of Practice</label
                   >
                   <mat-select
+                    class="select"
                     [(ngModel)]="selectedValue1"
                     [ngModelOptions]="{ standalone: true }"
                     panelClass="patientDetailsSelect"
@@ -152,10 +155,7 @@
                     value="can-prescribe"
                   />
                   <span class="option-radio"></span>
-                  <span class="option-text">
-                    <i class="fa fa-check-circle"></i> Prescriber - can
-                    prescribe medications
-                  </span>
+                  <span class="option-text"> Prescriber </span>
                 </label>
                 <label class="custom-option-label">
                   <input
@@ -164,10 +164,7 @@
                     value="non-prescriber"
                   />
                   <span class="option-radio"></span>
-                  <span class="option-text">
-                    <i class="fa fa-circle-o"></i> Non-Prescriber - consultation
-                    only
-                  </span>
+                  <span class="option-text"> Non-Prescriber </span>
                 </label>
               </div>
             </div>
@@ -240,6 +237,7 @@
               </div>
               <div class="patient-dependent-select">
                 <mat-select
+                  class="select"
                   [(ngModel)]="selectedValue1"
                   [ngModelOptions]="{ standalone: true }"
                   panelClass="patientDependentSelect"
@@ -331,7 +329,7 @@
                 </div>
                 <div class="booking-doctor-info">
                   <h4>
-                    <a [routerLink]="routes.doctorProfile2">Dr. John Doe</a>
+                    <a [routerLink]="routes.mapGrid">Dr. John Doe</a>
                   </h4>
                   <p>MBBS, Dentist</p>
                 </div>
@@ -339,7 +337,7 @@
               <div class="booking-doctor-right">
                 <p>
                   <i class="fas fa-circle-check"></i>
-                  <a [routerLink]="routes.doctorProfileSettings">Edit</a>
+                  <a [routerLink]="routes.mapGrid">Edit</a>
                 </p>
               </div>
             </div>
@@ -356,58 +354,8 @@
               </div>
               <div class="booking-doctor-right">
                 <p>
-                  <a [routerLink]="routes.booking1">Edit</a>
+                  <a [routerLink]="routes.booking2">Edit</a>
                 </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card booking-card">
-          <div class="card-body booking-card-body">
-            <div class="booking-doctor-details">
-              <div class="booking-device">
-                <div class="booking-device-img">
-                  <img
-                    src="assets/img/icons/device-message.svg"
-                    alt="device-message-image"
-                  />
-                </div>
-                <div class="booking-doctor-info">
-                  <h3>We can help you</h3>
-                  <p class="device-text">
-                    Call us +1 888-888-8888 (or) chat with our customer support
-                    team.
-                  </p>
-                  <a [routerLink]="routes.chat" class="btn">Chat With Us</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card booking-card mb-0">
-          <div class="card-body booking-card-body">
-            <div class="booking-doctor-details">
-              <div class="booking-device">
-                <div class="booking-device-img">
-                  <img
-                    src="assets/img/icons/smart-phone.svg"
-                    alt="smart-phone"
-                  />
-                </div>
-                <div class="booking-doctor-info">
-                  <h3>Get the App</h3>
-                  <p class="device-text">
-                    Download our app for better experience and for more feature
-                  </p>
-                  <div class="app-images">
-                    <a [routerLink]="">
-                      <img src="assets/img/google-img.svg" alt="google-image" />
-                    </a>
-                    <a [routerLink]="">
-                      <img src="assets/img/app-img.svg" alt="app-image" />
-                    </a>
-                  </div>
-                </div>
               </div>
             </div>
           </div>

@@ -23,9 +23,14 @@
           </h1>
           <p>From prescriptions to vet advice and medicine delivery</p>
         </div>
-        <a [routerLink]="" class="btn btn-primary"
-          ><span><i class="isax isax-category"></i>View All Services</span></a
-        >
+
+        <!-- <button [routerLink]="''" class="theme-btn btn-md btn-primary">
+          <i class="isax isax-category me-2"></i><span>View All Services</span>
+        </button> -->
+
+        <!-- <button [routerLink]="" class="theme-btn btn-primary">
+          <span><i class="isax isax-category ml-2"></i>View All Services</span>
+        </button> -->
       </div>
       <div class="col-lg-5">
         <div class="banner-img">
@@ -127,10 +132,7 @@
               <h3 class="custom-title">Our Vision</h3>
               <p class="para">
                 Our vision is to make pet healthcare simple, accessible, and
-                reliable for every pet parent. We aim to bridge the gap between
-                veterinarians and pet owners through smart, digital solutions
-                that ensure timely care, accurate guidance, and easy access to
-                essential services.
+                reliable for every pet parent.
               </p>
               <img
                 src="assets/img/icons/banner-icon-6.png"
@@ -285,11 +287,12 @@
         <div class="section-header-six">
           <div class="section-sub-title ms-0">Benefits</div>
           <h2 class="section-title">
-            Why Pet Owners <span class="line-6">Trust Us</span>
+            Why Pet Parents <span class="line-6">Trust Us</span>
           </h2>
           <p>
-            At our clinic, we blend years of veterinary expertise with genuine
-            compassion to deliver care that goes beyond treatment
+            We combine trusted veterinary expertise with smart digital solutions
+            to make pet care simple, reliable, and accessible for every pet
+            parent.
           </p>
         </div>
         <!-- Item 1 -->
@@ -298,10 +301,10 @@
             <span>01</span>
           </div>
           <div class="choose-item-content">
-            <h3 class="custom-title">Experienced Veterinarians</h3>
+            <h3 class="custom-title">Trusted Veterinary Support</h3>
             <p>
-              Our team of highly qualified veterinarians brings years of
-              hands-on experience and deep compassion for animals
+              Connect with licensed veterinarians anytime for reliable advice,
+              accurate diagnoses, and professional care for your pets.
             </p>
           </div>
         </div>
@@ -311,10 +314,10 @@
             <span>02</span>
           </div>
           <div class="choose-item-content">
-            <h3 class="custom-title">24/7 Emergency Support</h3>
+            <h3 class="custom-title">Fast & Safe Medicine Delivery</h3>
             <p>
-              Whether it’s a late-night injury or sudden illness, our emergency
-              care unit is equipped to respond quickly.
+              Get verified pet medicines delivered quickly to your doorstep,
+              ensuring your pet never misses essential treatment.
             </p>
           </div>
         </div>
@@ -324,10 +327,10 @@
             <span>03</span>
           </div>
           <div class="choose-item-content">
-            <h3 class="custom-title">Modern Facilities</h3>
+            <h3 class="custom-title">All-in-One Pet Care Platform</h3>
             <p>
-              We combine the latest medical technology with advanced diagnostic
-              & tools to deliver comfortable treatments
+              From consultations to prescriptions and health tracking, manage
+              everything your pet needs in one simple place.
             </p>
           </div>
         </div>
@@ -337,10 +340,10 @@
             <span>04</span>
           </div>
           <div class="choose-item-content">
-            <h3 class="custom-title">Compassionate Care</h3>
+            <h3 class="custom-title">Smart Health Tracking & Reminders</h3>
             <p>
-              Our gentle approach, friendly staff, and nurturing environment
-              ensure that both pets & their owners feel safe
+              Easily track vaccinations, treatments, and get timely alerts so
+              you never miss an important update in your pet’s care.
             </p>
           </div>
         </div>
@@ -913,9 +916,11 @@
   <div class="footer-top">
     <div class="container">
       <div class="row g-4">
-        <div class="col-xl-5 col-lg-4 col-md-4">
+        <div class="col-xl-12 col-lg-12 col-md-12">
           <!-- Footer Widget -->
-          <div class="footer-widget footer-about">
+          <div
+            class="footer-widget footer-about d-flex justify-content-center align-items-center flex-column"
+          >
             <div class="footer-logo">
               <img src="assets/img/logo-3.png" width="200" alt="logo" />
             </div>
@@ -942,44 +947,6 @@
                 </li>
               </ul>
             </div>
-          </div>
-          <!-- /Footer Widget -->
-        </div>
-
-        <div class="col-xl-2 col-lg-4 col-md-4">
-          <!-- Footer Widget -->
-          <div class="footer-widget">
-            <h5 class="footer-title">Company</h5>
-            <ul class="footer-menu">
-              <li><a [routerLink]="routes.aboutUs">About</a></li>
-              <li><a [routerLink]="routes.Clinic">Clinics</a></li>
-              <li><a [routerLink]="routes.Hospitals">Hospitals</a></li>
-              <li><a [routerLink]="routes.Speciality">Specialities</a></li>
-              <li><a [routerLink]="routes.contactUs">Contact Us</a></li>
-            </ul>
-          </div>
-          <!-- /Footer Widget -->
-        </div>
-
-        <div class="col-xl-3 col-lg-4 col-md-4">
-          <!-- Footer Widget -->
-          <div class="footer-widget">
-            <h5 class="footer-title">Veterinary Services</h5>
-            <ul class="footer-menu">
-              <li><a [routerLink]="routes.aboutUs">Pet Health Checkups</a></li>
-              <li>
-                <a [routerLink]="routes.Clinic">Vaccinations & Preventions</a>
-              </li>
-              <li>
-                <a [routerLink]="routes.Hospitals">Surgery & Orthopedics</a>
-              </li>
-              <li>
-                <a [routerLink]="routes.Speciality">Dental Care for Pets</a>
-              </li>
-              <li>
-                <a [routerLink]="routes.contactUs">Emergency & Critical Care</a>
-              </li>
-            </ul>
           </div>
           <!-- /Footer Widget -->
         </div>

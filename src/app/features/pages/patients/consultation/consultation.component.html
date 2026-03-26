@@ -34,38 +34,10 @@
                     <span><i class="fas fa-circle-check"></i></span>
                   </div>
                 </li>
-                <li>
-                  <div
-                    class="consultation-types"
-                    [ngClass]="{ active: isTabActive(1) }"
-                    (click)="activateTab(1)"
-                    (keydown)="activateTab(1)"
-                    tabindex="1"
-                  >
-                    <a [routerLink]="">
-                      <i class="feather-mic"></i> Audio Consulting
-                    </a>
-                    <span><i class="fas fa-circle-check"></i></span>
-                  </div>
-                </li>
-                <li>
-                  <div
-                    class="consultation-types"
-                    [ngClass]="{ active: isTabActive(2) }"
-                    (click)="activateTab(2)"
-                    (keydown)="activateTab(2)"
-                    tabindex="1"
-                  >
-                    <a [routerLink]="">
-                      <i class="feather-message-square"></i> Chat Consulting
-                    </a>
-                    <span><i class="fas fa-circle-check"></i></span>
-                  </div>
-                </li>
               </ul>
             </div>
           </div>
-          <div class="consultation-info">
+          <!-- <div class="consultation-info">
             <p>Home Visit</p>
             <div class="consultation-list">
               <ul>
@@ -99,7 +71,7 @@
                 </li>
               </ul>
             </div>
-          </div>
+          </div> -->
         </div>
         <div class="booking-btn">
           <button [routerLink]="routes.payment" class="theme-btn btn-primary">
@@ -116,7 +88,7 @@
             <div class="booking-doctor-details">
               <div class="booking-doctor-left">
                 <div class="booking-doctor-img">
-                  <a [routerLink]="routes.doctorProfile2">
+                  <a [routerLink]="routes.mapGrid">
                     <img
                       src="assets/img/doctors/doctor-02.jpg"
                       alt="John Doe"
@@ -125,9 +97,7 @@
                 </div>
                 <div class="booking-doctor-info">
                   <h4>
-                    <a [routerLink]="routes.doctorProfileSettings"
-                      >Dr. John Doe</a
-                    >
+                    <a [routerLink]="routes.mapGrid">Dr. John Doe</a>
                   </h4>
                   <p>MBBS, Dentist</p>
                 </div>
@@ -154,83 +124,6 @@
                 <p>
                   <a [routerLink]="routes.booking1">Edit</a>
                 </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card booking-card">
-          <div class="card-body booking-card-body">
-            <div class="booking-doctor-details">
-              <div class="booking-doctor-left">
-                <div class="booking-doctor-img">
-                  <a [routerLink]="">
-                    <img
-                      src="assets/img/patients/patient3.jpg"
-                      alt="John Smith"
-                    />
-                  </a>
-                </div>
-                <div class="booking-doctor-info">
-                  <h4>
-                    <a [routerLink]="routes.profileSettings">John Smith</a>
-                  </h4>
-                  <p>P123456</p>
-                </div>
-              </div>
-              <div class="booking-doctor-right">
-                <p>
-                  <a [routerLink]="routes.profileSettings">Edit</a>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card booking-card">
-          <div class="card-body booking-card-body">
-            <div class="booking-doctor-details">
-              <div class="booking-device">
-                <div class="booking-device-img">
-                  <img
-                    src="assets/img/icons/device-message.svg"
-                    alt="device-message-image"
-                  />
-                </div>
-                <div class="booking-doctor-info">
-                  <h3>We can help you</h3>
-                  <p class="device-text">
-                    Call us +1 888-888-8888 (or) chat with our customer support
-                    team.
-                  </p>
-                  <a [routerLink]="routes.chat" class="btn">Chat With Us</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card booking-card mb-0">
-          <div class="card-body booking-card-body">
-            <div class="booking-doctor-details">
-              <div class="booking-device">
-                <div class="booking-device-img">
-                  <img
-                    src="assets/img/icons/smart-phone.svg"
-                    alt="smart-phone"
-                  />
-                </div>
-                <div class="booking-doctor-info">
-                  <h3>Get the App</h3>
-                  <p class="device-text">
-                    Download our app for better experience and for more feature
-                  </p>
-                  <div class="app-images">
-                    <a [routerLink]="">
-                      <img src="assets/img/google-img.svg" alt="google-image" />
-                    </a>
-                    <a [routerLink]="">
-                      <img src="assets/img/app-img.svg" alt="app-image" />
-                    </a>
-                  </div>
-                </div>
               </div>
             </div>
           </div>

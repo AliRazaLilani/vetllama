@@ -152,6 +152,7 @@ export const routes = {
   chat: '/patients/chat',
   checkout: '/patients/checkout',
   consultation: '/patients/consultation',
+  vetRegistration: '/patients/vet-registration',
   addDependent: '/patients/dependent/add-dependent',
   dependentList: '/patients/dependent/dependent-list',
   editDependent: '/patients/dependent/edit-dependent',

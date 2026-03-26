@@ -527,6 +527,22 @@
   justify-content: space-between;
   -webkit-justify-content: space-between;
 }
+.booking-doctor-details-large {
+  padding: 20px;
+}
+.booking-card-large {
+  min-height: 320px;
+}
+.booking-doctor-img {
+  width: 70px;
+  height: 70px;
+  border-radius: 8px;
+  img {
+    width: 70px;
+    height: 70px;
+    border-radius: 8px;
+  }
+}
 .booking-device {
   display: -webkit-box;
   display: -ms-flexbox;

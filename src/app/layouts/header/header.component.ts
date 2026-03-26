@@ -1,18 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { Component, HostListener } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { LightgalleryModule } from 'lightgallery/angular';
+import { homeHeader } from '../../core/model/sidebar-model';
+import { routes } from '../../core/routes/routes';
 import { CommonService } from '../../core/services/common/common.service';
 import { DataService } from '../../core/services/data/data.service';
-import { header, homeHeader } from '../../core/model/sidebar-model';
-import { routes } from '../../core/routes/routes';
 import { SidebarService } from '../../core/services/sidebar/sidebar.service';
-import { LightgalleryModule } from 'lightgallery/angular';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  imports: [CommonModule, RouterLink, RouterLinkActive,LightgalleryModule],
+  imports: [CommonModule, RouterLink, RouterLinkActive, LightgalleryModule],
 })
 export class HeaderComponent {
   public searchField = false;
@@ -28,13 +28,14 @@ export class HeaderComponent {
   themeColor = 'light-mode';
   isDropdownOpen = false;
   openDropdownIndex: number | null = null;
-    isFixed = false;
- 
+  isFixed = false;
+  public selectedCTA: 'order' | 'consult' = 'order';
+
   constructor(
     private common: CommonService,
     private data: DataService,
     public sidebar: SidebarService,
-    private router: Router
+    private router: Router,
   ) {
     this.common.base.subscribe((res: string) => {
       this.base = res;
@@ -50,6 +51,7 @@ export class HeaderComponent {
     });
     this.header = this.sidebar.Home_Header;
   }
+
   public toggleSidebar(): void {
     this.sidebar.openSidebar();
     this.overlay = true;
@@ -68,9 +70,21 @@ export class HeaderComponent {
   toggleSearch() {
     this.searchField = !this.searchField;
   }
+
+  selectCTA(cta: 'order' | 'consult'): void {
+    this.selectedCTA = cta;
+
+    if (cta === 'order') {
+      this.router.navigate(['/']);
+    } else {
+      this.router.navigate([routes.vetRegistration]);
+    }
+  }
+
   openSearch(): void {
     this.isSearch = !this.isSearch;
   }
+
   public navigation() {
     this.router.navigate([routes.search1]);
   }

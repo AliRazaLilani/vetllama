@@ -64,13 +64,27 @@
         </div>
       </div>
 
-      <!-- Book Appointment Button -->
-      <ul class="nav header-navbar-rht">
+      <!-- Book Appointment + CTA Toggles -->
+      <ul class="nav header-navbar-rht align-items-center cta-tabs">
         <li>
           <a [routerLink]="routes.mapGrid" class="theme-btn btn-md btn-primary">
             <i class="isax isax-calendar-1 me-2"></i
             ><span>Book Appointment</span>
           </a>
+        </li>
+        <li
+          class="cta-pill"
+          [ngClass]="{ active: selectedCTA === 'order' }"
+          style="top: -23px; left: -342px"
+        >
+          <a (click)="selectCTA('order')">Pet parents</a>
+        </li>
+        <li
+          class="cta-pill"
+          [ngClass]="{ active: selectedCTA === 'consult' }"
+          style="top: -23px; left: -240px"
+        >
+          <a (click)="selectCTA('consult')">Veterinarians</a>
         </li>
       </ul>
     </nav>
