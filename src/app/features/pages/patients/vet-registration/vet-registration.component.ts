@@ -62,13 +62,13 @@ export class VetRegistrationComponent {
   public species: CheckboxOption[] = [
     { id: 'dog', label: 'Dog', icon: 'fa-dog' },
     { id: 'cat', label: 'Cat', icon: 'fa-cat' },
-    { id: 'horse', label: 'Horse', icon: 'fa-horse' },
-    { id: 'bird', label: 'Bird', icon: 'fa-dove' },
-    { id: 'rabbit', label: 'Rabbit', icon: 'fa-rabbit' },
-    { id: 'small-mammal', label: 'Small Mammal', icon: 'fa-paw' },
-    { id: 'reptile', label: 'Reptile', icon: 'fa-fan' },
-    { id: 'fish', label: 'Fish/Aquatic', icon: 'fa-fish' },
-    { id: 'farm', label: 'Farm Animal', icon: 'fa-cow' },
+    // { id: 'horse', label: 'Horse', icon: 'fa-horse' },
+    // { id: 'bird', label: 'Bird', icon: 'fa-dove' },
+    // { id: 'rabbit', label: 'Rabbit', icon: 'fa-rabbit' },
+    // { id: 'small-mammal', label: 'Small Mammal', icon: 'fa-paw' },
+    // { id: 'reptile', label: 'Reptile', icon: 'fa-fan' },
+    // { id: 'fish', label: 'Fish/Aquatic', icon: 'fa-fish' },
+    // { id: 'farm', label: 'Farm Animal', icon: 'fa-cow' },
   ];
 
   public specializations: CheckboxOption[] = [
