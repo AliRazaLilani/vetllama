@@ -17,10 +17,10 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
-            "outputPath": "dist/template",
+            "outputPath": "dist/vetllama-frontend",
             "allowedCommonJsDependencies": [
               "intl-tel-input","aos","file-saver"
-            ],        
+            ],
             "polyfills": [
                             "zone.js"
                         ],
@@ -62,7 +62,7 @@
               "node_modules/aos/dist/aos.js",
               "node_modules/bootstrap/dist/js/bootstrap.bundle.js"
             ]
-            
+
           },
           "configurations": {
             "production": {
@@ -111,7 +111,7 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "polyfills": 
+            "polyfills":
             [
               "zone.js",
               "zone.js/testing",
