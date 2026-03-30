@@ -26,7 +26,67 @@ export class BookingComponent {
   routes = routes;
   public selectedFieldSet = [1];
   bsInlineValue = new Date();
+  minDate = new Date();
   isClinic = true;
+
+  selectedSlotTime = '';
+
+  morningSlots = [
+    '09:00',
+    '09:30',
+    '10:00',
+    '10:30',
+    '11:00',
+    '11:30',
+  ];
+  afternoonSlots = [
+    '12:00',
+    '12:30',
+    '13:00',
+    '13:30',
+    '14:00',
+    '14:30',
+    '15:00',
+    '15:30',
+    '16:00',
+    '16:30',
+    '17:00',
+    '17:30',
+  ];
+  eveningSlots = [
+    '18:00',
+    '18:30',
+    '19:00',
+    '19:30',
+    '20:00',
+    '20:30',
+    '21:00',
+    '21:30',
+  ];
+
+  isSlotDisabled(slotTime: string): boolean {
+    const now = new Date();
+    const selectedDate = new Date(this.bsInlineValue);
+
+    // If selected date is in the past (shouldn't happen with minDate), it's disabled
+    if (
+      selectedDate.setHours(0, 0, 0, 0) < new Date().setHours(0, 0, 0, 0)
+    ) {
+      return true;
+    }
+
+    // If selected date is in the future, all slots are enabled
+    if (selectedDate.toDateString() !== now.toDateString()) {
+      return false;
+    }
+
+    // If selected date is today, check if the slot's time is in the past
+    const [hours, minutes] = slotTime.split(':').map(Number);
+    const slotDate = new Date(selectedDate);
+    slotDate.setHours(hours, minutes, 0, 0);
+
+    return slotDate < now;
+  }
 
   selectedValue1 = '';
   selectedList1: data[] = [
@@ -76,8 +136,7 @@ export class BookingComponent {
   insurance = 'no';
   reason = '';
 
-  firstName = '';
-  lastName = '';
+  name = '';
   email = '';
   phone = '';
 

@@ -268,8 +268,9 @@
                   <div class="card mb-0">
                     <div class="card-body">
                       <div class="d-flex align-items-center flex-wrap rpw-gap-2 flex-wrap row-gap-2">
-                        <span class="avatar avatar-xxxl avatar-rounded me-2 flex-shrink-0"><img
-                            src="assets/img/doctor-grid/doctor-grid-011.webp" alt="" /></span>
+                        <span class="avatar avatar-xxxl avatar-rounded me-2 flex-shrink-0">
+                          <img src="assets/img/doctor-grid/doctor-grid-011.webp" alt="" />
+                        </span>
                         <div>
                           <h4 class="mb-1">
                             Dr. Michael Brown
@@ -289,34 +290,41 @@
               <div class="card-body booking-body">
                 <div class="card mb-0">
                   <div class="card-body pb-1">
-                    <h6 class="mb-3">Select Appointment Type</h6>
-                    <div class="row">
-                      <div class="col-xl col-md-3 col-sm-4">
-                        <div class="radio-select text-center" (click)="offClinic()">
-                          <input class="form-check-input ms-0 mt-0" name="service2" type="radio" id="service8"
-                            checked />
-                          <label class="form-check-label" for="service8">
-                            <i class="isax isax-video5"></i>
-                            <span class="service-title d-block">Video Call</span>
-                          </label>
+                    <div class="mb-4">
+                      <h5 class="mb-3">Select Appointment Type</h5>
+                      <div class="row justify-content-center">
+                        <div class="col-md-6">
+                          <div class="service-item mb-0 h-100 p-4 selector-box cursor-pointer active">
+                            <div class="d-flex align-items-center justify-content-between">
+                              <div class="d-flex align-items-center">
+                                <div class="avatar avatar-md bg-outline-primary rounded-circle me-3">
+                                  <i class="isax isax-video5 fs-20"></i>
+                                </div>
+                                <div>
+                                  <h6 class="mb-0">Video Call</h6>
+                                  <p class="fs-12 mb-0">Speak with our pet experts online</p>
+                                </div>
+                              </div>
+                              <div class="form-check mb-0">
+                                <input class="form-check-input" type="radio" name="appType" checked />
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                      <!-- Other appointment types (Clinic/Audio/Chat/Home Visit) are intentionally commented out -->
                     </div>
-                    <!-- Select Clinics is for Clinic booking only. Hidden because the appointment type is Video Call -->
-                    <!-- (commented out) -->
                   </div>
                 </div>
               </div>
               <div class="card-footer">
                 <div class="d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between">
-                  <a [routerLink]="" (click)="selectedFieldSet[0] = 1"
-                    class="btn btn-md btn-dark prev_btns inline-flex align-items-center rounded-pill">
+                  <a [routerLink]="routes.search1"
+                    class="btn btn-md btn-dark inline-flex align-items-center rounded-pill">
                     <i class="isax isax-arrow-left-2 me-1"></i>
                     Back
                   </a>
-                  <a [routerLink]="" (click)="selectedFieldSet[0] = 2"
-                    class="btn btn-md btn-primary-gradient next_btns inline-flex align-items-center rounded-pill btn btn-md btn-dark prev_btns inline-flex align-items-center rounded-pill">
+                  <a (click)="selectedFieldSet[0] = 2"
+                    class=" btn btn-md btn-dark inline-flex align-items-center rounded-pill btn btn-md btn-primary-gradient next_btns inline-flex align-items-center rounded-pill">
                     Select Date & Time
                     <i class="isax isax-arrow-right-3 ms-1"></i>
                   </a>
@@ -362,7 +370,10 @@
                         <div class="col-lg-3 col-sm-6">
                           <div>
                             <h6 class="fs-14 fw-medium mb-1">Date & Time</h6>
-                            <p class="mb-0">10:00 - 11:00 AM, 15, Oct</p>
+                            <p class="mb-0">
+                              {{ selectedSlotTime || '---' }},
+                              {{ bsInlineValue | date: 'dd, MMM' }}
+                            </p>
                           </div>
                         </div>
                         <div class="col-lg-3 col-sm-6">
@@ -385,7 +396,8 @@
                       <div class="col-lg-5">
                         <div class="card">
                           <div class="card-body p-2 pt-3">
-                            <bs-datepicker-inline [bsValue]="bsInlineValue"></bs-datepicker-inline>
+                            <bs-datepicker-inline [bsValue]="bsInlineValue" [minDate]="minDate"
+                              (bsValueChange)="bsInlineValue = $event"></bs-datepicker-inline>
                           </div>
                         </div>
                       </div>
@@ -396,70 +408,12 @@
                               <h6 class="fs-14 mb-2">Morning</h6>
                             </div>
                             <div class="token-slot mt-2 mb-2">
-                              <div class="form-check-inline visits me-0">
+                              <div class="form-check-inline visits me-0"
+                                *ngFor="let slot of morningSlots; let i = index">
                                 <label class="visit-btns">
-                                  <input type="checkbox" class="form-check-input" name="appintment" checked />
-                                  <span class="visit-rsn">09:45</span>
-                                </label>
-                              </div>
-                              <div class="form-check-inline visits me-0">
-                                <label class="visit-btns">
-                                  <input type="checkbox" class="form-check-input" name="appintment" />
-                                  <span class="visit-rsn">-</span>
-                                </label>
-                              </div>
-                              <div class="form-check-inline visits me-0">
-                                <label class="visit-btns">
-                                  <input type="checkbox" class="form-check-input" name="appintment" />
-                                  <span class="visit-rsn">10:45</span>
-                                </label>
-                              </div>
-                              <div class="form-check-inline visits me-0">
-                                <label class="visit-btns">
-                                  <input type="checkbox" class="form-check-input" name="appintment" />
-                                  <span class="visit-rsn">10:45</span>
-                                </label>
-                              </div>
-                              <div class="form-check-inline visits me-0">
-                                <label class="visit-btns">
-                                  <input type="checkbox" class="form-check-input" name="appintment" />
-                                  <span class="visit-rsn">10:45</span>
-                                </label>
-                              </div>
-                              <div class="form-check-inline visits me-0">
-                                <label class="visit-btns">
-                                  <input type="checkbox" class="form-check-input" name="appintment" />
-                                  <span class="visit-rsn">-</span>
-                                </label>
-                              </div>
-                              <div class="form-check-inline visits me-0">
-                                <label class="visit-btns">
-                                  <input type="checkbox" class="form-check-input" name="appintment" />
-                                  <span class="visit-rsn">09:45</span>
-                                </label>
-                              </div>
-                              <div class="form-check-inline visits me-0">
-                                <label class="visit-btns">
-                                  <input type="checkbox" class="form-check-input" name="appintment" />
-                                  <span class="visit-rsn">-</span>
-                                </label>
-                              </div>
-                              <div class="form-check-inline visits me-0">
-                                <label class="visit-btns">
-                                  <input type="checkbox" class="form-check-input" name="appintment" />
-                                  <span class="visit-rsn">10:45</span>
-                                </label>
-                              </div>
-                              <div class="form-check-inline visits me-0">
-                                <label class="visit-btns">
-                                  <input type="checkbox" class="form-check-input" name="appintment" />
-                                  <span class="visit-rsn">10:45</span>
-                                </label>
-                              </div>
-                              <div class="form-check-inline visits me-0">
-                                <label class="visit-btns">
-                                  <input type="checkbox" class="form-check-input" name="appintment" />
-                                  <span class="visit-rsn">10:45</span>
+                                  <input type="radio" class="form-check-input" name="appointmentSlot" [value]="slot"
+                                    [(ngModel)]="selectedSlotTime" [disabled]="isSlotDisabled(slot)" />
+                                  <span class="visit-rsn">{{ slot }}</span>
                                 </label>
                               </div>
                             </div>
@@ -467,34 +421,12 @@
                               <h6 class="fs-14 mb-2">Afternoon</h6>
                             </div>
                             <div class="token-slot mt-2 mb-2">
-                              <div class="form-check-inline visits me-0">
+                              <div class="form-check-inline visits me-0"
+                                *ngFor="let slot of afternoonSlots; let i = index">
                                 <label class="visit-btns">
-                                  <input type="checkbox" class="form-check-input" name="appintment" checked />
-                                  <span class="visit-rsn">09:45</span>
-                                </label>
-                              </div>
-                              <div class="form-check-inline visits me-0">
-                                <label class="visit-btns">
-                                  <input type="checkbox" class="form-check-input" name="appintment" />
-                                  <span class="visit-rsn">-</span>
-                                </label>
-                              </div>
-                              <div class="form-check-inline visits me-0">
-                                <label class="visit-btns">
-                                  <input type="checkbox" class="form-check-input" name="appintment" />
-                                  <span class="visit-rsn">10:45</span>
-                                </label>
-                              </div>
-                              <div class="form-check-inline visits me-0">
-                                <label class="visit-btns">
-                                  <input type="checkbox" class="form-check-input" name="appintment" />
-                                  <span class="visit-rsn">10:45</span>
-                                </label>
-                              </div>
-                              <div class="form-check-inline visits me-0">
-                                <label class="visit-btns">
-                                  <input type="checkbox" class="form-check-input" name="appintment" />
-                                  <span class="visit-rsn">10:45</span>
+                                  <input type="radio" class="form-check-input" name="appointmentSlot" [value]="slot"
+                                    [(ngModel)]="selectedSlotTime" [disabled]="isSlotDisabled(slot)" />
+                                  <span class="visit-rsn">{{ slot }}</span>
                                 </label>
                               </div>
                             </div>
@@ -502,76 +434,12 @@
                               <h6 class="fs-14 mb-2">Evening</h6>
                             </div>
                             <div class="token-slot mt-2 mb-2">
-                              <div class="form-check-inline visits me-0">
+                              <div class="form-check-inline visits me-0"
+                                *ngFor="let slot of eveningSlots; let i = index">
                                 <label class="visit-btns">
-                                  <input type="checkbox" class="form-check-input" name="appintment" checked />
-                                  <span class="visit-rsn">09:45</span>
-                                </label>
-                              </div>
-                              <div class="form-check-inline visits me-0">
-                                <label class="visit-btns">
-                                  <input type="checkbox" class="form-check-input" name="appintment" />
-                                  <span class="visit-rsn">-</span>
-                                </label>
-                              </div>
-                              <div class="form-check-inline visits me-0">
-                                <label class="visit-btns">
-                                  <input type="checkbox" class="form-check-input" name="appintment" />
-                                  <span class="visit-rsn">10:45</span>
-                                </label>
-                              </div>
-                              <div class="form-check-inline visits me-0">
-                                <label class="visit-btns">
-                                  <input type="checkbox" class="form-check-input" name="appintment" />
-                                  <span class="visit-rsn">10:45</span>
-                                </label>
-                              </div>
-                              <div class="form-check-inline visits me-0">
-                                <label class="visit-btns">
-                                  <input type="checkbox" class="form-check-input" name="appintment" />
-                                  <span class="visit-rsn">10:45</span>
-                                </label>
-                              </div>
-                              <div class="form-check-inline visits me-0">
-                                <label class="visit-btns">
-                                  <input type="checkbox" class="form-check-input" name="appintment" />
-                                  <span class="visit-rsn">-</span>
-                                </label>
-                              </div>
-                              <div class="form-check-inline visits me-0">
-                                <label class="visit-btns">
-                                  <input type="checkbox" class="form-check-input" name="appintment" />
-                                  <span class="visit-rsn">09:45</span>
-                                </label>
-                              </div>
-                              <div class="form-check-inline visits me-0">
-                                <label class="visit-btns">
-                                  <input type="checkbox" class="form-check-input" name="appintment" />
-                                  <span class="visit-rsn">-</span>
-                                </label>
-                              </div>
-                              <div class="form-check-inline visits me-0">
-                                <label class="visit-btns">
-                                  <input type="checkbox" class="form-check-input" name="appintment" />
-                                  <span class="visit-rsn">10:45</span>
-                                </label>
-                              </div>
-                              <div class="form-check-inline visits me-0">
-                                <label class="visit-btns">
-                                  <input type="checkbox" class="form-check-input" name="appintment" />
-                                  <span class="visit-rsn">10:45</span>
-                                </label>
-                              </div>
-                              <div class="form-check-inline visits me-0">
-                                <label class="visit-btns">
-                                  <input type="checkbox" class="form-check-input" name="appintment" />
-                                  <span class="visit-rsn">10:45</span>
-                                </label>
-                              </div>
-                              <div class="form-check-inline visits me-0">
-                                <label class="visit-btns">
-                                  <input type="checkbox" class="form-check-input" name="appintment" />
-                                  <span class="visit-rsn">-</span>
+                                  <input type="radio" class="form-check-input" name="appointmentSlot" [value]="slot"
+                                    [(ngModel)]="selectedSlotTime" [disabled]="isSlotDisabled(slot)" />
+                                  <span class="visit-rsn">{{ slot }}</span>
                                 </label>
                               </div>
                             </div>
@@ -584,7 +452,7 @@
               </div>
               <div class="card-footer">
                 <div class="d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between">
-                  <a [routerLink]="" (click)="selectedFieldSet[0] = 1"
+                  <a (click)="selectedFieldSet[0] = 1"
                     class="btn btn-md btn-dark prev_btns inline-flex align-items-center rounded-pill">
                     <i class="isax isax-arrow-left-2 me-1"></i>
                     Back
@@ -636,7 +504,7 @@
                         <div class="col-lg-3 col-sm-6">
                           <div>
                             <h6 class="fs-14 fw-medium mb-1">Date & Time</h6>
-                            <p class="mb-0">10:00 - 11:00 AM, 15, Oct</p>
+                            <p class="mb-0"> {{ selectedSlotTime || '---' }} {{ bsInlineValue | date: 'dd, MMM' }}</p>
                           </div>
                         </div>
                         <div class="col-lg-3 col-sm-6">
@@ -654,6 +522,39 @@
               </div>
               <div class="card-body booking-body" style="padding: 15px 30px">
                 <form>
+                  <div class="forms-block">
+                    <h5 class="form-section-title">Your Information</h5>
+                  </div>
+                  <div class="forms-block">
+                    <div class="form-row">
+                      <div class="form-group">
+                        <label class="form-group-title" for="userName">
+                          Name <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" class="form-control" id="userName" placeholder="Enter your name"
+                          [(ngModel)]="name" name="name" />
+                      </div>
+                      <div class="form-group">
+                        <label class="form-group-title" for="email">
+                          Email <span class="text-danger">*</span>
+                        </label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter your email"
+                          [(ngModel)]="email" name="email" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="forms-block">
+                    <div class="form-row">
+                      <div class="form-group">
+                        <label class="form-group-title" for="phone">
+                          Phone Number <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" class="form-control" id="phone" placeholder="Enter your phone number"
+                          [(ngModel)]="phone" name="phone" />
+                      </div>
+                    </div>
+                  </div>
+                  <hr class="my-4">
                   <div class="forms-block">
                     <h5 class="form-section-title">Tell Us About Your Pet</h5>
                   </div>
@@ -709,7 +610,7 @@
                           <div class="d-flex align-items-center">
                             <div class="form-check me-2 mb-0">
                               <input class="form-check-input" type="radio" value="Male" [(ngModel)]="petSex"
-                                name="petSex" [checked]="petSex === 'Male'">
+                                name="petSex" [checked]="petSex === 'Male'" />
                             </div>
                             <span>Male</span>
                           </div>
@@ -720,7 +621,7 @@
                           <div class="d-flex align-items-center">
                             <div class="form-check me-2 mb-0">
                               <input class="form-check-input" type="radio" value="Female" [(ngModel)]="petSex"
-                                name="petSex" [checked]="petSex === 'Female'">
+                                name="petSex" [checked]="petSex === 'Female'" />
                             </div>
                             <span>Female</span>
                           </div>
@@ -732,7 +633,7 @@
                           <div class="d-flex align-items-center">
                             <div class="form-check me-2 mb-0">
                               <input class="form-check-input" type="radio" value="Unknown" [(ngModel)]="petSex"
-                                name="petSex" [checked]="petSex === 'Unknown'">
+                                name="petSex" [checked]="petSex === 'Unknown'" />
                             </div>
                             <span>Unknown</span>
                           </div>
@@ -742,11 +643,13 @@
                   </div>
 
                   <div class="forms-block mt-4">
-                    <h6 class="text-uppercase fs-13 fw-semibold text-cyan mb-3">CONCERNS * (SELECT ALL THAT APPLY)</h6>
+                    <h6 class="text-uppercase fs-13 fw-semibold text-cyan mb-3">
+                      CONCERNS * (SELECT ALL THAT APPLY)
+                    </h6>
                     <div class="checkbox-grid">
                       @for (item of concerns; track item.id) {
                       <label class="checkbox-item border p-2 rounded d-flex align-items-center mb-0"
-                        style="min-height: 45px;">
+                        style="min-height: 45px">
                         <input type="checkbox" [id]="item.id" class="me-2" />
                         <span class="checkbox-label d-flex align-items-center w-100">
                           <i class="fa me-2 fs-14" [ngClass]="item.icon"></i>
@@ -759,7 +662,7 @@
 
                   <div class="forms-block mt-4">
                     <label class="form-group-title" for="reason">
-                      Reason for Appointment <span class="text-danger">*</span>
+                      Reason for Appointment
                     </label>
                     <textarea class="form-control" placeholder="Describe what's going on with your pet in detail..."
                       [(ngModel)]="reason" name="reason" rows="4"></textarea>
@@ -783,6 +686,13 @@
               </div>
             </div>
           </fieldset>
+          <!--
+          <fieldset [class.d-block]="selectedFieldSet[0] === 1">
+            <div class="card booking-card mb-0">
+               ... content omitted ...
+            </div>
+          </fieldset>
+          -->
           <fieldset [class.d-block]="selectedFieldSet[0] === 4">
             <div class="card booking-card mb-0">
               <div class="card-header">
@@ -913,19 +823,20 @@
                         <div class="mb-3">
                           <label class="form-label">Date & Time</label>
                           <div class="form-plain-text">
-                            10:00 - 11:00 AM, 15, Oct 2025
+                            {{ selectedSlotTime || '---' }},
+                            {{ bsInlineValue | date: 'dd, MMM yyyy' }}
                           </div>
                         </div>
                         <div class="mb-3">
                           <label class="form-label">Appointment type</label>
                           <div class="form-plain-text">
-                            Clinic (Wellness Path)
+                            Video Call
                           </div>
                         </div>
                         <div class="pt-3 border-top booking-more-info">
                           <h6 class="mb-3">Payment Info</h6>
                           <div class="d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between mb-2">
-                            <p class="mb-0">Echocardiograms</p>
+                            <p class="mb-0">Video Call</p>
                             <span class="fw-medium d-block">$200</span>
                           </div>
                           <div class="d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between mb-2">
@@ -944,7 +855,7 @@
                         <div
                           class="bg-primary d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between p-3 rounded">
                           <h6 class="text-white">Total</h6>
-                          <h6 class="text-white">$320</h6>
+                          <h6 class="text-white">$223</h6>
                         </div>
                       </div>
                     </div>
@@ -994,8 +905,8 @@
                         <div class="card-body pb-1">
                           <div class="d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between mb-3">
                             <h6>Booking Info</h6>
-                            <a [routerLink]="" class="btn btn-light rounded-pill"><i
-                                class="isax isax-calendar me-1"></i>Reschedule</a>
+                            <!-- <a [routerLink]="" (click)="selectedFieldSet[0] = 2" class="btn btn-light rounded-pill"><i
+                                class="isax isax-calendar me-1"></i>Reschedule</a> -->
                           </div>
                           <div class="row">
                             <div class="col-md-6">
@@ -1018,7 +929,8 @@
                               <div class="mb-3">
                                 <label class="form-label">Date & Time</label>
                                 <div class="form-plain-text">
-                                  10:00 - 11:00 AM, 15, Oct 2025
+                                  {{ selectedSlotTime || '---' }},
+                                  {{ bsInlineValue | date: 'dd, MMM yyyy' }}
                                 </div>
                               </div>
                             </div>
@@ -1049,8 +961,9 @@
                               Cancellation
                             </p>
                           </div>
-                          <a [routerLink]="" class="btn btn-light rounded-pill"><i class="isax isax-call5 me-1"></i>Call
-                            Us</a>
+                          <a [routerLink]="'/pages/contact-us'" class="btn btn-light rounded-pill"><i
+                              class="isax isax-call5 me-1"></i>Report a Issue
+                          </a>
                         </div>
                       </div>
                     </div>
@@ -1068,11 +981,11 @@
                           </p>
                         </div>
                         <div>
-                          <a [routerLink]=""
+                          <!-- <a [routerLink]=""
                             class="btn w-100 mb-3 btn-md btn-dark prev_btns inline-flex align-items-center rounded-pill">
                             Add To Calendar
-                          </a>
-                          <a [routerLink]="routes.search1"
+                          </a> -->
+                          <a [routerLink]="" (click)="selectedFieldSet[0] = 1"
                             class="btn w-100 btn-md btn-primary-gradient next_btns inline-flex align-items-center rounded-pill btn w-100 mb-3 btn-md btn-dark prev_btns inline-flex align-items-center rounded-pill">
                             Start New Booking
                           </a>
@@ -1092,7 +1005,7 @@
           </fieldset>
         </div>
         <div class="text-center">
-          <p class="mb-0">Copyright © 2025. All Rights Reserved, Doccure</p>
+          <p class="mb-0">Copyright © 2026. All Rights Reserved, VETLLAMA</p>
         </div>
       </div>
     </div>
