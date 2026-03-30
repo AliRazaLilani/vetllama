@@ -1,22 +1,3 @@
-<!-- Header -->
-<header class="header header-custom header-fixed inner-header relative">
-  <div class="container">
-    <nav class="navbar navbar-expand-lg header-nav">
-      <div class="navbar-header">
-        <a id="mobile_btn" [routerLink]="">
-          <span class="bar-icon">
-            <span></span>
-            <span></span>
-            <span></span>
-          </span>
-        </a>
-        <a [routerLink]="routes.index" class="navbar-brand logo">
-          <img src="assets/img/logo.svg" class="img-fluid" alt="Logo" />
-        </a>
-      </div>
-    </nav>
-  </div>
-</header>
 <!-- /Header -->
 
 <!-- Terms -->
@@ -25,15 +6,13 @@
     <div class="row">
       <div class="col-lg-9 mx-auto">
         <div class="booking-wizard">
-          <ul
-            class="form-wizard-steps d-sm-flex align-items-center justify-content-center"
-            id="progressbar2"
-          >
+          <ul class="form-wizard-steps d-sm-flex align-items-center justify-content-center" id="progressbar2">
+            <!--
             <li
               class="progress-active"
               [ngClass]="{
                 'progress-active': selectedFieldSet[0] === 0,
-                'progress-activated': selectedFieldSet[0] > 0
+                'progress-activated': selectedFieldSet[0] > 0,
               }"
             >
               <div class="profile-step">
@@ -43,66 +22,57 @@
                 </div>
               </div>
             </li>
-            <li
-              [ngClass]="{
+            -->
+            <li [ngClass]="{
                 'progress-active': selectedFieldSet[0] === 1,
-                'progress-activated': selectedFieldSet[0] > 1
-              }"
-            >
+                'progress-activated': selectedFieldSet[0] > 1,
+              }">
               <div class="profile-step">
-                <span class="multi-steps">2</span>
+                <span class="multi-steps">1</span>
                 <div class="step-section">
                   <h6>Appointment Type</h6>
                 </div>
               </div>
             </li>
-            <li
-              [ngClass]="{
+            <li [ngClass]="{
                 'progress-active': selectedFieldSet[0] === 2,
-                'progress-activated': selectedFieldSet[0] > 2
-              }"
-            >
+                'progress-activated': selectedFieldSet[0] > 2,
+              }">
               <div class="profile-step">
-                <span class="multi-steps">3</span>
+                <span class="multi-steps">2</span>
                 <div class="step-section">
                   <h6>Date & Time</h6>
                 </div>
               </div>
             </li>
-            <li
-              [ngClass]="{
+            <li [ngClass]="{
                 'progress-active': selectedFieldSet[0] === 3,
-                'progress-activated': selectedFieldSet[0] > 3
-              }"
-            >
+                'progress-activated': selectedFieldSet[0] > 3,
+              }">
               <div class="profile-step">
-                <span class="multi-steps">4</span>
+                <span class="multi-steps">3</span>
                 <div class="step-section">
                   <h6>Basic Information</h6>
                 </div>
               </div>
             </li>
-            <li
-              [ngClass]="{
+            <li [ngClass]="{
                 'progress-active': selectedFieldSet[0] === 4,
-                'progress-activated': selectedFieldSet[0] > 4
-              }"
-            >
+                'progress-activated': selectedFieldSet[0] > 4,
+              }">
               <div class="profile-step">
-                <span class="multi-steps">5</span>
+                <span class="multi-steps">4</span>
                 <div class="step-section">
                   <h6>Payment</h6>
                 </div>
               </div>
             </li>
-            <li
-              [ngClass]="{
+            <li [ngClass]="{
                 'progress-active': selectedFieldSet[0] === 5,
-                'progress-activated': selectedFieldSet[0] > 5
-              }"
-            >
+                'progress-activated': selectedFieldSet[0] > 5,
+              }">
               <div class="profile-step">
-                <span class="multi-steps">6</span>
+                <span class="multi-steps">5</span>
                 <div class="step-section">
                   <h6>Confirmation</h6>
                 </div>
@@ -111,11 +81,12 @@
           </ul>
         </div>
         <div class="booking-widget multistep-form mb-5">
+          <!--
           <fieldset
             id="first"
             [ngClass]="{
               'd-block': selectedFieldSet[0] === 0,
-              'd-none': selectedFieldSet[0] !== 0
+              'd-none': selectedFieldSet[0] !== 0,
             }"
           >
             <div class="card booking-card mb-0">
@@ -266,11 +237,12 @@
                 </div>
               </div>
               <div class="card-footer">
+
                 <div
                   class="d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between"
                 >
                   <a
-                    [routerLink]=""
+                    [routerLink]="'/patients/doctors/map-grid'"
                     class="btn btn-md btn-dark inline-flex align-items-center rounded-pill"
                   >
                     <i class="isax isax-arrow-left-2 me-1"></i>
@@ -279,7 +251,7 @@
                   <a
                     [routerLink]=""
                     (click)="selectedFieldSet[0] = 1"
-                    class="btn btn-md btn-primary-gradient next_btns inline-flex align-items-center rounded-pill"
+                    class="btn btn-md btn-primary-gradient next_btns inline-flex align-items-center rounded-pill btn btn-md btn-dark prev_btns inline-flex align-items-center rounded-pill"
                   >
                     Select Appointment Type
                     <i class="isax isax-arrow-right-3 ms-1"></i>
@@ -288,25 +260,20 @@
               </div>
             </div>
           </fieldset>
+          -->
           <fieldset [class.d-block]="selectedFieldSet[0] === 1">
             <div class="card booking-card mb-0">
               <div class="card-header">
                 <div class="booking-header pb-0">
                   <div class="card mb-0">
                     <div class="card-body">
-                      <div
-                        class="d-flex align-items-center flex-wrap rpw-gap-2 flex-wrap row-gap-2"
-                      >
-                        <span
-                          class="avatar avatar-xxxl avatar-rounded me-2 flex-shrink-0"
-                          ><img src="assets/img/clients/client-15.jpg" alt=""
-                        /></span>
+                      <div class="d-flex align-items-center flex-wrap rpw-gap-2 flex-wrap row-gap-2">
+                        <span class="avatar avatar-xxxl avatar-rounded me-2 flex-shrink-0"><img
+                            src="assets/img/doctor-grid/doctor-grid-011.webp" alt="" /></span>
                         <div>
                           <h4 class="mb-1">
                             Dr. Michael Brown
-                            <span class="badge bg-orange fs-12"
-                              ><i class="fa-solid fa-star me-1"></i>5.0</span
-                            >
+                            <span class="badge bg-orange fs-12"><i class="fa-solid fa-star me-1"></i>5.0</span>
                           </h4>
                           <p class="text-indigo mb-3 fw-medium">Psychologist</p>
                           <p class="mb-0">
@@ -325,215 +292,31 @@
                     <h6 class="mb-3">Select Appointment Type</h6>
                     <div class="row">
                       <div class="col-xl col-md-3 col-sm-4">
-                        <div
-                          class="radio-select text-center"
-                          (click)="showClinic()"
-                        >
-                          <input
-                            class="form-check-input ms-0 mt-0"
-                            name="service2"
-                            type="radio"
-                            id="service7"
-                            checked
-                          />
-                          <label class="form-check-label" for="service7">
-                            <i class="isax isax-hospital5"></i>
-                            <span class="service-title d-block">Clinic</span>
-                          </label>
-                        </div>
-                      </div>
-                      <div class="col-xl col-md-3 col-sm-4">
-                        <div
-                          class="radio-select text-center"
-                          (click)="offClinic()"
-                        >
-                          <input
-                            class="form-check-input ms-0 mt-0"
-                            name="service2"
-                            type="radio"
-                            id="service8"
-                          />
+                        <div class="radio-select text-center" (click)="offClinic()">
+                          <input class="form-check-input ms-0 mt-0" name="service2" type="radio" id="service8"
+                            checked />
                           <label class="form-check-label" for="service8">
                             <i class="isax isax-video5"></i>
-                            <span class="service-title d-block"
-                              >Video Call</span
-                            >
+                            <span class="service-title d-block">Video Call</span>
                           </label>
                         </div>
                       </div>
-                      <div class="col-xl col-md-3 col-sm-4">
-                        <div
-                          class="radio-select text-center"
-                          (click)="offClinic()"
-                        >
-                          <input
-                            class="form-check-input ms-0 mt-0"
-                            name="service2"
-                            type="radio"
-                            id="service9"
-                          />
-                          <label class="form-check-label" for="service9">
-                            <i class="isax isax-call5"></i>
-                            <span class="service-title d-block"
-                              >Audio Call</span
-                            >
-                          </label>
-                        </div>
-                      </div>
-                      <div
-                        class="col-xl col-md-3 col-sm-4"
-                        (click)="offClinic()"
-                      >
-                        <div class="radio-select text-center">
-                          <input
-                            class="form-check-input ms-0 mt-0"
-                            name="service2"
-                            type="radio"
-                            id="service10"
-                          />
-                          <label class="form-check-label" for="service10">
-                            <i class="isax isax-messages-15"></i>
-                            <span class="service-title d-block">Chat</span>
-                          </label>
-                        </div>
-                      </div>
-                      <div class="col-xl col-md-3 col-sm-4">
-                        <div class="radio-select text-center">
-                          <input
-                            class="form-check-input ms-0 mt-0"
-                            name="service2"
-                            type="radio"
-                            id="service11"
-                          />
-                          <label class="form-check-label" for="service11">
-                            <i class="isax isax-messages-15"></i>
-                            <span class="service-title d-block"
-                              >Home Visit</span
-                            >
-                          </label>
-                        </div>
-                      </div>
+                      <!-- Other appointment types (Clinic/Audio/Chat/Home Visit) are intentionally commented out -->
                     </div>
-                    <h6 class="mb-3">Select Clinics</h6>
-                    <div [ngStyle]="{ display: isClinic ? 'block' : 'none' }">
-                      <div class="service-item">
-                        <input
-                          class="form-check-input ms-0 mt-0"
-                          name="service2"
-                          type="checkbox"
-                          id="service12"
-                        />
-                        <label class="form-check-label ms-2" for="service12">
-                          <span
-                            class="d-flex align-items-center flex-wrap rpw-gap-2"
-                          >
-                            <span class="d-inline-block me-2"
-                              ><img
-                                src="assets/img/icons/clinic-icon-01.svg"
-                                class="rounded-circle"
-                                alt=""
-                            /></span>
-                            <span>
-                              <span class="service-title d-block mb-1"
-                                >AllCare Family Medicine</span
-                              >
-                              <span class="fs-14"
-                                >3343 Private Lane, Valdosta</span
-                              >
-                              <i
-                                class="fa-solid fa-circle fs-5 text-primary mx-2 me-1"
-                              ></i>
-                              <span class="fs-14">500 Meters</span>
-                            </span>
-                          </span>
-                        </label>
-                      </div>
-                      <div class="service-item">
-                        <input
-                          class="form-check-input ms-0 mt-0"
-                          name="service2"
-                          type="checkbox"
-                          id="service13"
-                        />
-                        <label class="form-check-label ms-2" for="service13">
-                          <span
-                            class="d-flex align-items-center flex-wrap rpw-gap-2"
-                          >
-                            <span class="d-inline-block me-2"
-                              ><img
-                                src="assets/img/icons/clinic-icon-02.svg"
-                                class="rounded-circle"
-                                alt=""
-                            /></span>
-                            <span>
-                              <span class="service-title d-block mb-1"
-                                >Vitalplus Clinic</span
-                              >
-                              <span class="fs-14"
-                                >4223 Pleasant Hill Road, Miami, FL 33169</span
-                              >
-                              <i
-                                class="fa-solid fa-circle fs-5 text-primary mx-2 me-1"
-                              ></i>
-                              <span class="fs-14">12 KM </span>
-                            </span>
-                          </span>
-                        </label>
-                      </div>
-                      <div class="service-item">
-                        <input
-                          class="form-check-input ms-0 mt-0"
-                          name="service2"
-                          type="checkbox"
-                          id="service13"
-                        />
-                        <label class="form-check-label ms-2" for="service13">
-                          <span
-                            class="d-flex align-items-center flex-wrap rpw-gap-2"
-                          >
-                            <span class="d-inline-block me-2"
-                              ><img
-                                src="assets/img/icons/clinic-icon-03.svg"
-                                class="rounded-circle"
-                                alt=""
-                            /></span>
-                            <span>
-                              <span class="service-title d-block mb-1"
-                                >Wellness Path Chiropractic</span
-                              >
-                              <span class="fs-14"
-                                >418 Patton Lane, Garner, NC 27529, FL
-                                33169</span
-                              >
-                              <i
-                                class="fa-solid fa-circle fs-5 text-primary mx-2 me-1"
-                              ></i>
-                              <span class="fs-14">16 KM </span>
-                            </span>
-                          </span>
-                        </label>
-                      </div>
-                    </div>
+                    <!-- Select Clinics is for Clinic booking only. Hidden because the appointment type is Video Call -->
+                    <!-- (commented out) -->
                   </div>
                 </div>
               </div>
               <div class="card-footer">
-                <div
-                  class="d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between"
-                >
-                  <a
-                    [routerLink]=""
-                    (click)="selectedFieldSet[0] = 0"
-                    class="btn btn-md btn-dark prev_btns inline-flex align-items-center rounded-pill"
-                  >
+                <div class="d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between">
+                  <a [routerLink]="" (click)="selectedFieldSet[0] = 1"
+                    class="btn btn-md btn-dark prev_btns inline-flex align-items-center rounded-pill">
                     <i class="isax isax-arrow-left-2 me-1"></i>
                     Back
                   </a>
-                  <a
-                    [routerLink]=""
-                    (click)="selectedFieldSet[0] = 2"
-                    class="btn btn-md btn-primary-gradient next_btns inline-flex align-items-center rounded-pill"
-                  >
+                  <a [routerLink]="" (click)="selectedFieldSet[0] = 2"
+                    class="btn btn-md btn-primary-gradient next_btns inline-flex align-items-center rounded-pill btn btn-md btn-dark prev_btns inline-flex align-items-center rounded-pill">
                     Select Date & Time
                     <i class="isax isax-arrow-right-3 ms-1"></i>
                   </a>
@@ -547,19 +330,13 @@
                 <div class="booking-header pb-0">
                   <div class="card mb-0">
                     <div class="card-body">
-                      <div
-                        class="d-flex align-items-center flex-wrap rpw-gap-2 mb-4 flex-wrap row-gap-2"
-                      >
-                        <span
-                          class="avatar avatar-xxxl avatar-rounded me-2 flex-shrink-0"
-                          ><img src="assets/img/clients/client-15.jpg" alt=""
-                        /></span>
+                      <div class="d-flex align-items-center flex-wrap rpw-gap-2 mb-4 flex-wrap row-gap-2">
+                        <span class="avatar avatar-xxxl avatar-rounded me-2 flex-shrink-0"><img
+                            src="assets/img/doctor-grid/doctor-grid-011.webp" alt="" /></span>
                         <div>
                           <h4 class="mb-1">
                             Dr. Michael Brown
-                            <span class="badge bg-orange fs-12"
-                              ><i class="fa-solid fa-star me-1"></i>5.0</span
-                            >
+                            <span class="badge bg-orange fs-12"><i class="fa-solid fa-star me-1"></i>5.0</span>
                           </h4>
                           <p class="text-indigo mb-3 fw-medium">Psychologist</p>
                           <p class="mb-0">
@@ -608,9 +385,7 @@
                       <div class="col-lg-5">
                         <div class="card">
                           <div class="card-body p-2 pt-3">
-                            <bs-datepicker-inline
-                              [bsValue]="bsInlineValue"
-                            ></bs-datepicker-inline>
+                            <bs-datepicker-inline [bsValue]="bsInlineValue"></bs-datepicker-inline>
                           </div>
                         </div>
                       </div>
@@ -623,112 +398,67 @@
                             <div class="token-slot mt-2 mb-2">
                               <div class="form-check-inline visits me-0">
                                 <label class="visit-btns">
-                                  <input
-                                    type="checkbox"
-                                    class="form-check-input"
-                                    name="appintment"
-                                    checked
-                                  />
+                                  <input type="checkbox" class="form-check-input" name="appintment" checked />
                                   <span class="visit-rsn">09:45</span>
                                 </label>
                               </div>
                               <div class="form-check-inline visits me-0">
                                 <label class="visit-btns">
-                                  <input
-                                    type="checkbox"
-                                    class="form-check-input"
-                                    name="appintment"
-                                  />
+                                  <input type="checkbox" class="form-check-input" name="appintment" />
                                   <span class="visit-rsn">-</span>
                                 </label>
                               </div>
                               <div class="form-check-inline visits me-0">
                                 <label class="visit-btns">
-                                  <input
-                                    type="checkbox"
-                                    class="form-check-input"
-                                    name="appintment"
-                                  />
+                                  <input type="checkbox" class="form-check-input" name="appintment" />
                                   <span class="visit-rsn">10:45</span>
                                 </label>
                               </div>
                               <div class="form-check-inline visits me-0">
                                 <label class="visit-btns">
-                                  <input
-                                    type="checkbox"
-                                    class="form-check-input"
-                                    name="appintment"
-                                  />
+                                  <input type="checkbox" class="form-check-input" name="appintment" />
                                   <span class="visit-rsn">10:45</span>
                                 </label>
                               </div>
                               <div class="form-check-inline visits me-0">
                                 <label class="visit-btns">
-                                  <input
-                                    type="checkbox"
-                                    class="form-check-input"
-                                    name="appintment"
-                                  />
+                                  <input type="checkbox" class="form-check-input" name="appintment" />
                                   <span class="visit-rsn">10:45</span>
                                 </label>
                               </div>
                               <div class="form-check-inline visits me-0">
                                 <label class="visit-btns">
-                                  <input
-                                    type="checkbox"
-                                    class="form-check-input"
-                                    name="appintment"
-                                  />
+                                  <input type="checkbox" class="form-check-input" name="appintment" />
                                   <span class="visit-rsn">-</span>
                                 </label>
                               </div>
                               <div class="form-check-inline visits me-0">
                                 <label class="visit-btns">
-                                  <input
-                                    type="checkbox"
-                                    class="form-check-input"
-                                    name="appintment"
-                                  />
+                                  <input type="checkbox" class="form-check-input" name="appintment" />
                                   <span class="visit-rsn">09:45</span>
                                 </label>
                               </div>
                               <div class="form-check-inline visits me-0">
                                 <label class="visit-btns">
-                                  <input
-                                    type="checkbox"
-                                    class="form-check-input"
-                                    name="appintment"
-                                  />
+                                  <input type="checkbox" class="form-check-input" name="appintment" />
                                   <span class="visit-rsn">-</span>
                                 </label>
                               </div>
                               <div class="form-check-inline visits me-0">
                                 <label class="visit-btns">
-                                  <input
-                                    type="checkbox"
-                                    class="form-check-input"
-                                    name="appintment"
-                                  />
+                                  <input type="checkbox" class="form-check-input" name="appintment" />
                                   <span class="visit-rsn">10:45</span>
                                 </label>
                               </div>
                               <div class="form-check-inline visits me-0">
                                 <label class="visit-btns">
-                                  <input
-                                    type="checkbox"
-                                    class="form-check-input"
-                                    name="appintment"
-                                  />
+                                  <input type="checkbox" class="form-check-input" name="appintment" />
                                   <span class="visit-rsn">10:45</span>
                                 </label>
                               </div>
                               <div class="form-check-inline visits me-0">
                                 <label class="visit-btns">
-                                  <input
-                                    type="checkbox"
-                                    class="form-check-input"
-                                    name="appintment"
-                                  />
+                                  <input type="checkbox" class="form-check-input" name="appintment" />
                                   <span class="visit-rsn">10:45</span>
                                 </label>
                               </div>
@@ -739,52 +469,31 @@
                             <div class="token-slot mt-2 mb-2">
                               <div class="form-check-inline visits me-0">
                                 <label class="visit-btns">
-                                  <input
-                                    type="checkbox"
-                                    class="form-check-input"
-                                    name="appintment"
-                                    checked
-                                  />
+                                  <input type="checkbox" class="form-check-input" name="appintment" checked />
                                   <span class="visit-rsn">09:45</span>
                                 </label>
                               </div>
                               <div class="form-check-inline visits me-0">
                                 <label class="visit-btns">
-                                  <input
-                                    type="checkbox"
-                                    class="form-check-input"
-                                    name="appintment"
-                                  />
+                                  <input type="checkbox" class="form-check-input" name="appintment" />
                                   <span class="visit-rsn">-</span>
                                 </label>
                               </div>
                               <div class="form-check-inline visits me-0">
                                 <label class="visit-btns">
-                                  <input
-                                    type="checkbox"
-                                    class="form-check-input"
-                                    name="appintment"
-                                  />
+                                  <input type="checkbox" class="form-check-input" name="appintment" />
                                   <span class="visit-rsn">10:45</span>
                                 </label>
                               </div>
                               <div class="form-check-inline visits me-0">
                                 <label class="visit-btns">
-                                  <input
-                                    type="checkbox"
-                                    class="form-check-input"
-                                    name="appintment"
-                                  />
+                                  <input type="checkbox" class="form-check-input" name="appintment" />
                                   <span class="visit-rsn">10:45</span>
                                 </label>
                               </div>
                               <div class="form-check-inline visits me-0">
                                 <label class="visit-btns">
-                                  <input
-                                    type="checkbox"
-                                    class="form-check-input"
-                                    name="appintment"
-                                  />
+                                  <input type="checkbox" class="form-check-input" name="appintment" />
                                   <span class="visit-rsn">10:45</span>
                                 </label>
                               </div>
@@ -795,122 +504,73 @@
                             <div class="token-slot mt-2 mb-2">
                               <div class="form-check-inline visits me-0">
                                 <label class="visit-btns">
-                                  <input
-                                    type="checkbox"
-                                    class="form-check-input"
-                                    name="appintment"
-                                    checked
-                                  />
+                                  <input type="checkbox" class="form-check-input" name="appintment" checked />
                                   <span class="visit-rsn">09:45</span>
                                 </label>
                               </div>
                               <div class="form-check-inline visits me-0">
                                 <label class="visit-btns">
-                                  <input
-                                    type="checkbox"
-                                    class="form-check-input"
-                                    name="appintment"
-                                  />
+                                  <input type="checkbox" class="form-check-input" name="appintment" />
                                   <span class="visit-rsn">-</span>
                                 </label>
                               </div>
                               <div class="form-check-inline visits me-0">
                                 <label class="visit-btns">
-                                  <input
-                                    type="checkbox"
-                                    class="form-check-input"
-                                    name="appintment"
-                                  />
+                                  <input type="checkbox" class="form-check-input" name="appintment" />
                                   <span class="visit-rsn">10:45</span>
                                 </label>
                               </div>
                               <div class="form-check-inline visits me-0">
                                 <label class="visit-btns">
-                                  <input
-                                    type="checkbox"
-                                    class="form-check-input"
-                                    name="appintment"
-                                  />
+                                  <input type="checkbox" class="form-check-input" name="appintment" />
                                   <span class="visit-rsn">10:45</span>
                                 </label>
                               </div>
                               <div class="form-check-inline visits me-0">
                                 <label class="visit-btns">
-                                  <input
-                                    type="checkbox"
-                                    class="form-check-input"
-                                    name="appintment"
-                                  />
+                                  <input type="checkbox" class="form-check-input" name="appintment" />
                                   <span class="visit-rsn">10:45</span>
                                 </label>
                               </div>
                               <div class="form-check-inline visits me-0">
                                 <label class="visit-btns">
-                                  <input
-                                    type="checkbox"
-                                    class="form-check-input"
-                                    name="appintment"
-                                  />
+                                  <input type="checkbox" class="form-check-input" name="appintment" />
                                   <span class="visit-rsn">-</span>
                                 </label>
                               </div>
                               <div class="form-check-inline visits me-0">
                                 <label class="visit-btns">
-                                  <input
-                                    type="checkbox"
-                                    class="form-check-input"
-                                    name="appintment"
-                                  />
+                                  <input type="checkbox" class="form-check-input" name="appintment" />
                                   <span class="visit-rsn">09:45</span>
                                 </label>
                               </div>
                               <div class="form-check-inline visits me-0">
                                 <label class="visit-btns">
-                                  <input
-                                    type="checkbox"
-                                    class="form-check-input"
-                                    name="appintment"
-                                  />
+                                  <input type="checkbox" class="form-check-input" name="appintment" />
                                   <span class="visit-rsn">-</span>
                                 </label>
                               </div>
                               <div class="form-check-inline visits me-0">
                                 <label class="visit-btns">
-                                  <input
-                                    type="checkbox"
-                                    class="form-check-input"
-                                    name="appintment"
-                                  />
+                                  <input type="checkbox" class="form-check-input" name="appintment" />
                                   <span class="visit-rsn">10:45</span>
                                 </label>
                               </div>
                               <div class="form-check-inline visits me-0">
                                 <label class="visit-btns">
-                                  <input
-                                    type="checkbox"
-                                    class="form-check-input"
-                                    name="appintment"
-                                  />
+                                  <input type="checkbox" class="form-check-input" name="appintment" />
                                   <span class="visit-rsn">10:45</span>
                                 </label>
                               </div>
                               <div class="form-check-inline visits me-0">
                                 <label class="visit-btns">
-                                  <input
-                                    type="checkbox"
-                                    class="form-check-input"
-                                    name="appintment"
-                                  />
+                                  <input type="checkbox" class="form-check-input" name="appintment" />
                                   <span class="visit-rsn">10:45</span>
                                 </label>
                               </div>
                               <div class="form-check-inline visits me-0">
                                 <label class="visit-btns">
-                                  <input
-                                    type="checkbox"
-                                    class="form-check-input"
-                                    name="appintment"
-                                  />
+                                  <input type="checkbox" class="form-check-input" name="appintment" />
                                   <span class="visit-rsn">-</span>
                                 </label>
                               </div>
@@ -923,22 +583,14 @@
                 </div>
               </div>
               <div class="card-footer">
-                <div
-                  class="d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between"
-                >
-                  <a
-                    [routerLink]=""
-                    (click)="selectedFieldSet[0] = 1"
-                    class="btn btn-md btn-dark prev_btns inline-flex align-items-center rounded-pill"
-                  >
+                <div class="d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between">
+                  <a [routerLink]="" (click)="selectedFieldSet[0] = 1"
+                    class="btn btn-md btn-dark prev_btns inline-flex align-items-center rounded-pill">
                     <i class="isax isax-arrow-left-2 me-1"></i>
                     Back
                   </a>
-                  <a
-                    [routerLink]=""
-                    (click)="selectedFieldSet[0] = 3"
-                    class="btn btn-md btn-primary-gradient next_btns inline-flex align-items-center rounded-pill"
-                  >
+                  <a [routerLink]="" (click)="selectedFieldSet[0] = 3"
+                    class="btn btn-md btn-primary-gradient next_btns inline-flex align-items-center rounded-pill btn btn-md btn-dark prev_btns inline-flex align-items-center rounded-pill">
                     Add Basic Information
                     <i class="isax isax-arrow-right-3 ms-1"></i>
                   </a>
@@ -952,19 +604,13 @@
                 <div class="booking-header pb-0">
                   <div class="card mb-0">
                     <div class="card-body">
-                      <div
-                        class="d-flex align-items-center flex-wrap rpw-gap-2 mb-4 flex-wrap row-gap-2"
-                      >
-                        <span
-                          class="avatar avatar-xxxl avatar-rounded me-2 flex-shrink-0"
-                          ><img src="assets/img/clients/client-15.jpg" alt=""
-                        /></span>
+                      <div class="d-flex align-items-center flex-wrap rpw-gap-2 mb-4 flex-wrap row-gap-2">
+                        <span class="avatar avatar-xxxl avatar-rounded me-2 flex-shrink-0"><img
+                            src="assets/img/doctor-grid/doctor-grid-011.webp" alt="" /></span>
                         <div>
                           <h4 class="mb-1">
                             Dr. Michael Brown
-                            <span class="badge bg-orange fs-12"
-                              ><i class="fa-solid fa-star me-1"></i>5.0</span
-                            >
+                            <span class="badge bg-orange fs-12"><i class="fa-solid fa-star me-1"></i>5.0</span>
                           </h4>
                           <p class="text-indigo mb-3 fw-medium">Psychologist</p>
                           <p class="mb-0">
@@ -1006,84 +652,130 @@
                   </div>
                 </div>
               </div>
-              <div class="card-body booking-body">
-                <div class="card mb-0">
-                  <div class="card-body pb-1">
-                    <div class="row">
-                      <div class="col-lg-4 col-md-6">
-                        <div class="mb-3">
-                          <label class="form-label">First Name</label>
-                          <input type="text" class="form-control" />
+              <div class="card-body booking-body" style="padding: 15px 30px">
+                <form>
+                  <div class="forms-block">
+                    <h5 class="form-section-title">Tell Us About Your Pet</h5>
+                  </div>
+                  <div class="forms-block">
+                    <div class="form-row">
+                      <div class="form-group">
+                        <label class="form-group-title" for="petName">
+                          Pet Name <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" class="form-control" id="petName" placeholder="e.g. Bella"
+                          [(ngModel)]="petName" name="petName" />
+                      </div>
+                      <div class="form-group">
+                        <label class="form-group-title" for="species">
+                          Species <span class="text-danger">*</span>
+                        </label>
+                        <mat-select class="select" [(ngModel)]="selectedValue1" [ngModelOptions]="{ standalone: true }"
+                          panelClass="patientDetailsSelect" id="species" name="species">
+                          @for (data of species; track data.value) {
+                          <mat-option [value]="data.value">
+                            {{ data.value }}
+                          </mat-option>
+                          }
+                        </mat-select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="forms-block">
+                    <div class="form-row">
+                      <div class="form-group">
+                        <label class="form-group-title" for="petBreed">
+                          Breed
+                        </label>
+                        <input type="text" class="form-control" id="petBreed" placeholder="e.g. Golden Retriever"
+                          [(ngModel)]="petBreed" name="petBreed" />
+                      </div>
+                      <div class="form-group">
+                        <label class="form-group-title" for="petDob">
+                          Date of Birth <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" class="form-control" id="petDob" placeholder="MM / DD / YYYY"
+                          [(ngModel)]="petDob" name="petDob" bsDatepicker
+                          [bsConfig]="{ containerClass: 'theme-default' }" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="forms-block mt-4">
+                    <label class="form-group-title">Sex <span class="text-danger">*</span></label>
+                    <div class="row row-gap-3">
+                      <div class="col-md-4">
+                        <div class="service-item mb-0" [class.active]="petSex === 'Male'" (click)="petSex = 'Male'">
+                          <div class="d-flex align-items-center">
+                            <div class="form-check me-2 mb-0">
+                              <input class="form-check-input" type="radio" value="Male" [(ngModel)]="petSex"
+                                name="petSex" [checked]="petSex === 'Male'">
+                            </div>
+                            <span>Male</span>
+                          </div>
                         </div>
                       </div>
-                      <div class="col-lg-4 col-md-6">
-                        <div class="mb-3">
-                          <label class="form-label">Last Name</label>
-                          <input type="text" class="form-control" />
+                      <div class="col-md-4">
+                        <div class="service-item mb-0" [class.active]="petSex === 'Female'" (click)="petSex = 'Female'">
+                          <div class="d-flex align-items-center">
+                            <div class="form-check me-2 mb-0">
+                              <input class="form-check-input" type="radio" value="Female" [(ngModel)]="petSex"
+                                name="petSex" [checked]="petSex === 'Female'">
+                            </div>
+                            <span>Female</span>
+                          </div>
                         </div>
                       </div>
-                      <div class="col-lg-4 col-md-6">
-                        <div class="mb-3">
-                          <label class="form-label">Phone Number</label>
-                          <input type="text" class="form-control" />
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-6">
-                        <div class="mb-3">
-                          <label class="form-label">Email Address</label>
-                          <input type="text" class="form-control" />
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-6">
-                        <div class="mb-3">
-                          <label class="form-label">Select Patient</label>
-                          <mat-select
-                            class="custom-mat-select select"
-                            placeholder="Andrew Fletcher"
-                          >
-                            <mat-option value="1">Andrew Fletcher</mat-option>
-                          </mat-select>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-6">
-                        <div class="mb-3">
-                          <label class="form-label">Symptoms</label>
-                          <input type="text" class="form-control" />
-                        </div>
-                      </div>
-                      <div class="col-lg-12">
-                        <div class="mb-3">
-                          <label class="form-label">Attachment</label>
-                          <input type="file" class="form-control" />
-                        </div>
-                      </div>
-                      <div class="col-lg-12">
-                        <div class="mb-3">
-                          <label class="form-label">Reason for Visit</label>
-                          <textarea class="form-control" rows="3"></textarea>
+                      <div class="col-md-4">
+                        <div class="service-item mb-0" [class.active]="petSex === 'Unknown'"
+                          (click)="petSex = 'Unknown'">
+                          <div class="d-flex align-items-center">
+                            <div class="form-check me-2 mb-0">
+                              <input class="form-check-input" type="radio" value="Unknown" [(ngModel)]="petSex"
+                                name="petSex" [checked]="petSex === 'Unknown'">
+                            </div>
+                            <span>Unknown</span>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
+
+                  <div class="forms-block mt-4">
+                    <h6 class="text-uppercase fs-13 fw-semibold text-cyan mb-3">CONCERNS * (SELECT ALL THAT APPLY)</h6>
+                    <div class="checkbox-grid">
+                      @for (item of concerns; track item.id) {
+                      <label class="checkbox-item border p-2 rounded d-flex align-items-center mb-0"
+                        style="min-height: 45px;">
+                        <input type="checkbox" [id]="item.id" class="me-2" />
+                        <span class="checkbox-label d-flex align-items-center w-100">
+                          <i class="fa me-2 fs-14" [ngClass]="item.icon"></i>
+                          <span class="fs-14">{{ item.label }}</span>
+                        </span>
+                      </label>
+                      }
+                    </div>
+                  </div>
+
+                  <div class="forms-block mt-4">
+                    <label class="form-group-title" for="reason">
+                      Reason for Appointment <span class="text-danger">*</span>
+                    </label>
+                    <textarea class="form-control" placeholder="Describe what's going on with your pet in detail..."
+                      [(ngModel)]="reason" name="reason" rows="4"></textarea>
+                    <p class="characters-text">400 Characters</p>
+                  </div>
+                </form>
               </div>
               <div class="card-footer">
-                <div
-                  class="d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between"
-                >
-                  <a
-                    [routerLink]=""
-                    (click)="selectedFieldSet[0] = 2"
-                    class="btn btn-md btn-dark prev_btns inline-flex align-items-center rounded-pill"
-                  >
+                <div class="d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between">
+                  <a [routerLink]="" (click)="selectedFieldSet[0] = 2"
+                    class="btn btn-md btn-dark prev_btns inline-flex align-items-center rounded-pill">
                     <i class="isax isax-arrow-left-2 me-1"></i>
                     Back
                   </a>
-                  <a
-                    [routerLink]=""
-                    (click)="selectedFieldSet[0] = 4"
-                    class="btn btn-md btn-primary-gradient next_btns inline-flex align-items-center rounded-pill"
-                  >
+                  <a [routerLink]="" (click)="selectedFieldSet[0] = 4"
+                    class="btn btn-md btn-primary-gradient next_btns inline-flex align-items-center rounded-pill btn btn-md btn-dark prev_btns inline-flex align-items-center rounded-pill">
                     Select Payment
                     <i class="isax isax-arrow-right-3 ms-1"></i>
                   </a>
@@ -1097,19 +789,13 @@
                 <div class="booking-header pb-0">
                   <div class="card mb-0">
                     <div class="card-body">
-                      <div
-                        class="d-flex align-items-center flex-wrap rpw-gap-2 flex-wrap row-gap-2"
-                      >
-                        <span
-                          class="avatar avatar-xxxl avatar-rounded me-2 flex-shrink-0"
-                          ><img src="assets/img/clients/client-15.jpg" alt=""
-                        /></span>
+                      <div class="d-flex align-items-center flex-wrap rpw-gap-2 flex-wrap row-gap-2">
+                        <span class="avatar avatar-xxxl avatar-rounded me-2 flex-shrink-0"><img
+                            src="assets/img/doctor-grid/doctor-grid-011.webp" alt="" /></span>
                         <div>
                           <h4 class="mb-1">
                             Dr. Michael Brown
-                            <span class="badge bg-orange fs-12"
-                              ><i class="fa-solid fa-star me-1"></i>5.0</span
-                            >
+                            <span class="badge bg-orange fs-12"><i class="fa-solid fa-star me-1"></i>5.0</span>
                           </h4>
                           <p class="text-indigo mb-3 fw-medium">Psychologist</p>
                           <p class="mb-0">
@@ -1129,73 +815,33 @@
                       <div class="card-body">
                         <h6 class="mb-3">Payment Gateway</h6>
                         <div class="payment-tabs">
-                          <ul
-                            class="nav nav-pills mb-3 row"
-                            id="pills-tab"
-                            role="tablist"
-                          >
+                          <ul class="nav nav-pills mb-3 row" id="pills-tab" role="tablist">
                             <li class="nav-item col-sm-4" role="presentation">
-                              <button
-                                class="nav-link active"
-                                id="pills-home-tab"
-                                data-bs-toggle="pill"
-                                data-bs-target="#pills-home"
-                                type="button"
-                                role="tab"
-                              >
-                                <img
-                                  src="assets/img/icons/payment-icon-05.svg"
-                                  class="me-2"
-                                  alt=""
-                                />
+                              <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
+                                data-bs-target="#pills-home" type="button" role="tab">
+                                <img src="assets/img/icons/payment-icon-05.svg" class="me-2" alt="" />
                                 Credit Card
                               </button>
                             </li>
                             <li class="nav-item col-sm-4" role="presentation">
-                              <button
-                                class="nav-link"
-                                id="pills-profile-tab"
-                                data-bs-toggle="pill"
-                                data-bs-target="#pills-profile"
-                                type="button"
-                                role="tab"
-                              >
-                                <img
-                                  src="assets/img/icons/payment-icon-06.svg"
-                                  class="me-2"
-                                  alt=""
-                                />
+                              <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
+                                data-bs-target="#pills-profile" type="button" role="tab">
+                                <img src="assets/img/icons/payment-icon-06.svg" class="me-2" alt="" />
                                 Paypal
                               </button>
                             </li>
                             <li class="nav-item col-sm-4" role="presentation">
-                              <button
-                                class="nav-link"
-                                id="pills-contact-tab"
-                                data-bs-toggle="pill"
-                                data-bs-target="#pills-contact"
-                                type="button"
-                                role="tab"
-                              >
-                                <img
-                                  src="assets/img/icons/payment-icon-07.svg"
-                                  class="me-2"
-                                  alt=""
-                                />
+                              <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
+                                data-bs-target="#pills-contact" type="button" role="tab">
+                                <img src="assets/img/icons/payment-icon-07.svg" class="me-2" alt="" />
                                 Stripe
                               </button>
                             </li>
                           </ul>
                           <div class="tab-content" id="pills-tabContent">
-                            <div
-                              class="tab-pane fade show active"
-                              id="pills-home"
-                              role="tabpanel"
-                            >
+                            <div class="tab-pane fade show active" id="pills-home" role="tabpanel">
                               <div class="mb-3">
-                                <label class="form-label"
-                                  >Card Holder Name</label
-                                >
+                                <label class="form-label">Card Holder Name</label>
                                 <div class="position-relative input-icon">
                                   <input type="text" class="form-control" />
                                   <span><i class="isax isax-user"></i></span>
@@ -1205,18 +851,14 @@
                                 <label class="form-label">Card Number</label>
                                 <div class="position-relative input-icon">
                                   <input type="text" class="form-control" />
-                                  <span
-                                    ><i class="isax isax-card-tick"></i
-                                  ></span>
+                                  <span><i class="isax isax-card-tick"></i></span>
                                 </div>
                               </div>
                               <div class="mb-3">
                                 <label class="form-label">Expire Date</label>
                                 <div class="position-relative input-icon">
                                   <input type="text" class="form-control" />
-                                  <span
-                                    ><i class="isax isax-calendar-2"></i
-                                  ></span>
+                                  <span><i class="isax isax-calendar-2"></i></span>
                                 </div>
                               </div>
                               <div class="mb-0">
@@ -1227,11 +869,7 @@
                                 </div>
                               </div>
                             </div>
-                            <div
-                              class="tab-pane fade"
-                              id="pills-profile"
-                              role="tabpanel"
-                            >
+                            <div class="tab-pane fade" id="pills-profile" role="tabpanel">
                               <div class="mb-3">
                                 <label class="form-label">Email Address</label>
                                 <div class="position-relative input-icon">
@@ -1242,21 +880,12 @@
                               <div>
                                 <label class="form-label">Password</label>
                                 <div class="pass-group">
-                                  <input
-                                    type="password"
-                                    class="form-control pass-input"
-                                  />
-                                  <span
-                                    class="feather-eye-off toggle-password"
-                                  ></span>
+                                  <input type="password" class="form-control pass-input" />
+                                  <span class="feather-eye-off toggle-password"></span>
                                 </div>
                               </div>
                             </div>
-                            <div
-                              class="tab-pane fade"
-                              id="pills-contact"
-                              role="tabpanel"
-                            >
+                            <div class="tab-pane fade" id="pills-contact" role="tabpanel">
                               <div class="mb-3">
                                 <label class="form-label">Email Address</label>
                                 <div class="position-relative input-icon">
@@ -1267,13 +896,8 @@
                               <div>
                                 <label class="form-label">Password</label>
                                 <div class="pass-group">
-                                  <input
-                                    type="password"
-                                    class="form-control pass-input-sub"
-                                  />
-                                  <span
-                                    class="feather-eye-off toggle-password-sub"
-                                  ></span>
+                                  <input type="password" class="form-control pass-input-sub" />
+                                  <span class="feather-eye-off toggle-password-sub"></span>
                                 </div>
                               </div>
                             </div>
@@ -1300,36 +924,25 @@
                         </div>
                         <div class="pt-3 border-top booking-more-info">
                           <h6 class="mb-3">Payment Info</h6>
-                          <div
-                            class="d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between mb-2"
-                          >
+                          <div class="d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between mb-2">
                             <p class="mb-0">Echocardiograms</p>
                             <span class="fw-medium d-block">$200</span>
                           </div>
-                          <div
-                            class="d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between mb-2"
-                          >
+                          <div class="d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between mb-2">
                             <p class="mb-0">Booking Fees</p>
                             <span class="fw-medium d-block">$20</span>
                           </div>
-                          <div
-                            class="d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between mb-2"
-                          >
+                          <div class="d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between mb-2">
                             <p class="mb-0">Tax</p>
                             <span class="fw-medium d-block">$18</span>
                           </div>
-                          <div
-                            class="d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between mb-2"
-                          >
+                          <div class="d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between mb-2">
                             <p class="mb-0">Discount</p>
-                            <span class="fw-medium text-danger d-block"
-                              >-$15</span
-                            >
+                            <span class="fw-medium text-danger d-block">-$15</span>
                           </div>
                         </div>
                         <div
-                          class="bg-primary d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between p-3 rounded"
-                        >
+                          class="bg-primary d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between p-3 rounded">
                           <h6 class="text-white">Total</h6>
                           <h6 class="text-white">$320</h6>
                         </div>
@@ -1339,22 +952,14 @@
                 </div>
               </div>
               <div class="card-footer">
-                <div
-                  class="d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between"
-                >
-                  <a
-                    [routerLink]=""
-                    (click)="selectedFieldSet[0] = 3"
-                    class="btn btn-md btn-dark prev_btns inline-flex align-items-center rounded-pill"
-                  >
+                <div class="d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between">
+                  <a [routerLink]="" (click)="selectedFieldSet[0] = 3"
+                    class="btn btn-md btn-dark prev_btns inline-flex align-items-center rounded-pill">
                     <i class="isax isax-arrow-left-2 me-1"></i>
                     Back
                   </a>
-                  <a
-                    [routerLink]=""
-                    (click)="selectedFieldSet[0] = 5"
-                    class="btn btn-md btn-primary-gradient next_btns inline-flex align-items-center rounded-pill"
-                  >
+                  <a [routerLink]="" (click)="selectedFieldSet[0] = 5"
+                    class="btn btn-md btn-primary-gradient next_btns inline-flex align-items-center rounded-pill btn btn-md btn-dark prev_btns inline-flex align-items-center rounded-pill">
                     Confirm & Pay
                     <i class="isax isax-arrow-right-3 ms-1"></i>
                   </a>
@@ -1370,22 +975,14 @@
                     <div class="flex-fill">
                       <div class="card">
                         <div class="card-header">
-                          <h5
-                            class="d-flex align-items-center flex-wrap rpw-gap-2"
-                          >
-                            <i
-                              class="isax isax-tick-circle5 text-success me-2"
-                            ></i>
+                          <h5 class="d-flex align-items-center flex-wrap rpw-gap-2">
+                            <i class="isax isax-tick-circle5 text-success me-2"></i>
                             Booking Confirmed
                           </h5>
                         </div>
-                        <div
-                          class="card-header d-flex align-items-center flex-wrap rpw-gap-2"
-                        >
-                          <span
-                            class="avatar avatar-lg avatar-rounded me-2 flex-shrink-0"
-                            ><img src="assets/img/clients/client-16.jpg" alt=""
-                          /></span>
+                        <div class="card-header d-flex align-items-center flex-wrap rpw-gap-2">
+                          <span class="avatar avatar-lg avatar-rounded me-2 flex-shrink-0"><img
+                              src="assets/img/doctor-grid/doctor-grid-011.webp" alt="" /></span>
                           <p class="mb-0">
                             Your Booking has been Confirmed with
                             <span class="text-dark">Dr. Michael Brown </span> be
@@ -1395,16 +992,10 @@
                           </p>
                         </div>
                         <div class="card-body pb-1">
-                          <div
-                            class="d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between mb-3"
-                          >
+                          <div class="d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between mb-3">
                             <h6>Booking Info</h6>
-                            <a
-                              [routerLink]=""
-                              class="btn btn-light rounded-pill"
-                              ><i class="isax isax-calendar me-1"></i
-                              >Reschedule</a
-                            >
+                            <a [routerLink]="" class="btn btn-light rounded-pill"><i
+                                class="isax isax-calendar me-1"></i>Reschedule</a>
                           </div>
                           <div class="row">
                             <div class="col-md-6">
@@ -1417,9 +1008,7 @@
                             </div>
                             <div class="col-md-6">
                               <div class="mb-3">
-                                <label class="form-label"
-                                  >Additional Service</label
-                                >
+                                <label class="form-label">Additional Service</label>
                                 <div class="form-plain-text">
                                   Echocardiograms
                                 </div>
@@ -1435,22 +1024,16 @@
                             </div>
                             <div class="col-md-6">
                               <div class="mb-3">
-                                <label class="form-label"
-                                  >Appointment type</label
-                                >
+                                <label class="form-label">Appointment type</label>
                                 <div class="form-plain-text">Clinic</div>
                               </div>
                             </div>
                             <div class="col-md-6">
                               <div class="mb-3">
-                                <label class="form-label"
-                                  >Clinic Name & Location</label
-                                >
+                                <label class="form-label">Clinic Name & Location</label>
                                 <div class="form-plain-text">
                                   Wellness Path
-                                  <a [routerLink]="" class="text-primary"
-                                    >View Location</a
-                                  >
+                                  <a [routerLink]="" class="text-primary">View Location</a>
                                 </div>
                               </div>
                             </div>
@@ -1458,9 +1041,7 @@
                         </div>
                       </div>
                       <div class="card">
-                        <div
-                          class="card-body d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between"
-                        >
+                        <div class="card-body d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between">
                           <div>
                             <h6 class="mb-1">Need Our Assistance</h6>
                             <p class="mb-0">
@@ -1468,40 +1049,31 @@
                               Cancellation
                             </p>
                           </div>
-                          <a [routerLink]="" class="btn btn-light rounded-pill"
-                            ><i class="isax isax-call5 me-1"></i>Call Us</a
-                          >
+                          <a [routerLink]="" class="btn btn-light rounded-pill"><i class="isax isax-call5 me-1"></i>Call
+                            Us</a>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="col-lg-4 d-flex">
                     <div class="card flex-fill">
-                      <div
-                        class="card-body d-flex flex-column justify-content-between"
-                      >
+                      <div class="card-body d-flex flex-column justify-content-between">
                         <div class="text-center">
                           <h6 class="fs-14 mb-2">Booking Number</h6>
                           <span class="booking-id-badge mb-3">DCRA12565</span>
-                          <span class="d-block mb-3"
-                            ><img src="assets/img/icons/payment-qr.svg" alt=""
-                          /></span>
+                          <span class="d-block mb-3"><img src="assets/img/icons/payment-qr.svg" alt="" /></span>
                           <p>
                             Scan this QR Code to Download the details of
                             Appointment
                           </p>
                         </div>
                         <div>
-                          <a
-                            [routerLink]=""
-                            class="btn w-100 mb-3 btn-md btn-dark prev_btns inline-flex align-items-center rounded-pill"
-                          >
+                          <a [routerLink]=""
+                            class="btn w-100 mb-3 btn-md btn-dark prev_btns inline-flex align-items-center rounded-pill">
                             Add To Calendar
                           </a>
-                          <a
-                            [routerLink]="routes.search1"
-                            class="btn w-100 btn-md btn-primary-gradient next_btns inline-flex align-items-center rounded-pill"
-                          >
+                          <a [routerLink]="routes.search1"
+                            class="btn w-100 btn-md btn-primary-gradient next_btns inline-flex align-items-center rounded-pill btn w-100 mb-3 btn-md btn-dark prev_btns inline-flex align-items-center rounded-pill">
                             Start New Booking
                           </a>
                         </div>
@@ -1512,12 +1084,9 @@
               </div>
             </div>
             <div>
-              <a
-                [routerLink]="routes.booking"
-                (click)="selectedFieldSet[0] = 0"
-              >
+              <a [routerLink]="'/'" (click)="selectedFieldSet[0] = 0">
                 <i class="isax isax-arrow-left-2 me-1"></i>
-                Back to Bookings
+                Back to Home
               </a>
             </div>
           </fieldset>

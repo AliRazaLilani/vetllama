@@ -1,0 +1,67 @@
+.select {
+  background: white !important;
+  height: 39px !important;
+  padding: 0 10px !important;
+  line-height: 39px !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 4px !important;
+}
+
+.booking-widget .booking-body {
+  padding: 1rem 0;
+}
+
+.booking-widget .forms-block {
+  margin-bottom: 1.25rem;
+}
+
+.booking-widget .form-group {
+  margin-bottom: 0.9rem;
+}
+
+.booking-widget .form-group-title {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.booking-widget .form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.booking-widget .form-row .form-group {
+  flex: 1 1 48%;
+  min-width: 220px;
+}
+
+.booking-widget .checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 0.6rem;
+}
+
+.booking-widget .form-control,
+.booking-widget mat-select {
+  min-height: 40px;
+}
+
+.booking-widget .prescriber-options {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.booking-widget .custom-option-label,
+.booking-widget .checkbox-item {
+  margin-bottom: 0.65rem;
+  white-space: nowrap;
+}
+
+.booking-widget .characters-text {
+  margin-top: 0.4rem;
+}
+
+.booking-widget .card-footer {
+  margin-top: 1rem;
+}
