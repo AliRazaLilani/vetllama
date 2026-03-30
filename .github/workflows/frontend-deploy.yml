@@ -25,7 +25,30 @@ jobs:
       - name: Build Angular
         run: npm run build
 
-      - name: Clean old build on server
+      - name: Prepare temp folder on server
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            mkdir -p /home/ubuntu/frontend-deploy-temp
+            rm -rf /home/ubuntu/frontend-deploy-temp/*
+            sudo chown -R ubuntu:ubuntu /var/www/vetllama-frontend
+            mkdir -p /var/www/vetllama-frontend/dist
+
+      - name: Upload new build to temp folder
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          source: "dist/vetllama-frontend/browser/*"
+          target: "/home/ubuntu/frontend-deploy-temp"
+          strip_components: 3
+          overwrite: true
+
+      - name: Publish build to live folder
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.EC2_HOST }}
@@ -33,26 +56,7 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             rm -rf /var/www/vetllama-frontend/dist/*
-            mkdir -p /var/www/vetllama-frontend/dist
-            strip_components=3
-
-      - name: Upload new build
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_SSH_KEY }}
-          source: "dist/vetllama-frontend/browser/*"
-          target: "/var/www/vetllama-frontend/dist"
-          strip_components: 2
-
-      - name: Fix permissions and reload Nginx
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_SSH_KEY }}
-          script: |
-            sudo chown -R www-data:www-data /var/www/vetllama-frontend/dist
-            sudo chmod -R 755 /var/www/vetllama-frontend/dist
+            cp -r /home/ubuntu/frontend-deploy-temp/* /var/www/vetllama-frontend/dist/
+            find /var/www/vetllama-frontend -type d -exec chmod 755 {} \;
+            find /var/www/vetllama-frontend -type f -exec chmod 644 {} \;
             sudo systemctl reload nginx
