@@ -1,0 +1,41 @@
+.cta-tabs {
+  margin-top: 0 !important;
+  position: relative !important;
+  li.cta-pill {
+    margin-left: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    position: absolute;
+
+    a {
+      color: #a96e46;
+      // background: #a96e4665;
+      border-radius: 10px;
+      padding: 0.45rem 0.95rem;
+      font-size: 0.86rem;
+      font-weight: 600;
+      border: 1px solid transparent;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    &.active a {
+      background: #a96e46;
+      color: white;
+      // border-color: #2f4f98;
+    }
+
+    a:hover:not(.active) {
+      background: #a96e46;
+      color: white;
+    }
+  }
+}
+
+.header-navbar-rht {
+  margin-top: 0 !important;
+  li {
+    margin-top: 0 !important;
+  }
+}

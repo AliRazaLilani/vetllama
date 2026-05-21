@@ -1,0 +1,87 @@
+<header
+  class="header header-custom header-default inner-header header-fixed relative"
+  [ngClass]="{ fixed: isFixed }"
+>
+  <div class="container">
+    <nav class="navbar navbar-expand-lg header-nav">
+      <div class="navbar-header">
+        <a (click)="toggleSidebar()" id="mobile_btn" [routerLink]="">
+          <i class="fa-solid fa-bars"></i>
+        </a>
+        <a [routerLink]="'/'" class="navbar-brand logo">
+          <img src="assets/img/logo-3.png" class="img-fluid" alt="Logo" />
+        </a>
+      </div>
+      <div class="header-menu">
+        <div class="main-menu-wrapper">
+          <div class="menu-header">
+            <!-- <a [routerLink]="routes.index" class="menu-logo"> -->
+            <a class="menu-logo">
+              <img src="assets/img/logo-3.png" class="img-fluid" alt="Logo" />
+            </a>
+            <a id="menu_close" (click)="hideSidebar()" class="menu-close" [routerLink]="">
+              <i class="fas fa-times"></i
+            ></a>
+          </div>
+          <!-- <ul class="main-nav">
+            @for (mainMenus of header; track mainMenus; let i = $index) {
+              <li
+                class="has-submenu"
+                routerLinkActive="active"
+                [ngClass]="{
+                  megamenu: mainMenus.tittle === 'Home' || mainMenus.tittle === 'Pages',
+                }"
+              >
+                <a
+                  [routerLink]=""
+                  class="main-menu"
+                  (click)="mainMenus.showAsTab = !mainMenus.showAsTab"
+                  [ngClass]="{ submenu: openDropdownIndex === i }"
+                  (click)="toggleSubMenu(i)"
+                >
+                  {{ mainMenus.tittle }} -->
+                  <!-- Index-6 uses fa-plus instead of fa-chevron-down -->
+                  <!-- <span
+                  ><i
+                    [ngClass]=""
+                      base === 'index-4' ||
+                      base === 'index-5' ||
+                      base === 'index-6'
+                        ? 'fa-solid fa-plus'
+                        : 'fa-solid fa-chevron-down'
+                    "
+                  ></i
+                ></span> -->
+                <!-- </a>
+              </li>
+            }
+          </ul> -->
+        </div>
+      </div>
+
+      <!-- Book Appointment + CTA Toggles -->
+      <ul class="nav header-navbar-rht align-items-center cta-tabs">
+        <li>
+            <!-- <a [routerLink]="routes.mapGrid" class="theme-btn btn-md btn-primary"> -->
+          <a class="theme-btn btn-md btn-primary">
+            <i class="isax isax-calendar-1 me-2"></i><span>Book Appointment</span>
+          </a>
+        </li>
+        <li
+          class="cta-pill"
+          [ngClass]="{ active: selectedCTA === 'order' }"
+          style="top: -23px; left: -342px"
+        >
+          <a (click)="selectCTA('order')">Pet parents</a>
+        </li>
+        <li
+          class="cta-pill"
+          [ngClass]="{ active: selectedCTA === 'consult' }"
+          style="top: -23px; left: -240px"
+        >
+          <a (click)="selectCTA('consult')">Veterinarians</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

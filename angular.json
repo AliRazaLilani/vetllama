@@ -20,9 +20,18 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
+            "outputPath": "dist/vetlama-marketing",
+            "allowedCommonJsDependencies": ["intl-tel-input", "aos", "file-saver"],
+            "polyfills": ["zone.js"],
+            "index": "src/index.html",
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
+            "stylePreprocessorOptions": {
+              "sass": {
+                "silenceDeprecations": ["import"]
+              }
+            },
             "assets": [
               {
                 "glob": "**/*",
@@ -30,21 +39,41 @@
               }
             ],
             "styles": [
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+              "node_modules/swiper/swiper-bundle.css",
+              "node_modules/swiper/swiper-bundle.min.css",
+              "node_modules/intl-tel-input/build/css/intlTelInput.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/aos/dist/aos.css",
+              "node_modules/ngx-owl-carousel-o/lib/styles/scss/owl.carousel.scss",
+              "node_modules/ngx-owl-carousel-o/lib/styles/scss/owl.theme.default.scss",
               "src/styles.scss"
+            ],
+            "scripts": [
+              "node_modules/intl-tel-input/build/js/intlTelInput.min.js",
+              "node_modules/aos/dist/aos.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.js"
             ]
           },
           "configurations": {
             "production": {
+              "optimization": {
+                "scripts": true,
+                "styles": true,
+                "fonts": false
+              },
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "5mb",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
+                  "maximumWarning": "5mb",
+                  "maximumError": "5mb"
                 }
               ],
               "outputHashing": "all"
@@ -69,10 +98,53 @@
           },
           "defaultConfiguration": "development"
         },
+        "extract-i18n": {
+          "builder": "@angular/build:extract-i18n"
+        },
         "test": {
-          "builder": "@angular/build:unit-test"
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "polyfills": ["zone.js", "zone.js/testing", "@angular/localize/init"],
+            "tsConfig": "tsconfig.spec.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "public"
+              }
+            ]
+          }
         }
       }
+    }
+  },
+  "cli": {
+    "analytics": "eb1527b4-fac2-49d9-b484-150d131ba2cf"
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "type": "component"
+    },
+    "@schematics/angular:directive": {
+      "type": "directive"
+    },
+    "@schematics/angular:service": {
+      "type": "service"
+    },
+    "@schematics/angular:guard": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:interceptor": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:module": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:pipe": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:resolver": {
+      "typeSeparator": "."
     }
   }
 }
