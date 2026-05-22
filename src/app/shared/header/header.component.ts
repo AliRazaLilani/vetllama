@@ -2,11 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component, HostListener } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { LightgalleryModule } from 'lightgallery/angular';
-// import { homeHeader } from '../../core/model/sidebar-model';
-// import { routes } from '../../core/routes/routes';
-// import { CommonService } from '../../core/services/common/common.service';
-// import { DataService } from '../../core/services/data/data.service';
-// import { SidebarService } from '../../core/services/sidebar/sidebar.service';
+import { homeHeader } from '../../core/model/sidebar-model';
+import { CommonService } from '../../core/services/common/common.service';
+import { DataService } from '../../core/services/data/data.service';
+import { SidebarService } from '../../core/services/sidebar/sidebar.service';
+import { routes } from 'src/app/core/routes/routes';
 
 @Component({
   selector: 'app-header',
@@ -16,8 +16,8 @@ import { LightgalleryModule } from 'lightgallery/angular';
 })
 export class HeaderComponent {
   public searchField = false;
-  // public routes = routes;
-  // public header: homeHeader[];
+  public routes = routes;
+  public header: homeHeader[];
   base = '';
   page = '';
   last = '';
@@ -32,33 +32,33 @@ export class HeaderComponent {
   public selectedCTA: 'order' | 'consult' = 'order';
 
   constructor(
-    // private common: CommonService,
-    // private data: DataService,
-    // public sidebar: SidebarService,
-    // private router: Router,
+    private common: CommonService,
+    private data: DataService,
+    public sidebar: SidebarService,
+    private router: Router,
   ) {
-    // this.common.base.subscribe((res: string) => {
-    //   this.base = res;
-    //   this.overlay = false;
-    // });
-    // this.common.page.subscribe((res: string) => {
-    //   this.page = res;
-    //   this.overlay = false;
-    // });
-    // this.common.last.subscribe((res: string) => {
-    //   this.last = res;
-    //   this.overlay = false;
-    // });
-    // this.header = this.sidebar.Home_Header;
+    this.common.base.subscribe((res: string) => {
+      this.base = res;
+      this.overlay = false;
+    });
+    this.common.page.subscribe((res: string) => {
+      this.page = res;
+      this.overlay = false;
+    });
+    this.common.last.subscribe((res: string) => {
+      this.last = res;
+      this.overlay = false;
+    });
+    this.header = this.sidebar.Home_Header;
   }
 
   public toggleSidebar(): void {
-    // this.sidebar.openSidebar();
+    this.sidebar.openSidebar();
     this.overlay = true;
     document.body.style.overflow = 'hidden';
   }
   public hideSidebar(): void {
-    // this.sidebar.closeSidebar();
+    this.sidebar.closeSidebar();
     this.overlay = false;
     document.body.style.overflow = '';
   }
@@ -75,9 +75,9 @@ export class HeaderComponent {
     this.selectedCTA = cta;
 
     if (cta === 'order') {
-      // this.router.navigate(['/']);
+      this.router.navigate(['/']);
     } else {
-      // this.router.navigate([routes.vetRegistration]);
+      this.router.navigate([routes.vetRegistration]);
     }
   }
 
@@ -86,7 +86,7 @@ export class HeaderComponent {
   }
 
   public navigation() {
-    // this.router.navigate([routes.search1]);
+    this.router.navigate([routes.search1]);
   }
 
   @HostListener('window:scroll', [])
@@ -111,7 +111,7 @@ export class HeaderComponent {
   }
   ngOnInit(): void {
     const themeColor = localStorage.getItem('themeColor') || 'light-mode';
-    // this.sidebar.changeThemeColor(themeColor);
+    this.sidebar.changeThemeColor(themeColor);
   }
   darkMode(): void {
     this.isdark = !this.isdark;
@@ -119,9 +119,9 @@ export class HeaderComponent {
   }
 
   onSubmit(): void {
-    // this.router.navigateByUrl('/search-doctor/search1');
+    this.router.navigateByUrl('/search-doctor/search1');
   }
   navigate(): void {
-    // this.router.navigate([routes.search1]);
+    this.router.navigate([routes.search1]);
   }
 }

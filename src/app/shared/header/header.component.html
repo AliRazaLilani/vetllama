@@ -15,15 +15,14 @@
       <div class="header-menu">
         <div class="main-menu-wrapper">
           <div class="menu-header">
-            <!-- <a [routerLink]="routes.index" class="menu-logo"> -->
-            <a class="menu-logo">
+            <a [routerLink]="routes.index" class="menu-logo">
               <img src="assets/img/logo-3.png" class="img-fluid" alt="Logo" />
             </a>
             <a id="menu_close" (click)="hideSidebar()" class="menu-close" [routerLink]="">
               <i class="fas fa-times"></i
             ></a>
           </div>
-          <!-- <ul class="main-nav">
+          <ul class="main-nav">
             @for (mainMenus of header; track mainMenus; let i = $index) {
               <li
                 class="has-submenu"
@@ -39,7 +38,7 @@
                   [ngClass]="{ submenu: openDropdownIndex === i }"
                   (click)="toggleSubMenu(i)"
                 >
-                  {{ mainMenus.tittle }} -->
+                  {{ mainMenus.tittle }}
                   <!-- Index-6 uses fa-plus instead of fa-chevron-down -->
                   <!-- <span
                   ><i
@@ -52,18 +51,17 @@
                     "
                   ></i
                 ></span> -->
-                <!-- </a>
+                </a>
               </li>
             }
-          </ul> -->
+          </ul>
         </div>
       </div>
 
       <!-- Book Appointment + CTA Toggles -->
       <ul class="nav header-navbar-rht align-items-center cta-tabs">
         <li>
-            <!-- <a [routerLink]="routes.mapGrid" class="theme-btn btn-md btn-primary"> -->
-          <a class="theme-btn btn-md btn-primary">
+          <a [routerLink]="routes.mapGrid" class="theme-btn btn-md btn-primary">
             <i class="isax isax-calendar-1 me-2"></i><span>Book Appointment</span>
           </a>
         </li>
