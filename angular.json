@@ -40,10 +40,13 @@
             ],
             "styles": [
               "node_modules/primeicons/primeicons.css",
+              "src/assets/admin/css/feathericon.min.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "src/assets/css/feather.css",
               "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
               "node_modules/swiper/swiper-bundle.css",
               "node_modules/swiper/swiper-bundle.min.css",
+              "src/assets/css/iconsax.css",
               "node_modules/intl-tel-input/build/css/intlTelInput.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/aos/dist/aos.css",
