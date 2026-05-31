@@ -158,7 +158,7 @@ export const routes = {
   editDependent: '/patients/dependent/edit-dependent',
   doctorProfile1: '/patients/doctor-profile/doctor-profile1',
   doctorProfile2: '/patients/doctor-profile/doctor-profile2',
-  mapGrid: '/patients/doctors/map-grid',
+  mapGrid: '/doctors/map-grid', // '/patients/doctors/map-grid'
   mapList: '/patients/doctors/map-list',
   mapListAvailability: '/patients/doctors/map-list-availability',
   favourites: '/patients/favourites',
