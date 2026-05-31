@@ -27,6 +27,13 @@ export const Page_Routes: Routes = [
                 (m) => m.MapGridComponent,
               ),
           },
+          {
+            path: 'booking',
+            loadComponent: () =>
+              import('./doctors/booking/booking.component').then(
+                (m) => m.BookingComponent,
+              ),
+          },
         ],
       },
     ],

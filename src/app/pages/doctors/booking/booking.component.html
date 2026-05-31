@@ -1,0 +1,1014 @@
+<!-- /Header -->
+
+<!-- Terms -->
+<div class="doctor-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9 mx-auto">
+        <div class="booking-wizard">
+          <ul class="form-wizard-steps d-sm-flex align-items-center justify-content-center" id="progressbar2">
+            <!--
+            <li
+              class="progress-active"
+              [ngClass]="{
+                'progress-active': selectedFieldSet[0] === 0,
+                'progress-activated': selectedFieldSet[0] > 0,
+              }"
+            >
+              <div class="profile-step">
+                <span class="multi-steps">1</span>
+                <div class="step-section">
+                  <h6>Specialty</h6>
+                </div>
+              </div>
+            </li>
+            -->
+            <li [ngClass]="{
+                'progress-active': selectedFieldSet[0] === 1,
+                'progress-activated': selectedFieldSet[0] > 1,
+              }">
+              <div class="profile-step">
+                <span class="multi-steps">1</span>
+                <div class="step-section">
+                  <h6>Appointment Type</h6>
+                </div>
+              </div>
+            </li>
+            <li [ngClass]="{
+                'progress-active': selectedFieldSet[0] === 2,
+                'progress-activated': selectedFieldSet[0] > 2,
+              }">
+              <div class="profile-step">
+                <span class="multi-steps">2</span>
+                <div class="step-section">
+                  <h6>Date & Time</h6>
+                </div>
+              </div>
+            </li>
+            <li [ngClass]="{
+                'progress-active': selectedFieldSet[0] === 3,
+                'progress-activated': selectedFieldSet[0] > 3,
+              }">
+              <div class="profile-step">
+                <span class="multi-steps">3</span>
+                <div class="step-section">
+                  <h6>Basic Information</h6>
+                </div>
+              </div>
+            </li>
+            <li [ngClass]="{
+                'progress-active': selectedFieldSet[0] === 4,
+                'progress-activated': selectedFieldSet[0] > 4,
+              }">
+              <div class="profile-step">
+                <span class="multi-steps">4</span>
+                <div class="step-section">
+                  <h6>Payment</h6>
+                </div>
+              </div>
+            </li>
+            <li [ngClass]="{
+                'progress-active': selectedFieldSet[0] === 5,
+                'progress-activated': selectedFieldSet[0] > 5,
+              }">
+              <div class="profile-step">
+                <span class="multi-steps">5</span>
+                <div class="step-section">
+                  <h6>Confirmation</h6>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="booking-widget multistep-form mb-5">
+          <!--
+          <fieldset
+            id="first"
+            [ngClass]="{
+              'd-block': selectedFieldSet[0] === 0,
+              'd-none': selectedFieldSet[0] !== 0,
+            }"
+          >
+            <div class="card booking-card mb-0">
+              <div class="card-header">
+                <div class="booking-header pb-0">
+                  <div class="card mb-0">
+                    <div class="card-body">
+                      <div
+                        class="d-flex align-items-center flex-wrap rpw-gap-2 flex-wrap row-gap-2"
+                      >
+                        <span
+                          class="avatar avatar-xxxl avatar-rounded me-2 flex-shrink-0"
+                          ><img src="assets/img/clients/client-15.jpg" alt=""
+                        /></span>
+                        <div>
+                          <h4 class="mb-1">
+                            Dr. Michael Brown
+                            <span class="badge bg-orange fs-12"
+                              ><i class="fa-solid fa-star me-1"></i>5.0</span
+                            >
+                          </h4>
+                          <p class="text-indigo mb-3 fw-medium">Psychologist</p>
+                          <p class="mb-0">
+                            <i class="isax isax-location me-2"></i>5th Street -
+                            1011 W 5th St, Suite 120, Austin, TX 78703
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body booking-body">
+                <div class="card mb-0">
+                  <div class="card-body pb-1">
+                    <div class="mb-4 pb-4 border-bottom">
+                      <label class="form-label">Select Speciality</label>
+                      <mat-select
+                        class="custom-mat-select select"
+                        placeholder="Cardiology"
+                      >
+                        <mat-option value="1">Cardiology</mat-option>
+                        <mat-option value="1">Neurology</mat-option>
+                        <mat-option value="1">Urology</mat-option>
+                      </mat-select>
+                    </div>
+                    <h6 class="mb-3">Services</h6>
+                    <div class="row">
+                      <div class="col-lg-4 col-md-6">
+                        <div class="service-item active">
+                          <input
+                            class="form-check-input ms-0 mt-0"
+                            name="service1"
+                            type="checkbox"
+                            id="service1"
+                            checked
+                          />
+                          <label class="form-check-label ms-2" for="service1">
+                            <span class="service-title d-block mb-1"
+                              >Echocardiograms</span
+                            >
+                            <span class="fs-14 d-block">$310</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-md-6">
+                        <div class="service-item">
+                          <input
+                            class="form-check-input ms-0 mt-0"
+                            name="service1"
+                            type="checkbox"
+                            id="service2"
+                          />
+                          <label class="form-check-label ms-2" for="service2">
+                            <span class="service-title d-block mb-1"
+                              >Stress tests</span
+                            >
+                            <span class="fs-14 d-block">$754</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-md-6">
+                        <div class="service-item">
+                          <input
+                            class="form-check-input ms-0 mt-0"
+                            name="service1"
+                            type="checkbox"
+                            id="service3"
+                          />
+                          <label class="form-check-label ms-2" for="service3">
+                            <span class="service-title d-block mb-1"
+                              >Stress tests</span
+                            >
+                            <span class="fs-14 d-block">$754</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-md-6">
+                        <div class="service-item">
+                          <input
+                            class="form-check-input ms-0 mt-0"
+                            name="service1"
+                            type="checkbox"
+                            id="service4"
+                          />
+                          <label class="form-check-label ms-2" for="service4">
+                            <span class="service-title d-block mb-1"
+                              >Heart Catheterization</span
+                            >
+                            <span class="fs-14 d-block">$150</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-md-6">
+                        <div class="service-item">
+                          <input
+                            class="form-check-input ms-0 mt-0"
+                            name="service1"
+                            type="checkbox"
+                            id="service5"
+                          />
+                          <label class="form-check-label ms-2" for="service5">
+                            <span class="service-title d-block mb-1"
+                              >Echocardiograms</span
+                            >
+                            <span class="fs-14 d-block">$200</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-md-6">
+                        <div class="service-item">
+                          <input
+                            class="form-check-input ms-0 mt-0"
+                            name="service1"
+                            type="checkbox"
+                            id="service6"
+                          />
+                          <label class="form-check-label ms-2" for="service6">
+                            <span class="service-title d-block mb-1"
+                              >Echocardiograms</span
+                            >
+                            <span class="fs-14 d-block">$200</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer">
+
+                <div
+                  class="d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between"
+                >
+                  <a
+                    [routerLink]="'/patients/doctors/map-grid'"
+                    class="btn btn-md btn-dark inline-flex align-items-center rounded-pill"
+                  >
+                    <i class="isax isax-arrow-left-2 me-1"></i>
+                    Back
+                  </a>
+                  <a
+                    [routerLink]=""
+                    (click)="selectedFieldSet[0] = 1"
+                    class="btn btn-md btn-primary-gradient next_btns inline-flex align-items-center rounded-pill btn btn-md btn-dark prev_btns inline-flex align-items-center rounded-pill"
+                  >
+                    Select Appointment Type
+                    <i class="isax isax-arrow-right-3 ms-1"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+          -->
+          <fieldset [class.d-block]="selectedFieldSet[0] === 1">
+            <div class="card booking-card mb-0">
+              <div class="card-header">
+                <div class="booking-header pb-0">
+                  <div class="card mb-0">
+                    <div class="card-body">
+                      <div class="d-flex align-items-center flex-wrap rpw-gap-2 flex-wrap row-gap-2">
+                        <span class="avatar avatar-xxxl avatar-rounded me-2 flex-shrink-0">
+                          <img src="assets/img/doctor-grid/doctor-grid-011.webp" alt="" />
+                        </span>
+                        <div>
+                          <h4 class="mb-1">
+                            Dr. Michael Brown
+                            <span class="badge bg-orange fs-12"><i class="fa-solid fa-star me-1"></i>5.0</span>
+                          </h4>
+                          <p class="text-indigo mb-3 fw-medium">Psychologist</p>
+                          <p class="mb-0">
+                            <i class="isax isax-location me-2"></i>5th Street -
+                            1011 W 5th St, Suite 120, Austin, TX 78703
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body booking-body">
+                <div class="card mb-0">
+                  <div class="card-body pb-1">
+                    <div class="mb-4">
+                      <h5 class="mb-3">Select Appointment Type</h5>
+                      <div class="row justify-content-center">
+                        <div class="col-md-6">
+                          <div class="service-item mb-0 h-100 p-4 selector-box cursor-pointer active">
+                            <div class="d-flex align-items-center justify-content-between">
+                              <div class="d-flex align-items-center">
+                                <div class="avatar avatar-md bg-outline-primary rounded-circle me-3">
+                                  <i class="isax isax-video5 fs-20"></i>
+                                </div>
+                                <div>
+                                  <h6 class="mb-0">Video Call</h6>
+                                  <p class="fs-12 mb-0">Speak with our pet experts online</p>
+                                </div>
+                              </div>
+                              <div class="form-check mb-0">
+                                <input class="form-check-input" type="radio" name="appType" checked />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer">
+                <div class="d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between">
+                  <a [routerLink]="routes.search1"
+                    class="btn btn-md btn-dark inline-flex align-items-center rounded-pill">
+                    <i class="isax isax-arrow-left-2 me-1"></i>
+                    Back
+                  </a>
+                  <a (click)="selectedFieldSet[0] = 2"
+                    class=" btn btn-md btn-dark inline-flex align-items-center rounded-pill btn btn-md btn-primary-gradient next_btns inline-flex align-items-center rounded-pill">
+                    Select Date & Time
+                    <i class="isax isax-arrow-right-3 ms-1"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset [class.d-block]="selectedFieldSet[0] === 2">
+            <div class="card booking-card mb-0">
+              <div class="card-header">
+                <div class="booking-header pb-0">
+                  <div class="card mb-0">
+                    <div class="card-body">
+                      <div class="d-flex align-items-center flex-wrap rpw-gap-2 mb-4 flex-wrap row-gap-2">
+                        <span class="avatar avatar-xxxl avatar-rounded me-2 flex-shrink-0"><img
+                            src="assets/img/doctor-grid/doctor-grid-011.webp" alt="" /></span>
+                        <div>
+                          <h4 class="mb-1">
+                            Dr. Michael Brown
+                            <span class="badge bg-orange fs-12"><i class="fa-solid fa-star me-1"></i>5.0</span>
+                          </h4>
+                          <p class="text-indigo mb-3 fw-medium">Psychologist</p>
+                          <p class="mb-0">
+                            <i class="isax isax-location me-2"></i>5th Street -
+                            1011 W 5th St, Suite 120, Austin, TX 78703
+                          </p>
+                        </div>
+                      </div>
+                      <h6 class="mb-2">Booking Info</h6>
+                      <div class="row gx-2 gy-3">
+                        <div class="col-lg-3 col-sm-6">
+                          <div>
+                            <h6 class="fs-14 fw-medium mb-1">Service</h6>
+                            <p class="mb-0">Cardiology (30 Mins)</p>
+                          </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                          <div>
+                            <h6 class="fs-14 fw-medium mb-1">Service</h6>
+                            <p class="mb-0">Echocardiograms</p>
+                          </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                          <div>
+                            <h6 class="fs-14 fw-medium mb-1">Date & Time</h6>
+                            <p class="mb-0">
+                              {{ selectedSlotTime || '---' }},
+                              {{ bsInlineValue | date: 'dd, MMM' }}
+                            </p>
+                          </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                          <div>
+                            <h6 class="fs-14 fw-medium mb-1">
+                              Appointment type
+                            </h6>
+                            <p class="mb-0">Clinic (Wellness Path)</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body booking-body">
+                <div class="card mb-0">
+                  <div class="card-body pb-1">
+                    <div class="row">
+                      <div class="col-lg-5">
+                        <div class="card">
+                          <div class="card-body p-2 pt-3">
+                            <bs-datepicker-inline [bsValue]="bsInlineValue" [minDate]="minDate"
+                              (bsValueChange)="bsInlineValue = $event"></bs-datepicker-inline>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-7">
+                        <div class="card booking-wizard-slots">
+                          <div class="card-body">
+                            <div class="book-title">
+                              <h6 class="fs-14 mb-2">Morning</h6>
+                            </div>
+                            <div class="token-slot mt-2 mb-2">
+                              <div class="form-check-inline visits me-0"
+                                *ngFor="let slot of morningSlots; let i = index">
+                                <label class="visit-btns">
+                                  <input type="radio" class="form-check-input" name="appointmentSlot" [value]="slot"
+                                    [(ngModel)]="selectedSlotTime" [disabled]="isSlotDisabled(slot)" />
+                                  <span class="visit-rsn">{{ slot }}</span>
+                                </label>
+                              </div>
+                            </div>
+                            <div class="book-title">
+                              <h6 class="fs-14 mb-2">Afternoon</h6>
+                            </div>
+                            <div class="token-slot mt-2 mb-2">
+                              <div class="form-check-inline visits me-0"
+                                *ngFor="let slot of afternoonSlots; let i = index">
+                                <label class="visit-btns">
+                                  <input type="radio" class="form-check-input" name="appointmentSlot" [value]="slot"
+                                    [(ngModel)]="selectedSlotTime" [disabled]="isSlotDisabled(slot)" />
+                                  <span class="visit-rsn">{{ slot }}</span>
+                                </label>
+                              </div>
+                            </div>
+                            <div class="book-title">
+                              <h6 class="fs-14 mb-2">Evening</h6>
+                            </div>
+                            <div class="token-slot mt-2 mb-2">
+                              <div class="form-check-inline visits me-0"
+                                *ngFor="let slot of eveningSlots; let i = index">
+                                <label class="visit-btns">
+                                  <input type="radio" class="form-check-input" name="appointmentSlot" [value]="slot"
+                                    [(ngModel)]="selectedSlotTime" [disabled]="isSlotDisabled(slot)" />
+                                  <span class="visit-rsn">{{ slot }}</span>
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer">
+                <div class="d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between">
+                  <a (click)="selectedFieldSet[0] = 1"
+                    class="btn btn-md btn-dark prev_btns inline-flex align-items-center rounded-pill">
+                    <i class="isax isax-arrow-left-2 me-1"></i>
+                    Back
+                  </a>
+                  <a [routerLink]="" (click)="selectedFieldSet[0] = 3"
+                    class="btn btn-md btn-primary-gradient next_btns inline-flex align-items-center rounded-pill btn btn-md btn-dark prev_btns inline-flex align-items-center rounded-pill">
+                    Add Basic Information
+                    <i class="isax isax-arrow-right-3 ms-1"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset [class.d-block]="selectedFieldSet[0] === 3">
+            <div class="card booking-card mb-0">
+              <div class="card-header">
+                <div class="booking-header pb-0">
+                  <div class="card mb-0">
+                    <div class="card-body">
+                      <div class="d-flex align-items-center flex-wrap rpw-gap-2 mb-4 flex-wrap row-gap-2">
+                        <span class="avatar avatar-xxxl avatar-rounded me-2 flex-shrink-0"><img
+                            src="assets/img/doctor-grid/doctor-grid-011.webp" alt="" /></span>
+                        <div>
+                          <h4 class="mb-1">
+                            Dr. Michael Brown
+                            <span class="badge bg-orange fs-12"><i class="fa-solid fa-star me-1"></i>5.0</span>
+                          </h4>
+                          <p class="text-indigo mb-3 fw-medium">Psychologist</p>
+                          <p class="mb-0">
+                            <i class="isax isax-location me-2"></i>5th Street -
+                            1011 W 5th St, Suite 120, Austin, TX 78703
+                          </p>
+                        </div>
+                      </div>
+                      <h6 class="mb-2">Booking Info</h6>
+                      <div class="row gx-2 gy-3">
+                        <div class="col-lg-3 col-sm-6">
+                          <div>
+                            <h6 class="fs-14 fw-medium mb-1">Service</h6>
+                            <p class="mb-0">Cardiology (30 Mins)</p>
+                          </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                          <div>
+                            <h6 class="fs-14 fw-medium mb-1">Service</h6>
+                            <p class="mb-0">Echocardiograms</p>
+                          </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                          <div>
+                            <h6 class="fs-14 fw-medium mb-1">Date & Time</h6>
+                            <p class="mb-0"> {{ selectedSlotTime || '---' }} {{ bsInlineValue | date: 'dd, MMM' }}</p>
+                          </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                          <div>
+                            <h6 class="fs-14 fw-medium mb-1">
+                              Appointment type
+                            </h6>
+                            <p class="mb-0">Clinic (Wellness Path)</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body booking-body" style="padding: 15px 30px">
+                <form>
+                  <div class="forms-block">
+                    <h5 class="form-section-title">Your Information</h5>
+                  </div>
+                  <div class="forms-block">
+                    <div class="form-row">
+                      <div class="form-group">
+                        <label class="form-group-title" for="userName">
+                          Name <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" class="form-control" id="userName" placeholder="Enter your name"
+                          [(ngModel)]="name" name="name" />
+                      </div>
+                      <div class="form-group">
+                        <label class="form-group-title" for="email">
+                          Email <span class="text-danger">*</span>
+                        </label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter your email"
+                          [(ngModel)]="email" name="email" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="forms-block">
+                    <div class="form-row">
+                      <div class="form-group">
+                        <label class="form-group-title" for="phone">
+                          Phone Number <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" class="form-control" id="phone" placeholder="Enter your phone number"
+                          [(ngModel)]="phone" name="phone" />
+                      </div>
+                    </div>
+                  </div>
+                  <hr class="my-4">
+                  <div class="forms-block">
+                    <h5 class="form-section-title">Tell Us About Your Pet</h5>
+                  </div>
+                  <div class="forms-block">
+                    <div class="form-row">
+                      <div class="form-group">
+                        <label class="form-group-title" for="petName">
+                          Pet Name <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" class="form-control" id="petName" placeholder="e.g. Bella"
+                          [(ngModel)]="petName" name="petName" />
+                      </div>
+                      <div class="form-group">
+                        <label class="form-group-title" for="species">
+                          Species <span class="text-danger">*</span>
+                        </label>
+                        <mat-select class="select" [(ngModel)]="selectedValue1" [ngModelOptions]="{ standalone: true }"
+                          panelClass="patientDetailsSelect" id="species" name="species">
+                          @for (data of species; track data.value) {
+                          <mat-option [value]="data.value">
+                            {{ data.value }}
+                          </mat-option>
+                          }
+                        </mat-select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="forms-block">
+                    <div class="form-row">
+                      <div class="form-group">
+                        <label class="form-group-title" for="petBreed">
+                          Breed
+                        </label>
+                        <input type="text" class="form-control" id="petBreed" placeholder="e.g. Golden Retriever"
+                          [(ngModel)]="petBreed" name="petBreed" />
+                      </div>
+                      <div class="form-group">
+                        <label class="form-group-title" for="petDob">
+                          Date of Birth <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" class="form-control" id="petDob" placeholder="MM / DD / YYYY"
+                          [(ngModel)]="petDob" name="petDob" bsDatepicker
+                          [bsConfig]="{ containerClass: 'theme-default' }" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="forms-block mt-4">
+                    <label class="form-group-title">Sex <span class="text-danger">*</span></label>
+                    <div class="row row-gap-3">
+                      <div class="col-md-4">
+                        <div class="service-item mb-0" [class.active]="petSex === 'Male'" (click)="petSex = 'Male'">
+                          <div class="d-flex align-items-center">
+                            <div class="form-check me-2 mb-0">
+                              <input class="form-check-input" type="radio" value="Male" [(ngModel)]="petSex"
+                                name="petSex" [checked]="petSex === 'Male'" />
+                            </div>
+                            <span>Male</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="service-item mb-0" [class.active]="petSex === 'Female'" (click)="petSex = 'Female'">
+                          <div class="d-flex align-items-center">
+                            <div class="form-check me-2 mb-0">
+                              <input class="form-check-input" type="radio" value="Female" [(ngModel)]="petSex"
+                                name="petSex" [checked]="petSex === 'Female'" />
+                            </div>
+                            <span>Female</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="service-item mb-0" [class.active]="petSex === 'Unknown'"
+                          (click)="petSex = 'Unknown'">
+                          <div class="d-flex align-items-center">
+                            <div class="form-check me-2 mb-0">
+                              <input class="form-check-input" type="radio" value="Unknown" [(ngModel)]="petSex"
+                                name="petSex" [checked]="petSex === 'Unknown'" />
+                            </div>
+                            <span>Unknown</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="forms-block mt-4">
+                    <h6 class="text-uppercase fs-13 fw-semibold text-cyan mb-3">
+                      CONCERNS * (SELECT ALL THAT APPLY)
+                    </h6>
+                    <div class="checkbox-grid">
+                      @for (item of concerns; track item.id) {
+                      <label class="checkbox-item border p-2 rounded d-flex align-items-center mb-0"
+                        style="min-height: 45px">
+                        <input type="checkbox" [id]="item.id" class="me-2" />
+                        <span class="checkbox-label d-flex align-items-center w-100">
+                          <i class="fa me-2 fs-14" [ngClass]="item.icon"></i>
+                          <span class="fs-14">{{ item.label }}</span>
+                        </span>
+                      </label>
+                      }
+                    </div>
+                  </div>
+
+                  <div class="forms-block mt-4">
+                    <label class="form-group-title" for="reason">
+                      Reason for Appointment
+                    </label>
+                    <textarea class="form-control" placeholder="Describe what's going on with your pet in detail..."
+                      [(ngModel)]="reason" name="reason" rows="4"></textarea>
+                    <p class="characters-text">400 Characters</p>
+                  </div>
+                </form>
+              </div>
+              <div class="card-footer">
+                <div class="d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between">
+                  <a [routerLink]="" (click)="selectedFieldSet[0] = 2"
+                    class="btn btn-md btn-dark prev_btns inline-flex align-items-center rounded-pill">
+                    <i class="isax isax-arrow-left-2 me-1"></i>
+                    Back
+                  </a>
+                  <a [routerLink]="" (click)="selectedFieldSet[0] = 4"
+                    class="btn btn-md btn-primary-gradient next_btns inline-flex align-items-center rounded-pill btn btn-md btn-dark prev_btns inline-flex align-items-center rounded-pill">
+                    Select Payment
+                    <i class="isax isax-arrow-right-3 ms-1"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+          <!--
+          <fieldset [class.d-block]="selectedFieldSet[0] === 1">
+            <div class="card booking-card mb-0">
+               ... content omitted ...
+            </div>
+          </fieldset>
+          -->
+          <fieldset [class.d-block]="selectedFieldSet[0] === 4">
+            <div class="card booking-card mb-0">
+              <div class="card-header">
+                <div class="booking-header pb-0">
+                  <div class="card mb-0">
+                    <div class="card-body">
+                      <div class="d-flex align-items-center flex-wrap rpw-gap-2 flex-wrap row-gap-2">
+                        <span class="avatar avatar-xxxl avatar-rounded me-2 flex-shrink-0"><img
+                            src="assets/img/doctor-grid/doctor-grid-011.webp" alt="" /></span>
+                        <div>
+                          <h4 class="mb-1">
+                            Dr. Michael Brown
+                            <span class="badge bg-orange fs-12"><i class="fa-solid fa-star me-1"></i>5.0</span>
+                          </h4>
+                          <p class="text-indigo mb-3 fw-medium">Psychologist</p>
+                          <p class="mb-0">
+                            <i class="isax isax-location me-2"></i>5th Street -
+                            1011 W 5th St, Suite 120, Austin, TX 78703
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body booking-body">
+                <div class="row">
+                  <div class="col-lg-6 d-flex">
+                    <div class="card flex-fill mb-3 mb-lg-0">
+                      <div class="card-body">
+                        <h6 class="mb-3">Payment Gateway</h6>
+                        <div class="payment-tabs">
+                          <ul class="nav nav-pills mb-3 row" id="pills-tab" role="tablist">
+                            <li class="nav-item col-sm-4" role="presentation">
+                              <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
+                                data-bs-target="#pills-home" type="button" role="tab">
+                                <img src="assets/img/icons/payment-icon-05.svg" class="me-2" alt="" />
+                                Credit Card
+                              </button>
+                            </li>
+                            <li class="nav-item col-sm-4" role="presentation">
+                              <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
+                                data-bs-target="#pills-profile" type="button" role="tab">
+                                <img src="assets/img/icons/payment-icon-06.svg" class="me-2" alt="" />
+                                Paypal
+                              </button>
+                            </li>
+                            <li class="nav-item col-sm-4" role="presentation">
+                              <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
+                                data-bs-target="#pills-contact" type="button" role="tab">
+                                <img src="assets/img/icons/payment-icon-07.svg" class="me-2" alt="" />
+                                Stripe
+                              </button>
+                            </li>
+                          </ul>
+                          <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-home" role="tabpanel">
+                              <div class="mb-3">
+                                <label class="form-label">Card Holder Name</label>
+                                <div class="position-relative input-icon">
+                                  <input type="text" class="form-control" />
+                                  <span><i class="isax isax-user"></i></span>
+                                </div>
+                              </div>
+                              <div class="mb-3">
+                                <label class="form-label">Card Number</label>
+                                <div class="position-relative input-icon">
+                                  <input type="text" class="form-control" />
+                                  <span><i class="isax isax-card-tick"></i></span>
+                                </div>
+                              </div>
+                              <div class="mb-3">
+                                <label class="form-label">Expire Date</label>
+                                <div class="position-relative input-icon">
+                                  <input type="text" class="form-control" />
+                                  <span><i class="isax isax-calendar-2"></i></span>
+                                </div>
+                              </div>
+                              <div class="mb-0">
+                                <label class="form-label">CVV</label>
+                                <div class="position-relative input-icon">
+                                  <input type="text" class="form-control" />
+                                  <span><i class="isax isax-check"></i></span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="tab-pane fade" id="pills-profile" role="tabpanel">
+                              <div class="mb-3">
+                                <label class="form-label">Email Address</label>
+                                <div class="position-relative input-icon">
+                                  <input type="text" class="form-control" />
+                                  <span><i class="isax isax-sms"></i></span>
+                                </div>
+                              </div>
+                              <div>
+                                <label class="form-label">Password</label>
+                                <div class="pass-group">
+                                  <input type="password" class="form-control pass-input" />
+                                  <span class="feather-eye-off toggle-password"></span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="tab-pane fade" id="pills-contact" role="tabpanel">
+                              <div class="mb-3">
+                                <label class="form-label">Email Address</label>
+                                <div class="position-relative input-icon">
+                                  <input type="text" class="form-control" />
+                                  <span><i class="isax isax-sms"></i></span>
+                                </div>
+                              </div>
+                              <div>
+                                <label class="form-label">Password</label>
+                                <div class="pass-group">
+                                  <input type="password" class="form-control pass-input-sub" />
+                                  <span class="feather-eye-off toggle-password-sub"></span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 d-flex">
+                    <div class="card flex-fill mb-0">
+                      <div class="card-body">
+                        <h6 class="mb-3">Booking Info</h6>
+                        <div class="mb-3">
+                          <label class="form-label">Date & Time</label>
+                          <div class="form-plain-text">
+                            {{ selectedSlotTime || '---' }},
+                            {{ bsInlineValue | date: 'dd, MMM yyyy' }}
+                          </div>
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label">Appointment type</label>
+                          <div class="form-plain-text">
+                            Video Call
+                          </div>
+                        </div>
+                        <div class="pt-3 border-top booking-more-info">
+                          <h6 class="mb-3">Payment Info</h6>
+                          <div class="d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between mb-2">
+                            <p class="mb-0">Video Call</p>
+                            <span class="fw-medium d-block">$200</span>
+                          </div>
+                          <div class="d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between mb-2">
+                            <p class="mb-0">Booking Fees</p>
+                            <span class="fw-medium d-block">$20</span>
+                          </div>
+                          <div class="d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between mb-2">
+                            <p class="mb-0">Tax</p>
+                            <span class="fw-medium d-block">$18</span>
+                          </div>
+                          <div class="d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between mb-2">
+                            <p class="mb-0">Discount</p>
+                            <span class="fw-medium text-danger d-block">-$15</span>
+                          </div>
+                        </div>
+                        <div
+                          class="bg-primary d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between p-3 rounded">
+                          <h6 class="text-white">Total</h6>
+                          <h6 class="text-white">$223</h6>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer">
+                <div class="d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between">
+                  <a [routerLink]="" (click)="selectedFieldSet[0] = 3"
+                    class="btn btn-md btn-dark prev_btns inline-flex align-items-center rounded-pill">
+                    <i class="isax isax-arrow-left-2 me-1"></i>
+                    Back
+                  </a>
+                  <a [routerLink]="" (click)="selectedFieldSet[0] = 5"
+                    class="btn btn-md btn-primary-gradient next_btns inline-flex align-items-center rounded-pill btn btn-md btn-dark prev_btns inline-flex align-items-center rounded-pill">
+                    Confirm & Pay
+                    <i class="isax isax-arrow-right-3 ms-1"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset [class.d-block]="selectedFieldSet[0] === 5">
+            <div class="card booking-card">
+              <div class="card-body booking-body pb-1">
+                <div class="row">
+                  <div class="col-lg-8 d-flex">
+                    <div class="flex-fill">
+                      <div class="card">
+                        <div class="card-header">
+                          <h5 class="d-flex align-items-center flex-wrap rpw-gap-2">
+                            <i class="isax isax-tick-circle5 text-success me-2"></i>
+                            Booking Confirmed
+                          </h5>
+                        </div>
+                        <div class="card-header d-flex align-items-center flex-wrap rpw-gap-2">
+                          <span class="avatar avatar-lg avatar-rounded me-2 flex-shrink-0"><img
+                              src="assets/img/doctor-grid/doctor-grid-011.webp" alt="" /></span>
+                          <p class="mb-0">
+                            Your Booking has been Confirmed with
+                            <span class="text-dark">Dr. Michael Brown </span> be
+                            on time before
+                            <span class="text-dark">15 Mins </span> From the
+                            appointment Time
+                          </p>
+                        </div>
+                        <div class="card-body pb-1">
+                          <div class="d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between mb-3">
+                            <h6>Booking Info</h6>
+                            <!-- <a [routerLink]="" (click)="selectedFieldSet[0] = 2" class="btn btn-light rounded-pill"><i
+                                class="isax isax-calendar me-1"></i>Reschedule</a> -->
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="mb-3">
+                                <label class="form-label">Service</label>
+                                <div class="form-plain-text">
+                                  Cardiology (30 Mins)
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="mb-3">
+                                <label class="form-label">Additional Service</label>
+                                <div class="form-plain-text">
+                                  Echocardiograms
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="mb-3">
+                                <label class="form-label">Date & Time</label>
+                                <div class="form-plain-text">
+                                  {{ selectedSlotTime || '---' }},
+                                  {{ bsInlineValue | date: 'dd, MMM yyyy' }}
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="mb-3">
+                                <label class="form-label">Appointment type</label>
+                                <div class="form-plain-text">Clinic</div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="mb-3">
+                                <label class="form-label">Clinic Name & Location</label>
+                                <div class="form-plain-text">
+                                  Wellness Path
+                                  <a [routerLink]="" class="text-primary">View Location</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-body d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between">
+                          <div>
+                            <h6 class="mb-1">Need Our Assistance</h6>
+                            <p class="mb-0">
+                              Call us in case you face any Issue on Booking /
+                              Cancellation
+                            </p>
+                          </div>
+                          <a [routerLink]="'/pages/contact-us'" class="btn btn-light rounded-pill"><i
+                              class="isax isax-call5 me-1"></i>Report a Issue
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 d-flex">
+                    <div class="card flex-fill">
+                      <div class="card-body d-flex flex-column justify-content-between">
+                        <div class="text-center">
+                          <h6 class="fs-14 mb-2">Booking Number</h6>
+                          <span class="booking-id-badge mb-3">DCRA12565</span>
+                          <span class="d-block mb-3"><img src="assets/img/icons/payment-qr.svg" alt="" /></span>
+                          <p>
+                            Scan this QR Code to Download the details of
+                            Appointment
+                          </p>
+                        </div>
+                        <div>
+                          <!-- <a [routerLink]=""
+                            class="btn w-100 mb-3 btn-md btn-dark prev_btns inline-flex align-items-center rounded-pill">
+                            Add To Calendar
+                          </a> -->
+                          <a [routerLink]="" (click)="selectedFieldSet[0] = 1"
+                            class="btn w-100 btn-md btn-primary-gradient next_btns inline-flex align-items-center rounded-pill btn w-100 mb-3 btn-md btn-dark prev_btns inline-flex align-items-center rounded-pill">
+                            Start New Booking
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <a [routerLink]="'/'" (click)="selectedFieldSet[0] = 0">
+                <i class="isax isax-arrow-left-2 me-1"></i>
+                Back to Home
+              </a>
+            </div>
+          </fieldset>
+        </div>
+        <div class="text-center">
+          <p class="mb-0">Copyright © 2026. All Rights Reserved, VETLLAMA</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Terms -->

@@ -147,7 +147,7 @@ export const routes = {
   booking1: '/patients/booking/booking1',
   bookingPopup: '/patients/booking/booking-popup',
   booking2: '/patients/booking/booking2',
-  booking: '/pages/booking',
+  booking: '/doctors/booking', // '/pages/booking'
   patientsChangePassword: '/patients/change-password',
   chat: '/patients/chat',
   checkout: '/patients/checkout',
