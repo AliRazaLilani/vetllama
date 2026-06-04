@@ -133,7 +133,7 @@ export const routes = {
   voiceCall: '/pages/call/voice-call',
   comingSoon: '/pages/coming-soon',
   userComponents: '/pages/components',
-  contactUs: '/pages/contact-us',
+  contactUs: '/contact-us',// '/pages/contact-us',
   faq: '/pages/faq',
   invoiceView: '/pages/invoices/invoice-view',
   maintenance: '/pages/maintenance',

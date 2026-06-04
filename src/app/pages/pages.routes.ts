@@ -14,6 +14,10 @@ export const Page_Routes: Routes = [
         loadComponent: () => import('./vet-registration/vet-registration.component').then((m) => m.VetRegistrationComponent),
       },
       {
+        path: 'contact-us',
+        loadComponent: () => import('./contact-us/contact-us.component').then((m) => m.ContactUsComponent),
+      },
+      {
         path: 'doctors',
         loadComponent: () =>
           import('./doctors/doctors.component').then(
