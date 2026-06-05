@@ -3,7 +3,7 @@ name: Frontend Deploy
 on:
   push:
     branches:
-      - uat
+      - staging
 
 jobs:
   deploy:
