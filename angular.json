@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
-            "outputPath": "dist/vetlama-marketing",
+            "outputPath": "dist/vetllama-frontend",
             "allowedCommonJsDependencies": ["intl-tel-input", "aos", "file-saver"],
             "polyfills": ["zone.js"],
             "index": "src/index.html",
