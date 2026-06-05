@@ -7,6 +7,7 @@ import {
   Event as RouterEvent,
   RouterOutlet,
 } from '@angular/router';
+import { ToastModule } from 'primeng/toast';
 import { routes } from './core/routes/routes';
 import { CommonService } from './core/services/common/common.service';
 import { DataService } from './core/services/data/data.service';
@@ -16,7 +17,7 @@ import { ModalComponent } from './modal/modal.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CommonModule, ModalComponent],
+  imports: [RouterOutlet, CommonModule, ToastModule, ModalComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

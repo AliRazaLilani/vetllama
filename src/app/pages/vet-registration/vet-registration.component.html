@@ -9,7 +9,7 @@
 
         <ng-container *ngIf="!isSubmitted; else successCard">
           <div class="paitent-appointment">
-            <form (ngSubmit)="submitRegistration()">
+            <form [formGroup]="registrationForm" (ngSubmit)="submitRegistration()">
               <div class="forms-block">
                 <h5 class="form-section-title">Personal Information</h5>
               </div>
@@ -26,7 +26,7 @@
                       id="firstName"
                       name="firstName"
                       placeholder="e.g. Sarah"
-                      [(ngModel)]="firstName"
+                      formControlName="firstName"
                       required
                     />
                   </div>
@@ -40,7 +40,7 @@
                       id="lastName"
                       name="lastName"
                       placeholder="e.g. Mitchell"
-                      [(ngModel)]="lastName"
+                      formControlName="lastName"
                       required
                     />
                   </div>
@@ -57,9 +57,89 @@
                   id="email"
                   name="email"
                   placeholder="you@clinic.com"
-                  [(ngModel)]="email"
+                  formControlName="email"
                   required
                 />
+              </div>
+
+              <div class="forms-block mt-4">
+                <h5 class="form-section-title">Business Information</h5>
+              </div>
+
+              <div class="forms-block">
+                <label class="form-group-title"> Display Name * </label>
+
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="displayName"
+                  placeholder="Paws & Care"
+                />
+              </div>
+
+              <div class="forms-block">
+                <label class="form-group-title"> Business Name </label>
+
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="businessName"
+                  placeholder="Paws & Care LLC"
+                />
+              </div>
+
+              <div class="forms-block">
+                <label class="form-group-title"> Phone </label>
+
+                <input
+                  type="tel"
+                  class="form-control"
+                  formControlName="phone"
+                  placeholder="+10000000000"
+                />
+              </div>
+
+              <div class="forms-block">
+                <label class="form-group-title"> Desired Subdomain </label>
+
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="desiredSubdomain"
+                  placeholder="paws-care"
+                />
+              </div>
+
+              <div class="forms-block mt-4">
+                <h5 class="form-section-title">Account Security</h5>
+              </div>
+
+              <div class="forms-block">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Password *</label>
+
+                    <input type="password" class="form-control" formControlName="password" />
+                  </div>
+
+                  <div class="form-group">
+                    <label>Confirm Password *</label>
+
+                    <input
+                      type="password"
+                      class="form-control"
+                      formControlName="passwordConfirmation"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="forms-block">
+                <label class="checkbox-item">
+                  <input type="checkbox" formControlName="acceptedTerms" />
+                  <span class="checkbox-mark"></span>
+                  I accept the Terms & Conditions
+                </label>
               </div>
 
               <div class="forms-block mt-4">
@@ -76,7 +156,7 @@
                       class="select"
                       id="licenseType"
                       name="licenseType"
-                      [(ngModel)]="licenseType"
+                      formControlName="licenseType"
                       required
                     >
                       @for (data of licenseTypes; track data) {
@@ -94,7 +174,7 @@
                       id="licenseNumber"
                       name="licenseNumber"
                       placeholder="e.g. VET-2024-08321"
-                      [(ngModel)]="licenseNumber"
+                      formControlName="licenseNumber"
                       required
                     />
                   </div>
@@ -111,7 +191,7 @@
                       class="select"
                       id="licenseState"
                       name="licenseState"
-                      [(ngModel)]="licenseState"
+                      formControlName="licenseState"
                       required
                     >
                       @for (data of states; track data) {
@@ -125,7 +205,7 @@
                       class="select"
                       id="yearsOfPractice"
                       name="yearsOfPractice"
-                      [(ngModel)]="practiceYears"
+                      formControlName="practiceYears"
                     >
                       @for (data of practiceYearsOptions; track data) {
                         <mat-option [value]="data.value">{{ data.value }}</mat-option>
@@ -145,7 +225,7 @@
                       type="radio"
                       name="prescriberStatus"
                       value="can-prescribe"
-                      [(ngModel)]="prescriberStatus"
+                      formControlName="prescriberStatus"
                     />
                     <span class="option-radio"></span>
                     <span class="option-text"> Prescriber</span>
@@ -155,7 +235,7 @@
                       type="radio"
                       name="prescriberStatus"
                       value="non-prescriber"
-                      [(ngModel)]="prescriberStatus"
+                      formControlName="prescriberStatus"
                     />
                     <span class="option-radio"></span>
                     <span class="option-text"> Non-Prescriber</span>
@@ -172,11 +252,8 @@
                 <div class="checkbox-grid species-grid">
                   @for (item of species; track item.id) {
                     <label class="checkbox-item">
-                      <input
-                        type="checkbox"
-                        [checked]="selectedSpecies.includes(item.id)"
-                        (change)="toggleSpecies(item.id)"
-                      />
+                      <!-- <input type="checkbox" formControlName="selectedSpecies" [value]="item.id"/> -->
+                      <input type="checkbox" [checked]="selectedSpecies.includes(item.id)" (change)="toggleSpecies(item.id)"/>
                       <span class="checkbox-mark"></span>
                       <span class="checkbox-label"
                         ><i class="fa" [ngClass]="item.icon"></i> {{ item.label }}</span
@@ -212,6 +289,7 @@
 
               <div class="forms-block mt-4">
                 <button type="button" class="btn btn-primary w-100" (click)="submitRegistration()">
+                <!-- <button type="button" class="btn btn-primary w-100" [disabled]="registrationForm.invalid || selectedSpecies.length === 0 || selectedSpecializations.length === 0"> -->
                   Submit Registration Request
                 </button>
               </div>
