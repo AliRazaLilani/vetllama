@@ -69,5 +69,13 @@ export interface header {
   separateRoute: boolean;
   menu: Menu[];
   base?:string;
-  img?:string
+}
+export interface homeHeader {
+  tittle: string;
+  showAsTab: boolean;
+  separateRoute: boolean;
+  menu: Menu[];
+  base?:string;
+  img?:string;
+  row?:string;
 }

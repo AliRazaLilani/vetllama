@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { routes } from '../../routes/routes';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
-import { apiResultFormat } from '../../model/models';
+import { apiResultFormat } from '../../models/models';
 
 @Injectable({
   providedIn: 'root',

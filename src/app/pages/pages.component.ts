@@ -1,6 +1,6 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { NavigationStart, Router, Event as RouterEvent, RouterModule } from '@angular/router';
-import { url } from 'src/app/core/model/models';
+import { url } from '../core/models/models';
 import { routes } from 'src/app/core/routes/routes';
 import { CommonService } from 'src/app/core/services/common/common.service';
 import { SidebarService } from 'src/app/core/services/sidebar/sidebar.service';

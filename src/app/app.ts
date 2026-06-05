@@ -11,7 +11,7 @@ import { routes } from './core/routes/routes';
 import { CommonService } from './core/services/common/common.service';
 import { DataService } from './core/services/data/data.service';
 import { SidebarService } from './core/services/sidebar/sidebar.service';
-import { url } from './core/model/models';
+import { url } from './core/models/models';
 import { ModalComponent } from './modal/modal.component';
 
 @Component({
