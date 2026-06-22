@@ -128,6 +128,9 @@ export class BookingComponent implements OnInit, OnDestroy {
   // Tenant context info for display
   tenantContext: any;
 
+  // ✅ ADD THIS TO TRACK INITIALIZATION
+  private isInitialized = false;
+
   constructor(
     private tenantApi: TenantApiService,
     private bookingState: BookingStateService,
@@ -139,6 +142,10 @@ export class BookingComponent implements OnInit, OnDestroy {
     // Get tenant context for display
     this.tenantContext = this.tenantResolution.getTenantContext();
     console.log('Tenant Context:', this.tenantContext);
+
+    // ✅ Set initial date
+    this.selectedDate = new Date();
+    this.bsInlineValue = new Date();
 
     this.loadTenantData();
     this.subscribeToState();
@@ -166,7 +173,7 @@ export class BookingComponent implements OnInit, OnDestroy {
         // ✅ Update selected properties
         this.selectedService = state.selectedService;
         this.selectedDuration = state.selectedDuration;
-        this.selectedDate = state.selectedDate;
+        this.selectedDate = state.selectedDate || this.bsInlineValue;
         this.selectedLocation = state.selectedLocation;
         this.selectedSlot = state.selectedSlot;
 
@@ -251,7 +258,16 @@ export class BookingComponent implements OnInit, OnDestroy {
 
         // Auto-select first service if available
         if (response.data.length > 0) {
-          this.bookingState.setSelectedService(response.data[0]);
+          const firstService = response.data[0];
+          this.bookingState.setSelectedService(firstService);
+
+          // ✅ Auto-select default duration
+          const defaultDuration = firstService.duration_options?.find((d: any) => d.is_default);
+          if (defaultDuration) {
+            this.bookingState.setSelectedDuration(defaultDuration);
+          } else if (firstService.duration_options?.length > 0) {
+            this.bookingState.setSelectedDuration(firstService.duration_options[0]);
+          }
         }
         this.cdr.detectChanges();
       },
@@ -284,7 +300,15 @@ export class BookingComponent implements OnInit, OnDestroy {
 
   private loadAvailableSlots(): void {
     const state = this.bookingState.getState();
+
+    console.log('Loading slots with:', {
+      selectedService: state.selectedService,
+      selectedDuration: state.selectedDuration,
+      selectedDate: state.selectedDate,
+    });
+
     if (!state.selectedService || !state.selectedDuration || !state.selectedDate) {
+      console.warn('Cannot load slots: missing required data');
       return;
     }
 
@@ -303,6 +327,7 @@ export class BookingComponent implements OnInit, OnDestroy {
         next: (response: { success: any; data: any; message: any }) => {
           if (response.success) {
             this.bookingState.setAvailableSlots(response.data);
+            console.log('Loaded slots:', response.data);
           } else {
             console.error('Failed to load slots:', response.message);
             this.bookingState.setAvailableSlots([]);
@@ -383,6 +408,19 @@ export class BookingComponent implements OnInit, OnDestroy {
       // Clear existing slots when service changes
       this.bookingState.setAvailableSlots([]);
       this.bookingState.setSelectedSlot(null);
+
+      // Auto-select default duration
+      const defaultDuration = service.duration_options?.find((d: any) => d.is_default);
+      if (defaultDuration) {
+        this.bookingState.setSelectedDuration(defaultDuration);
+      } else if (service.duration_options?.length > 0) {
+        this.bookingState.setSelectedDuration(service.duration_options[0]);
+      }
+
+      // Reload slots if date is selected
+      if (this.bookingState.getState().selectedDate) {
+        this.loadAvailableSlots();
+      }
     }
   }
 
@@ -397,11 +435,17 @@ export class BookingComponent implements OnInit, OnDestroy {
         // Clear slots when duration changes
         this.bookingState.setAvailableSlots([]);
         this.bookingState.setSelectedSlot(null);
+
+        // Reload slots if date is selected
+        if (state.selectedDate) {
+          this.loadAvailableSlots();
+        }
       }
     }
   }
 
   onDateSelect(date: Date): void {
+    console.log('Date selected:', date);
     this.bookingState.setSelectedDate(date);
     this.bookingState.setSelectedSlot(null);
     this.bsInlineValue = date;
@@ -415,6 +459,7 @@ export class BookingComponent implements OnInit, OnDestroy {
     if (slot) {
       this.bookingState.setSelectedSlot(slot);
       this.selectedSlotTime = slotTime;
+      console.log('Slot selected:', slot);
     }
   }
 
@@ -529,6 +574,11 @@ export class BookingComponent implements OnInit, OnDestroy {
   // ✅ FIX: Make bookingState accessible to template
   getBookingState(): BookingStateService {
     return this.bookingState;
+  }
+
+  // ✅ ADD: Check if slots should be shown
+  shouldShowSlots(): boolean {
+    return this.availableSlots.length > 0 && !!this.selectedDate;
   }
 
   // Toggle clinic/telehealth

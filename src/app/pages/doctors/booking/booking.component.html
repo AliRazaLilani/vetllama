@@ -251,8 +251,16 @@
                       <div class="col-lg-7">
                         <div class="card booking-wizard-slots">
                           <div class="card-body">
+                            <!-- Show loading for slots -->
+                            <div *ngIf="isLoading" class="text-center py-4">
+                              <div class="spinner-border spinner-border-sm text-primary" role="status">
+                                <span class="visually-hidden">Loading slots...</span>
+                              </div>
+                              <p class="mt-2 mb-0">Loading available slots...</p>
+                            </div>
+
                             <!-- Morning Slots -->
-                            <div *ngIf="getMorningSlots().length > 0">
+                            <div *ngIf="!isLoading && getMorningSlots().length > 0">
                               <div class="book-title">
                                 <h6 class="fs-14 mb-2">Morning</h6>
                               </div>
@@ -270,7 +278,7 @@
                             </div>
 
                             <!-- Afternoon Slots -->
-                            <div *ngIf="getAfternoonSlots().length > 0">
+                            <div *ngIf="!isLoading && getAfternoonSlots().length > 0">
                               <div class="book-title">
                                 <h6 class="fs-14 mb-2">Afternoon</h6>
                               </div>
@@ -288,7 +296,7 @@
                             </div>
 
                             <!-- Evening Slots -->
-                            <div *ngIf="getEveningSlots().length > 0">
+                            <div *ngIf="!isLoading && getEveningSlots().length > 0">
                               <div class="book-title">
                                 <h6 class="fs-14 mb-2">Evening</h6>
                               </div>
@@ -306,10 +314,19 @@
                             </div>
 
                             <!-- No slots message -->
-                            <div *ngIf="availableSlots.length === 0 && selectedDate" class="text-center py-4">
+                            <div *ngIf="!isLoading && availableSlots.length === 0 && selectedDate"
+                              class="text-center py-4">
                               <i class="isax isax-calendar-remove fs-48 text-muted d-block mb-2"></i>
                               <h6>No Available Slots</h6>
                               <p class="text-muted mb-0">Please select a different date</p>
+                            </div>
+
+                            <!-- Initial state - select a date -->
+                            <div *ngIf="!isLoading && availableSlots.length === 0 && !selectedDate"
+                              class="text-center py-4">
+                              <i class="isax isax-calendar fs-48 text-muted d-block mb-2"></i>
+                              <h6>Select a Date</h6>
+                              <p class="text-muted mb-0">Choose a date from the calendar to see available slots</p>
                             </div>
                           </div>
                         </div>
