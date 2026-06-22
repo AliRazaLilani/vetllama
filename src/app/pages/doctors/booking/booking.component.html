@@ -4,7 +4,7 @@
     <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show" role="alert">
       <i class="isax isax-danger-circle me-2"></i>
       {{ errorMessage }}
-      <button type="button" class="btn-close" (click)="bookingState.setError(null)"></button>
+      <button type="button" class="btn-close" (click)="getBookingState().setError(null)"></button>
     </div>
 
     <!-- Loading State -->
@@ -534,7 +534,7 @@
                       Reason for Appointment
                     </label>
                     <textarea class="form-control" placeholder="Describe what's going on with your pet in detail..."
-                      [(ngModel)]="reason" name="reason" rows="4"></textarea>
+                      [(ngModel)]="petReason" name="reason" rows="4"></textarea>
                     <p class="characters-text">400 Characters</p>
                   </div>
                 </form>

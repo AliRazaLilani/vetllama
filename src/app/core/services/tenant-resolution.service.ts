@@ -17,25 +17,7 @@ export class TenantResolutionService {
   public tenantContext$ = this.tenantContext.asObservable();
 
   constructor() {
-  //   this.initializeTenantContext();
-  // }
-
-  // /**
-  //  * Initialize tenant context from environment or URL
-  //  */
-  // private initializeTenantContext(): void {
-  //   // Check if we have a hardcoded tenant config in environment
-  //   if (environment.tenantConfig) {
-  //     console.log('🔧 Using hardcoded tenant config:', environment.tenantConfig);
-  //     this.tenantContext.next({
-  //       host: environment.tenantConfig.host,
-  //       domain: environment.tenantConfig.domain,
-  //       subdomain: environment.tenantConfig.subdomain,
-  //     });
-  //     return;
-  //   }
-
-    // Otherwise, resolve from current URL
+    // Initialize from window location or environment
     this.resolveTenantContext();
   }
 
@@ -43,6 +25,19 @@ export class TenantResolutionService {
    * Resolve tenant context from current URL or environment
    */
   private resolveTenantContext(): void {
+    // HARDCODED VALUES FOR (TESTING)
+    // Comment these 3 lines below and uncomment the dynamic code when done testing
+    const hardcodedContext: TenantContext = {
+      host: environment.tenantConfig.host,
+      domain: environment.tenantConfig.domain,
+      subdomain: environment.tenantConfig.subdomain,
+    };
+    this.tenantContext.next(hardcodedContext);
+    console.log('🔴 USING HARDCODED TENANT CONTEXT:', hardcodedContext);
+    // HARDCODED VALUES FOR (TESTING)
+
+    // DYNAMIC VALUES FOR (PRODUCTION)
+    /*
     const host = window.location.hostname;
     const baseDomain = environment.tenantBaseDomain || 'vetllama.test';
 
@@ -70,11 +65,16 @@ export class TenantResolutionService {
 
     console.log('🌐 Resolved tenant context from URL:', { host, domain, subdomain });
 
-    this.tenantContext.next({
+    const context: TenantContext = {
       host: host,
       domain: domain,
       subdomain: subdomain,
-    });
+    };
+
+    this.tenantContext.next(context);
+    console.log('✅ USING DYNAMIC TENANT CONTEXT:', context);
+    */
+    // DYNAMIC VALUES FOR (PRODUCTION)
   }
 
   /**
@@ -90,23 +90,6 @@ export class TenantResolutionService {
   setTenantContext(context: TenantContext): void {
     this.tenantContext.next(context);
   }
-
-  // /**
-  //  * Check if using hardcoded configuration
-  //  */
-  // isUsingHardcodedConfig(): boolean {
-  //   return !!environment.tenantConfig;
-  // }
-
-  // /**
-  //  * Get tenant context for display/UI
-  //  */
-  // getTenantDisplayInfo(): { isHardcoded: boolean; context: TenantContext | null } {
-  //   return {
-  //     isHardcoded: this.isUsingHardcodedConfig(),
-  //     context: this.getTenantContext(),
-  //   };
-  // }
 
   /**
    * Get query params for API calls

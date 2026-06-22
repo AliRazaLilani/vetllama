@@ -111,14 +111,15 @@ export class BookingComponent implements OnInit, OnDestroy {
   petReason = '';
   selectedConcerns: string[] = [];
 
+  // ✅ ADD THESE MISSING PROPERTIES
+  selectedService: Service | null = null;
+  selectedDuration: DurationOption | null = null;
+  selectedDate: Date | null = null;
+  selectedLocation: Location | null = null;
+  selectedSlot: Slot | null = null;
+
   // Tenant context info for display
   tenantContext: any;
-
-  // Add for display
-  tenantDisplayInfo: { isHardcoded: boolean; context: any } = {
-    isHardcoded: false,
-    context: null,
-  };
 
   constructor(
     private tenantApi: TenantApiService,
@@ -130,10 +131,6 @@ export class BookingComponent implements OnInit, OnDestroy {
     // Get tenant context for display
     this.tenantContext = this.tenantResolution.getTenantContext();
     console.log('Tenant Context:', this.tenantContext);
-
-    // // Get tenant display info
-    // this.tenantDisplayInfo = this.tenantResolution.getTenantDisplayInfo();
-    // console.log('🏷️ Tenant Display Info:', this.tenantDisplayInfo);
 
     this.loadTenantData();
     this.subscribeToState();
@@ -157,6 +154,13 @@ export class BookingComponent implements OnInit, OnDestroy {
         this.isBookingEnabled = state.publicConfig?.settings.booking_enabled ?? true;
         this.isLoading = state.isLoading;
         this.errorMessage = state.error;
+
+        // ✅ Update selected properties
+        this.selectedService = state.selectedService;
+        this.selectedDuration = state.selectedDuration;
+        this.selectedDate = state.selectedDate;
+        this.selectedLocation = state.selectedLocation;
+        this.selectedSlot = state.selectedSlot;
 
         // Update selected IDs
         if (state.selectedService) {
@@ -488,11 +492,10 @@ export class BookingComponent implements OnInit, OnDestroy {
     const bookingData = {
       ...this.bookingState.getBookingSummary(),
       tenant_context: this.tenantContext,
-      // tenant_context: this.tenantDisplayInfo.context, // this.tenantContext
     };
 
     console.log('Submitting booking with tenant context:', bookingData);
-    // Show success or redirect
+    // TODO: Implement booking submission API
     this.goToStep(5);
   }
 
@@ -510,6 +513,11 @@ export class BookingComponent implements OnInit, OnDestroy {
   getSelectedServicePrice(): string {
     const duration = this.bookingState.getState().selectedDuration;
     return duration ? `${duration.currency} ${duration.price}` : '$0';
+  }
+
+  // ✅ FIX: Make bookingState accessible to template
+  getBookingState(): BookingStateService {
+    return this.bookingState;
   }
 
   // Toggle clinic/telehealth
