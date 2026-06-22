@@ -17,7 +17,25 @@ export class TenantResolutionService {
   public tenantContext$ = this.tenantContext.asObservable();
 
   constructor() {
-    // Initialize from window location or environment
+  //   this.initializeTenantContext();
+  // }
+
+  // /**
+  //  * Initialize tenant context from environment or URL
+  //  */
+  // private initializeTenantContext(): void {
+  //   // Check if we have a hardcoded tenant config in environment
+  //   if (environment.tenantConfig) {
+  //     console.log('🔧 Using hardcoded tenant config:', environment.tenantConfig);
+  //     this.tenantContext.next({
+  //       host: environment.tenantConfig.host,
+  //       domain: environment.tenantConfig.domain,
+  //       subdomain: environment.tenantConfig.subdomain,
+  //     });
+  //     return;
+  //   }
+
+    // Otherwise, resolve from current URL
     this.resolveTenantContext();
   }
 
@@ -50,6 +68,8 @@ export class TenantResolutionService {
       }
     }
 
+    console.log('🌐 Resolved tenant context from URL:', { host, domain, subdomain });
+
     this.tenantContext.next({
       host: host,
       domain: domain,
@@ -70,6 +90,23 @@ export class TenantResolutionService {
   setTenantContext(context: TenantContext): void {
     this.tenantContext.next(context);
   }
+
+  // /**
+  //  * Check if using hardcoded configuration
+  //  */
+  // isUsingHardcodedConfig(): boolean {
+  //   return !!environment.tenantConfig;
+  // }
+
+  // /**
+  //  * Get tenant context for display/UI
+  //  */
+  // getTenantDisplayInfo(): { isHardcoded: boolean; context: TenantContext | null } {
+  //   return {
+  //     isHardcoded: this.isUsingHardcodedConfig(),
+  //     context: this.getTenantContext(),
+  //   };
+  // }
 
   /**
    * Get query params for API calls

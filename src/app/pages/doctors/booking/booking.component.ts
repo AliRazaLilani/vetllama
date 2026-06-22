@@ -114,6 +114,12 @@ export class BookingComponent implements OnInit, OnDestroy {
   // Tenant context info for display
   tenantContext: any;
 
+  // Add for display
+  tenantDisplayInfo: { isHardcoded: boolean; context: any } = {
+    isHardcoded: false,
+    context: null,
+  };
+
   constructor(
     private tenantApi: TenantApiService,
     private bookingState: BookingStateService,
@@ -124,6 +130,10 @@ export class BookingComponent implements OnInit, OnDestroy {
     // Get tenant context for display
     this.tenantContext = this.tenantResolution.getTenantContext();
     console.log('Tenant Context:', this.tenantContext);
+
+    // // Get tenant display info
+    // this.tenantDisplayInfo = this.tenantResolution.getTenantDisplayInfo();
+    // console.log('🏷️ Tenant Display Info:', this.tenantDisplayInfo);
 
     this.loadTenantData();
     this.subscribeToState();
@@ -478,6 +488,7 @@ export class BookingComponent implements OnInit, OnDestroy {
     const bookingData = {
       ...this.bookingState.getBookingSummary(),
       tenant_context: this.tenantContext,
+      // tenant_context: this.tenantDisplayInfo.context, // this.tenantContext
     };
 
     console.log('Submitting booking with tenant context:', bookingData);

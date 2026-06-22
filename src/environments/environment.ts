@@ -1,11 +1,11 @@
 export const environment = {
-  // For local development:
   production: false,
   apiUrl: 'https://api.vetllama.com/api',
   tenantBaseDomain: 'vetllama.test',
-
-  // For production:
-  // production: true, // For production
-  // apiUrl: 'https://api.vetllama.com/api',
-  // tenantBaseDomain: 'vetllama.com', // For production
+  // Hardcoded tenant context for testing
+  // tenantConfig: {
+  //   host: 'pawscare.vetllama.test',
+  //   domain: 'pawscare.vetllama.test',
+  //   subdomain: 'pawscare',
+  // },
 };
