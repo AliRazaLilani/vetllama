@@ -1,28 +1,9 @@
-<!-- /Header -->
-
-<!-- Terms -->
 <div class="doctor-content">
   <div class="container">
     <div class="row">
       <div class="col-lg-9 mx-auto">
         <div class="booking-wizard">
           <ul class="form-wizard-steps d-sm-flex align-items-center justify-content-center" id="progressbar2">
-            <!--
-            <li
-              class="progress-active"
-              [ngClass]="{
-                'progress-active': selectedFieldSet[0] === 0,
-                'progress-activated': selectedFieldSet[0] > 0,
-              }"
-            >
-              <div class="profile-step">
-                <span class="multi-steps">1</span>
-                <div class="step-section">
-                  <h6>Specialty</h6>
-                </div>
-              </div>
-            </li>
-            -->
             <li [ngClass]="{
                 'progress-active': selectedFieldSet[0] === 1,
                 'progress-activated': selectedFieldSet[0] > 1,
@@ -81,186 +62,6 @@
           </ul>
         </div>
         <div class="booking-widget multistep-form mb-5">
-          <!--
-          <fieldset
-            id="first"
-            [ngClass]="{
-              'd-block': selectedFieldSet[0] === 0,
-              'd-none': selectedFieldSet[0] !== 0,
-            }"
-          >
-            <div class="card booking-card mb-0">
-              <div class="card-header">
-                <div class="booking-header pb-0">
-                  <div class="card mb-0">
-                    <div class="card-body">
-                      <div
-                        class="d-flex align-items-center flex-wrap rpw-gap-2 flex-wrap row-gap-2"
-                      >
-                        <span
-                          class="avatar avatar-xxxl avatar-rounded me-2 flex-shrink-0"
-                          ><img src="assets/img/clients/client-15.jpg" alt=""
-                        /></span>
-                        <div>
-                          <h4 class="mb-1">
-                            Dr. Michael Brown
-                            <span class="badge bg-orange fs-12"
-                              ><i class="fa-solid fa-star me-1"></i>5.0</span
-                            >
-                          </h4>
-                          <p class="text-indigo mb-3 fw-medium">Psychologist</p>
-                          <p class="mb-0">
-                            <i class="isax isax-location me-2"></i>5th Street -
-                            1011 W 5th St, Suite 120, Austin, TX 78703
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card-body booking-body">
-                <div class="card mb-0">
-                  <div class="card-body pb-1">
-                    <div class="mb-4 pb-4 border-bottom">
-                      <label class="form-label">Select Speciality</label>
-                      <mat-select
-                        class="custom-mat-select select"
-                        placeholder="Cardiology"
-                      >
-                        <mat-option value="1">Cardiology</mat-option>
-                        <mat-option value="1">Neurology</mat-option>
-                        <mat-option value="1">Urology</mat-option>
-                      </mat-select>
-                    </div>
-                    <h6 class="mb-3">Services</h6>
-                    <div class="row">
-                      <div class="col-lg-4 col-md-6">
-                        <div class="service-item active">
-                          <input
-                            class="form-check-input ms-0 mt-0"
-                            name="service1"
-                            type="checkbox"
-                            id="service1"
-                            checked
-                          />
-                          <label class="form-check-label ms-2" for="service1">
-                            <span class="service-title d-block mb-1"
-                              >Echocardiograms</span
-                            >
-                            <span class="fs-14 d-block">$310</span>
-                          </label>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-6">
-                        <div class="service-item">
-                          <input
-                            class="form-check-input ms-0 mt-0"
-                            name="service1"
-                            type="checkbox"
-                            id="service2"
-                          />
-                          <label class="form-check-label ms-2" for="service2">
-                            <span class="service-title d-block mb-1"
-                              >Stress tests</span
-                            >
-                            <span class="fs-14 d-block">$754</span>
-                          </label>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-6">
-                        <div class="service-item">
-                          <input
-                            class="form-check-input ms-0 mt-0"
-                            name="service1"
-                            type="checkbox"
-                            id="service3"
-                          />
-                          <label class="form-check-label ms-2" for="service3">
-                            <span class="service-title d-block mb-1"
-                              >Stress tests</span
-                            >
-                            <span class="fs-14 d-block">$754</span>
-                          </label>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-6">
-                        <div class="service-item">
-                          <input
-                            class="form-check-input ms-0 mt-0"
-                            name="service1"
-                            type="checkbox"
-                            id="service4"
-                          />
-                          <label class="form-check-label ms-2" for="service4">
-                            <span class="service-title d-block mb-1"
-                              >Heart Catheterization</span
-                            >
-                            <span class="fs-14 d-block">$150</span>
-                          </label>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-6">
-                        <div class="service-item">
-                          <input
-                            class="form-check-input ms-0 mt-0"
-                            name="service1"
-                            type="checkbox"
-                            id="service5"
-                          />
-                          <label class="form-check-label ms-2" for="service5">
-                            <span class="service-title d-block mb-1"
-                              >Echocardiograms</span
-                            >
-                            <span class="fs-14 d-block">$200</span>
-                          </label>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-6">
-                        <div class="service-item">
-                          <input
-                            class="form-check-input ms-0 mt-0"
-                            name="service1"
-                            type="checkbox"
-                            id="service6"
-                          />
-                          <label class="form-check-label ms-2" for="service6">
-                            <span class="service-title d-block mb-1"
-                              >Echocardiograms</span
-                            >
-                            <span class="fs-14 d-block">$200</span>
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer">
-
-                <div
-                  class="d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between"
-                >
-                  <a
-                    [routerLink]="'/patients/doctors/map-grid'"
-                    class="btn btn-md btn-dark inline-flex align-items-center rounded-pill"
-                  >
-                    <i class="isax isax-arrow-left-2 me-1"></i>
-                    Back
-                  </a>
-                  <a
-                    [routerLink]=""
-                    (click)="selectedFieldSet[0] = 1"
-                    class="btn btn-md btn-primary-gradient next_btns inline-flex align-items-center rounded-pill btn btn-md btn-dark prev_btns inline-flex align-items-center rounded-pill"
-                  >
-                    Select Appointment Type
-                    <i class="isax isax-arrow-right-3 ms-1"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </fieldset>
-          -->
           <fieldset [class.d-block]="selectedFieldSet[0] === 1">
             <div class="card booking-card mb-0">
               <div class="card-header">
@@ -686,13 +487,6 @@
               </div>
             </div>
           </fieldset>
-          <!--
-          <fieldset [class.d-block]="selectedFieldSet[0] === 1">
-            <div class="card booking-card mb-0">
-               ... content omitted ...
-            </div>
-          </fieldset>
-          -->
           <fieldset [class.d-block]="selectedFieldSet[0] === 4">
             <div class="card booking-card mb-0">
               <div class="card-header">
@@ -981,10 +775,6 @@
                           </p>
                         </div>
                         <div>
-                          <!-- <a [routerLink]=""
-                            class="btn w-100 mb-3 btn-md btn-dark prev_btns inline-flex align-items-center rounded-pill">
-                            Add To Calendar
-                          </a> -->
                           <a [routerLink]="" (click)="selectedFieldSet[0] = 1"
                             class="btn w-100 btn-md btn-primary-gradient next_btns inline-flex align-items-center rounded-pill btn w-100 mb-3 btn-md btn-dark prev_btns inline-flex align-items-center rounded-pill">
                             Start New Booking
@@ -1011,4 +801,3 @@
     </div>
   </div>
 </div>
-<!-- /Terms -->
