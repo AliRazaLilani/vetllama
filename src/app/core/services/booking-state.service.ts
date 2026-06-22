@@ -1,5 +1,4 @@
-// src/app/core/services/booking-state.service.ts
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import {
@@ -87,7 +86,10 @@ export class BookingStateService {
 
   // Tenant context
   private tenantContext = this.tenantResolution.getTenantContext();
-  constructor(private tenantResolution: TenantResolutionService) {}
+  constructor(
+    private tenantResolution: TenantResolutionService,
+    private ngZone: NgZone,
+  ) {}
 
   // Getters
   getState(): BookingState {
@@ -96,9 +98,12 @@ export class BookingStateService {
 
   // Update entire state
   updateState(newState: Partial<BookingState>): void {
-    this.state.next({
-      ...this.getState(),
-      ...newState,
+    // Ensure changes are detected
+    this.ngZone.run(() => {
+      this.state.next({
+        ...this.getState(),
+        ...newState,
+      });
     });
   }
 

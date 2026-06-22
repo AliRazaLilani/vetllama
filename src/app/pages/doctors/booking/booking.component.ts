@@ -1,6 +1,12 @@
 // src/app/pages/doctors/booking/booking.component.ts
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { RouterLink } from '@angular/router';
@@ -35,6 +41,7 @@ interface Concern {
   imports: [CommonModule, FormsModule, RouterLink, MatSelectModule, BsDatepickerModule],
   templateUrl: './booking.component.html',
   styleUrl: './booking.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BookingComponent implements OnInit, OnDestroy {
   routes = routes;
@@ -125,6 +132,7 @@ export class BookingComponent implements OnInit, OnDestroy {
     private tenantApi: TenantApiService,
     private bookingState: BookingStateService,
     private tenantResolution: TenantResolutionService,
+    private cdr: ChangeDetectorRef,
   ) {}
 
   ngOnInit(): void {
@@ -190,6 +198,7 @@ export class BookingComponent implements OnInit, OnDestroy {
 
         // Update current step
         this.selectedFieldSet = [state.currentStep];
+        this.cdr.detectChanges();
       }),
     );
   }
@@ -244,10 +253,12 @@ export class BookingComponent implements OnInit, OnDestroy {
         if (response.data.length > 0) {
           this.bookingState.setSelectedService(response.data[0]);
         }
+        this.cdr.detectChanges();
       },
       error: (error: any) => {
         console.error('Error loading services:', error);
         this.bookingState.setError('Failed to load services. Please refresh the page.');
+        this.cdr.detectChanges();
       },
     });
   }
