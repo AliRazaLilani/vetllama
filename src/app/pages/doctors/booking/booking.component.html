@@ -789,7 +789,7 @@
                     <i class="isax isax-arrow-left-2 me-1"></i> Back
                   </a>
                   <a (click)="submitBooking()"
-                    class="btn btn-md btn-primary-gradient inline-flex align-items-center rounded-pill"
+                    class="btn btn-md btn-dark inline-flex align-items-center rounded-pill btn btn-md btn-primary-gradient next_btns inline-flex align-items-center rounded-pill"
                     [class.disabled]="isProcessingPayment" [class.opacity-50]="isProcessingPayment">
                     <span *ngIf="!isProcessingPayment">
                       Confirm & Pay <i class="isax isax-arrow-right-3 ms-1"></i>
@@ -822,72 +822,179 @@
                           <span class="avatar avatar-lg avatar-rounded me-2 flex-shrink-0">
                             <img [src]="branding?.logo_url || 'assets/img/doctor-grid/doctor-grid-011.webp'" alt="" />
                           </span>
-                          <p class="mb-0">
-                            Your Booking has been Confirmed with
-                            <span class="text-dark">{{ tenantData?.name || 'Clinic' }}</span>
-                            <br />
-                            <small class="text-muted">Booking #: {{ bookingNumber || 'N/A' }}</small>
-                          </p>
+                          <div>
+                            <p class="mb-0">
+                              Your Booking has been Confirmed with
+                              <span class="text-dark fw-bold">{{ tenantData?.name || 'Clinic' }}</span>
+                            </p>
+                            <p class="mb-0 text-muted small">
+                              <i class="isax isax-receipt-item me-1"></i>
+                              Order #: <span class="fw-bold text-primary">{{ bookingData?.order_number || bookingNumber
+                                || 'N/A' }}</span>
+                            </p>
+                          </div>
                         </div>
                         <div class="card-body pb-1">
                           <div class="d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between mb-3">
                             <h6>Booking Details</h6>
+                            <span class="badge bg-success">Confirmed</span>
                           </div>
                           <div class="row">
+                            <!-- Service -->
                             <div class="col-md-6">
                               <div class="mb-3">
                                 <label class="form-label">Service</label>
-                                <div class="form-plain-text">{{ getSelectedServiceName() }}</div>
+                                <div class="form-plain-text fw-medium">
+                                  {{ bookingData?.service?.name || getSelectedServiceName() }}
+                                </div>
+                                <small class="text-muted" *ngIf="bookingData?.service?.type">
+                                  Type: {{ bookingData?.service?.type | titlecase }}
+                                </small>
                               </div>
                             </div>
+
+                            <!-- Duration & Price -->
                             <div class="col-md-6">
                               <div class="mb-3">
-                                <label class="form-label">Duration</label>
-                                <div class="form-plain-text">{{ getSelectedDurationText() }}</div>
+                                <label class="form-label">Duration & Price</label>
+                                <div class="form-plain-text fw-medium">
+                                  {{ bookingData?.duration?.duration_minutes || getSelectedDurationText() }} mins
+                                </div>
+                                <small class="text-muted">
+                                  {{ bookingData?.duration?.price || getSelectedServicePrice() }}
+                                </small>
                               </div>
                             </div>
+
+                            <!-- Date & Time -->
                             <div class="col-md-6">
                               <div class="mb-3">
                                 <label class="form-label">Date & Time</label>
-                                <div class="form-plain-text">
-                                  {{ selectedSlotTime || '---' }},
-                                  {{ bsInlineValue | date: 'dd, MMM yyyy' }}
+                                <div class="form-plain-text fw-medium">
+                                  {{ formatDateDisplay(bookingData?.date || bsInlineValue) }}
+                                </div>
+                                <small class="text-muted">
+                                  {{ formatTimeDisplay(bookingData?.slot_starts_at) }} -
+                                  {{ formatTimeDisplay(bookingData?.slot_ends_at) }}
+                                </small>
+                              </div>
+                            </div>
+
+                            <!-- Appointment Type -->
+                            <div class="col-md-6">
+                              <div class="mb-3">
+                                <label class="form-label">Appointment Type</label>
+                                <div class="form-plain-text fw-medium">
+                                  {{ isClinic ? 'Clinic Visit' : 'Telehealth' }}
                                 </div>
                               </div>
                             </div>
-                            <div class="col-md-6">
+
+                            <!-- Location -->
+                            <div class="col-md-6" *ngIf="bookingData?.location || selectedLocation">
                               <div class="mb-3">
-                                <label class="form-label">Appointment type</label>
-                                <div class="form-plain-text">{{ isClinic ? 'Clinic' : 'Telehealth' }}</div>
+                                <label class="form-label">Location</label>
+                                <div class="form-plain-text fw-medium">
+                                  {{ bookingData?.location?.name || selectedLocation?.name }}
+                                </div>
+                                <small class="text-muted" *ngIf="selectedLocation?.address">
+                                  {{ selectedLocation?.address }}<br />
+                                  {{ selectedLocation?.city }}, {{ selectedLocation?.state }} {{
+                                  selectedLocation?.zip_code }}
+                                </small>
                               </div>
                             </div>
+
+                            <!-- Payment Method -->
                             <div class="col-md-6">
                               <div class="mb-3">
                                 <label class="form-label">Payment Method</label>
-                                <div class="form-plain-text text-capitalize">{{ selectedPaymentType }}</div>
+                                <div class="form-plain-text fw-medium text-capitalize">
+                                  {{ bookingData?.payment_type || selectedPaymentType }}
+                                </div>
+                                <span class="badge" [class.bg-warning]="bookingData?.payment_status === 'pending'"
+                                  [class.bg-success]="bookingData?.payment_status === 'completed'">
+                                  {{ bookingData?.payment_status || 'Pending' }}
+                                </span>
                               </div>
                             </div>
-                            <div class="col-md-6">
+
+                            <!-- Customer Info -->
+                            <div class="col-md-12">
+                              <hr />
+                              <h6 class="mb-3">Customer Information</h6>
+                            </div>
+                            <div class="col-md-4">
                               <div class="mb-3">
-                                <label class="form-label">Total Paid</label>
-                                <div class="form-plain-text fw-bold">{{ getSelectedServicePrice() }}</div>
+                                <label class="form-label">Name</label>
+                                <div class="form-plain-text">{{ bookingData?.name || name }}</div>
                               </div>
                             </div>
-                            <div class="col-md-12" *ngIf="selectedLocation">
+                            <div class="col-md-4">
                               <div class="mb-3">
-                                <label class="form-label">Location</label>
+                                <label class="form-label">Email</label>
+                                <div class="form-plain-text">{{ bookingData?.email || email }}</div>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="mb-3">
+                                <label class="form-label">Phone</label>
+                                <div class="form-plain-text">{{ bookingData?.phone_number || phone }}</div>
+                              </div>
+                            </div>
+
+                            <!-- Pet Info -->
+                            <div class="col-md-12" *ngIf="bookingData?.fields_json">
+                              <hr />
+                              <h6 class="mb-3">Pet Information</h6>
+                            </div>
+                            <div class="col-md-4" *ngIf="bookingData?.fields_json?.pet_name">
+                              <div class="mb-3">
+                                <label class="form-label">Pet Name</label>
+                                <div class="form-plain-text">{{ bookingData?.fields_json?.pet_name }}</div>
+                              </div>
+                            </div>
+                            <div class="col-md-4" *ngIf="bookingData?.fields_json?.species">
+                              <div class="mb-3">
+                                <label class="form-label">Species</label>
+                                <div class="form-plain-text">{{ bookingData?.fields_json?.species }}</div>
+                              </div>
+                            </div>
+                            <div class="col-md-4" *ngIf="bookingData?.fields_json?.breed">
+                              <div class="mb-3">
+                                <label class="form-label">Breed</label>
+                                <div class="form-plain-text">{{ bookingData?.fields_json?.breed }}</div>
+                              </div>
+                            </div>
+                            <div class="col-md-4" *ngIf="bookingData?.fields_json?.sex">
+                              <div class="mb-3">
+                                <label class="form-label">Sex</label>
+                                <div class="form-plain-text">{{ bookingData?.fields_json?.sex }}</div>
+                              </div>
+                            </div>
+                            <div class="col-md-8" *ngIf="bookingData?.fields_json?.concerns?.length">
+                              <div class="mb-3">
+                                <label class="form-label">Concerns</label>
                                 <div class="form-plain-text">
-                                  {{ selectedLocation.name }}<br />
-                                  {{ selectedLocation.address }}<br />
-                                  {{ selectedLocation.city }}, {{ selectedLocation.state }} {{ selectedLocation.zip_code
-                                  }}
+                                  <span *ngFor="let concern of bookingData?.fields_json?.concerns; let last = last">
+                                    {{ concern }}<span *ngIf="!last">, </span>
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-12" *ngIf="bookingData?.fields_json?.reason_for_appointment">
+                              <div class="mb-3">
+                                <label class="form-label">Reason for Appointment</label>
+                                <div class="form-plain-text">{{ bookingData?.fields_json?.reason_for_appointment }}
                                 </div>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                      <div class="card">
+
+                      <!-- Assistance Card -->
+                      <div class="card mt-3">
                         <div class="card-body d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between">
                           <div>
                             <h6 class="mb-1">Need Our Assistance?</h6>
@@ -902,26 +1009,42 @@
                       </div>
                     </div>
                   </div>
+
+                  <!-- Sidebar -->
                   <div class="col-lg-4 d-flex">
                     <div class="card flex-fill">
                       <div class="card-body d-flex flex-column justify-content-between">
                         <div class="text-center">
-                          <h6 class="fs-14 mb-2">Booking Number</h6>
-                          <span class="booking-id-badge mb-3">{{ bookingNumber || 'N/A' }}</span>
-                          <span class="d-block mb-3">
-                            <i class="isax isax-receipt-item fs-48 text-primary"></i>
+                          <div class="mb-3">
+                            <i class="isax isax-tick-circle5 text-success fs-48"></i>
+                          </div>
+                          <h6 class="fs-14 mb-2">Order Number</h6>
+                          <span
+                            class="booking-id-badge mb-3 d-inline-block px-4 py-2 bg-primary text-white rounded-pill">
+                            {{ bookingData?.order_number || bookingNumber || 'N/A' }}
                           </span>
-                          <p class="text-muted small">
-                            A confirmation email has been sent to your registered email address.
-                          </p>
-                          <p class="text-muted small">
-                            <i class="isax isax-clock me-1"></i>
-                            Please arrive 15 minutes before your appointment.
-                          </p>
+
+                          <div class="mt-4 p-3 bg-light rounded">
+                            <p class="mb-1 text-muted small">Total Amount</p>
+                            <h4 class="text-primary fw-bold">
+                              {{ bookingData?.duration?.price || getSelectedServicePrice() }}
+                            </h4>
+                          </div>
+
+                          <div class="mt-3">
+                            <p class="text-muted small mb-1">
+                              <i class="isax isax-clock me-1"></i>
+                              Please arrive 15 minutes before your appointment
+                            </p>
+                            <p class="text-muted small mb-0">
+                              <i class="isax isax-sms me-1"></i>
+                              A confirmation email has been sent to your registered email
+                            </p>
+                          </div>
                         </div>
                         <div>
                           <a (click)="resetBooking()"
-                            class="btn w-100 btn-md btn-primary-gradient inline-flex align-items-center rounded-pill">
+                            class="btn btn-md btn-dark inline-flex align-items-center rounded-pill btn btn-md btn-primary-gradient next_btns inline-flex align-items-center rounded-pill">
                             <i class="isax isax-add me-1"></i> Start New Booking
                           </a>
                         </div>

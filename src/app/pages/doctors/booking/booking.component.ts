@@ -140,6 +140,8 @@ export class BookingComponent implements OnInit, OnDestroy {
   isProcessingPayment = false;
   bookingNumber: string = '';
   bookingId: number | null = null;
+  bookingData: any = null;
+  bookingOrderNumber: string = '';
 
   // Add to the existing properties
   cardHolderName: string = '';
@@ -539,17 +541,57 @@ export class BookingComponent implements OnInit, OnDestroy {
 
   // Add method to reset booking
   resetBooking(): void {
+    // Reset state
     this.bookingState.resetState();
+
+    // Reset component properties
     this.selectedFieldSet = [1];
     this.bsInlineValue = new Date();
     this.selectedSlotTime = '';
+    this.selectedServiceId = null;
+    this.selectedDurationId = null;
+    this.selectedLocationId = null;
+    this.bookingData = null;
     this.bookingNumber = '';
-    this.bookingId = null;
+    this.bookingOrderNumber = '';
     this.isProcessingPayment = false;
+    this.isClinic = true;
+
+    // Reset form values
+    this.formValues = {};
     this.cardHolderName = '';
     this.cardNumber = '';
     this.cardExpiry = '';
     this.cardCvv = '';
+    this.name = '';
+    this.email = '';
+    this.phone = '';
+    this.petName = '';
+    this.selectedValue1 = 'Select Species';
+    this.petBreed = '';
+    this.petDob = new Date();
+    this.petSex = 'Male';
+    this.petReason = '';
+    this.selectedConcerns = [];
+
+    // Reset slot params
+    this.lastSlotParams = null;
+
+    // Reset selected properties
+    this.selectedService = null;
+    this.selectedDuration = null;
+    this.selectedDate = new Date();
+    this.selectedLocation = null;
+    this.selectedSlot = null;
+    this.services = [];
+    this.locations = [];
+    this.availableSlots = [];
+    this.tenantData = null;
+    this.branding = null;
+    this.publicConfig = null;
+    this.errorMessage = null;
+
+    this.cdr.detectChanges();
   }
 
   // Add this method to validate the form
@@ -892,9 +934,13 @@ export class BookingComponent implements OnInit, OnDestroy {
       next: (response: any) => {
         console.log('✅ Booking response:', response);
 
-        if (response.success) {
-          this.bookingNumber = response.data?.booking_number || 'N/A';
-          this.bookingId = response.data?.booking_id || null;
+        if (response.success && response.data) {
+          // Store the entire booking data
+          this.bookingData = response.data;
+
+          // Store order number from response
+          this.bookingOrderNumber = response.data.order_number || '';
+          this.bookingNumber = response.data.order_number || response.data.id?.toString() || '';
           this.bookingState.setError(null);
           this.goToStep(5);
         } else {
@@ -1010,5 +1056,35 @@ export class BookingComponent implements OnInit, OnDestroy {
     const field = this.findField(fieldId);
     if (!field || !field.max_characters) return false;
     return this.getTextareaLength(fieldId) >= field.max_characters;
+  }
+
+  formatDateDisplay(date: any): string {
+    if (!date) return 'N/A';
+
+    try {
+      const d = new Date(date);
+      return d.toLocaleDateString('en-US', {
+        weekday: 'short',
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+      });
+    } catch {
+      return String(date);
+    }
+  }
+
+  formatTimeDisplay(datetime: string): string {
+    if (!datetime) return '';
+
+    try {
+      const d = new Date(datetime);
+      return d.toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+      });
+    } catch {
+      return datetime.substring(0, 5);
+    }
   }
 }
