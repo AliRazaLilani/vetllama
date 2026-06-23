@@ -188,3 +188,33 @@ export interface FormConfigResponse {
   message: string;
   data: FormConfig;
 }
+
+export interface CreateBookingRequest {
+  service_id: number;
+  location_id?: number;
+  duration_id?: number;
+  price: number;
+  tax?: number;
+  discount?: number;
+  date: string;
+  slot_starts_at: string;
+  slot_ends_at: string;
+  slot_timezone: string;
+  payment_type: string;
+  payment_status?: string;
+  transaction_id?: string;
+  name: string;
+  email: string;
+  phone_number: string;
+  fields_json?: any;
+}
+
+export interface CreateBookingResponse {
+  success: boolean;
+  message: string;
+  data: {
+    booking_id: number;
+    booking_number: string;
+    status: string;
+  };
+}

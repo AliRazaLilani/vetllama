@@ -12,6 +12,8 @@ import {
   SlotRequest,
   Service,
   FormConfigResponse,
+  CreateBookingRequest,
+  CreateBookingResponse,
 } from '../../models/tenant.types';
 import { environment } from 'src/environments/environment';
 import { TenantResolutionService } from '../tenant-resolution.service';
@@ -186,6 +188,18 @@ export class TenantApiService {
     return this.http.get<SlotsResponse>(`${this.baseUrl}/slots`, {
       headers: this.getHeaders(),
       params: httpParams,
+    });
+  }
+
+  /**
+   * Create Booking
+   */
+  createBooking(request: CreateBookingRequest): Observable<CreateBookingResponse> {
+    console.log('📤 Creating booking with payload:', request);
+
+    return this.http.post<CreateBookingResponse>(`${this.baseUrl}/bookings`, request, {
+      headers: this.getHeaders(),
+      params: this.getTenantParams(),
     });
   }
 }

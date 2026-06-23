@@ -190,7 +190,10 @@ export class BookingStateService {
 
   // Reset state
   resetState(): void {
-    this.state.next(initialState);
+    this.state.next({
+      ...initialState,
+      formValues: {}, // Keep the form values initialized
+    });
   }
 
   // Get current booking summary
@@ -217,6 +220,11 @@ export class BookingStateService {
         reason: state.petReason,
       },
     };
+  }
+
+  // Add a method to clear form values only
+  clearFormValues(): void {
+    this.updateState({ formValues: {} });
   }
 
   // Check if booking can proceed to next step

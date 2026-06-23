@@ -135,6 +135,18 @@ export class BookingComponent implements OnInit, OnDestroy {
   selectedLocation: Location | null = null;
   selectedSlot: Slot | null = null;
 
+  // Payment related properties
+  selectedPaymentType: string = 'card';
+  isProcessingPayment = false;
+  bookingNumber: string = '';
+  bookingId: number | null = null;
+
+  // Add to the existing properties
+  cardHolderName: string = '';
+  cardNumber: string = '';
+  cardExpiry: string = '';
+  cardCvv: string = '';
+
   // Tenant context info for display
   tenantContext: any;
 
@@ -458,7 +470,46 @@ export class BookingComponent implements OnInit, OnDestroy {
     }
   }
 
-  // Update the isStepValid method to use dynamic form validation
+  // Add this method to prepare booking data
+  private prepareBookingData(): any {
+    const state = this.bookingState.getState();
+    const slot = state.selectedSlot;
+
+    // Get slot times
+    const startsAt = slot?.starts_at || slot?.start_time || '';
+    const endsAt = slot?.ends_at || slot?.end_time || '';
+    const timezone = slot?.timezone || 'America/Los_Angeles';
+
+    // Calculate price (use actual values from selected duration)
+    const duration = state.selectedDuration;
+    const price = duration ? parseFloat(duration.price) : 0;
+
+    // Get form values
+    const formValues = state.formValues || {};
+
+    // Prepare fields_json from form values
+    const fieldsJson = { ...formValues };
+
+    return {
+      service_id: state.selectedService?.id || 0,
+      location_id: state.selectedLocation?.id,
+      duration_id: state.selectedDuration?.id,
+      price: price,
+      tax: 0, // Will be calculated by backend
+      discount: 0,
+      date: this.formatDate(state.selectedDate || new Date()),
+      slot_starts_at: startsAt,
+      slot_ends_at: endsAt,
+      slot_timezone: timezone,
+      payment_type: this.selectedPaymentType,
+      name: formValues['name'] || '',
+      email: formValues['email'] || '',
+      phone_number: formValues['phone_number'] || '',
+      fields_json: fieldsJson,
+    };
+  }
+
+  // isStepValid method to use dynamic form validation
   isStepValid(step: number): boolean {
     const state = this.bookingState.getState();
 
@@ -468,13 +519,37 @@ export class BookingComponent implements OnInit, OnDestroy {
       case 2: // Date & Time
         return !!state.selectedDate && !!state.selectedSlot;
       case 3: // Basic Information
-        // Validate dynamic form fields
         return this.validateForm();
       case 4: // Payment
-        return true;
+        // Validate payment fields
+        return this.validatePayment();
       default:
         return false;
     }
+  }
+
+  // Add payment validation
+  private validatePayment(): boolean {
+    // Basic validation for card fields
+    if (this.selectedPaymentType === 'card') {
+      return !!this.cardHolderName && !!this.cardNumber && !!this.cardExpiry && !!this.cardCvv;
+    }
+    return true; // PayPal/Stripe validation would be handled by their SDKs
+  }
+
+  // Add method to reset booking
+  resetBooking(): void {
+    this.bookingState.resetState();
+    this.selectedFieldSet = [1];
+    this.bsInlineValue = new Date();
+    this.selectedSlotTime = '';
+    this.bookingNumber = '';
+    this.bookingId = null;
+    this.isProcessingPayment = false;
+    this.cardHolderName = '';
+    this.cardNumber = '';
+    this.cardExpiry = '';
+    this.cardCvv = '';
   }
 
   // Add this method to validate the form
@@ -806,13 +881,37 @@ export class BookingComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const bookingData = {
-      ...this.bookingState.getBookingSummary(),
-      tenant_context: this.tenantContext,
-    };
+    this.isProcessingPayment = true;
+    this.bookingState.setLoading(true);
 
-    console.log('📤 Submitting booking with tenant context:', bookingData);
-    this.goToStep(5);
+    const bookingData = this.prepareBookingData();
+
+    console.log('📤 Submitting booking with data:', bookingData);
+
+    this.tenantApi.createBooking(bookingData).subscribe({
+      next: (response: any) => {
+        console.log('✅ Booking response:', response);
+
+        if (response.success) {
+          this.bookingNumber = response.data?.booking_number || 'N/A';
+          this.bookingId = response.data?.booking_id || null;
+          this.bookingState.setError(null);
+          this.goToStep(5);
+        } else {
+          this.bookingState.setError(response.message || 'Failed to create booking.');
+        }
+        this.isProcessingPayment = false;
+        this.bookingState.setLoading(false);
+        this.cdr.detectChanges();
+      },
+      error: (error: any) => {
+        console.error('❌ Error creating booking:', error);
+        this.bookingState.setError(error.message || 'Failed to create booking. Please try again.');
+        this.isProcessingPayment = false;
+        this.bookingState.setLoading(false);
+        this.cdr.detectChanges();
+      },
+    });
   }
 
   // Getters for template
