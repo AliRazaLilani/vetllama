@@ -99,7 +99,7 @@
                             </span>
                           </h4>
                           <p class="text-indigo mb-3 fw-medium">
-                            {{ services.length }} Services Available
+                            {{ services?.length || 0 }} Services Available
                           </p>
                           <p class="mb-0" *ngIf="publicConfig?.contact_details?.address">
                             <i class="isax isax-location me-2"></i>
@@ -120,27 +120,30 @@
                         <!-- Services -->
                         <div class="col-lg-6">
                           <label class="form-group-title">Service Type</label>
-                          <mat-select class="select" [(ngModel)]="selectedServiceId"
-                            (selectionChange)="onServiceSelect(selectedServiceId!)" panelClass="serviceSelect">
-                            @for (service of services; track service.id) {
-                            <mat-option [value]="service.id">
+                          <mat-select class="select" [(ngModel)]="selectedServiceId" (selectionChange)="onServiceSelect(selectedServiceId!)" panelClass="serviceSelect" placeholder="Select a service">
+                            <mat-option *ngFor="let service of services" [value]="service.id">
                               {{ service.name }} - {{ service.type }}
                             </mat-option>
-                            }
                           </mat-select>
                         </div>
                         <!-- Durations -->
-                        <div class="col-lg-6" *ngIf="selectedService">
+                        <div class="col-lg-6">
                           <label class="form-group-title">Duration & Price</label>
-                          <mat-select class="select" [(ngModel)]="selectedDurationId"
-                            (selectionChange)="onDurationSelect(selectedDurationId!)" panelClass="durationSelect">
-                            @for (duration of selectedService.duration_options; track duration.id) {
-                            <mat-option [value]="duration.id">
+                          <mat-select 
+                            class="select" 
+                            [(ngModel)]="selectedDurationId"
+                            (selectionChange)="onDurationSelect(selectedDurationId!)" 
+                            panelClass="durationSelect"
+                            placeholder="Select duration"
+                            [disabled]="!selectedService">
+                            <mat-option 
+                              *ngFor="let duration of selectedService?.duration_options || []" 
+                              [value]="duration.id">
                               {{ duration.duration_minutes }} mins - {{ duration.currency }} {{ duration.price }}
                               <span *ngIf="duration.is_default" class="badge bg-primary ms-2">Default</span>
                             </mat-option>
-                            }
                           </mat-select>
+                          <small *ngIf="!selectedService" class="text-muted">Please select a service first</small>
                         </div>
                       </div>
                       <div class="mt-3" *ngIf="selectedService">
@@ -236,15 +239,12 @@
                           </div>
                         </div>
                         <!-- Location selector -->
-                        <div class="mt-3" *ngIf="locations.length > 0">
+                        <div class="mt-3" *ngIf="locations && locations.length > 0">
                           <label class="form-group-title">Location</label>
-                          <mat-select class="select" [(ngModel)]="selectedLocationId"
-                            (selectionChange)="onLocationSelect(selectedLocationId!)" panelClass="locationSelect">
-                            @for (location of locations; track location.id) {
-                            <mat-option [value]="location.id">
+                          <mat-select class="select" [(ngModel)]="selectedLocationId" (selectionChange)="onLocationSelect(selectedLocationId!)" panelClass="locationSelect" placeholder="Select location">
+                            <mat-option *ngFor="let location of locations" [value]="location.id">
                               {{ location.name }} - {{ location.city }}, {{ location.state }}
                             </mat-option>
-                            }
                           </mat-select>
                         </div>
                       </div>

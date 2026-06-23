@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { RouterLink } from '@angular/router';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import { Subscription } from 'rxjs';
+import { Subscription, debounceTime, distinctUntilChanged, filter } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { routes } from 'src/app/core/routes/routes';
 
@@ -118,7 +118,7 @@ export class BookingComponent implements OnInit, OnDestroy {
   petReason = '';
   selectedConcerns: string[] = [];
 
-  // ✅ ADD THESE MISSING PROPERTIES
+  // Selected properties
   selectedService: Service | null = null;
   selectedDuration: DurationOption | null = null;
   selectedDate: Date | null = null;
@@ -128,8 +128,13 @@ export class BookingComponent implements OnInit, OnDestroy {
   // Tenant context info for display
   tenantContext: any;
 
-  // ✅ ADD THIS TO TRACK INITIALIZATION
-  private isInitialized = false;
+  // Track last loaded slot params to prevent duplicate calls
+  private lastSlotParams: {
+    serviceId: number;
+    durationId: number;
+    date: string;
+    locationId?: number;
+  } | null = null;
 
   constructor(
     private tenantApi: TenantApiService,
@@ -143,7 +148,7 @@ export class BookingComponent implements OnInit, OnDestroy {
     this.tenantContext = this.tenantResolution.getTenantContext();
     console.log('Tenant Context:', this.tenantContext);
 
-    // ✅ Set initial date
+    // Set initial date
     this.selectedDate = new Date();
     this.bsInlineValue = new Date();
 
@@ -156,84 +161,120 @@ export class BookingComponent implements OnInit, OnDestroy {
   }
 
   private subscribeToState(): void {
-    // Subscribe to state changes
+    // Subscribe to state changes with debounce to prevent rapid updates
     this.subscriptions.add(
-      this.bookingState.state$.subscribe((state: any) => {
-        // Update local variables from state
-        this.services = state.services;
-        this.locations = state.locations;
-        this.availableSlots = state.availableSlots;
-        this.tenantData = state.tenant;
-        this.branding = state.branding;
-        this.publicConfig = state.publicConfig;
-        this.isBookingEnabled = state.publicConfig?.settings.booking_enabled ?? true;
-        this.isLoading = state.isLoading;
-        this.errorMessage = state.error;
+      this.bookingState.state$
+        .pipe(
+          debounceTime(50),
+          distinctUntilChanged((prev, curr) => {
+            return (
+              prev.selectedService === curr.selectedService &&
+              prev.selectedDuration === curr.selectedDuration &&
+              prev.selectedDate === curr.selectedDate &&
+              prev.selectedLocation === curr.selectedLocation &&
+              prev.availableSlots === curr.availableSlots &&
+              prev.isLoading === curr.isLoading
+            );
+          }),
+        )
+        .subscribe((state: any) => {
+          // Update local variables from state
+          this.services = state.services || [];
+          this.locations = state.locations || [];
+          this.availableSlots = Array.isArray(state.availableSlots) ? state.availableSlots : [];
+          this.tenantData = state.tenant;
+          this.branding = state.branding;
+          this.publicConfig = state.publicConfig;
+          this.isBookingEnabled = state.publicConfig?.settings.booking_enabled ?? true;
+          this.isLoading = state.isLoading;
+          this.errorMessage = state.error;
 
-        // ✅ Update selected properties
-        this.selectedService = state.selectedService;
-        this.selectedDuration = state.selectedDuration;
-        this.selectedDate = state.selectedDate || this.bsInlineValue;
-        this.selectedLocation = state.selectedLocation;
-        this.selectedSlot = state.selectedSlot;
+          // Update selected properties
+          this.selectedService = state.selectedService;
+          this.selectedDuration = state.selectedDuration;
+          this.selectedDate = state.selectedDate || this.bsInlineValue;
+          this.selectedLocation = state.selectedLocation;
+          this.selectedSlot = state.selectedSlot;
 
-        // Update selected IDs
-        if (state.selectedService) {
-          this.selectedServiceId = state.selectedService.id;
-        }
-        if (state.selectedDuration) {
-          this.selectedDurationId = state.selectedDuration.id;
-        }
-        if (state.selectedLocation) {
-          this.selectedLocationId = state.selectedLocation.id;
-        }
-        if (state.selectedSlot) {
-          this.selectedSlotTime = state.selectedSlot.start_time.substring(0, 5);
-        }
+          // Update selected IDs
+          if (state.selectedService) {
+            this.selectedServiceId = state.selectedService.id;
+          }
+          if (state.selectedDuration) {
+            this.selectedDurationId = state.selectedDuration.id;
+          }
+          if (state.selectedLocation) {
+            this.selectedLocationId = state.selectedLocation.id;
+          }
+          if (state.selectedSlot) {
+            this.selectedSlotTime = state.selectedSlot.start_time?.substring(0, 5) || '';
+          }
 
-        // Update form fields from state
-        this.name = state.customerName;
-        this.email = state.customerEmail;
-        this.phone = state.customerPhone;
-        this.petName = state.petName;
-        this.selectedValue1 = state.petSpecies;
-        this.petBreed = state.petBreed;
-        this.petDob = state.petDob || new Date();
-        this.petSex = state.petSex;
-        this.petReason = state.petReason;
-        this.selectedConcerns = state.petConcerns;
+          // Update form fields from state
+          this.name = state.customerName;
+          this.email = state.customerEmail;
+          this.phone = state.customerPhone;
+          this.petName = state.petName;
+          this.selectedValue1 = state.petSpecies;
+          this.petBreed = state.petBreed;
+          this.petDob = state.petDob || new Date();
+          this.petSex = state.petSex;
+          this.petReason = state.petReason;
+          this.selectedConcerns = state.petConcerns || [];
 
-        // Update current step
-        this.selectedFieldSet = [state.currentStep];
-        this.cdr.detectChanges();
-      }),
+          // Update current step
+          this.selectedFieldSet = [state.currentStep];
+          this.cdr.detectChanges();
+        }),
+    );
+
+    // Separate subscription for slot loading with debounce
+    this.subscriptions.add(
+      this.bookingState.state$
+        .pipe(
+          debounceTime(100),
+          filter((state) => {
+            return !!state.selectedService && !!state.selectedDuration && !!state.selectedDate;
+          }),
+          distinctUntilChanged((prev, curr) => {
+            const prevParams = {
+              serviceId: prev.selectedService?.id,
+              durationId: prev.selectedDuration?.id,
+              date: prev.selectedDate ? this.formatDate(prev.selectedDate) : null,
+              locationId: prev.selectedLocation?.id,
+            };
+            const currParams = {
+              serviceId: curr.selectedService?.id,
+              durationId: curr.selectedDuration?.id,
+              date: curr.selectedDate ? this.formatDate(curr.selectedDate) : null,
+              locationId: curr.selectedLocation?.id,
+            };
+            return JSON.stringify(prevParams) === JSON.stringify(currParams);
+          }),
+        )
+        .subscribe((state) => {
+          this.loadAvailableSlotsIfNeeded(state);
+        }),
     );
   }
 
   private loadTenantData(): void {
     this.bookingState.setLoading(true);
 
-    // Try to resolve tenant from host
     this.tenantApi
       .resolveTenant()
       .pipe(finalize(() => this.bookingState.setLoading(false)))
       .subscribe({
-        next: (response: {
-          success: any;
-          data: { tenant: any; branding: any; public_config: any };
-          message: any;
-        }) => {
+        next: (response: any) => {
           if (response.success) {
             const { tenant, branding, public_config } = response.data;
             this.bookingState.setTenantData(tenant, branding, public_config);
 
-            // Check if booking is enabled
             if (!public_config.settings.booking_enabled) {
               this.bookingState.setError('Booking is currently disabled for this clinic.');
               return;
             }
 
-            // Load services after tenant resolution
             this.loadServices();
             this.loadLocations();
           } else {
@@ -249,19 +290,21 @@ export class BookingComponent implements OnInit, OnDestroy {
 
   private loadServices(): void {
     this.tenantApi.getServices().subscribe({
-      next: (response: { success: any; data: string | Service[]; message: any }) => {
+      next: (response: any) => {
+        console.log('📥 Services Response:', response);
+
         if (!response.success || !Array.isArray(response.data)) {
-          console.error('Failed to load services:', response.message, response.data);
+          console.error('Failed to load services:', response.message);
+          this.bookingState.setServices([]);
           return;
         }
+
         this.bookingState.setServices(response.data);
 
-        // Auto-select first service if available
         if (response.data.length > 0) {
           const firstService = response.data[0];
           this.bookingState.setSelectedService(firstService);
 
-          // ✅ Auto-select default duration
           const defaultDuration = firstService.duration_options?.find((d: any) => d.is_default);
           if (defaultDuration) {
             this.bookingState.setSelectedDuration(defaultDuration);
@@ -281,9 +324,12 @@ export class BookingComponent implements OnInit, OnDestroy {
 
   private loadLocations(): void {
     this.tenantApi.getLocations().subscribe({
-      next: (response: { success: any; data: string | Location[] }) => {
+      next: (response: any) => {
+        console.log('📥 Locations Response:', response);
+
         if (!response.success || !Array.isArray(response.data)) {
-          console.error('Invalid locations response', response.data);
+          console.error('Invalid locations response', response);
+          this.bookingState.setLocations([]);
           return;
         }
 
@@ -291,26 +337,52 @@ export class BookingComponent implements OnInit, OnDestroy {
         if (response.data.length > 0) {
           this.bookingState.setSelectedLocation(response.data[0]);
         }
+        this.cdr.detectChanges();
       },
       error: (error: any) => {
         console.error('Error loading locations:', error);
+        this.bookingState.setLocations([]);
       },
     });
   }
 
-  private loadAvailableSlots(): void {
-    const state = this.bookingState.getState();
-
-    console.log('Loading slots with:', {
-      selectedService: state.selectedService,
-      selectedDuration: state.selectedDuration,
-      selectedDate: state.selectedDate,
-    });
-
+  private loadAvailableSlotsIfNeeded(state: any): void {
     if (!state.selectedService || !state.selectedDuration || !state.selectedDate) {
-      console.warn('Cannot load slots: missing required data');
       return;
     }
+
+    const dateStr = this.formatDate(state.selectedDate);
+    const currentParams = {
+      serviceId: state.selectedService.id,
+      durationId: state.selectedDuration.id,
+      date: dateStr,
+      locationId: state.selectedLocation?.id,
+    };
+
+    if (this.lastSlotParams) {
+      const prev = this.lastSlotParams;
+      const same =
+        prev.serviceId === currentParams.serviceId &&
+        prev.durationId === currentParams.durationId &&
+        prev.date === currentParams.date &&
+        prev.locationId === currentParams.locationId;
+
+      if (same) {
+        console.log('⏭️ Skipping duplicate slot load');
+        return;
+      }
+    }
+
+    this.lastSlotParams = currentParams;
+    this.loadAvailableSlots(state);
+  }
+
+  private loadAvailableSlots(state: any): void {
+    console.log('🔄 Loading slots for:', {
+      service: state.selectedService?.name,
+      duration: state.selectedDuration?.duration_minutes,
+      date: state.selectedDate,
+    });
 
     this.bookingState.setLoading(true);
     const dateStr = this.formatDate(state.selectedDate);
@@ -324,23 +396,41 @@ export class BookingComponent implements OnInit, OnDestroy {
       })
       .pipe(finalize(() => this.bookingState.setLoading(false)))
       .subscribe({
-        next: (response: { success: any; data: any; message: any }) => {
-          if (response.success) {
-            this.bookingState.setAvailableSlots(response.data);
-            console.log('Loaded slots:', response.data);
-          } else {
-            console.error('Failed to load slots:', response.message);
-            this.bookingState.setAvailableSlots([]);
+        next: (response: any) => {
+          console.log('📥 Slots API Response:', response);
+
+          let slotsArray: Slot[] = [];
+
+          if (response.success && response.data) {
+            // ✅ Check if response.data.slots exists and is an array
+            if (response.data.slots && Array.isArray(response.data.slots)) {
+              slotsArray = response.data.slots;
+              console.log('✅ Found slots in response.data.slots:', slotsArray.length);
+            }
+            // Fallback: if response.data is an array directly
+            else if (Array.isArray(response.data)) {
+              slotsArray = response.data;
+              console.log('✅ Found slots in response.data (array):', slotsArray.length);
+            }
+            // Fallback: if response.data has items array
+            else if (response.data.items && Array.isArray(response.data.items)) {
+              slotsArray = response.data.items;
+              console.log('✅ Found slots in response.data.items:', slotsArray.length);
+            }
           }
+
+          console.log('✅ Processed slots:', slotsArray);
+          this.bookingState.setAvailableSlots(slotsArray);
+          this.cdr.detectChanges();
         },
         error: (error: any) => {
           console.error('Error loading slots:', error);
           this.bookingState.setAvailableSlots([]);
+          this.cdr.detectChanges();
         },
       });
   }
 
-  // Helper methods
   private formatDate(date: Date): string {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -348,78 +438,97 @@ export class BookingComponent implements OnInit, OnDestroy {
     return `${year}-${month}-${day}`;
   }
 
-  // Get available slots for display
+  // Get available slots for display - with safety checks
   getMorningSlots(): string[] {
-    return this.availableSlots
+    const slots = Array.isArray(this.availableSlots) ? this.availableSlots : [];
+    const morningSlots = slots
       .filter((slot) => {
-        const hour = parseInt(slot.start_time.split(':')[0]);
+        // Extract hour from starts_at
+        const startTime = slot.starts_at || slot.start_time || '';
+        const hour = parseInt(startTime.split('T')[1]?.split(':')[0] || '0');
         return hour >= 6 && hour < 12;
       })
-      .map((slot) => slot.start_time.substring(0, 5));
+      .map((slot) => {
+        // Extract time from starts_at (HH:MM format)
+        const startTime = slot.starts_at || slot.start_time || '';
+        return startTime.split('T')[1]?.substring(0, 5) || '';
+      })
+      .filter((time) => time !== ''); // Remove empty strings
+
+    console.log('🌅 Morning slots:', morningSlots);
+    return morningSlots;
   }
 
   getAfternoonSlots(): string[] {
-    return this.availableSlots
+    const slots = Array.isArray(this.availableSlots) ? this.availableSlots : [];
+    const afternoonSlots = slots
       .filter((slot) => {
-        const hour = parseInt(slot.start_time.split(':')[0]);
+        const startTime = slot.starts_at || slot.start_time || '';
+        const hour = parseInt(startTime.split('T')[1]?.split(':')[0] || '0');
         return hour >= 12 && hour < 18;
       })
-      .map((slot) => slot.start_time.substring(0, 5));
+      .map((slot) => {
+        const startTime = slot.starts_at || slot.start_time || '';
+        return startTime.split('T')[1]?.substring(0, 5) || '';
+      })
+      .filter((time) => time !== '');
+
+    console.log('☀️ Afternoon slots:', afternoonSlots);
+    return afternoonSlots;
   }
 
   getEveningSlots(): string[] {
-    return this.availableSlots
+    const slots = Array.isArray(this.availableSlots) ? this.availableSlots : [];
+    const eveningSlots = slots
       .filter((slot) => {
-        const hour = parseInt(slot.start_time.split(':')[0]);
+        const startTime = slot.starts_at || slot.start_time || '';
+        const hour = parseInt(startTime.split('T')[1]?.split(':')[0] || '0');
         return hour >= 18;
       })
-      .map((slot) => slot.start_time.substring(0, 5));
+      .map((slot) => {
+        const startTime = slot.starts_at || slot.start_time || '';
+        return startTime.split('T')[1]?.substring(0, 5) || '';
+      })
+      .filter((time) => time !== '');
+
+    console.log('🌙 Evening slots:', eveningSlots);
+    return eveningSlots;
   }
 
-  // Check if a slot is disabled
   isSlotDisabled(slotTime: string): boolean {
-    const now = new Date();
-    const selectedDate = new Date(this.bsInlineValue);
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    selectedDate.setHours(0, 0, 0, 0);
+  const now = new Date();
+  const selectedDate = new Date(this.bsInlineValue);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  selectedDate.setHours(0, 0, 0, 0);
 
-    // If date is in the past
-    if (selectedDate < today) {
-      return true;
-    }
+  if (selectedDate < today) return true;
 
-    // If date is today, check if slot is in the past
-    if (selectedDate.getTime() === today.getTime()) {
-      const [hours, minutes] = slotTime.split(':').map(Number);
-      const slotDate = new Date(selectedDate);
-      slotDate.setHours(hours, minutes, 0, 0);
-      return slotDate < now;
-    }
-
-    return false;
+  if (selectedDate.getTime() === today.getTime()) {
+    const [hours, minutes] = slotTime.split(':').map(Number);
+    const slotDate = new Date(selectedDate);
+    slotDate.setHours(hours, minutes, 0, 0);
+    return slotDate < now;
   }
+
+  return false;
+}
+
 
   // Event handlers
   onServiceSelect(serviceId: number): void {
     const service = this.services.find((s) => s.id === serviceId);
     if (service) {
+      this.lastSlotParams = null;
       this.bookingState.setSelectedService(service);
-      // Clear existing slots when service changes
       this.bookingState.setAvailableSlots([]);
       this.bookingState.setSelectedSlot(null);
 
-      // Auto-select default duration
       const defaultDuration = service.duration_options?.find((d: any) => d.is_default);
       if (defaultDuration) {
         this.bookingState.setSelectedDuration(defaultDuration);
       } else if (service.duration_options?.length > 0) {
         this.bookingState.setSelectedDuration(service.duration_options[0]);
-      }
-
-      // Reload slots if date is selected
-      if (this.bookingState.getState().selectedDate) {
-        this.loadAvailableSlots();
       }
     }
   }
@@ -431,46 +540,41 @@ export class BookingComponent implements OnInit, OnDestroy {
         (d: { id: number }) => d.id === durationId,
       );
       if (duration) {
+        this.lastSlotParams = null;
         this.bookingState.setSelectedDuration(duration);
-        // Clear slots when duration changes
         this.bookingState.setAvailableSlots([]);
         this.bookingState.setSelectedSlot(null);
-
-        // Reload slots if date is selected
-        if (state.selectedDate) {
-          this.loadAvailableSlots();
-        }
       }
     }
   }
 
   onDateSelect(date: Date): void {
-    console.log('Date selected:', date);
+    console.log('📅 Date selected:', date);
+    this.lastSlotParams = null;
     this.bookingState.setSelectedDate(date);
     this.bookingState.setSelectedSlot(null);
     this.bsInlineValue = date;
-
-    // Load available slots for selected date
-    this.loadAvailableSlots();
   }
 
   onSlotSelect(slotTime: string): void {
-    const slot = this.availableSlots.find((s) => s.start_time.substring(0, 5) === slotTime);
-    if (slot) {
-      this.bookingState.setSelectedSlot(slot);
-      this.selectedSlotTime = slotTime;
-      console.log('Slot selected:', slot);
-    }
+  const slots = Array.isArray(this.availableSlots) ? this.availableSlots : [];
+  const slot = slots.find((s) => {
+    const startTime = s.starts_at || s.start_time || '';
+    return startTime.split('T')[1]?.substring(0, 5) === slotTime;
+  });
+  
+  if (slot) {
+    this.bookingState.setSelectedSlot(slot);
+    this.selectedSlotTime = slotTime;
+    console.log('✅ Slot selected:', slot);
   }
+}
 
   onLocationSelect(locationId: number): void {
     const location = this.locations.find((l) => l.id === locationId);
     if (location) {
+      this.lastSlotParams = null;
       this.bookingState.setSelectedLocation(location);
-      // Reload slots for new location
-      if (this.bookingState.getState().selectedDate) {
-        this.loadAvailableSlots();
-      }
     }
   }
 
@@ -478,9 +582,7 @@ export class BookingComponent implements OnInit, OnDestroy {
   goToStep(step: number): void {
     const state = this.bookingState.getState();
 
-    // Check if previous steps are valid when going forward
     if (step > state.currentStep) {
-      // Validate current step
       if (!this.bookingState.isStepValid(state.currentStep)) {
         this.bookingState.setError('Please complete all required fields before proceeding.');
         return;
@@ -537,25 +639,22 @@ export class BookingComponent implements OnInit, OnDestroy {
     this.bookingState.setPetReason(this.petReason);
   }
 
-  // Booking submission
   submitBooking(): void {
     if (!this.bookingState.isStepValid(4)) {
       this.bookingState.setError('Please complete all required fields.');
       return;
     }
 
-    // TODO: Implement booking submission API
     const bookingData = {
       ...this.bookingState.getBookingSummary(),
       tenant_context: this.tenantContext,
     };
 
-    console.log('Submitting booking with tenant context:', bookingData);
-    // TODO: Implement booking submission API
+    console.log('📤 Submitting booking with tenant context:', bookingData);
     this.goToStep(5);
   }
 
-  // Get selected service for display
+  // Getters for template
   getSelectedServiceName(): string {
     const service = this.bookingState.getState().selectedService;
     return service ? service.name : 'Not selected';
@@ -576,9 +675,14 @@ export class BookingComponent implements OnInit, OnDestroy {
     return this.bookingState;
   }
 
+  getDurationOptions(): DurationOption[] {
+    return this.selectedService?.duration_options || [];
+  }
+
   // ✅ ADD: Check if slots should be shown
   shouldShowSlots(): boolean {
-    return this.availableSlots.length > 0 && !!this.selectedDate;
+    const slots = Array.isArray(this.availableSlots) ? this.availableSlots : [];
+    return slots.length > 0 && !!this.selectedDate;
   }
 
   // Toggle clinic/telehealth

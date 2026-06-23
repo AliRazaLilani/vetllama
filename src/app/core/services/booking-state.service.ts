@@ -1,6 +1,6 @@
-import { Injectable, NgZone } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import {
   Tenant,
   Branding,
@@ -84,12 +84,7 @@ export class BookingStateService {
   private state = new BehaviorSubject<BookingState>(initialState);
   public state$ = this.state.asObservable();
 
-  // Tenant context
-  private tenantContext = this.tenantResolution.getTenantContext();
-  constructor(
-    private tenantResolution: TenantResolutionService,
-    private ngZone: NgZone,
-  ) {}
+  constructor(private tenantResolution: TenantResolutionService) {}
 
   // Getters
   getState(): BookingState {
@@ -98,12 +93,9 @@ export class BookingStateService {
 
   // Update entire state
   updateState(newState: Partial<BookingState>): void {
-    // Ensure changes are detected
-    this.ngZone.run(() => {
-      this.state.next({
-        ...this.getState(),
-        ...newState,
-      });
+    this.state.next({
+      ...this.getState(),
+      ...newState,
     });
   }
 

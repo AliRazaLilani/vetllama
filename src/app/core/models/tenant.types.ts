@@ -135,9 +135,12 @@ export interface PoliciesResponse {
 
 // Slot Types
 export interface Slot {
-  start_time: string;
-  end_time: string;
-  is_available: boolean;
+  starts_at?: string;
+  ends_at?: string;
+  timezone?: string;
+  start_time?: string;
+  end_time?: string;
+  is_available?: boolean;
 }
 
 export interface SlotsResponse {
