@@ -11,6 +11,7 @@ import {
   SlotsResponse,
   SlotRequest,
   Service,
+  FormConfigResponse,
 } from '../../models/tenant.types';
 import { environment } from 'src/environments/environment';
 import { TenantResolutionService } from '../tenant-resolution.service';
@@ -104,8 +105,8 @@ export class TenantApiService {
   /**
    * Get public form configuration
    */
-  getFormConfig(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/form`, {
+  getFormConfig(): Observable<FormConfigResponse> {
+    return this.http.get<FormConfigResponse>(`${this.baseUrl}/form`, {
       headers: this.getHeaders(),
       params: this.getTenantParams(),
     });

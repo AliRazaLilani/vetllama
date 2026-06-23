@@ -28,6 +28,9 @@ import {
   Slot,
   Tenant,
   Branding,
+  FormConfig,
+  FormSection,
+  FormField,
 } from 'src/app/core/models/tenant.types';
 
 interface Concern {
@@ -91,6 +94,13 @@ export class BookingComponent implements OnInit, OnDestroy {
   tenantData: Tenant | null = null;
   branding: Branding | null = null;
   publicConfig: any = null;
+
+  // Form configuration
+  formConfig: FormConfig | null = null;
+  formSections: FormSection[] = [];
+
+  // Dynamic form values
+  formValues: { [key: string]: any } = {};
 
   // UI state
   isLoading = false;
@@ -211,6 +221,7 @@ export class BookingComponent implements OnInit, OnDestroy {
           }
 
           // Update form fields from state
+          this.formValues = state.formValues || {};
           this.name = state.customerName;
           this.email = state.customerEmail;
           this.phone = state.customerPhone;
@@ -277,6 +288,7 @@ export class BookingComponent implements OnInit, OnDestroy {
 
             this.loadServices();
             this.loadLocations();
+            this.loadFormConfig();
           } else {
             this.bookingState.setError(response.message || 'Failed to resolve tenant.');
           }
@@ -344,6 +356,156 @@ export class BookingComponent implements OnInit, OnDestroy {
         this.bookingState.setLocations([]);
       },
     });
+  }
+
+  // Add this method to load form configuration
+  private loadFormConfig(): void {
+    this.tenantApi.getFormConfig().subscribe({
+      next: (response: any) => {
+        console.log('📥 Form Config Response:', response);
+
+        if (response.success && response.data) {
+          this.formConfig = response.data;
+          this.formSections = response.data.schema.sections || [];
+
+          // Initialize form values from state or defaults
+          this.initializeFormValues();
+          this.cdr.detectChanges();
+        } else {
+          console.error('Failed to load form config:', response.message);
+        }
+      },
+      error: (error: any) => {
+        console.error('Error loading form config:', error);
+      },
+    });
+  }
+
+  // Add this method to initialize form values
+  private initializeFormValues(): void {
+    const state = this.bookingState.getState();
+
+    // If we already have form values in state, use them
+    if (state.formValues && Object.keys(state.formValues).length > 0) {
+      this.formValues = { ...state.formValues };
+      return;
+    }
+
+    // Initialize with default values from the form config
+    this.formSections.forEach((section) => {
+      section.fields.forEach((field) => {
+        // Set default values based on field type
+        switch (field.type) {
+          case 'checkbox':
+            this.formValues[field.id] = [];
+            break;
+          case 'radio':
+          case 'select':
+            this.formValues[field.id] = field.options?.[0] || '';
+            break;
+          case 'date':
+            this.formValues[field.id] = new Date();
+            break;
+          default:
+            this.formValues[field.id] = '';
+        }
+      });
+    });
+
+    // Update state with initialized values
+    this.bookingState.updateState({ formValues: this.formValues });
+  }
+
+  // Add this method to update form values
+  updateFormValue(fieldId: string, value: any): void {
+    this.formValues[fieldId] = value;
+    this.bookingState.updateState({ formValues: this.formValues });
+
+    // Also update specific fields in state for validation
+    this.syncFormValuesToState();
+  }
+
+  // Add this method to sync form values to state
+  private syncFormValuesToState(): void {
+    // Map form values to state properties for validation
+    const state = this.bookingState.getState();
+
+    // Map common fields
+    if (this.formValues['name'] !== undefined) {
+      this.bookingState.setCustomerInfo(
+        this.formValues['name'] || '',
+        this.formValues['email'] || '',
+        this.formValues['phone_number'] || '',
+      );
+    }
+
+    if (this.formValues['pet_name'] !== undefined) {
+      this.bookingState.setPetInfo(
+        this.formValues['pet_name'] || '',
+        this.formValues['species'] || 'Select Species',
+        this.formValues['breed'] || '',
+        this.formValues['date_of_birth'] || null,
+        this.formValues['sex'] || 'Male',
+      );
+    }
+
+    if (this.formValues['concerns'] !== undefined) {
+      this.bookingState.setPetConcerns(this.formValues['concerns'] || []);
+    }
+
+    if (this.formValues['reason_for_appointment'] !== undefined) {
+      this.bookingState.setPetReason(this.formValues['reason_for_appointment'] || '');
+    }
+  }
+
+  // Update the isStepValid method to use dynamic form validation
+  isStepValid(step: number): boolean {
+    const state = this.bookingState.getState();
+
+    switch (step) {
+      case 1: // Appointment Type
+        return !!state.selectedService && !!state.selectedDuration;
+      case 2: // Date & Time
+        return !!state.selectedDate && !!state.selectedSlot;
+      case 3: // Basic Information
+        // Validate dynamic form fields
+        return this.validateForm();
+      case 4: // Payment
+        return true;
+      default:
+        return false;
+    }
+  }
+
+  // Add this method to validate the form
+  private validateForm(): boolean {
+    // Check if all required fields are filled
+    for (const section of this.formSections) {
+      for (const field of section.fields) {
+        if (field.required) {
+          const value = this.formValues[field.id];
+
+          // Check if value is empty
+          if (value === undefined || value === null || value === '') {
+            return false;
+          }
+
+          // Check if array is empty (for checkboxes)
+          if (Array.isArray(value) && value.length === 0) {
+            return false;
+          }
+
+          // Check if select has default value
+          if (field.type === 'select' && value === field.options?.[0]) {
+            // If the first option is a placeholder like "Select Species"
+            if (field.id === 'species' && value === 'Select Species') {
+              return false;
+            }
+          }
+        }
+      }
+    }
+    return true;
   }
 
   private loadAvailableSlotsIfNeeded(state: any): void {
@@ -496,24 +658,23 @@ export class BookingComponent implements OnInit, OnDestroy {
   }
 
   isSlotDisabled(slotTime: string): boolean {
-  const now = new Date();
-  const selectedDate = new Date(this.bsInlineValue);
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  selectedDate.setHours(0, 0, 0, 0);
+    const now = new Date();
+    const selectedDate = new Date(this.bsInlineValue);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    selectedDate.setHours(0, 0, 0, 0);
 
-  if (selectedDate < today) return true;
+    if (selectedDate < today) return true;
 
-  if (selectedDate.getTime() === today.getTime()) {
-    const [hours, minutes] = slotTime.split(':').map(Number);
-    const slotDate = new Date(selectedDate);
-    slotDate.setHours(hours, minutes, 0, 0);
-    return slotDate < now;
+    if (selectedDate.getTime() === today.getTime()) {
+      const [hours, minutes] = slotTime.split(':').map(Number);
+      const slotDate = new Date(selectedDate);
+      slotDate.setHours(hours, minutes, 0, 0);
+      return slotDate < now;
+    }
+
+    return false;
   }
-
-  return false;
-}
-
 
   // Event handlers
   onServiceSelect(serviceId: number): void {
@@ -557,18 +718,18 @@ export class BookingComponent implements OnInit, OnDestroy {
   }
 
   onSlotSelect(slotTime: string): void {
-  const slots = Array.isArray(this.availableSlots) ? this.availableSlots : [];
-  const slot = slots.find((s) => {
-    const startTime = s.starts_at || s.start_time || '';
-    return startTime.split('T')[1]?.substring(0, 5) === slotTime;
-  });
-  
-  if (slot) {
-    this.bookingState.setSelectedSlot(slot);
-    this.selectedSlotTime = slotTime;
-    console.log('✅ Slot selected:', slot);
+    const slots = Array.isArray(this.availableSlots) ? this.availableSlots : [];
+    const slot = slots.find((s) => {
+      const startTime = s.starts_at || s.start_time || '';
+      return startTime.split('T')[1]?.substring(0, 5) === slotTime;
+    });
+
+    if (slot) {
+      this.bookingState.setSelectedSlot(slot);
+      this.selectedSlotTime = slotTime;
+      console.log('✅ Slot selected:', slot);
+    }
   }
-}
 
   onLocationSelect(locationId: number): void {
     const location = this.locations.find((l) => l.id === locationId);
@@ -692,5 +853,63 @@ export class BookingComponent implements OnInit, OnDestroy {
 
   offClinic(): void {
     this.isClinic = false;
+  }
+
+  getFieldValue(fieldId: string): any {
+    return this.formValues[fieldId] || '';
+  }
+
+  isFieldValid(fieldId: string): boolean {
+    const field = this.findField(fieldId);
+    if (!field) return true;
+
+    const value = this.formValues[fieldId];
+    if (field.required) {
+      if (value === undefined || value === null || value === '') return false;
+      if (Array.isArray(value) && value.length === 0) return false;
+    }
+    return true;
+  }
+
+  isFieldInvalid(fieldId: string): boolean {
+    return !this.isFieldValid(fieldId);
+  }
+
+  findField(fieldId: string): FormField | null {
+    for (const section of this.formSections) {
+      const field = section.fields.find((f) => f.id === fieldId);
+      if (field) return field;
+    }
+    return null;
+  }
+
+  isCheckboxChecked(fieldId: string, option: string): boolean {
+    const value = this.formValues[fieldId] || [];
+    return Array.isArray(value) && value.includes(option);
+  }
+
+  toggleCheckbox(fieldId: string, option: string, event: Event): void {
+    const checkbox = event.target as HTMLInputElement;
+    const currentValues = this.formValues[fieldId] || [];
+
+    if (checkbox.checked) {
+      this.updateFormValue(fieldId, [...currentValues, option]);
+    } else {
+      this.updateFormValue(
+        fieldId,
+        currentValues.filter((v: string) => v !== option),
+      );
+    }
+  }
+
+  getTextareaLength(fieldId: string): number {
+    const value = this.formValues[fieldId] || '';
+    return value.length;
+  }
+
+  isTextareaMaxReached(fieldId: string): boolean {
+    const field = this.findField(fieldId);
+    if (!field || !field.max_characters) return false;
+    return this.getTextareaLength(fieldId) >= field.max_characters;
   }
 }

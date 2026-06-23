@@ -155,3 +155,36 @@ export interface SlotRequest {
   date: string; // YYYY-MM-DD
   location_id?: number;
 }
+
+export interface FormField {
+  id: string;
+  type: 'text' | 'email' | 'tel' | 'select' | 'date' | 'radio' | 'checkbox' | 'textarea';
+  label: string;
+  required: boolean;
+  can_delete?: boolean;
+  placeholder?: string;
+  options?: string[];
+  max_characters?: number;
+}
+
+export interface FormSection {
+  id: string;
+  title: string;
+  fields: FormField[];
+  can_delete: boolean;
+}
+
+export interface FormConfig {
+  id: number;
+  tenant_id: number;
+  form_template_id: number;
+  schema: {
+    sections: FormSection[];
+  };
+}
+
+export interface FormConfigResponse {
+  success: boolean;
+  message: string;
+  data: FormConfig;
+}

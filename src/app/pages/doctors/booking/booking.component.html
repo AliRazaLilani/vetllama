@@ -18,6 +18,8 @@
     <!-- Main Content -->
     <div *ngIf="!isLoading" class="row">
       <div class="col-lg-9 mx-auto">
+
+        <!-- Steps -->
         <div class="booking-wizard">
           <ul class="form-wizard-steps d-sm-flex align-items-center justify-content-center" id="progressbar2">
             <li [ngClass]="{
@@ -120,7 +122,9 @@
                         <!-- Services -->
                         <div class="col-lg-6">
                           <label class="form-group-title">Service Type</label>
-                          <mat-select class="select" [(ngModel)]="selectedServiceId" (selectionChange)="onServiceSelect(selectedServiceId!)" panelClass="serviceSelect" placeholder="Select a service">
+                          <mat-select class="select" [(ngModel)]="selectedServiceId"
+                            (selectionChange)="onServiceSelect(selectedServiceId!)" panelClass="serviceSelect"
+                            placeholder="Select a service">
                             <mat-option *ngFor="let service of services" [value]="service.id">
                               {{ service.name }} - {{ service.type }}
                             </mat-option>
@@ -129,15 +133,10 @@
                         <!-- Durations -->
                         <div class="col-lg-6">
                           <label class="form-group-title">Duration & Price</label>
-                          <mat-select 
-                            class="select" 
-                            [(ngModel)]="selectedDurationId"
-                            (selectionChange)="onDurationSelect(selectedDurationId!)" 
-                            panelClass="durationSelect"
-                            placeholder="Select duration"
-                            [disabled]="!selectedService">
-                            <mat-option 
-                              *ngFor="let duration of selectedService?.duration_options || []" 
+                          <mat-select class="select" [(ngModel)]="selectedDurationId"
+                            (selectionChange)="onDurationSelect(selectedDurationId!)" panelClass="durationSelect"
+                            placeholder="Select duration" [disabled]="!selectedService">
+                            <mat-option *ngFor="let duration of selectedService?.duration_options || []"
                               [value]="duration.id">
                               {{ duration.duration_minutes }} mins - {{ duration.currency }} {{ duration.price }}
                               <span *ngIf="duration.is_default" class="badge bg-primary ms-2">Default</span>
@@ -241,7 +240,9 @@
                         <!-- Location selector -->
                         <div class="mt-3" *ngIf="locations && locations.length > 0">
                           <label class="form-group-title">Location</label>
-                          <mat-select class="select" [(ngModel)]="selectedLocationId" (selectionChange)="onLocationSelect(selectedLocationId!)" panelClass="locationSelect" placeholder="Select location">
+                          <mat-select class="select" [(ngModel)]="selectedLocationId"
+                            (selectionChange)="onLocationSelect(selectedLocationId!)" panelClass="locationSelect"
+                            placeholder="Select location">
                             <mat-option *ngFor="let location of locations" [value]="location.id">
                               {{ location.name }} - {{ location.city }}, {{ location.state }}
                             </mat-option>
@@ -353,23 +354,21 @@
           <!-- Step 3: Basic Information -->
           <fieldset [class.d-block]="selectedFieldSet[0] === 3">
             <div class="card booking-card mb-0">
-              <!-- Similar to your existing template, but using state -->
+              <!-- Header with booking info -->
               <div class="card-header">
                 <div class="booking-header pb-0">
                   <div class="card mb-0">
                     <div class="card-body">
                       <div class="d-flex align-items-center flex-wrap rpw-gap-2 mb-4 flex-wrap row-gap-2">
-                        <span class="avatar avatar-xxxl avatar-rounded me-2 flex-shrink-0"><img
-                            src="assets/img/doctor-grid/doctor-grid-011.webp" alt="" /></span>
+                        <span class="avatar avatar-xxxl avatar-rounded me-2 flex-shrink-0">
+                          <img [src]="branding?.logo_url || 'assets/img/doctor-grid/doctor-grid-011.webp'" alt="" />
+                        </span>
                         <div>
-                          <h4 class="mb-1">
-                            Dr. Michael Brown
-                            <span class="badge bg-orange fs-12"><i class="fa-solid fa-star me-1"></i>5.0</span>
-                          </h4>
-                          <p class="text-indigo mb-3 fw-medium">Psychologist</p>
+                          <h4 class="mb-1">{{ tenantData?.name || 'Clinic' }}</h4>
+                          <p class="text-indigo mb-3 fw-medium">{{ getSelectedServiceName() }}</p>
                           <p class="mb-0">
-                            <i class="isax isax-location me-2"></i>5th Street -
-                            1011 W 5th St, Suite 120, Austin, TX 78703
+                            <i class="isax isax-location me-2"></i>
+                            {{ publicConfig?.contact_details?.address || 'Location not specified' }}
                           </p>
                         </div>
                       </div>
@@ -378,27 +377,25 @@
                         <div class="col-lg-3 col-sm-6">
                           <div>
                             <h6 class="fs-14 fw-medium mb-1">Service</h6>
-                            <p class="mb-0">Cardiology (30 Mins)</p>
+                            <p class="mb-0">{{ getSelectedServiceName() }}</p>
                           </div>
                         </div>
                         <div class="col-lg-3 col-sm-6">
                           <div>
-                            <h6 class="fs-14 fw-medium mb-1">Service</h6>
-                            <p class="mb-0">Echocardiograms</p>
+                            <h6 class="fs-14 fw-medium mb-1">Duration</h6>
+                            <p class="mb-0">{{ getSelectedDurationText() }}</p>
                           </div>
                         </div>
                         <div class="col-lg-3 col-sm-6">
                           <div>
                             <h6 class="fs-14 fw-medium mb-1">Date & Time</h6>
-                            <p class="mb-0"> {{ selectedSlotTime || '---' }} {{ bsInlineValue | date: 'dd, MMM' }}</p>
+                            <p class="mb-0">{{ selectedSlotTime || '---' }}, {{ bsInlineValue | date: 'dd, MMM' }}</p>
                           </div>
                         </div>
                         <div class="col-lg-3 col-sm-6">
                           <div>
-                            <h6 class="fs-14 fw-medium mb-1">
-                              Appointment type
-                            </h6>
-                            <p class="mb-0">Clinic (Wellness Path)</p>
+                            <h6 class="fs-14 fw-medium mb-1">Appointment type</h6>
+                            <p class="mb-0">{{ isClinic ? 'Clinic' : 'Telehealth' }}</p>
                           </div>
                         </div>
                       </div>
@@ -406,164 +403,170 @@
                   </div>
                 </div>
               </div>
+
+              <!-- Dynamic Form Body -->
               <div class="card-body booking-body" style="padding: 15px 30px">
-                <form>
-                  <div class="forms-block">
-                    <h5 class="form-section-title">Your Information</h5>
-                  </div>
-                  <div class="forms-block">
-                    <div class="form-row">
-                      <div class="form-group">
-                        <label class="form-group-title" for="userName">
-                          Name <span class="text-danger">*</span>
-                        </label>
-                        <input type="text" class="form-control" id="userName" placeholder="Enter your name"
-                          [(ngModel)]="name" name="name" />
-                      </div>
-                      <div class="form-group">
-                        <label class="form-group-title" for="email">
-                          Email <span class="text-danger">*</span>
-                        </label>
-                        <input type="email" class="form-control" id="email" placeholder="Enter your email"
-                          [(ngModel)]="email" name="email" />
-                      </div>
+                <form #bookingForm="ngForm">
+                  <!-- Loop through form sections -->
+                  <ng-container *ngFor="let section of formSections">
+                    <div class="forms-block">
+                      <h5 class="form-section-title">{{ section.title }}</h5>
                     </div>
-                  </div>
-                  <div class="forms-block">
-                    <div class="form-row">
-                      <div class="form-group">
-                        <label class="form-group-title" for="phone">
-                          Phone Number <span class="text-danger">*</span>
-                        </label>
-                        <input type="text" class="form-control" id="phone" placeholder="Enter your phone number"
-                          [(ngModel)]="phone" name="phone" />
-                      </div>
-                    </div>
-                  </div>
-                  <hr class="my-4">
-                  <div class="forms-block">
-                    <h5 class="form-section-title">Tell Us About Your Pet</h5>
-                  </div>
-                  <div class="forms-block">
-                    <div class="form-row">
-                      <div class="form-group">
-                        <label class="form-group-title" for="petName">
-                          Pet Name <span class="text-danger">*</span>
-                        </label>
-                        <input type="text" class="form-control" id="petName" placeholder="e.g. Bella"
-                          [(ngModel)]="petName" name="petName" />
-                      </div>
-                      <div class="form-group">
-                        <label class="form-group-title" for="species">
-                          Species <span class="text-danger">*</span>
-                        </label>
-                        <mat-select class="select" [(ngModel)]="selectedValue1" [ngModelOptions]="{ standalone: true }"
-                          panelClass="patientDetailsSelect" id="species" name="species">
-                          @for (data of species; track data.value) {
-                          <mat-option [value]="data.value">
-                            {{ data.value }}
-                          </mat-option>
-                          }
-                        </mat-select>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="forms-block">
-                    <div class="form-row">
-                      <div class="form-group">
-                        <label class="form-group-title" for="petBreed">
-                          Breed
-                        </label>
-                        <input type="text" class="form-control" id="petBreed" placeholder="e.g. Golden Retriever"
-                          [(ngModel)]="petBreed" name="petBreed" />
-                      </div>
-                      <div class="form-group">
-                        <label class="form-group-title" for="petDob">
-                          Date of Birth <span class="text-danger">*</span>
-                        </label>
-                        <input type="text" class="form-control" id="petDob" placeholder="MM / DD / YYYY"
-                          [(ngModel)]="petDob" name="petDob" bsDatepicker
-                          [bsConfig]="{ containerClass: 'theme-default' }" />
-                      </div>
-                    </div>
-                  </div>
 
-                  <div class="forms-block mt-4">
-                    <label class="form-group-title">Sex <span class="text-danger">*</span></label>
-                    <div class="row row-gap-3">
-                      <div class="col-md-4">
-                        <div class="service-item mb-0" [class.active]="petSex === 'Male'" (click)="petSex = 'Male'">
-                          <div class="d-flex align-items-center">
-                            <div class="form-check me-2 mb-0">
-                              <input class="form-check-input" type="radio" value="Male" [(ngModel)]="petSex"
-                                name="petSex" [checked]="petSex === 'Male'" />
-                            </div>
-                            <span>Male</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="service-item mb-0" [class.active]="petSex === 'Female'" (click)="petSex = 'Female'">
-                          <div class="d-flex align-items-center">
-                            <div class="form-check me-2 mb-0">
-                              <input class="form-check-input" type="radio" value="Female" [(ngModel)]="petSex"
-                                name="petSex" [checked]="petSex === 'Female'" />
-                            </div>
-                            <span>Female</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="service-item mb-0" [class.active]="petSex === 'Unknown'"
-                          (click)="petSex = 'Unknown'">
-                          <div class="d-flex align-items-center">
-                            <div class="form-check me-2 mb-0">
-                              <input class="form-check-input" type="radio" value="Unknown" [(ngModel)]="petSex"
-                                name="petSex" [checked]="petSex === 'Unknown'" />
-                            </div>
-                            <span>Unknown</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                    <!-- Loop through fields in section -->
+                    <ng-container *ngFor="let field of section.fields">
+                      <div class="forms-block" [class.mt-4]="field.type === 'checkbox' || field.type === 'radio'">
 
-                  <div class="forms-block mt-4">
-                    <h6 class="text-uppercase fs-13 fw-semibold text-cyan mb-3">
-                      CONCERNS * (SELECT ALL THAT APPLY)
-                    </h6>
-                    <div class="checkbox-grid">
-                      @for (item of concerns; track item.id) {
-                      <label class="checkbox-item border p-2 rounded d-flex align-items-center mb-0"
-                        style="min-height: 45px">
-                        <input type="checkbox" [id]="item.id" class="me-2" />
-                        <span class="checkbox-label d-flex align-items-center w-100">
-                          <i class="fa me-2 fs-14" [ngClass]="item.icon"></i>
-                          <span class="fs-14">{{ item.label }}</span>
-                        </span>
-                      </label>
-                      }
-                    </div>
-                  </div>
+                        <!-- Text / Email / Tel Input -->
+                        <ng-container *ngIf="field.type === 'text' || field.type === 'email' || field.type === 'tel'">
+                          <div class="form-group">
+                            <label class="form-group-title" [for]="field.id">
+                              {{ field.label }}
+                              <span *ngIf="field.required" class="text-danger">*</span>
+                            </label>
+                            <input [type]="field.type === 'email' ? 'email' : field.type === 'tel' ? 'tel' : 'text'"
+                              class="form-control" [id]="field.id" [placeholder]="field.placeholder || ''"
+                              [class.is-invalid]="isFieldInvalid(field.id) && (bookingForm.submitted || formValues[field.id] !== '')"
+                              [(ngModel)]="formValues[field.id]" [name]="field.id"
+                              (ngModelChange)="updateFormValue(field.id, $event)" [required]="field.required" />
+                            <div
+                              *ngIf="isFieldInvalid(field.id) && (bookingForm.submitted || formValues[field.id] !== '')"
+                              class="invalid-feedback d-block">
+                              {{ field.label }} is required
+                            </div>
+                          </div>
+                        </ng-container>
 
-                  <div class="forms-block mt-4">
-                    <label class="form-group-title" for="reason">
-                      Reason for Appointment
-                    </label>
-                    <textarea class="form-control" placeholder="Describe what's going on with your pet in detail..."
-                      [(ngModel)]="petReason" name="reason" rows="4"></textarea>
-                    <p class="characters-text">400 Characters</p>
-                  </div>
+                        <!-- Select Dropdown -->
+                        <ng-container *ngIf="field.type === 'select'">
+                          <div class="form-group">
+                            <label class="form-group-title" [for]="field.id">
+                              {{ field.label }}
+                              <span *ngIf="field.required" class="text-danger">*</span>
+                            </label>
+                            <mat-select class="select" [(ngModel)]="formValues[field.id]" [name]="field.id"
+                              (selectionChange)="updateFormValue(field.id, $event.value)"
+                              panelClass="patientDetailsSelect" [id]="field.id" [required]="field.required">
+                              <mat-option *ngFor="let option of field.options" [value]="option">
+                                {{ option }}
+                              </mat-option>
+                            </mat-select>
+                            <div
+                              *ngIf="isFieldInvalid(field.id) && (bookingForm.submitted || formValues[field.id] !== '')"
+                              class="invalid-feedback d-block">
+                              {{ field.label }} is required
+                            </div>
+                          </div>
+                        </ng-container>
+
+                        <!-- Date Input -->
+                        <ng-container *ngIf="field.type === 'date'">
+                          <div class="form-group">
+                            <label class="form-group-title" [for]="field.id">
+                              {{ field.label }}
+                              <span *ngIf="field.required" class="text-danger">*</span>
+                            </label>
+                            <input type="text" class="form-control" [id]="field.id" placeholder="MM / DD / YYYY"
+                              [class.is-invalid]="isFieldInvalid(field.id) && (bookingForm.submitted || formValues[field.id] !== null)"
+                              [(ngModel)]="formValues[field.id]" [name]="field.id"
+                              (ngModelChange)="updateFormValue(field.id, $event)" bsDatepicker
+                              [bsConfig]="{ containerClass: 'theme-default' }" [required]="field.required" />
+                            <div
+                              *ngIf="isFieldInvalid(field.id) && (bookingForm.submitted || formValues[field.id] !== null)"
+                              class="invalid-feedback d-block">
+                              {{ field.label }} is required
+                            </div>
+                          </div>
+                        </ng-container>
+
+                        <!-- Radio Buttons -->
+                        <ng-container *ngIf="field.type === 'radio'">
+                          <label class="form-group-title">
+                            {{ field.label }}
+                            <span *ngIf="field.required" class="text-danger">*</span>
+                          </label>
+                          <div class="row row-gap-3">
+                            <div class="col-md-4" *ngFor="let option of field.options">
+                              <div class="service-item mb-0" [class.active]="formValues[field.id] === option"
+                                (click)="updateFormValue(field.id, option)">
+                                <div class="d-flex align-items-center">
+                                  <div class="form-check me-2 mb-0">
+                                    <input class="form-check-input" type="radio" [value]="option" [name]="field.id"
+                                      [checked]="formValues[field.id] === option"
+                                      (change)="updateFormValue(field.id, option)" [required]="field.required" />
+                                  </div>
+                                  <span>{{ option }}</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            *ngIf="isFieldInvalid(field.id) && (bookingForm.submitted || formValues[field.id] !== '')"
+                            class="text-danger mt-1">
+                            {{ field.label }} is required
+                          </div>
+                        </ng-container>
+
+                        <!-- Checkbox Group -->
+                        <ng-container *ngIf="field.type === 'checkbox'">
+                          <h6 class="text-uppercase fs-13 fw-semibold text-cyan mb-3">
+                            {{ field.label }} <span *ngIf="field.required" class="text-danger">*</span>
+                          </h6>
+                          <div class="checkbox-grid">
+                            <label class="checkbox-item border p-2 rounded d-flex align-items-center mb-0"
+                              style="min-height: 45px" *ngFor="let option of field.options">
+                              <input type="checkbox" [id]="field.id + '_' + option" class="me-2"
+                                [checked]="isCheckboxChecked(field.id, option)"
+                                (change)="toggleCheckbox(field.id, option, $event)" />
+                              <span class="checkbox-label d-flex align-items-center w-100">
+                                <span class="fs-14">{{ option }}</span>
+                              </span>
+                            </label>
+                          </div>
+                          <div
+                            *ngIf="isFieldInvalid(field.id) && (bookingForm.submitted || formValues[field.id]?.length > 0)"
+                            class="text-danger mt-1">
+                            Please select at least one option
+                          </div>
+                        </ng-container>
+
+                        <!-- Textarea -->
+                        <ng-container *ngIf="field.type === 'textarea'">
+                          <div class="form-group">
+                            <label class="form-group-title" [for]="field.id">
+                              {{ field.label }}
+                              <span *ngIf="field.required" class="text-danger">*</span>
+                            </label>
+                            <textarea class="form-control" [placeholder]="field.placeholder || ''" [name]="field.id"
+                              [id]="field.id" [(ngModel)]="formValues[field.id]"
+                              (ngModelChange)="updateFormValue(field.id, $event)" rows="4"
+                              [maxlength]="field.max_characters || 400"
+                              [class.is-invalid]="isFieldInvalid(field.id) && (bookingForm.submitted || formValues[field.id] !== '')"
+                              [required]="field.required"></textarea>
+                            <p class="characters-text" *ngIf="field.max_characters">
+                              {{ getTextareaLength(field.id) }} / {{ field.max_characters }} Characters
+                            </p>
+                            <div
+                              *ngIf="isFieldInvalid(field.id) && (bookingForm.submitted || formValues[field.id] !== '')"
+                              class="invalid-feedback d-block">
+                              {{ field.label }} is required
+                            </div>
+                          </div>
+                        </ng-container>
+
+                      </div>
+                    </ng-container>
+                  </ng-container>
                 </form>
               </div>
-              <!-- ... keeping your existing structure but binding to state -->
+              <!-- Footer -->
               <div class="card-footer">
                 <div class="d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between">
                   <a (click)="prevStep()" class="btn btn-md btn-dark inline-flex align-items-center rounded-pill">
                     <i class="isax isax-arrow-left-2 me-1"></i> Back
                   </a>
                   <a (click)="nextStep()"
-                    class="btn btn-md btn-primary-gradient inline-flex align-items-center rounded-pill">
+                    class="btn btn-md btn-dark inline-flex align-items-center rounded-pill btn btn-md btn-primary-gradient next_btns inline-flex align-items-center rounded-pill">
                     Select Payment
                     <i class="isax isax-arrow-right-3 ms-1"></i>
                   </a>
@@ -571,6 +574,8 @@
               </div>
             </div>
           </fieldset>
+
+          <!-- Step 4: Payment -->
           <fieldset [class.d-block]="selectedFieldSet[0] === 4">
             <div class="card booking-card mb-0">
               <div class="card-header">
@@ -755,6 +760,8 @@
               </div>
             </div>
           </fieldset>
+
+          <!-- Step 5: Confirmation -->
           <fieldset [class.d-block]="selectedFieldSet[0] === 5">
             <div class="card booking-card">
               <div class="card-body booking-body pb-1">

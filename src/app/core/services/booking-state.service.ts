@@ -30,6 +30,9 @@ export interface BookingState {
   selectedSlot: Slot | null;
   availableSlots: Slot[];
 
+  // Form values
+  formValues: { [key: string]: any };
+
   // Customer info
   customerName: string;
   customerEmail: string;
@@ -62,6 +65,7 @@ const initialState: BookingState = {
   selectedDate: new Date(),
   selectedSlot: null,
   availableSlots: [],
+  formValues: {},
   customerName: '',
   customerEmail: '',
   customerPhone: '',
@@ -144,6 +148,10 @@ export class BookingStateService {
 
   setAvailableSlots(slots: Slot[]): void {
     this.updateState({ availableSlots: slots });
+  }
+
+  setFormValues(values: { [key: string]: any }): void {
+    this.updateState({ formValues: values });
   }
 
   setCustomerInfo(name: string, email: string, phone: string): void {

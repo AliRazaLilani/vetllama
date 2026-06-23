@@ -73,32 +73,101 @@
   cursor: pointer;
 
   &:hover {
-    border-color: #A96E46;
+    border-color: #a96e46;
     box-shadow: 0 4px 12px rgba(169, 110, 70, 0.1);
     transform: translateY(-2px);
   }
 
   &.active {
-    border-color: #A96E46;
+    border-color: #a96e46;
     background-color: rgba(169, 110, 70, 0.05) !important;
     box-shadow: 0 4px 15px rgba(169, 110, 70, 0.15);
 
     h6 {
-      color: #A96E46;
+      color: #a96e46;
       font-weight: 700;
     }
 
     .form-check-input {
-      background-color: #A96E46;
-      border-color: #A96E46;
+      background-color: #a96e46;
+      border-color: #a96e46;
     }
   }
 
   .avatar {
     &.bg-outline-primary {
-      border: 1px solid #A96E46;
-      color: #A96E46;
+      border: 1px solid #a96e46;
+      color: #a96e46;
       background: transparent;
+    }
+  }
+}
+
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 0.6rem;
+}
+
+.form-group {
+  margin-bottom: 0.9rem;
+}
+
+.form-group-title {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  display: block;
+}
+
+.form-section-title {
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.invalid-feedback {
+  display: block;
+  font-size: 0.875rem;
+  color: #dc3545;
+}
+
+.is-invalid {
+  border-color: #dc3545;
+}
+
+.text-danger {
+  color: #dc3545;
+}
+
+.text-cyan {
+  color: #17a2b8;
+}
+
+.characters-text {
+  text-align: right;
+  font-size: 0.875rem;
+  color: #6c757d;
+  margin-top: 0.25rem;
+}
+
+.service-item {
+  padding: 0.75rem 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: #a96e46;
+    background-color: rgba(169, 110, 70, 0.05);
+  }
+
+  &.active {
+    border-color: #a96e46;
+    background-color: rgba(169, 110, 70, 0.1);
+
+    .form-check-input:checked {
+      background-color: #a96e46;
+      border-color: #a96e46;
     }
   }
 }
@@ -107,7 +176,7 @@
   .visits {
     input {
       &:checked ~ .visit-rsn {
-        background-color: #A96E46 !important;
+        background-color: #a96e46 !important;
         color: #fff !important;
         border-radius: 4px;
 
