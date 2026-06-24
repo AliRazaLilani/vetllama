@@ -1,5 +1,5 @@
 // ---------------- Dynamic Booking Form ----------------
-// /*
+/*
 
 import { CommonModule } from '@angular/common';
 import {
@@ -1091,7 +1091,7 @@ export class BookingComponent implements OnInit, OnDestroy {
   }
 }
 
-// */
+*/
 // ---------------- Dynamic Booking Form ----------------
 
 
@@ -1106,7 +1106,7 @@ export class BookingComponent implements OnInit, OnDestroy {
 
 
 // ---------------- Custom Booking Form ----------------
-/*
+// /*
 
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
@@ -1259,5 +1259,5 @@ export class BookingComponent {
   }
 }
 
-*/
+// */
 // ---------------- Custom Booking Form ----------------

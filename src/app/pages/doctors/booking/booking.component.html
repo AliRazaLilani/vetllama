@@ -1,14 +1,16 @@
 <!-- Dynamic Booking Form -->
+<!--
+
 <div class="doctor-content">
   <div class="container">
-    <!-- Error Display -->
+    // Error Display
     <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show" role="alert">
       <i class="isax isax-danger-circle me-2"></i>
       {{ errorMessage }}
       <button type="button" class="btn-close" (click)="getBookingState().setError(null)"></button>
     </div>
 
-    <!-- Loading State -->
+    // Loading State
     <div *ngIf="isLoading" class="text-center py-5">
       <div class="spinner-border text-primary" role="status">
         <span class="visually-hidden">Loading...</span>
@@ -16,11 +18,11 @@
       <p class="mt-2">Loading booking information...</p>
     </div>
 
-    <!-- Main Content -->
+    // Main Content
     <div *ngIf="!isLoading" class="row">
       <div class="col-lg-9 mx-auto">
 
-        <!-- Steps -->
+        // Steps
         <div class="booking-wizard">
           <ul class="form-wizard-steps d-sm-flex align-items-center justify-content-center" id="progressbar2">
             <li [ngClass]="{
@@ -82,7 +84,7 @@
         </div>
 
         <div class="booking-widget multistep-form mb-5">
-          <!-- Step 1: Appointment Type -->
+          // Step 1: Appointment Type
           <fieldset [class.d-block]="selectedFieldSet[0] === 1">
             <div class="card booking-card mb-0">
               <div class="card-header">
@@ -120,7 +122,7 @@
                     <div class="mb-4">
                       <h5 class="mb-3">Select Service & Duration</h5>
                       <div class="row">
-                        <!-- Services -->
+                        // Services
                         <div class="col-lg-6">
                           <label class="form-group-title">Service Type</label>
                           <mat-select class="select" [(ngModel)]="selectedServiceId"
@@ -131,7 +133,7 @@
                             </mat-option>
                           </mat-select>
                         </div>
-                        <!-- Durations -->
+                        // Durations
                         <div class="col-lg-6">
                           <label class="form-group-title">Duration & Price</label>
                           <mat-select class="select" [(ngModel)]="selectedDurationId"
@@ -172,7 +174,7 @@
             </div>
           </fieldset>
 
-          <!-- Step 2: Date & Time -->
+          // Step 2: Date & Time
           <fieldset [class.d-block]="selectedFieldSet[0] === 2">
             <div class="card booking-card mb-0">
               <div class="card-header">
@@ -238,7 +240,7 @@
                             </bs-datepicker-inline>
                           </div>
                         </div>
-                        <!-- Location selector -->
+                        // Location selector
                         <div class="mt-3" *ngIf="locations && locations.length > 0">
                           <label class="form-group-title">Location</label>
                           <mat-select class="select" [(ngModel)]="selectedLocationId"
@@ -253,7 +255,7 @@
                       <div class="col-lg-7">
                         <div class="card booking-wizard-slots">
                           <div class="card-body">
-                            <!-- Show loading for slots -->
+                            // Show loading for slots
                             <div *ngIf="isLoading" class="text-center py-4">
                               <div class="spinner-border spinner-border-sm text-primary" role="status">
                                 <span class="visually-hidden">Loading slots...</span>
@@ -261,7 +263,7 @@
                               <p class="mt-2 mb-0">Loading available slots...</p>
                             </div>
 
-                            <!-- Morning Slots -->
+                            // Morning Slots
                             <div *ngIf="!isLoading && getMorningSlots().length > 0">
                               <div class="book-title">
                                 <h6 class="fs-14 mb-2">Morning</h6>
@@ -279,7 +281,7 @@
                               </div>
                             </div>
 
-                            <!-- Afternoon Slots -->
+                            // Afternoon Slots
                             <div *ngIf="!isLoading && getAfternoonSlots().length > 0">
                               <div class="book-title">
                                 <h6 class="fs-14 mb-2">Afternoon</h6>
@@ -297,7 +299,7 @@
                               </div>
                             </div>
 
-                            <!-- Evening Slots -->
+                            // Evening Slots
                             <div *ngIf="!isLoading && getEveningSlots().length > 0">
                               <div class="book-title">
                                 <h6 class="fs-14 mb-2">Evening</h6>
@@ -315,7 +317,7 @@
                               </div>
                             </div>
 
-                            <!-- No slots message -->
+                            // No slots message
                             <div *ngIf="!isLoading && availableSlots.length === 0 && selectedDate"
                               class="text-center py-4">
                               <i class="isax isax-calendar-remove fs-48 text-muted d-block mb-2"></i>
@@ -323,7 +325,7 @@
                               <p class="text-muted mb-0">Please select a different date</p>
                             </div>
 
-                            <!-- Initial state - select a date -->
+                            // Initial state - select a date
                             <div *ngIf="!isLoading && availableSlots.length === 0 && !selectedDate"
                               class="text-center py-4">
                               <i class="isax isax-calendar fs-48 text-muted d-block mb-2"></i>
@@ -352,10 +354,10 @@
             </div>
           </fieldset>
 
-          <!-- Step 3: Basic Information -->
+          // Step 3: Basic Information
           <fieldset [class.d-block]="selectedFieldSet[0] === 3">
             <div class="card booking-card mb-0">
-              <!-- Header with booking info -->
+              // Header with booking info
               <div class="card-header">
                 <div class="booking-header pb-0">
                   <div class="card mb-0">
@@ -405,20 +407,20 @@
                 </div>
               </div>
 
-              <!-- Dynamic Form Body -->
+             // Dynamic Form Body
               <div class="card-body booking-body" style="padding: 15px 30px">
                 <form #bookingForm="ngForm">
-                  <!-- Loop through form sections -->
+                 // Loop through form sections
                   <ng-container *ngFor="let section of formSections">
                     <div class="forms-block">
                       <h5 class="form-section-title">{{ section.title }}</h5>
                     </div>
 
-                    <!-- Loop through fields in section -->
+                   // Loop through fields in section
                     <ng-container *ngFor="let field of section.fields">
                       <div class="forms-block" [class.mt-4]="field.type === 'checkbox' || field.type === 'radio'">
 
-                        <!-- Text / Email / Tel Input -->
+                       // Text / Email / Tel Input
                         <ng-container *ngIf="field.type === 'text' || field.type === 'email' || field.type === 'tel'">
                           <div class="form-group">
                             <label class="form-group-title" [for]="field.id">
@@ -438,7 +440,7 @@
                           </div>
                         </ng-container>
 
-                        <!-- Select Dropdown -->
+                       // Select Dropdown
                         <ng-container *ngIf="field.type === 'select'">
                           <div class="form-group">
                             <label class="form-group-title" [for]="field.id">
@@ -460,7 +462,7 @@
                           </div>
                         </ng-container>
 
-                        <!-- Date Input -->
+                       // Date Input
                         <ng-container *ngIf="field.type === 'date'">
                           <div class="form-group">
                             <label class="form-group-title" [for]="field.id">
@@ -480,7 +482,7 @@
                           </div>
                         </ng-container>
 
-                        <!-- Radio Buttons -->
+                       // Radio Buttons
                         <ng-container *ngIf="field.type === 'radio'">
                           <label class="form-group-title">
                             {{ field.label }}
@@ -508,7 +510,7 @@
                           </div>
                         </ng-container>
 
-                        <!-- Checkbox Group -->
+                       // Checkbox Group
                         <ng-container *ngIf="field.type === 'checkbox'">
                           <h6 class="text-uppercase fs-13 fw-semibold text-cyan mb-3">
                             {{ field.label }} <span *ngIf="field.required" class="text-danger">*</span>
@@ -531,7 +533,7 @@
                           </div>
                         </ng-container>
 
-                        <!-- Textarea -->
+                       // Textarea
                         <ng-container *ngIf="field.type === 'textarea'">
                           <div class="form-group">
                             <label class="form-group-title" [for]="field.id">
@@ -560,7 +562,7 @@
                   </ng-container>
                 </form>
               </div>
-              <!-- Footer -->
+             // Footer
               <div class="card-footer">
                 <div class="d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between">
                   <a (click)="prevStep()" class="btn btn-md btn-dark inline-flex align-items-center rounded-pill">
@@ -576,7 +578,7 @@
             </div>
           </fieldset>
 
-          <!-- Step 4: Payment -->
+         // Step 4: Payment
           <fieldset [class.d-block]="selectedFieldSet[0] === 4">
             <div class="card booking-card mb-0">
               <div class="card-header">
@@ -632,7 +634,7 @@
               </div>
               <div class="card-body booking-body">
                 <div class="row">
-                  <!-- Payment Method -->
+                 // Payment Method
                   <div class="col-lg-6 d-flex">
                     <div class="card flex-fill mb-3 mb-lg-0">
                       <div class="card-body">
@@ -662,7 +664,7 @@
                             </li>
                           </ul>
                           <div class="tab-content">
-                            <!-- Credit Card -->
+                           // Credit Card
                             <div [class.d-none]="selectedPaymentType !== 'card'">
                               <div class="mb-3">
                                 <label class="form-label">Card Holder Name</label>
@@ -702,7 +704,7 @@
                               </div>
                             </div>
 
-                            <!-- PayPal -->
+                           // PayPal
                             <div [class.d-none]="selectedPaymentType !== 'paypal'">
                               <div class="text-center py-4">
                                 <img src="assets/img/icons/paypal-logo.svg" alt="PayPal" style="max-width: 150px;" />
@@ -714,7 +716,7 @@
                               </div>
                             </div>
 
-                            <!-- Stripe -->
+                           // Stripe
                             <div [class.d-none]="selectedPaymentType !== 'stripe'">
                               <div class="text-center py-4">
                                 <img src="assets/img/icons/stripe-logo.svg" alt="Stripe" style="max-width: 150px;" />
@@ -731,7 +733,7 @@
                     </div>
                   </div>
 
-                  <!-- Booking Summary -->
+                 // Booking Summary
                   <div class="col-lg-6 d-flex">
                     <div class="card flex-fill mb-0">
                       <div class="card-body">
@@ -805,7 +807,7 @@
             </div>
           </fieldset>
 
-          <!-- Step 5: Confirmation -->
+         // Step 5: Confirmation
           <fieldset [class.d-block]="selectedFieldSet[0] === 5">
             <div class="card booking-card">
               <div class="card-body booking-body pb-1">
@@ -841,7 +843,7 @@
                             <span class="badge bg-success">Confirmed</span>
                           </div>
                           <div class="row">
-                            <!-- Service -->
+                           // Service
                             <div class="col-md-6">
                               <div class="mb-3">
                                 <label class="form-label">Service</label>
@@ -854,7 +856,7 @@
                               </div>
                             </div>
 
-                            <!-- Duration & Price -->
+                           // Duration & Price
                             <div class="col-md-6">
                               <div class="mb-3">
                                 <label class="form-label">Duration & Price</label>
@@ -867,7 +869,7 @@
                               </div>
                             </div>
 
-                            <!-- Date & Time -->
+                           // Date & Time
                             <div class="col-md-6">
                               <div class="mb-3">
                                 <label class="form-label">Date & Time</label>
@@ -881,7 +883,7 @@
                               </div>
                             </div>
 
-                            <!-- Appointment Type -->
+                           // Appointment Type
                             <div class="col-md-6">
                               <div class="mb-3">
                                 <label class="form-label">Appointment Type</label>
@@ -891,7 +893,7 @@
                               </div>
                             </div>
 
-                            <!-- Location -->
+                           // Location
                             <div class="col-md-6" *ngIf="bookingData?.location || selectedLocation">
                               <div class="mb-3">
                                 <label class="form-label">Location</label>
@@ -906,7 +908,7 @@
                               </div>
                             </div>
 
-                            <!-- Payment Method -->
+                           // Payment Method
                             <div class="col-md-6">
                               <div class="mb-3">
                                 <label class="form-label">Payment Method</label>
@@ -920,7 +922,7 @@
                               </div>
                             </div>
 
-                            <!-- Customer Info -->
+                           // Customer Info
                             <div class="col-md-12">
                               <hr />
                               <h6 class="mb-3">Customer Information</h6>
@@ -944,7 +946,7 @@
                               </div>
                             </div>
 
-                            <!-- Pet Info -->
+                           // Pet Info
                             <div class="col-md-12" *ngIf="bookingData?.fields_json">
                               <hr />
                               <h6 class="mb-3">Pet Information</h6>
@@ -994,7 +996,7 @@
                         </div>
                       </div>
 
-                      <!-- Assistance Card -->
+                     // Assistance Card
                       <div class="card mt-3">
                         <div class="card-body d-flex align-items-center flex-wrap rpw-gap-2 justify-content-between">
                           <div>
@@ -1011,7 +1013,7 @@
                     </div>
                   </div>
 
-                  <!-- Sidebar -->
+                 // Sidebar
                   <div class="col-lg-4 d-flex">
                     <div class="card flex-fill">
                       <div class="card-body d-flex flex-column justify-content-between">
@@ -1070,6 +1072,8 @@
     </div>
   </div>
 </div>
+
+-->
 <!-- Dynamic Booking Form -->
 
 
@@ -1077,7 +1081,7 @@
 
 
 <!-- Static Booking Form -->
-<!-- 
+<!-- -->
 
 <div class="doctor-content">
   <div class="container">
@@ -1881,5 +1885,5 @@
   </div>
 </div> 
 
--->
+<!-- -->
 <!-- Static Booking Form -->
