@@ -1,14 +1,10 @@
 import { Component } from '@angular/core';
-import { LightgalleryModule } from 'lightgallery/angular';
-import { LightGallery } from 'lightgallery/lightgallery';
-import lgZoom from 'lightgallery/plugins/zoom';
-import lgVideo from 'lightgallery/plugins/video';
 import { RouterLink } from '@angular/router';
 // import { routes } from 'src/app/core/routes/routes';
 
 @Component({
   selector: 'app-home',
-  imports: [LightgalleryModule, RouterLink],
+  imports: [RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
@@ -42,25 +38,10 @@ export class HomeComponent {
       });
     });
   }
-  settings = {
-    counter: false,
-    plugins: [lgZoom, lgVideo],
-  };
-  private lightGallery!: LightGallery;
-  private needRefresh = false;
-  ngAfterViewChecked(): void {
-    if (this.needRefresh) {
-      this.lightGallery.refresh();
-      this.needRefresh = false;
-    }
-  }
   ngOnInit(): void {
     document.body.classList.add('theme-5');
   }
   ngOnDestroy(): void {
     document.body.classList.remove('theme-5');
   }
-  onInit = (detail: { instance: LightGallery }): void => {
-    this.lightGallery = detail.instance;
-  };
 }

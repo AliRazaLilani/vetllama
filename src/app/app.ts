@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import {
   NavigationEnd,
+  NavigationError,
   NavigationStart,
   Router,
   Event as RouterEvent,
@@ -31,6 +32,7 @@ export class App {
   public expandMenu = false;
   public mobileSidebar = false;
   public showMiniSidebar = false;
+  public loading = true;
 
   constructor(
     private common: CommonService,
@@ -59,6 +61,14 @@ export class App {
       }
       if (data instanceof NavigationEnd) {
         this.showMiniSidebar = false;
+        if (this.loading) {
+          this.loading = false;
+          document.getElementById('app-preloader')?.remove();
+        }
+      }
+      if (data instanceof NavigationError) {
+        this.loading = false;
+        document.getElementById('app-preloader')?.remove();
       }
     });
     this.sidebar.toggleSideBar.subscribe((res: string) => {

@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, HostListener } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { LightgalleryModule } from 'lightgallery/angular';
 import { homeHeader } from 'src/app/core/models/sidebar-model';
 import { CommonService } from '../../core/services/common/common.service';
 import { DataService } from '../../core/services/data/data.service';
@@ -10,7 +9,7 @@ import { routes } from 'src/app/core/routes/routes';
 
 @Component({
   selector: 'app-header',
-  imports: [CommonModule, RouterLink, RouterLinkActive, LightgalleryModule],
+  imports: [CommonModule, RouterLink, RouterLinkActive],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })

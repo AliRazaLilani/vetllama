@@ -4,9 +4,6 @@
 @use "./app/assets/material.scss" as *;
 @use "./app/assets/scss/main.scss" as *;
 @use "./app/assets/scss/utils/mixins.scss" as *;
-@import url("https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.4/css/lightgallery.css");
-@import url("https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.4/css/lg-zoom.css");
-@import url("https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.4/css/lg-video.css");
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -3000,7 +2997,7 @@ mat-select.custom-mat-select.home14
     left: 0 !important;
     bottom: 0 !important;
     z-index: -1 !important;
-    border-radius: 0 !important;
+    border-radius: 44px !important;
   }
 
   &:hover {
@@ -3008,6 +3005,7 @@ mat-select.custom-mat-select.home14
     border: 1px solid #a96e46 !important;
     z-index: 2 !important;
     color: white !important;
+    border-radius: 44px !important;
   }
 
   &::before {
