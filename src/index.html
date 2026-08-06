@@ -16,6 +16,15 @@
       justify-content: center;
       background: linear-gradient(180deg, #fff9f1 0%, #f3e9dd 100%);
       overflow: hidden;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.2s ease, visibility 0.2s ease;
+    }
+    #app-preloader.visible {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
     }
     #app-preloader .icon {
       width: min(260px, 70vw);
@@ -45,6 +54,18 @@
       <img src="https://cdn.pixabay.com/animation/2026/01/09/07/41/07-41-54-726_512.gif" alt="Animated paw steps" />
     </div>
   </div>
+  <script>
+    const appPreloader = document.getElementById('app-preloader');
+    const preloaderDelay = 140;
+    const preloaderTimer = setTimeout(() => {
+      appPreloader?.classList.add('visible');
+    }, preloaderDelay);
+    window.__hideAppPreloader = () => {
+      clearTimeout(preloaderTimer);
+      appPreloader?.classList.remove('visible');
+      appPreloader?.remove();
+    };
+  </script>
   <app-root></app-root>
 </body>
 </html>

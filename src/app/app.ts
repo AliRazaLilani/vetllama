@@ -63,12 +63,20 @@ export class App {
         this.showMiniSidebar = false;
         if (this.loading) {
           this.loading = false;
-          document.getElementById('app-preloader')?.remove();
+          if (typeof window !== 'undefined' && (window as any).__hideAppPreloader) {
+            (window as any).__hideAppPreloader();
+          } else {
+            document.getElementById('app-preloader')?.remove();
+          }
         }
       }
       if (data instanceof NavigationError) {
         this.loading = false;
-        document.getElementById('app-preloader')?.remove();
+        if (typeof window !== 'undefined' && (window as any).__hideAppPreloader) {
+          (window as any).__hideAppPreloader();
+        } else {
+          document.getElementById('app-preloader')?.remove();
+        }
       }
     });
     this.sidebar.toggleSideBar.subscribe((res: string) => {
