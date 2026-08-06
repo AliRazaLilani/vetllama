@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { ApplicationRef, Component, signal } from '@angular/core';
 import {
   NavigationEnd,
   NavigationError,
@@ -8,6 +8,7 @@ import {
   Event as RouterEvent,
   RouterOutlet,
 } from '@angular/router';
+import { first } from 'rxjs/operators';
 import { ToastModule } from 'primeng/toast';
 import { routes } from './core/routes/routes';
 import { CommonService } from './core/services/common/common.service';
@@ -33,12 +34,15 @@ export class App {
   public mobileSidebar = false;
   public showMiniSidebar = false;
   public loading = true;
+  private appStable = false;
+  private navigationComplete = false;
 
   constructor(
     private common: CommonService,
     private router: Router,
     private data: DataService,
     private sidebar: SidebarService,
+    private appRef: ApplicationRef,
   ) {
     this.common.base.subscribe((res: string) => {
       this.base = res;
@@ -49,34 +53,34 @@ export class App {
     this.common.last.subscribe((res: string) => {
       this.last = res;
     });
+    this.appRef.isStable.pipe(first((isStable) => isStable)).subscribe(() => {
+      this.appStable = true;
+      this.tryHidePreloader();
+    });
+
     this.router.events.subscribe((data: RouterEvent) => {
       // console.log('base',this.base);
       // console.log('page',this.page);
       // console.log('last',this.last);
       if (data instanceof NavigationStart) {
+        this.navigationComplete = false;
         this.getRoutes(data);
         this.mobileSidebar = false;
         localStorage.removeItem('isMobileSidebar');
         localStorage.removeItem('sidebarPosition');
       }
       if (data instanceof NavigationEnd) {
+        this.navigationComplete = true;
         this.showMiniSidebar = false;
         if (this.loading) {
           this.loading = false;
-          if (typeof window !== 'undefined' && (window as any).__hideAppPreloader) {
-            (window as any).__hideAppPreloader();
-          } else {
-            document.getElementById('app-preloader')?.remove();
-          }
+          this.tryHidePreloader();
         }
       }
       if (data instanceof NavigationError) {
+        this.navigationComplete = true;
         this.loading = false;
-        if (typeof window !== 'undefined' && (window as any).__hideAppPreloader) {
-          (window as any).__hideAppPreloader();
-        } else {
-          document.getElementById('app-preloader')?.remove();
-        }
+        this.tryHidePreloader();
       }
     });
     this.sidebar.toggleSideBar.subscribe((res: string) => {
@@ -129,5 +133,17 @@ export class App {
     this.common.base.next(splitVal[1]);
     this.common.page.next(splitVal[2]);
     this.common.last.next(splitVal[3]);
+  }
+
+  private tryHidePreloader() {
+    if (this.loading === false && this.navigationComplete && this.appStable) {
+      if (typeof window !== 'undefined' && (window as any).__setAppReady) {
+        (window as any).__setAppReady();
+      } else if (typeof window !== 'undefined' && (window as any).__hideAppPreloader) {
+        (window as any).__hideAppPreloader();
+      } else {
+        document.getElementById('app-preloader')?.remove();
+      }
+    }
   }
 }
