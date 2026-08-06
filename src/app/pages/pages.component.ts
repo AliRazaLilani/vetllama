@@ -4,7 +4,6 @@ import { url } from '../core/models/models';
 import { routes } from 'src/app/core/routes/routes';
 import { CommonService } from 'src/app/core/services/common/common.service';
 import { SidebarService } from 'src/app/core/services/sidebar/sidebar.service';
-import * as Aos from 'aos';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../shared/header/header.component';
 @Component({
@@ -84,10 +83,7 @@ export class PagesComponent {
     }
   }
   ngOnInit(): void {
-    Aos.init({
-      duration: 1500,
-      once: true,
-    });
+    // Page initialization logic can go here.
   }
   @ViewChild('cursorOuter', { static: false }) cursorOuter!: ElementRef;
   @ViewChild('cursorInner', { static: false }) cursorInner!: ElementRef;

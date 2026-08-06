@@ -6,10 +6,45 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="./favicon-vetllama.png">
-
+  <style>
+    #app-preloader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, #fff9f1 0%, #f3e9dd 100%);
+      overflow: hidden;
+    }
+    #app-preloader .icon {
+      width: min(260px, 70vw);
+      height: min(260px, 70vw);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: transform 0.25s ease, filter 0.25s ease;
+    }
+    #app-preloader .icon:hover {
+      transform: scale(1.04);
+      filter: drop-shadow(0 18px 28px rgba(169, 110, 70, 0.24));
+    }
+    #app-preloader .icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      filter: sepia(0.8) saturate(2.2) hue-rotate(15deg) brightness(0.95);
+    }
+  </style>
 </head>
 <body>
    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZDy3Ml0qEUVGtDJkxD78C4Cy9wuYPcPo"></script>
+  <div id="app-preloader" role="status" aria-live="polite" aria-label="Loading Vetllama">
+    <div class="icon" aria-hidden="true">
+      <img src="https://cdn.pixabay.com/animation/2026/01/09/07/41/07-41-54-726_512.gif" alt="Animated paw steps" />
+    </div>
+  </div>
   <app-root></app-root>
 </body>
 </html>
