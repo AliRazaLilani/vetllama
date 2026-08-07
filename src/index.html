@@ -79,13 +79,30 @@
   <script>
     const appPreloader = document.getElementById('app-preloader');
     const preloaderState = { appReady: false, windowLoaded: false };
+    const areStylesLoaded = () => {
+      const links = Array.from(document.querySelectorAll('link[rel="stylesheet"]'));
+      if (!links.length) {
+        return true;
+      }
+      return links.every((link) => {
+        try {
+          return Boolean(link.sheet);
+        } catch (err) {
+          return true;
+        }
+      });
+    };
     const hidePreloader = () => {
       document.body.classList.add('app-ready');
       appPreloader?.classList.add('hidden');
-      setTimeout(() => appPreloader?.remove(), 350);
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setTimeout(() => appPreloader?.remove(), 350);
+        });
+      });
     };
     const tryHidePreloader = () => {
-      if (preloaderState.appReady && preloaderState.windowLoaded) {
+      if (preloaderState.appReady && preloaderState.windowLoaded && areStylesLoaded()) {
         hidePreloader();
       }
     };
@@ -98,9 +115,7 @@
       tryHidePreloader();
     });
     setTimeout(() => {
-      if (!preloaderState.appReady || !preloaderState.windowLoaded) {
-        hidePreloader();
-      }
+      hidePreloader();
     }, 7000);
   </script>
   <app-root></app-root>
