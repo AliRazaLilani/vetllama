@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import App from './App'
 // Load Tailwind first, then the app SCSS so original styles override Tailwind where necessary
 import './index.css'
-import '../../src/app/assets/scss/main.scss'
+import './assets/scss/main.scss'
 
 createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
