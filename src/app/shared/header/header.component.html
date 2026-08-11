@@ -119,11 +119,14 @@
       <!-- Book Appointment + CTA Toggles -->
       <ul class="nav header-navbar-rht align-items-center cta-tabs">
         <li>
-          <a href="https://client.vetllama.com/authentication/register" class="theme-btn btn-md btn-primary">
-            <i class="isax isax-user-add me-2"></i><span>Get Started</span>
+          <a [routerLink]="routes.mapGrid" class="theme-btn btn-md btn-primary">
+            <i class="isax isax-user-add me-2"></i><span>Book an Appointment</span>
           </a>
+          <!-- <a href="https://client.vetllama.com/authentication/register" class="theme-btn btn-md btn-primary">
+            <i class="isax isax-user-add me-2"></i><span>Get Started</span>
+          </a> -->
         </li>
-        <!-- <li
+        <li
           class="cta-pill"
           [ngClass]="{ active: selectedCTA === 'order' }"
           style="top: -23px; left: -342px"
@@ -134,10 +137,10 @@
           class="cta-pill"
           [ngClass]="{ active: selectedCTA === 'consult' }"
           style="top: -23px; left: -240px"
-        > -->
-          <!-- <a (click)="selectCTA('consult')">Veterinarians</a> -->
-          <!-- <a href="https://client.vetllama.com/authentication/register" target="_blank" rel="noopener noreferrer">Veterinarians</a>
-        </li> -->
+        >
+          <a (click)="selectCTA('consult')">Veterinarians</a>
+           <!-- <a href="https://client.vetllama.com/authentication/register" target="_blank" rel="noopener noreferrer">Veterinarians</a> -->
+        </li>
       </ul>
     </nav>
   </div>
