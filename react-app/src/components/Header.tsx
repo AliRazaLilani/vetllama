@@ -91,7 +91,7 @@ export default function Header(): JSX.Element {
                   <h3 className="title">Follow Us</h3>
                   <ul className="d-flex align-items-center gap-2 social-iyem">
                     <li><a href="#" className="social-icon"><i className="fa-brands fa-facebook"></i></a></li>
-                    <li><a href="#" className="social-icon"><i className="fa-brands fa-x-twitter"></i></a></li>
+                    <li><a href="#" className="social-icon"><i className="fa-brands fa-twitter"></i></a></li>
                     <li><a href="#" className="social-icon"><i className="fa-brands fa-instagram"></i></a></li>
                     <li><a href="#" className="social-icon"><i className="fa-brands fa-linkedin"></i></a></li>
                   </ul>

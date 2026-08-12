@@ -411,7 +411,7 @@ export default function Home(): JSX.Element {
                         <a href="#"><i className="fa-brands fa-facebook"></i></a>
                       </li>
                       <li>
-                        <a href="#"><i className="fa-brands fa-x-twitter"></i></a>
+                        <a href="#"><i className="fa-brands fa-twitter"></i></a>
                       </li>
                       <li>
                         <a href="#"><i className="fa-brands fa-instagram"></i></a>

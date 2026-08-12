@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'iconsax';
+  src: url('/assets/css/fonts/fonts/iconsax.eot');
+  src: url('/assets/css/fonts/fonts/iconsax.eot#iefix') format('embedded-opentype'),
+       url('/assets/css/fonts/fonts/iconsax.ttf') format('truetype'),
+       url('/assets/css/fonts/fonts/iconsax.woff') format('woff'),
+       url('/assets/css/fonts/fonts/iconsax.svg#iconsax') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+.isax { font-family: 'iconsax' !important; }
