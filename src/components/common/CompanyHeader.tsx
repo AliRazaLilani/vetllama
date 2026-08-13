@@ -21,7 +21,7 @@ export default function Header(): JSX.Element {
     },
   };
 
-  const domain = getCurrentDomain();
+  const domain = "petvetconnect.com";
 
   const logoConfig = logoByDomain[domain] ?? logoByDomain['vetllama.com'];
 
@@ -30,7 +30,7 @@ export default function Header(): JSX.Element {
       <div className="vetllama-header-container">
     {/* Logo */}
     <Link to="/" className="vetllama-logo">
-      <img src={logoConfig.src} alt={logoConfig.alt} className={`${domain === 'petvetconnect.com' ? 'w-32' : 'w-48'} h-auto object-cover`} />
+      <img src={logoConfig.src} alt={logoConfig.alt} className={`${domain === 'petvetconnect.com' ? 'w-44' : 'w-48'} h-auto object-cover`} />
     </Link>
 
       {/* Get Started Button */}
