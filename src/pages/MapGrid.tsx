@@ -309,8 +309,8 @@ export default function MapGrid(): JSX.Element {
               <div className="col-md-6">
                 <div className="mb-4">
                   <h3 className="main-title">
-                    Showing <span className="text-secondary">{pagination?.total > 0 ? pagination?.from : 0}-
-                    {pagination?.total > 0 ? pagination?.to : 0}</span>
+                    Showing <span className="text-secondary">{(pagination?.total ?? 0) > 0 ? pagination?.from : 0}-
+                    {(pagination?.total ?? 0) > 0 ? pagination?.to : 0}</span>
                     {pagination ? ` of ${pagination.total}` : ''} Clinics
                   </h3>
                 </div>

@@ -202,23 +202,67 @@ export function getAvatarColor(name: string) {
 }
 
 export const COMPANIES = [
-  {id: 2, domain: 'vetllama.com', signupUrl: "https://client.vetllama.com/authentication/register"},
-  {id: 3, domain: 'petvetconnect.com', signupUrl: "https://client.petvetconnect.com/authentication/register"},
-]
+  {
+    id: 2,
+    domain: 'vetllama.com',
+    name: 'VetLlama',
+    signupUrl: 'https://client.vetllama.com/authentication/register',
+    logo: '/assets/images/logo-3.png',
+    favicon: '/assets/images/favicon.ico',
+  },
+  {
+    id: 3,
+    domain: 'petvetconnect.com',
+    name: 'PetVetConnect',
+    signupUrl: 'https://client.petvetconnect.com/authentication/register',
+    logo: '/assets/images/petvetconnect-logo.png',
+    favicon: '/assets/images/petvetconnect-favicon.ico',
+  },
+];
 
-export const COMPANY_DOMAINS = ['vetllama.com', 'petvetconnect.com'];
+export const COMPANY_DOMAINS = COMPANIES.map(
+  (company) => company.domain
+);
 
 export function getCurrentDomain(): string {
-  return window.location.hostname.toLowerCase().replace(/^www\./, '');
+  if (typeof window === 'undefined') {
+    return '';
+  }
+
+  return window.location.hostname
+    .trim()
+    .toLowerCase()
+    .replace(/^www\./, '');
 }
 
-
-export function getCompanyId(): number | undefined {
+export function getCurrentCompany() {
   const domain = getCurrentDomain();
 
-  return COMPANIES.find((company) => company.domain.toLowerCase() === domain)?.id;
+  return COMPANIES.find(
+    (company) => company.domain.toLowerCase() === domain
+  );
+}
+
+export function getCompanyId(): number | undefined {
+  return getCurrentCompany()?.id;
 }
 
 export function isCompanyDomain(): boolean {
-  return COMPANY_DOMAINS.includes(getCurrentDomain());
+  return Boolean(getCurrentCompany());
+}
+
+export function getCompanyName(): string | undefined {
+  return getCurrentCompany()?.name;
+}
+
+export function getCompanyLogo(): string | undefined {
+  return getCurrentCompany()?.logo;
+}
+
+export function getCompanyFavicon(): string | undefined {
+  return getCurrentCompany()?.favicon;
+}
+
+export function getCompanySignupUrl(): string | undefined {
+  return getCurrentCompany()?.signupUrl;
 }

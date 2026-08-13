@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import './Header.css';
 import { ClipboardClock } from 'lucide-react';
 import { CONSTANTS } from '@/lib/config/constants';
-import { COMPANIES, getCurrentDomain } from "@/lib/utils/helpers"
+import { getCurrentDomain } from "@/lib/utils/helpers"
 
 
 export default function Header(): JSX.Element {

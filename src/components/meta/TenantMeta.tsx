@@ -13,19 +13,26 @@ export function TenantMeta({ pageTitle, pageDescription, pageImage }: TenantMeta
   const { tenant, isLoading } = useTenant();
 
 
+  const domain = getCurrentDomain();
+
   const domainFaviconMap: Record<string, string> = {
     'vetllama.com': '/assets/images/favicon.ico',
     'petvetconnect.com': '/assets/images/petvet-favicon.ico',
   };
 
-  const domain = getCurrentDomain();
+  const domainTitleMap: Record<string, string> = {
+    'vetllama.com': 'VetLlama',
+    'petvetconnect.com': 'PetVetConnect',
+  };
 
   const domainFavicon = domainFaviconMap[domain];
+  const domainTitle = domainTitleMap[domain];
+
 
   if (isLoading || !tenant) {
     return (
       <Helmet>
-        <title>Vetllama</title>
+        <title>{domainTitle || "Pet Doctor"}</title>
       </Helmet>
     );
   }

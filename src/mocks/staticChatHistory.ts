@@ -1,6 +1,6 @@
-import type { ChatMessageInput } from '@/components/dashboard/messagesModal';
+// import type { ChatMessageInput } from '@/components/dashboard/messagesModal';
 
-export const STATIC_CHAT_MESSAGES: ChatMessageInput[] = [
+export const STATIC_CHAT_MESSAGES = [
   {
     id: 1,
     sender_type: 'doctor',
