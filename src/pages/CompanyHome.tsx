@@ -382,7 +382,7 @@ export default function Home(): JSX.Element {
               <div className="col-xl-12 col-lg-12 col-md-12">
                 <div className="footer-widget footer-about d-flex justify-content-center align-items-center flex-column">
                   <div className="footer-logo">
-                    <img src="/assets/images/logo-33.png" width="200" alt="logo" />
+                    {!isPetVet && <img src="/assets/images/logo-33.png" width="200" alt="logo" />}
                   </div>
                   <p className="description">
                     We’re a trusted veterinary clinic dedicated to keeping<span className="d-block">
@@ -419,7 +419,7 @@ export default function Home(): JSX.Element {
                 <div className="col-lg-12 justify-content-center d-flex">
                   <div className="copyright-text">
                     <p className="mb-0">
-                      Copyright &copy; 2026 VETLLAMA. All Rights Reserved
+                      Copyright &copy; 2026 {isPetVet ? "PetVet Connect" : "VETLLAMA"}. All Rights Reserved
                     </p>
                   </div>
                 </div>
