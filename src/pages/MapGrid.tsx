@@ -1,7 +1,8 @@
-// import { getCompanyTenants } from '@/lib/api/privateService'
+import BreadcrumbSearch from '@/components/common/BreadCrumbSearch'
+import { Loader } from '@/components/common/Loader'
+import { getCompanyTenants } from '@/lib/api/privateService'
+import { User } from 'lucide-react'
 import React, { useEffect, useMemo, useRef, useState, type JSX } from 'react'
-import { Loader } from '../../components/Loader'
-import BreadcrumbSearch from '../../components/BreadCrumbSearch'
 
 type TenantDomain = {
   host: string
@@ -37,8 +38,21 @@ type Tenant = {
   primary_domain: TenantDomain | null
 }
 
+type PaginationMeta = {
+  total: number
+  current: number
+  first: number
+  last: number
+  previous: number
+  next: number
+  pages: number[]
+  from: number
+  to: number
+}
+
 const DEFAULT_IMAGE = '/assets/images/doctor-grid/doctor-grid-011.webp'
 const DEFAULT_CENTER = { lat: 24.8607, lng: 67.0011 } // Karachi fallback
+const PER_PAGE = 12
 
 const ALL_CLINICS = 'All Clinics'
 const PRESCRIBE_OPTIONS = ['Prescribing', 'Can Prescribe', 'Cannot Prescribe']
@@ -61,8 +75,12 @@ export default function MapGrid(): JSX.Element {
   const [onboarding, setOnboarding] = useState(STATUS_OPTIONS[0])
   const [availableOnly, setAvailableOnly] = useState(false)
 
+  const [page, setPage] = useState(1)
+  const [pagination, setPagination] = useState<PaginationMeta | null>(null)
+
   const [doctors, setDoctors] = useState<Tenant[]>([])
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true) // first-load, full screen
+  const [isRefetching, setIsRefetching] = useState(false) // page changes
   const [error, setError] = useState<string | null>(null)
 
   const mapRef = useRef<HTMLDivElement | null>(null)
@@ -71,38 +89,48 @@ export default function MapGrid(): JSX.Element {
   const infowindowRef = useRef<any>(null)
   const markersRef = useRef<any[]>([])
 
-  // useEffect(() => {
-  //   let cancelled = false
+  useEffect(() => {
+    let cancelled = false
 
-  //   const fetchDoctors = async () => {
-  //     try {
-  //       setIsLoading(true)
-  //       setError(null)
+    const fetchDoctors = async () => {
+      try {
+        if (page === 1 && doctors.length === 0) {
+          setIsLoading(true)
+        } else {
+          setIsRefetching(true)
+        }
+        setError(null)
 
-  //       const data = await getCompanyTenants()
+        const data = await getCompanyTenants({ page, per_page: PER_PAGE })
 
-  //       if (!cancelled) {
-  //         setDoctors(Array.isArray(data) ? data : [])
-  //       }
-  //     } catch (err) {
-  //       if (!cancelled) {
-  //         setError(err instanceof Error ? err.message : 'Failed to load clinics')
-  //       }
-  //     } finally {
-  //       if (!cancelled) {
-  //         setIsLoading(false)
-  //       }
-  //     }
-  //   }
+        if (!cancelled) {
+          setDoctors(Array.isArray(data?.list) ? data.list : [])
+          setPagination(data?.pagination ?? null)
+        }
+      } catch (err) {
+        if (!cancelled) {
+          setError(err instanceof Error ? err.message : 'Failed to load clinics')
+        }
+      } finally {
+        if (!cancelled) {
+          setIsLoading(false)
+          setIsRefetching(false)
+        }
+      }
+    }
 
-  //   fetchDoctors()
+    fetchDoctors()
 
-  //   return () => {
-  //     cancelled = true
-  //   }
-  // }, [])
+    return () => {
+      cancelled = true
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page])
 
-  // Dynamic clinic list built from whatever the API actually returned
+  // NOTE: filters below only run against the *current page* of results,
+  // since the tenants endpoint only accepts page/per_page right now.
+  // If you want filters to apply across the full dataset, the API needs
+  // to accept clinic/can_prescribe/onboarding_status as query params too.
   const clinicOptions = useMemo(() => {
     const names = new Set<string>()
     doctors.forEach((t) => {
@@ -135,7 +163,6 @@ export default function MapGrid(): JSX.Element {
     })
   }, [doctors, clinic, prescribe, onboarding, availableOnly])
 
-  // Only tenants with real coordinates can be placed on the map
   const mappableDoctors = useMemo(() => {
     return filteredDoctors
       .map((t) => {
@@ -259,9 +286,14 @@ export default function MapGrid(): JSX.Element {
     }
   }, [mappableDoctors])
 
-  // if(isLoading) {
-  //   return <Loader message="Loading..." fullScreen />
-  // }
+  const goToPage = (target: number | undefined) => {
+    if (!target || target === page || isRefetching) return
+    setPage(target)
+  }
+
+  if (isLoading) {
+    return <Loader message="Loading..." fullScreen />
+  }
 
   return (
     <>
@@ -277,7 +309,9 @@ export default function MapGrid(): JSX.Element {
               <div className="col-md-6">
                 <div className="mb-4">
                   <h3 className="main-title">
-                    Showing <span className="text-secondary">{filteredDoctors.length}</span> Clinics For You
+                    Showing <span className="text-secondary">{pagination?.total > 0 ? pagination?.from : 0}-
+                    {pagination?.total > 0 ? pagination?.to : 0}</span>
+                    {pagination ? ` of ${pagination.total}` : ''} Clinics
                   </h3>
                 </div>
               </div>
@@ -297,7 +331,6 @@ export default function MapGrid(): JSX.Element {
             </div>
 
             <div className="row">
-              {/* <div className="col-lg-9"> */}
               <div className="col-lg-12">
                 <div className="row align-items-center mb-4">
                   <div className="col-md-10">
@@ -365,10 +398,10 @@ export default function MapGrid(): JSX.Element {
                   </div>
                 </div>
 
-                <div className="row">
+                <div className="row" style={{ opacity: isRefetching ? 0.5 : 1, pointerEvents: isRefetching ? 'none' : 'auto' }}>
                   {filteredDoctors.length === 0 ? (
                     <div className="col-12 text-center py-5">
-                      <p>No clinics match these filters.</p>
+                      <p>No clinics match these filters on this page.</p>
                     </div>
                   ) : (
                     filteredDoctors.map((tenant) => {
@@ -380,7 +413,9 @@ export default function MapGrid(): JSX.Element {
                           <div className="card">
                             <div className="card-img card-img-hover">
                               <a href={websiteLink || '#'} target="_blank" rel="noreferrer">
-                                <img className="w-[250px] h-[250px] object-cover" src={tenant.image || DEFAULT_IMAGE} alt={tenant.business_name || tenant.name} />
+                                {tenant?.image ? 
+                                <img className="w-[250px] h-[250px] object-cover" src={tenant.image} alt={tenant.business_name || tenant.name} />
+                                : <div className="flex w-full h-[250px] justify-center items-center bg-gray-300"><User className="w-24 h-24 " /></div>  }
                               </a>
                               <div className="grid-overlay-item d-flex align-items-center justify-content-between">
                                 <span className={`badge ${tenant.is_active ? 'bg-success-light' : 'bg-danger-light'}`}>
@@ -418,8 +453,8 @@ export default function MapGrid(): JSX.Element {
                                     <h3 className="text-orange fs-16">{tenant.primary_phone || tenant.email || 'N/A'}</h3>
                                   </div>
                                   {websiteLink && (
-                                    <a href={websiteLink} target="_blank" rel="noreferrer" className="theme-btn btn-primary">
-                                      <span><i className="isax isax-calendar-1 me-2"></i> Visit Site</span>
+                                    <a href={websiteLink} target="_blank" rel="noreferrer" className="theme-btn btn-primary p-2 rounded-full">
+                                      <span className="get-started-content"><i className="isax isax-calendar-1 me-2"></i> Visit Site</span>
                                     </a>
                                   )}
                                 </div>
@@ -432,20 +467,44 @@ export default function MapGrid(): JSX.Element {
                   )}
                 </div>
 
-                <div className="col-md-12">
-                  <div className="pagination dashboard-pagination mt-md-3 mt-0 mb-4">
-                    <ul>
-                      <li><a href="#" className="page-link prev">Prev</a></li>
-                      <li><a href="#" className="page-link active">1</a></li>
-                      <li><a href="#" className="page-link next">Next</a></li>
-                    </ul>
+                {pagination && pagination.pages.length > 1 && (
+                  <div className="col-md-12">
+                    <div className="pagination dashboard-pagination mt-md-3 mt-0 mb-4">
+                      <ul>
+                        <li>
+                            <a
+                            href="#"
+                            className={`page-link prev ${!pagination.previous ? 'disabled' : ''}`}
+                            onClick={(e) => { e.preventDefault(); goToPage(pagination.previous || undefined) }}
+                          >
+                            Prev
+                          </a>
+                        </li>
+                        {pagination.pages.map((p) => (
+                          <li key={p}>
+                            <a
+                              href="#"
+                              className={`page-link ${p === pagination.current ? 'active' : ''}`}
+                              onClick={(e) => { e.preventDefault(); goToPage(p) }}
+                            >
+                              {p}
+                            </a>
+                          </li>
+                        ))}
+                        <li>
+                          <a
+                            href="#"
+                            className={`page-link next ${!pagination.next ? 'disabled' : ''}`}
+                            onClick={(e) => { e.preventDefault(); goToPage(pagination.next || undefined) }}
+                          >
+                            Next
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
-
-              {/* <div className="col-lg-3">
-                <div ref={mapRef} id="map" className="map-listing h-100" style={{ minHeight: '900px', width: '100%' }} />
-              </div> */}
             </div>
           </div>
         </div>

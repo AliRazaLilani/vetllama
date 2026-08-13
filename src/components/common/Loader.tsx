@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { type CSSProperties } from "react";
-import { CONSTANTS } from "../constants/CONSTANTS";
+import { CONSTANTS } from "@/lib/config/constants";
 
 interface LoaderProps {
     message?: string;

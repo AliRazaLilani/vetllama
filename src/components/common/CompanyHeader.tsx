@@ -1,30 +1,36 @@
 import { type JSX } from 'react';
 import { Link } from 'react-router-dom';
+
+import './Header.css';
 import { ClipboardClock } from 'lucide-react';
-import { CONSTANTS } from '../../constants/CONSTANTS';
+import { CONSTANTS } from '@/lib/config/constants';
+import { COMPANIES, getCurrentDomain } from "@/lib/utils/helpers"
+
 
 export default function Header(): JSX.Element {
-  const logoByDomain: Record<string, { src: string; alt: string }> = {
+  const logoByDomain: Record<string, { src: string; alt: string, signupUrl: string }> = {
     'vetllama.com': {
       src: '/assets/images/logo-3.png',
       alt: 'Vetllama',
+      signupUrl: "https://client.vetllama.com/authentication/register"
     },
     'petvetconnect.com': {
       src: '/assets/images/petvetconnect-logo.svg',
       alt: 'PetVetConnect',
+      signupUrl: "https://client.petvetconnect.com/authentication/register"
     },
   };
 
-  const domain = import.meta.env.VITE_DEV_DOMAIN?.trim().toLowerCase();
+  const domain = getCurrentDomain();
 
   const logoConfig = logoByDomain[domain] ?? logoByDomain['vetllama.com'];
 
   return (
-    <header className="vetllama-header">
+    <header className='vetllama-header h-[82px]'>
       <div className="vetllama-header-container">
     {/* Logo */}
     <Link to="/" className="vetllama-logo">
-      <img src={logoConfig.src} alt={logoConfig.alt} className="vetllama-logo-image" />
+      <img src={logoConfig.src} alt={logoConfig.alt} className={`${domain === 'petvetconnect.com' ? 'w-32' : 'w-48'} h-auto object-cover`} />
     </Link>
 
       {/* Get Started Button */}
@@ -38,7 +44,7 @@ export default function Header(): JSX.Element {
         <span>Book an Appointment</span>
           </span>
         </Link>
-        <Link target="_blank" to={CONSTANTS.COMPANY_SIGNUP_URL} className="get-started-btn">
+        <Link target="_blank" to={logoConfig?.signupUrl} className="get-started-btn">
           <span className="get-started-fill" />
 
           <span className="get-started-content">

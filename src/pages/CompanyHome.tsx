@@ -1,8 +1,22 @@
+import Header from '@/components/common/CompanyHeader'
 import React, { useEffect, useState, type JSX } from 'react'
-import Header from '../../components/Header/Header'
+import { ChevronRight } from "lucide-react"
+import { COMPANIES, getCurrentDomain } from '@/lib/utils/helpers'
 
 export default function Home(): JSX.Element {
   const [activeIndex, setActiveIndex] = useState(1)
+  const [activeFaq, setActiveFaq] = useState(0)
+
+  const domain = getCurrentDomain();
+  const isPetVet = domain == COMPANIES[1]?.domain
+  
+  const faqs = [
+    { q: 'Can I order medicines for any pet?', a: 'Yes, dogs, cats, birds, and more.' },
+    { q: 'Is online consultation secure?', a: 'Yes, private, professional vet advice online.' },
+    { q: 'How fast is delivery?', a: 'Medicines are delivered safely and promptly to your location.' },
+    { q: 'Can I track vaccinations?', a: 'Yes, automatic reminders keep you on schedule.' },
+    { q: 'Do I need a prescription?', a: "Certain medicines require a vet's prescription, which can be uploaded or obtained via our platform." },
+  ]
 
   useEffect(() => {
     document.querySelectorAll('.animate-button').forEach((btn) => {
@@ -33,12 +47,17 @@ export default function Home(): JSX.Element {
           <div className="row">
             <div className="col-lg-7">
               <div className="section-header section-header-six">
-                <h1 className="section-title">Caring for Your
-                  <img src="/assets/images/icons/banner-icon-4.png" alt="banner-icon" className="img-fluid img-one" />
-                  <br />Pets Made <br />
-                  <img src="/assets/images/icons/banner-icon-5.png" alt="banner-icon" className="img-fluid img-one" />
-                  Simple
-                </h1>
+                <div className="flex gap-4 items-center">
+                <h1 className="section-title">Caring for Your</h1>
+                <span className="banner-icon"><img src="/assets/images/icons/banner-icon-4.png" alt="banner-icon" className="img-fluid img-one" /></span>
+                </div>
+                <div className="flex gap-2">
+                <h1 className="section-title">Pets Made</h1>
+                </div>
+                <div className="flex gap-2">
+                  <span className="banner-icon"><img src="/assets/images/icons/banner-icon-5.png" alt="banner-icon" className="img-fluid img-one" /></span>
+                <h1 className="section-title">Simple</h1>
+                </div>
                 <p>From prescriptions to vet advice and medicine delivery</p>
               </div>
             </div>
@@ -226,7 +245,13 @@ export default function Home(): JSX.Element {
                 <p className="description">
                   Our team will respond quickly with the best advice for your furry friend.
                 </p>
-                <a href="mailto:info@24vetsupport.com" className="theme-btn btn-primary"><span>Contact Us<i className="isax isax-arrow-right-3"></i></span></a>
+                <a href={isPetVet ? "mailto:info@petvethotline.com" : "mailto:info@24vetsupport.com"} className="get-started-btn"><span className="get-started-fill" />
+
+                <span className="get-started-content">
+                <span>Contact Us</span>
+                <ChevronRight className="w-4 h-4 mr-2" />
+
+                </span></a>
               </div>
               <div className="faq-help">
                 <div className="about-popup-item border-0 pb-0 mb-0">
@@ -236,7 +261,7 @@ export default function Home(): JSX.Element {
                     </div>
                     <div>
                       <p className="title">General Inquiries</p>
-                      <h4 className="link"><a href="mailto:info@24vetsupport.com">info@24vetsupport.com</a></h4>
+                      <h4 className="link"><a href={isPetVet ? "mailto:info@petvethotline.com" : "mailto:info@24vetsupport.com"}>{isPetVet ? "info@petvethotline.com" : "info@24vetsupport.com"}</a></h4>
                     </div>
                     <img src="/assets/images/service/support-img-1.png" alt="support-img-1" className="img-fluid img-1" />
                   </div>
@@ -246,80 +271,36 @@ export default function Home(): JSX.Element {
             <div className="col-lg-7">
               <div className="faq-info wow zoomIn" data-wow-duration="1s">
                 <div className="accordion" id="faq-details-one">
-                  <div className="accordion-item">
-                    <h3 className="accordion-header" id="headingOne">
-                      <a href="#collapseOne" className="accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        Can I order medicines for any pet?
-                      </a>
-                    </h3>
-                    <div id="collapseOne" className="accordion-collapse collapse show" data-bs-parent="#faq-details-one">
-                      <div className="accordion-body">
-                        <div className="accordion-content">
-                          <p>Yes, dogs, cats, birds, and more.</p>
+                  {faqs.map((item, index) => {
+                    const isOpen = activeFaq === index
+                    return (
+                      <div className="accordion-item" key={index}>
+                        <h3 className="accordion-header">
+                          <a
+                            href="#"
+                            className={`accordion-button ${isOpen ? '' : 'collapsed'}`}
+                            onClick={(e) => {
+                              e.preventDefault()
+                              setActiveFaq(isOpen ? -1 : index)
+                            }}
+                            aria-expanded={isOpen}
+                          >
+                            {item.q}
+                          </a>
+                          </h3>
+                         <div
+                          className={`accordion-collapse collapse ${isOpen ? 'show' : ''}`}
+                          style={{ display: isOpen ? 'block' : 'none' }}
+                        >
+                          <div className="accordion-body">
+                            <div className="accordion-content">
+                              <p>{item.a}</p>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-
-                  <div className="accordion-item">
-                    <h3 className="accordion-header" id="headingTwo">
-                      <a href="#collapseTwo" className="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        Is online consultation secure?
-                      </a>
-                    </h3>
-                    <div id="collapseTwo" className="accordion-collapse collapse" data-bs-parent="#faq-details-one">
-                      <div className="accordion-body">
-                        <div className="accordion-content">
-                          <p>Yes, private, professional vet advice online.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="accordion-item">
-                    <h3 className="accordion-header" id="headingThree">
-                      <a href="#collapseThree" className="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        How fast is delivery?
-                      </a>
-                    </h3>
-                    <div id="collapseThree" className="accordion-collapse collapse" data-bs-parent="#faq-details-one">
-                      <div className="accordion-body">
-                        <div className="accordion-content">
-                          <p>Medicines are delivered safely and promptly to your location.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="accordion-item">
-                    <h3 className="accordion-header" id="headingFour">
-                      <a href="#collapseFour" className="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                        Can I track vaccinations?
-                      </a>
-                    </h3>
-                    <div id="collapseFour" className="accordion-collapse collapse" data-bs-parent="#faq-details-one">
-                      <div className="accordion-body">
-                        <div className="accordion-content">
-                          <p>Yes, automatic reminders keep you on schedule.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="accordion-item">
-                    <h3 className="accordion-header" id="headingFive">
-                      <a href="#collapseFive" className="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                        Do I need a prescription?
-                      </a>
-                    </h3>
-                    <div id="collapseFive" className="accordion-collapse collapse" data-bs-parent="#faq-details-one">
-                      <div className="accordion-body">
-                        <div className="accordion-content">
-                          <p>Certain medicines require a vet’s prescription, which can be uploaded or obtained via our platform.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                    )
+                  })}
                 </div>
               </div>
             </div>
@@ -450,3 +431,4 @@ export default function Home(): JSX.Element {
     </>
   )
 }
+

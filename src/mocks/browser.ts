@@ -1,15 +1,9 @@
 /** ───────────────────────────────────────────
- *  Main Entry Point
+ *  MSW Browser Setup
+ *  Initializes Mock Service Worker in browser
  *  ─────────────────────────────────────────── */
 
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import './index.css';
-import App from './App';
-import './main.css'
+import { setupWorker } from 'msw/browser';
+import { handlers } from './handlers';
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>
-);
+export const worker = setupWorker(...handlers);

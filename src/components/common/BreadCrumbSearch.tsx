@@ -17,7 +17,7 @@ export default function BreadcrumbSearch(): JSX.Element {
             </nav>
           </div>
         </div>
-        <div className="bg-primary-gradient rounded-pill doctors-search-box">
+        {/* <div className="bg-primary-gradient rounded-pill doctors-search-box">
           <div className="search-box-one rounded-pill">
             <form onSubmit={onSubmit}>
               <div className="search-input search-line">
@@ -37,7 +37,7 @@ export default function BreadcrumbSearch(): JSX.Element {
               </div>
             </form>
           </div>
-        </div>
+        </div> */}
       </div>
       <div className="breadcrumb-bg">
         <img src="/assets/images/bg/image1.png" alt="img" className="breadcrumb-bg-01" />

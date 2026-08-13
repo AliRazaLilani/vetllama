@@ -1,77 +1,172 @@
-# React + TypeScript + Vite
+# VetLlama - Veterinary Practice Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A production-ready, enterprise-grade veterinary practice landing page application with dynamic templates, booking flow, authentication, and patient dashboard.
 
-Currently, two official plugins are available:
+**Live URL:** https://ewd6bswor5mgi.kimi.page
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Features
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+### 3 Dynamic Landing Page Templates
+- **Template 1 (Modern Clean)** - Professional blue-themed layout with hero, features, services, testimonials, FAQ, and CTA sections
+- **Template 2 (Warm & Friendly)** - Warm orange/cream-themed layout with home-like atmosphere, photo gallery, and cozy design elements
+- **Template 3 (Professional Clinical)** - Clinical dark green-themed layout for specialty veterinary centers with academic focus
 
-Note: This will impact Vite dev & build performances.
+### Content Validation System
+- JSON schema validation with min/max length rules
+- Default values for missing fields
+- Type-safe content sanitization
+- Per-template validation and content files
 
-## Expanding the ESLint configuration
+### Authentication System
+- Magic link authentication (passwordless)
+- JWT token management with automatic refresh
+- Protected dashboard routes
+- Auth state persistence with Zustand
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 4-Step Booking Flow
+1. **Service Selection** - Radio-style service cards with pricing
+2. **Date & Time** - Calendar picker with available slots from API
+3. **Pet & Owner Info** - Form validation with Zod schema
+4. **Payment** - Stripe Elements integration with payment intent
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Patient Dashboard (DOCCURE-style)
+- Sidebar navigation with collapsible menu
+- Top navigation with breadcrumbs
+- Stats cards (appointments, pets, favorites)
+- Health records widget
+- Overall health report with circular progress
+- Appointments list with video call button
+- Favorite doctors list
+- Analytics chart (heart rate & blood pressure)
+- Notifications widget
+- Dependents/pets management
+- Reports table
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### API Integration
+- Axios client with request/response interceptors
+- Tenant resolution from subdomain
+- Automatic tenant headers (host, domain, subdomain) on every request
+- Mock Service Worker (MSW) for production-ready API simulation
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
 
-```
+## Tech Stack
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- **React 18** + **TypeScript** (strict mode)
+- **Vite** (build tool)
+- **Tailwind CSS** + **shadcn/ui** (40+ components)
+- **Framer Motion** (animations)
+- **React Router v7** (routing)
+- **Zustand** (state management)
+- **React Hook Form** + **Zod** (form validation)
+- **MSW** (Mock Service Worker)
+- **Stripe React** (payments)
+- **date-fns** (date formatting)
+- **Lucide React** (icons)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Project Structure
 
 ```
+src/
+├── components/
+│   ├── common/          # Header, Footer
+│   ├── landing/         # Landing page sections & 3 templates
+│   ├── booking/         # 4-step booking components
+│   └── dashboard/       # Sidebar, TopNav, widgets
+├── pages/               # LandingPage, BookingPage, DashboardPage
+├── lib/
+│   ├── api/             # API client, endpoints, types
+│   ├── config/          # Constants, site config
+│   ├── hooks/           # useAuth, useTenant, useScrollAnimation
+│   └── utils/           # validators, helpers, cn
+├── stores/              # Zustand auth store
+├── mocks/               # MSW handlers & mock data
+├── types/               # TypeScript type definitions
+└── content/             # JSON content files
+```
+
+---
+
+## Environment Variables
+
+Create a `.env` file in the root:
+
+```env
+VITE_API_URL=https://api.vetllama.com
+VITE_STRIPE_PUBLIC_KEY=pk_test_your_key_here
+VITE_APP_URL=https://vetllama.com
+
+# Dev mode tenant (used on localhost)
+VITE_DEV_HOST=asad123.vetllama.com
+VITE_DEV_DOMAIN=asad123.vetllama.com
+VITE_DEV_SUBDOMAIN=asad123
+```
+
+---
+
+## Getting Started
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+```
+
+---
+
+## API Endpoints
+
+### Tenant
+- `POST /api/public/tenant/resolve` - Resolve tenant from subdomain
+
+### Auth
+- `POST /api/user/auth/magic-link/request` - Request magic link
+- `POST /api/user/auth/magic-link/verify` - Verify magic link
+- `POST /api/user/auth/refresh` - Refresh token
+- `POST /api/user/auth/logout` - Logout
+
+### Content
+- `GET /api/public/content/:templateId` - Get landing page content
+
+### Booking
+- `GET /api/public/booking/slots?date=` - Get available slots
+- `POST /api/public/booking` - Create booking
+
+### Payments
+- `POST /api/public/payments/intent` - Create payment intent
+- `POST /api/public/payments/confirm` - Confirm payment
+
+### Dashboard
+- `GET /api/user/dashboard` - Get dashboard overview
+- `GET /api/user/appointments` - Get appointments
+- `GET /api/user/favorites` - Get favorite doctors
+- `GET /api/user/notifications` - Get notifications
+
+---
+
+## Tenant Resolution
+
+Every API request automatically includes tenant headers:
+- `X-Tenant-Host`
+- `X-Tenant-Domain`
+- `X-Tenant-Subdomain`
+
+In production, these are extracted from the URL. In development (localhost), they use the hardcoded values from `.env`.
+
+---
+
+## License
+
+MIT

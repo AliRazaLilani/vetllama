@@ -1,0 +1,450 @@
+{
+  "metadata": {
+    "title": "Pet Doctor - Veterinary Care",
+    "description": "Gentle care for the little souls you love.",
+    "metadataValidation": {
+      "title": {
+        "min": 10,
+        "max": 60,
+        "default": "Pet Doctor - Veterinary Care",
+        "isShow": true,
+        "required": true,
+        "message": "Title must be between 10-60 characters"
+      },
+      "description": {
+        "min": 20,
+        "max": 160,
+        "default": "Gentle care for the little souls you love.",
+        "isShow": true,
+        "required": true,
+        "message": "Description must be between 20-160 characters"
+      }
+    }
+  },
+  "header": {
+    "logoText": "Pet Doctor",
+    "logoIcon": "PawPrint",
+    "navLinks": [
+      {
+        "label": "About",
+        "url": "#about"
+      },
+      {
+        "label": "Services",
+        "url": "#services"
+      },
+      {
+        "label": "Reviews",
+        "url": "#reviews"
+      },
+      {
+        "label": "Contact Us",
+        "url": "#contact"
+      }
+    ],
+    "ctaButton": {
+      "label": "Book a visit",
+      "url": "/booking"
+    },
+    "headerValidation": {
+      "logoText": {
+        "min": 2,
+        "max": 30,
+        "default": "Pet Doctor",
+        "isShow": true,
+        "required": true,
+        "message": "Logo text must be between 2-30 characters"
+      }
+    }
+  },
+  "hero": {
+    "badge": "Now accepting new patients",
+    "titlePrefix": "Gentle care for the ",
+    "titleHighlight": "little souls",
+    "titleSuffix": " you love.",
+    "description": "Dr. Elena Marsh offers unhurried, modern veterinary care in-clinic, on video, or at your kitchen table. Book online in under a minute.",
+    "primaryCta": {
+      "label": "Book an appointment",
+      "url": "/booking"
+    },
+    "secondaryCta": {
+      "label": "See how we care",
+      "url": "#about"
+    },
+    "stats": [
+      {
+        "value": "12+",
+        "label": "YEARS IN PRACTICE"
+      },
+      {
+        "value": "4,800",
+        "label": "HAPPY PATIENTS"
+      },
+      {
+        "value": "4.9 ★",
+        "label": "FROM 620 REVIEWS"
+      }
+    ],
+    "image": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=2070&auto=format&fit=crop",
+    "imageBadge": {
+      "icon": "Clock",
+      "title": "Next opening",
+      "text": "Tomorrow · 10:30"
+    },
+    "heroValidation": {
+      "titlePrefix": {
+        "min": 5,
+        "max": 60,
+        "default": "Gentle care for the ",
+        "isShow": true,
+        "required": true,
+        "message": "Title prefix must be between 5-60 characters"
+      },
+      "description": {
+        "min": 20,
+        "max": 200,
+        "default": "Dr. Elena Marsh offers unhurried, modern veterinary care in-clinic, on video, or at your kitchen table.",
+        "isShow": true,
+        "required": true,
+        "message": "Description must be between 20-200 characters"
+      },
+      "ctaText": {
+        "min": 3,
+        "max": 30,
+        "default": "Book an appointment",
+        "isShow": true,
+        "required": true,
+        "message": "CTA text must be between 3-30 characters"
+      }
+    }
+  },
+  "about": {
+    "image": "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2068&auto=format&fit=crop",
+    "badgeIcon": "PawPrint",
+    "subtitle": "ABOUT THE DOCTOR",
+    "title": "Twelve years of listening to what pets can't say.",
+    "description": "Dr. Elena Marsh (DVM, Cornell '13) built this practice around a simple idea: appointments shouldn't feel rushed, and no pet should ever be another chart on a clipboard. She's certified in Fear Free handling and specializes in preventative care for dogs, cats, and small companion animals.",
+    "features": [
+      {
+        "icon": "ShieldCheck",
+        "title": "Fear Free certified",
+        "description": "Handling trained to lower stress for every visit."
+      },
+      {
+        "icon": "Clock",
+        "title": "Unhurried appointments",
+        "description": "30-45 min slots so nothing gets missed."
+      },
+      {
+        "icon": "PawPrint",
+        "title": "Dogs, cats & exotics",
+        "description": "From puppies to rabbits, hamsters, and reptiles."
+      },
+      {
+        "icon": "Calendar",
+        "title": "Weekend availability",
+        "description": "Saturday clinic hours and evening video slots."
+      }
+    ],
+    "aboutValidation": {
+      "title": {
+        "min": 10,
+        "max": 80,
+        "default": "Twelve years of listening to what pets can't say.",
+        "isShow": true,
+        "required": true,
+        "message": "About title must be between 10-80 characters"
+      },
+      "features": {
+        "min": 2,
+        "max": 6,
+        "isShow": true,
+        "required": true,
+        "message": "Features items must be between 2-6 items",
+        "itemValidation": {
+          "title": {
+            "min": 3,
+            "max": 40,
+            "required": true,
+            "message": "Feature title must be between 3-40 characters"
+          },
+          "description": {
+            "min": 10,
+            "max": 150,
+            "required": true,
+            "message": "Feature description must be between 10-150 characters"
+          }
+        }
+      }
+    }
+  },
+  "services": {
+    "subtitle": "SERVICES",
+    "title": "Three ways to see the doctor",
+    "description": "Pick what fits your pet's temperament and your day. Every visit ends with clear notes and next steps.",
+    "cards": [
+      {
+        "icon": "Stethoscope",
+        "price": "$65",
+        "title": "Clinic Visit",
+        "duration": "30 min",
+        "description": "A calm, pet-first clinic space designed to lower stress from the moment you arrive.",
+        "features": [
+          "Full physical exam",
+          "Vaccinations & bloodwork",
+          "Same-week openings"
+        ],
+        "cta": {
+          "label": "Book clinic visit",
+          "url": "/booking"
+        }
+      },
+      {
+        "icon": "Video",
+        "price": "$40",
+        "title": "Video Consultation",
+        "duration": "20 min",
+        "description": "Talk face-to-face with Dr. Marsh from home perfect for follow-ups and quick questions.",
+        "features": [
+          "Full physical exam",
+          "Vaccinations & bloodwork",
+          "Same-week openings"
+        ],
+        "cta": {
+          "label": "Book video consultation",
+          "url": "/booking"
+        }
+      },
+      {
+        "icon": "Home",
+        "price": "$120",
+        "title": "Home Visit",
+        "duration": "45 min",
+        "description": "We come to you. Ideal for senior pets, multi-pet households, or anxious travelers.",
+        "features": [
+          "Full physical exam",
+          "Vaccinations & bloodwork",
+          "Same-week openings"
+        ],
+        "cta": {
+          "label": "Book home visit",
+          "url": "/booking"
+        }
+      }
+    ],
+    "servicesValidation": {
+      "title": {
+        "min": 10,
+        "max": 50,
+        "default": "Three ways to see the doctor",
+        "isShow": true,
+        "required": true,
+        "message": "Services title must be between 10-50 characters"
+      },
+      "cards": {
+        "min": 1,
+        "max": 6,
+        "isShow": true,
+        "required": true,
+        "message": "Services items must be between 1-6 items",
+        "itemValidation": {
+          "title": {
+            "min": 5,
+            "max": 50,
+            "required": true,
+            "message": "Service title must be between 5-50 characters"
+          },
+          "description": {
+            "min": 15,
+            "max": 200,
+            "required": true,
+            "message": "Service description must be between 15-200 characters"
+          },
+          "price": {
+            "pattern": "/^\\$?\\d+(\\.\\d{2})?$/",
+            "required": true,
+            "message": "Price must be a valid format (e.g., $50 or 50.00)"
+          }
+        }
+      }
+    }
+  },
+  "howItWorks": {
+    "subtitle": "HOW ITS WORK",
+    "title": "From \"my dog seems off\" to booked in under a minute.",
+    "description": "No phone tag, no waiting rooms of forms. Five clear steps, then a confirmation in your inbox.",
+    "cta": {
+      "label": "Book an appointment",
+      "url": "/booking"
+    },
+    "steps": [
+      {
+        "number": "01",
+        "title": "Choose the type",
+        "description": "Clinic, video, or home visit."
+      },
+      {
+        "number": "02",
+        "title": "Pick date & time",
+        "description": "See live availability for the next two weeks."
+      },
+      {
+        "number": "03",
+        "title": "Tell us about your pet",
+        "description": "Name, species, and what's going on."
+      },
+      {
+        "number": "04",
+        "title": "Secure checkout",
+        "description": "Encrypted card payment — no surprises."
+      },
+      {
+        "number": "05",
+        "title": "Confirmation in your inbox",
+        "description": "Instant email with time, location, and prep notes."
+      }
+    ],
+    "howItWorksValidation": {
+      "title": {
+        "min": 10,
+        "max": 80,
+        "default": "From my dog seems off to booked in under a minute.",
+        "isShow": true,
+        "required": true,
+        "message": "Title must be between 10-80 characters"
+      },
+      "steps": {
+        "min": 2,
+        "max": 10,
+        "isShow": true,
+        "required": true,
+        "message": "Steps must be between 2-10 items",
+        "itemValidation": {
+          "title": {
+            "min": 3,
+            "max": 50,
+            "required": true,
+            "message": "Step title must be between 3-50 characters"
+          },
+          "description": {
+            "min": 10,
+            "max": 150,
+            "required": true,
+            "message": "Step description must be between 10-150 characters"
+          }
+        }
+      }
+    }
+  },
+  "testimonials": {
+    "subtitle": "ABOUT THE DOCTOR",
+    "title": "Receipts or it doesn't count.",
+    "items": [
+      {
+        "quote": "\"Dr. Marsh has a rare gift — Miso actually walks into her clinic wagging his tail. The online booking took me 90 seconds.\"",
+        "author": "Priya Ramanathan",
+        "pet": "Miso, 4yr Shiba Inu",
+        "avatar": "https://i.pravatar.cc/150?u=priya",
+        "rating": 5
+      },
+      {
+        "quote": "\"Absolutely the best care my cat has ever received. The home visit was stress-free and Dr. Marsh was incredibly thorough.\"",
+        "author": "James Wilson",
+        "pet": "Luna, 2yr Domestic Shorthair",
+        "avatar": "https://i.pravatar.cc/150?u=james",
+        "rating": 5
+      }
+    ],
+    "testimonialsValidation": {
+      "title": {
+        "min": 10,
+        "max": 50,
+        "default": "Receipts or it doesn't count.",
+        "isShow": true,
+        "required": true,
+        "message": "Testimonials title must be between 10-50 characters"
+      },
+      "items": {
+        "min": 1,
+        "max": 8,
+        "isShow": true,
+        "required": true,
+        "message": "Testimonials items must be between 1-8 items",
+        "itemValidation": {
+          "author": {
+            "min": 3,
+            "max": 50,
+            "required": true,
+            "message": "Client name must be between 3-50 characters"
+          },
+          "quote": {
+            "min": 20,
+            "max": 500,
+            "required": true,
+            "message": "Comment must be between 20-500 characters"
+          },
+          "rating": {
+            "min": 1,
+            "max": 5,
+            "integer": true,
+            "required": true,
+            "message": "Rating must be between 1-5"
+          }
+        }
+      }
+    }
+  },
+  "footer": {
+    "logoText": "Pet Doctor",
+    "logoIcon": "PawPrint",
+    "description": "Modern, unhurried veterinary care in Brooklyn. Fear Free certified. Open Mon–Sat.",
+    "cta": {
+      "label": "Book a visit",
+      "url": "/booking"
+    },
+    "contact": {
+      "address": "142 Willow St\nBrooklyn, NY 11201",
+      "phone": "(718) 555-0139",
+      "email": "hello@drmarsh.vet"
+    },
+    "hours": [
+      {
+        "day": "Mon–Fri",
+        "time": "8:00 – 18:00"
+      },
+      {
+        "day": "Saturday",
+        "time": "9:00 – 14:00"
+      },
+      {
+        "day": "Sunday",
+        "time": "Closed"
+      },
+      {
+        "day": "Video visits",
+        "time": "daily till 21:00"
+      }
+    ],
+    "copyright": "© 2026 Dr. Marsh Veterinary. All rights reserved.",
+    "links": [
+      {
+        "label": "Privacy Policy",
+        "url": "#"
+      },
+      {
+        "label": "Terms & Condition",
+        "url": "#"
+      }
+    ],
+    "footerValidation": {
+      "description": {
+        "min": 10,
+        "max": 200,
+        "default": "Modern, unhurried veterinary care in Brooklyn. Fear Free certified. Open Mon–Sat.",
+        "isShow": true,
+        "required": true,
+        "message": "Footer description must be between 10-200 characters"
+      }
+    }
+  }
+}
