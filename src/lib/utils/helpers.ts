@@ -201,22 +201,43 @@ export function getAvatarColor(name: string) {
   return AVATAR_COLORS[Math.abs(hash) % AVATAR_COLORS.length];
 }
 
-export const COMPANIES = [
+export interface CompanyBrand {
+  id: number;
+  domain: string;
+  name: string;
+  signupUrl: string;
+  logo: string;
+  footerLogo: string;
+  favicon: string;
+  supportEmail: string;
+  footerDescription: string;
+  primaryColor: string;
+}
+
+export const COMPANIES: CompanyBrand[] = [
   {
     id: 2,
     domain: 'vetllama.com',
     name: 'VetLlama',
     signupUrl: 'https://client.vetllama.com/authentication/register',
     logo: '/assets/images/logo-3.png',
+    footerLogo: '/assets/images/logo-33.png',
     favicon: '/assets/images/favicon.ico',
+    supportEmail: 'info@24vetsupport.com',
+    footerDescription: 'We’re a trusted veterinary clinic dedicated to keeping your pets healthy and happy.',
+    primaryColor: '#316DFF',
   },
   {
     id: 3,
     domain: 'petvetconnect.com',
     name: 'PetVetConnect',
     signupUrl: 'https://client.petvetconnect.com/authentication/register',
-    logo: '/assets/images/petvetconnect-logo.png',
-    favicon: '/assets/images/petvetconnect-favicon.ico',
+    logo: '/assets/images/PetVetConnect_NoBG.png',
+    footerLogo: '/assets/images/PetVetConnect_NoBG.png',
+    favicon: '/assets/images/petvet-favicon.ico',
+    supportEmail: 'info@petvethotline.com',
+    footerDescription: 'We’re a trusted veterinary clinic dedicated to keeping your pets healthy and happy.',
+    primaryColor: '#316DFF',
   },
 ];
 
@@ -237,9 +258,23 @@ export function getCurrentDomain(): string {
 
 export function getCurrentCompany() {
   const domain = getCurrentDomain();
+  const isLocalDevelopment = domain === 'localhost' || domain === '127.0.0.1';
+  const developmentCompanyDomain = import.meta.env.VITE_COMPANY_DOMAIN
+    ?.trim()
+    .toLowerCase()
+    .replace(/^www\./, '');
+
+  if (isLocalDevelopment && developmentCompanyDomain) {
+    return COMPANIES.find(
+      (company) => company.domain.toLowerCase() === developmentCompanyDomain
+    );
+  }
 
   return COMPANIES.find(
-    (company) => company.domain.toLowerCase() === domain
+    (company) => {
+      const companyDomain = company.domain.toLowerCase();
+      return domain === companyDomain || domain.endsWith(`.${companyDomain}`);
+    }
   );
 }
 

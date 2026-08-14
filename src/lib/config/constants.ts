@@ -4,8 +4,6 @@ export const CONSTANTS = {
   STRIPE_PUBLIC_KEY: import.meta.env.VITE_STRIPE_PUBLIC_KEY || '',
   APP_URL: import.meta.env.VITE_APP_URL || 'https://vetllama.com',
 
-  COMPANY_SIGNUP_URL: "https://client.petvetconnect.com/authentication/register",
-
   // Auth
   TOKEN_REFRESH_THRESHOLD: 15, // minutes
   TOKEN_REFRESH_INTERVAL_MINUTES: 30,

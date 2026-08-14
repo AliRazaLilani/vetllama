@@ -1,7 +1,7 @@
 import { useTenant } from '@/lib/hooks/useTenant';
 import { Helmet } from 'react-helmet-async';
 
-import { getCurrentDomain } from "@/lib/utils/helpers"
+import { COMPANIES, getCurrentCompany } from '@/lib/utils/helpers';
 
 interface TenantMetaProps {
   pageTitle?: string;
@@ -13,26 +13,16 @@ export function TenantMeta({ pageTitle, pageDescription, pageImage }: TenantMeta
   const { tenant, isLoading } = useTenant();
 
 
-  const domain = getCurrentDomain();
-
-  const domainFaviconMap: Record<string, string> = {
-    'vetllama.com': '/assets/images/favicon.ico',
-    'petvetconnect.com': '/assets/images/petvet-favicon.ico',
-  };
-
-  const domainTitleMap: Record<string, string> = {
-    'vetllama.com': 'VetLlama',
-    'petvetconnect.com': 'PetVetConnect',
-  };
-
-  const domainFavicon = domainFaviconMap[domain];
-  const domainTitle = domainTitleMap[domain];
+  const company = getCurrentCompany() ?? COMPANIES[0];
 
 
   if (isLoading || !tenant) {
     return (
       <Helmet>
-        <title>{domainTitle || "Pet Doctor"}</title>
+        <title>{company.name}</title>
+        <link rel="icon" type="image/x-icon" href={company.favicon} />
+        <link rel="shortcut icon" href={company.favicon} />
+        <link rel="apple-touch-icon" href={company.favicon} />
       </Helmet>
     );
   }
@@ -48,23 +38,23 @@ export function TenantMeta({ pageTitle, pageDescription, pageImage }: TenantMeta
     seo?.favicon ||
     '/images/favicon.ico';
 
-  // Domain favicon takes priority
-  const favicon = domainFavicon || tenantFavicon;
+  // The company favicon takes priority over tenant-specific branding.
+  const favicon = company.favicon || tenantFavicon;
 
   // Get logo from branding
-  const logoUrl = tenant?.branding?.logo_url || '';
+  const logoUrl = tenant?.branding?.logo_url || company.logo;
 
   // Build meta tags - use SEO data from the correct path
   const title = pageTitle
-    ? `${pageTitle} | ${seo?.meta_title || branding?.name || 'Pet Doctor'}`
-    : seo?.meta_title || branding?.name || 'Pet Doctor';
+    ? `${pageTitle} | ${seo?.meta_title || branding?.name || company.name}`
+    : seo?.meta_title || branding?.name || company.name;
 
   const description =
     pageDescription ||
     seo?.meta_description ||
     seo?.og_description ||
     branding?.description ||
-    'Veterinary care for your pets';
+      company.footerDescription;
   const image = pageImage || seo?.og_image || logoUrl || '/og-image.jpg';
   const url = seo?.canonical_url || window.location.href;
   const keywords = seo?.meta_keywords || '';
@@ -90,7 +80,7 @@ export function TenantMeta({ pageTitle, pageDescription, pageImage }: TenantMeta
       <meta property="og:image" content={image} />
       <meta property="og:url" content={url} />
       <meta property="og:type" content="website" />
-      <meta property="og:site_name" content={branding?.name || tenant?.name || 'Pet Doctor'} />
+      <meta property="og:site_name" content={branding?.name || tenant?.name || company.name} />
 
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
@@ -102,14 +92,14 @@ export function TenantMeta({ pageTitle, pageDescription, pageImage }: TenantMeta
       <meta name="robots" content="index, follow" />
 
       {/* Theme Color */}
-      <meta name="theme-color" content={tenant?.branding?.primary_color || '#0066FF'} />
+      <meta name="theme-color" content={tenant?.branding?.primary_color || company.primaryColor} />
 
       {/* JSON-LD Structured Data */}
       <script type="application/ld+json">
         {JSON.stringify({
           '@context': 'https://schema.org',
           '@type': 'Organization',
-          name: tenant?.name || branding?.name || 'Pet Doctor',
+          name: tenant?.name || branding?.name || company.name,
           url: url,
           logo: logoUrl,
           description: description,

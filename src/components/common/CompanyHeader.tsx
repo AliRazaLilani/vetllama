@@ -3,34 +3,18 @@ import { Link } from 'react-router-dom';
 
 import './Header.css';
 import { ClipboardClock } from 'lucide-react';
-import { CONSTANTS } from '@/lib/config/constants';
-import { getCurrentDomain } from "@/lib/utils/helpers"
+import { COMPANIES, getCurrentCompany } from '@/lib/utils/helpers';
 
 
 export default function Header(): JSX.Element {
-  const logoByDomain: Record<string, { src: string; alt: string, signupUrl: string }> = {
-    'vetllama.com': {
-      src: '/assets/images/logo-3.png',
-      alt: 'Vetllama',
-      signupUrl: "https://client.vetllama.com/authentication/register"
-    },
-    'petvetconnect.com': {
-      src: '/assets/images/petvetconnect-logo.svg',
-      alt: 'PetVetConnect',
-      signupUrl: "https://client.petvetconnect.com/authentication/register"
-    },
-  };
-
-  const domain = "petvetconnect.com";
-
-  const logoConfig = logoByDomain[domain] ?? logoByDomain['vetllama.com'];
+  const company = getCurrentCompany() ?? COMPANIES[0];
 
   return (
     <header className='vetllama-header h-[82px]'>
       <div className="vetllama-header-container">
     {/* Logo */}
     <Link to="/" className="vetllama-logo">
-      <img src={logoConfig.src} alt={logoConfig.alt} className={`${domain === 'petvetconnect.com' ? 'w-44' : 'w-48'} h-auto object-cover`} />
+      <img src={company.logo} alt={company.name} className={`${company.domain === 'petvetconnect.com' ? 'w-44' : 'w-48'} h-auto object-cover`} />
     </Link>
 
       {/* Get Started Button */}
@@ -44,7 +28,7 @@ export default function Header(): JSX.Element {
         <span>Book an Appointment</span>
           </span>
         </Link>
-        <Link target="_blank" to={logoConfig?.signupUrl} className="get-started-btn">
+        <a target="_blank" rel="noreferrer" href={company.signupUrl} className="get-started-btn">
           <span className="get-started-fill" />
 
           <span className="get-started-content">
@@ -79,7 +63,7 @@ export default function Header(): JSX.Element {
 
         <span>Get Started</span>
           </span>
-        </Link>
+        </a>
       </div>
       </div>
     </header>

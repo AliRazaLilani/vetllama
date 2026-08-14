@@ -104,6 +104,9 @@ VITE_APP_URL=https://vetllama.com
 VITE_DEV_HOST=asad123.vetllama.com
 VITE_DEV_DOMAIN=asad123.vetllama.com
 VITE_DEV_SUBDOMAIN=asad123
+
+# Branding to preview when running the public site on localhost
+VITE_COMPANY_DOMAIN=petvetconnect.com
 ```
 
 ---

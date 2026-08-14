@@ -1,14 +1,14 @@
 import Header from '@/components/common/CompanyHeader'
 import React, { useEffect, useState, type JSX } from 'react'
 import { ChevronRight } from "lucide-react"
-import { COMPANIES, getCurrentDomain } from '@/lib/utils/helpers'
+import { COMPANIES, getCurrentCompany } from '@/lib/utils/helpers'
 
 export default function Home(): JSX.Element {
   const [activeIndex, setActiveIndex] = useState(1)
   const [activeFaq, setActiveFaq] = useState(0)
 
-  const domain = getCurrentDomain();
-  const isPetVet = domain == COMPANIES[1]?.domain
+  const company = getCurrentCompany() ?? COMPANIES[0]
+  const supportEmailLink = `mailto:${company.supportEmail}`
   
   const faqs = [
     { q: 'Can I order medicines for any pet?', a: 'Yes, dogs, cats, birds, and more.' },
@@ -245,7 +245,7 @@ export default function Home(): JSX.Element {
                 <p className="description">
                   Our team will respond quickly with the best advice for your furry friend.
                 </p>
-                <a href={isPetVet ? "mailto:info@petvethotline.com" : "mailto:info@24vetsupport.com"} className="get-started-btn"><span className="get-started-fill" />
+                <a href={supportEmailLink} className="get-started-btn"><span className="get-started-fill" />
 
                 <span className="get-started-content">
                 <span>Contact Us</span>
@@ -261,7 +261,7 @@ export default function Home(): JSX.Element {
                     </div>
                     <div>
                       <p className="title">General Inquiries</p>
-                      <h4 className="link"><a href={isPetVet ? "mailto:info@petvethotline.com" : "mailto:info@24vetsupport.com"}>{isPetVet ? "info@petvethotline.com" : "info@24vetsupport.com"}</a></h4>
+                      <h4 className="link"><a href={supportEmailLink}>{company.supportEmail}</a></h4>
                     </div>
                     <img src="/assets/images/service/support-img-1.png" alt="support-img-1" className="img-fluid img-1" />
                   </div>
@@ -382,11 +382,10 @@ export default function Home(): JSX.Element {
               <div className="col-xl-12 col-lg-12 col-md-12">
                 <div className="footer-widget footer-about d-flex justify-content-center align-items-center flex-column">
                   <div className="footer-logo">
-                    {!isPetVet && <img src="/assets/images/logo-33.png" width="200" alt="logo" />}
+                    <img src={company.footerLogo} width="200" alt={`${company.name} logo`} />
                   </div>
                   <p className="description">
-                    We’re a trusted veterinary clinic dedicated to keeping<span className="d-block">
-                      your pets healthy and happy.</span>
+                    {company.footerDescription}
                   </p>
                   <div className="footer-about-content">
                     <ul className="social-icon">
@@ -419,7 +418,7 @@ export default function Home(): JSX.Element {
                 <div className="col-lg-12 justify-content-center d-flex">
                   <div className="copyright-text">
                     <p className="mb-0">
-                      Copyright &copy; 2026 {isPetVet ? "PetVet Connect" : "VETLLAMA"}. All Rights Reserved
+                      Copyright &copy; {new Date().getFullYear()} {company.name}. All Rights Reserved
                     </p>
                   </div>
                 </div>
@@ -431,4 +430,3 @@ export default function Home(): JSX.Element {
     </>
   )
 }
-
