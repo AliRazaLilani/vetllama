@@ -18,8 +18,8 @@ export default function Header(): JSX.Element {
     </Link>
 
       {/* Get Started Button */}
-      <div className='flex justify-center gap-2 items-center'>
-        <Link to="/doctor-grid" className="get-started-btn">
+      <div className='flex justify-center gap-2 items-center hidden md:block'>
+        <Link to="/doctor-grid" className="get-started-btn mr-2">
           <span className="get-started-fill" />
 
           <span className="get-started-content">

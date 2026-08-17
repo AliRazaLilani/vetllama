@@ -209,6 +209,7 @@ export interface CompanyBrand {
   logo: string;
   footerLogo: string;
   favicon: string;
+  supportPhone: string;
   supportEmail: string;
   footerDescription: string;
   primaryColor: string;
@@ -223,6 +224,7 @@ export const COMPANIES: CompanyBrand[] = [
     logo: '/assets/images/logo-3.png',
     footerLogo: '/assets/images/logo-33.png',
     favicon: '/assets/images/favicon.ico',
+    supportPhone: "123-456-7890",
     supportEmail: 'info@24vetsupport.com',
     footerDescription: 'We’re a trusted veterinary clinic dedicated to keeping your pets healthy and happy.',
     primaryColor: '#316DFF',
@@ -233,8 +235,9 @@ export const COMPANIES: CompanyBrand[] = [
     name: 'PetVetConnect',
     signupUrl: 'https://client.petvetconnect.com/authentication/register',
     logo: '/assets/images/PetVetConnect_NoBG.png',
-    footerLogo: '/assets/images/PetVetConnect_NoBG.png',
+    footerLogo: '/assets/images/PetVetConnect_Footer_Logo.png',
     favicon: '/assets/images/petvet-favicon.ico',
+    supportPhone: "(321)262-8262",
     supportEmail: 'info@petvethotline.com',
     footerDescription: 'We’re a trusted veterinary clinic dedicated to keeping your pets healthy and happy.',
     primaryColor: '#316DFF',
