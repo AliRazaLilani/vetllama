@@ -1,14 +1,15 @@
 import Header from '@/components/common/CompanyHeader'
 import React, { useEffect, useState, type JSX } from 'react'
-import { ChevronRight } from "lucide-react"
+import { ChevronRight, Minus, Phone, Plus } from "lucide-react"
 import { COMPANIES, getCurrentCompany } from '@/lib/utils/helpers'
+import { Link } from 'react-router'
 
 export default function Home(): JSX.Element {
   const [activeIndex, setActiveIndex] = useState(1)
-  const [activeFaq, setActiveFaq] = useState(0)
+  const [activeFaq, setActiveFaq] = useState(0);
 
   const company = getCurrentCompany() ?? COMPANIES[0]
-  const supportEmailLink = `mailto:${company.supportEmail}`
+  const supportEmailLink = company?.id == COMPANIES[1]?.id ? `tel:${company.supportPhone}` : `mailto:${company.supportEmail}`
   
   const faqs = [
     { q: 'Can I order medicines for any pet?', a: 'Yes, dogs, cats, birds, and more.' },
@@ -39,6 +40,16 @@ export default function Home(): JSX.Element {
     return () => document.body.classList.remove('theme-5')
   }, [])
 
+  const services = [
+    "Certified Medical Professionals",
+    "Advanced Diagnostic Tools",
+    "Online Appointment Booking",
+    "Electronic Health Records"
+  ];
+
+  // Combine the array with itself for the seamless loop
+  const tickerItems = [...services, ...services];
+
   return (
     <>
       <Header />
@@ -47,30 +58,41 @@ export default function Home(): JSX.Element {
           <div className="row">
             <div className="col-lg-7">
               <div className="section-header section-header-six">
-                <div className="flex gap-4 items-center">
-                <h1 className="section-title">Caring for Your</h1>
-                <span className="banner-icon"><img src="/assets/images/icons/banner-icon-4.png" alt="banner-icon" className="img-fluid img-one" /></span>
+                <div>
+                  <div className="flex gap-4 items-center relative">
+                  <h1 className="section-title hidden md:block">Caring for Your</h1>
+                  <h1 className="section-title md:hidden block">Caring for</h1>
+                  <span className="banner-icon"><img src="/assets/images/icons/banner-icon-4.png" alt="banner-icon" className="img-fluid img-one md:w-max md:h-max w-[150px] h-[150px] absolute -top-4 right-0 md:relative" /></span>
+                </div>
+                <h1 className="section-title md:hidden block">Your Pets</h1>
                 </div>
                 <div className="flex gap-2">
-                <h1 className="section-title">Pets Made</h1>
+                  <h1 className="section-title block md:hidden mr-2">Made</h1>
+                  <h1 className="section-title md:block hidden">Pets Made</h1>
+                  <h1 className="section-title text-primary block md:hidden">Simple</h1>
                 </div>
-                <div className="flex gap-2">
-                  <span className="banner-icon"><img src="/assets/images/icons/banner-icon-5.png" alt="banner-icon" className="img-fluid img-one" /></span>
-                <h1 className="section-title">Simple</h1>
+                <div className="flex gap-3 items-center">
+                  <span className="banner-icon"><img src="/assets/images/icons/banner-icon-5.png" alt="banner-icon" className="img-fluid img-one hidden md:block" /></span>
+                <h1 className="section-title md:block hidden text-primary">Simple</h1>
                 </div>
                 <p>From prescriptions to vet advice and medicine delivery</p>
+                <span className="banner-icon"><img src="/assets/images/icons/banner-icon-5.png" alt="banner-icon" className="img-fluid img-one mob-simp-img block mt-4 md:hidden md:w-max md:h-max w-[125px] h-[125px]" /></span>
+                 <div className="banner-mobile-cta">
+                  <Link to="/doctor-grid" className="btn-outline font-bold!">Book an Appointment</Link>
+                  <a target="_blank" rel="noreferrer" href={company.signupUrl} className="btn-solid font-bold!">Get Started</a>
+                </div>
               </div>
             </div>
             <div className="col-lg-5">
               <div className="banner-img">
-                <img src="/assets/images/banner/banner-img-7.png" alt="banner-img" className="img-fluid img-one" />
+                <img src="/assets/images/banner/banner-img-7.png" alt="banner-img" className="img-fluid img-one banner-main-img" />
                 <img src="/assets/images/bg/banner-img-1.png" alt="banner-img" className="img-fluid img-two" />
               </div>
             </div>
           </div>
         </div>
         <img src="/assets/images/icons/banner-icon-6.png" alt="banner-icon" className="img-fluid icon-one" />
-        <img src="/assets/images/icons/banner-icon-7.png" alt="banner-icon" className="img-fluid icon-two" />
+        <img src="/assets/images/icons/banner-icon-7.png" alt="banner-icon" className="img-fluid icon-two hidden md:block" />
       </section>
 
       <section className="about-section-six section">
@@ -257,11 +279,11 @@ export default function Home(): JSX.Element {
                 <div className="about-popup-item border-0 pb-0 mb-0">
                   <div className="support-item">
                     <div className="avatar avatar-lg bg-primary rounded-circle flex-shrink-0">
-                      <i className="isax isax-sms"></i>
+                      {company?.id == COMPANIES[1]?.id ? <Phone className="w-4 h-4" /> : <i className="isax isax-sms"></i>}
                     </div>
                     <div>
                       <p className="title">General Inquiries</p>
-                      <h4 className="link"><a href={supportEmailLink}>{company.supportEmail}</a></h4>
+                      <h4 className="link"><a href={supportEmailLink}>{company?.id == COMPANIES[1]?.id ? company.supportPhone : company.supportEmail}</a></h4>
                     </div>
                     <img src="/assets/images/service/support-img-1.png" alt="support-img-1" className="img-fluid img-1" />
                   </div>
@@ -270,34 +292,33 @@ export default function Home(): JSX.Element {
             </div>
             <div className="col-lg-7">
               <div className="faq-info wow zoomIn" data-wow-duration="1s">
-                <div className="accordion" id="faq-details-one">
+                <div className="accordion">
                   {faqs.map((item, index) => {
                     const isOpen = activeFaq === index
+
                     return (
-                      <div className="accordion-item" key={index}>
+                      <div className={`accordion-item ${isOpen ? 'active' : ''}`} key={index}>
                         <h3 className="accordion-header">
-                          <a
-                            href="#"
+                          <button
+                            type="button"
                             className={`accordion-button ${isOpen ? '' : 'collapsed'}`}
-                            onClick={(e) => {
-                              e.preventDefault()
-                              setActiveFaq(isOpen ? -1 : index)
-                            }}
+                            onClick={() => setActiveFaq(isOpen ? -1 : index)}
                             aria-expanded={isOpen}
+                            style={{ width: '100%', textAlign: 'left' }}
                           >
-                            {item.q}
-                          </a>
-                          </h3>
-                         <div
-                          className={`accordion-collapse collapse ${isOpen ? 'show' : ''}`}
-                          style={{ display: isOpen ? 'block' : 'none' }}
-                        >
+                            <div className="flex justify-between items-center gap-2 w-full">
+                              {item.q}
+                              {isOpen ? <Minus className='rounded-full w-6 h-6 p-1 text-white bg-dark' size={14} /> : <Plus className="rounded-full w-6 h-6 p-1 bg-secondary text-sm text-white flex items-center justify-center" size={14} />}
+                            </div>
+                          </button>
+                        </h3>
+                        {isOpen && (
                           <div className="accordion-body">
                             <div className="accordion-content">
                               <p>{item.a}</p>
                             </div>
                           </div>
-                        </div>
+                        )}
                       </div>
                     )
                   })}
@@ -310,18 +331,11 @@ export default function Home(): JSX.Element {
 
       <div className="horizontal-slide slide-one slide-six d-flex" data-direction="left" data-speed="slow">
         <div className="slide-list d-flex gap-4">
-          <div className="services-slide">
-            <h3>Certified Medical Professionals</h3>
-          </div>
-          <div className="services-slide">
-            <h3>Advanced Diagnostic Tools</h3>
-          </div>
-          <div className="services-slide">
-            <h3>Online Appointment Booking</h3>
-          </div>
-          <div className="services-slide">
-            <h3>Electronic Health Records</h3>
-          </div>
+          {tickerItems.map((text, index) => (
+            <div key={index} className="services-slide">
+              <h3>{text}</h3>
+            </div>
+          ))}
         </div>
       </div>
 
