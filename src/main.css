@@ -20611,7 +20611,7 @@ select:focus {
   border: 0;
 }
 
-.faq-info .accordion-button:after {
+/* .faq-info .accordion-button:after {
   content: "+";
   font-family: inherit;
   font-size: 20px;
@@ -20625,13 +20625,13 @@ select:focus {
   width: 28px;
   height: 28px;
   border-radius: 4px;
-}
+} */
 
-.faq-info .accordion-button:not(.collapsed)::after {
-  content: "\2212"; /* minus sign */
+/* .faq-info .accordion-button:not(.collapsed)::after {
+  content: "\2212"; minus sign
   color: #ffffff;
   background: var(--primary);
-}
+} */
 
 @media (max-width: 767.98px) {
   .faq-info .accordion-button {
@@ -55360,7 +55360,7 @@ ul li {
 }
 
 .horizontal-slide[data-speed=slow] {
-  --_animation-duration: 120s;
+  --_animation-duration: 30s;
 }
 
 .horizontal-slide .slide-list {
@@ -69222,18 +69222,20 @@ ul li {
 }
 
 .faq-section-six .faq-info .accordion-item .accordion-button::after {
-  width: 24px;
+  /* width: 24px;
   height: 24px;
   border-radius: 50%;
   background: var(--secondary);
   font-size: 14px;
-  color: #fff;
+  color: #fff; */
+  display: none;
 }
 
 .faq-section-six .faq-info .accordion-item .accordion-button:not(.collapsed)::after {
-  content: "\2212";
+  /* content: "\2212";
   color: var(--white);
-  background: var(--dark);
+  background: var(--dark); */
+  display: none;
 }
 
 @media (max-width: 575.98px) {
@@ -71870,4 +71872,123 @@ ul li {
   position: absolute;
   right: 0;
   bottom: -60px;
+}
+
+@media (max-width: 767.98px) {
+  .banner-section-six {
+    padding: 50px 0 70px !important;
+    overflow: hidden;
+  }
+
+  /* wavy white cap at the bottom, like the screenshot */
+  .banner-section-six::after {
+    content: "";
+    position: absolute;
+    left: -5%;
+    right: -5%;
+    bottom: -1px;
+    height: 50px;
+    background: #fff;
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    z-index: 1;
+  }
+
+  .banner-section-six .row {
+    position: relative;
+  }
+
+  /* hide the small inline title icons - not present in the mobile design */
+  /* .banner-section-six .section-header-six .banner-icon {
+    display: none;
+  } */
+
+  .banner-section-six .section-header-six .flex {
+    gap: 0 !important;
+  }
+
+  /* tint the last title line like the screenshot */
+  .banner-section-six .section-header-six > div:nth-child(3) .section-title {
+    color: var(--primary);
+  }
+
+  .banner-section-six .section-header-six p {
+    font-size: 15px;
+    margin-top: 8px;
+  }
+
+  .banner-section-six .col-lg-5 {
+    order: -1; /* not required, kept for clarity if grid order ever changes */
+  }
+
+  .banner-section-six .banner-img {
+    display: block !important;
+    position: static;
+    height: 0;
+  }
+
+  .banner-section-six .banner-img .banner-main-img {
+    display: none;
+  }
+
+  .banner-section-six .banner-img .img-one {
+    /* dog */
+    position: relative;
+    top: 210px;
+    left: 0;
+    width: 220px;
+    z-index: 2;
+  }
+
+  .banner-section-six .banner-img .img-two {
+    /* cat */
+    display: none;
+    /* position: absolute;
+    top: -170px;
+    right: -10px;
+    left: auto;
+    margin: 0;
+    width: 160px;
+    animation: float 3s ease-in-out infinite; */
+  }
+
+  .banner-section-six .icon-one {
+    max-width: 60px;
+  }
+}
+
+/* Mobile CTA row under the banner copy (mirrors the Header buttons) */
+.banner-mobile-cta {
+  display: none;
+}
+
+@media (max-width: 767.98px) {
+  .banner-mobile-cta {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px; /* clears the dog image above */
+    position: relative;
+    z-index: 2;
+  }
+
+  .banner-mobile-cta a {
+    flex: 1;
+    height: 46px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .banner-mobile-cta .btn-outline {
+    background: #fff;
+    color: var(--secondary);
+  }
+
+  .banner-mobile-cta .btn-solid {
+    background: var(--primary);
+    color: var(--gray-900);
+  }
 }
