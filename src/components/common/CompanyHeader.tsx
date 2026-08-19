@@ -28,7 +28,7 @@ export default function Header(): JSX.Element {
         <span>Book an Appointment</span>
           </span>
         </Link>
-        <a target="_blank" rel="noreferrer" href={company.signupUrl} className="get-started-btn">
+        <a rel="noreferrer" href={company.signupUrl} className="get-started-btn">
           <span className="get-started-fill" />
 
           <span className="get-started-content">

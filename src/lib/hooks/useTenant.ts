@@ -43,36 +43,38 @@ export function useTenant(): any {
       return;
     }
 
-    async function resolveTenant() {
-      try {
-        isFetching = true;
-        setIsLoading(true);
-        setError(null);
+    // async function resolveTenant() {
+    //   try {
+    //     isFetching = true;
+    //     setIsLoading(true);
+    //     setError(null);
 
-        // Create the promise and store it
-        fetchPromise = apiClient.get(ENDPOINTS.tenant.resolve).then((response) => response.data.data);
+    //     // Create the promise and store it
+    //     fetchPromise = apiClient.get(ENDPOINTS.tenant.resolve).then((response) => response.data.data);
 
-        const data = await fetchPromise;
+    //     const data = await fetchPromise;
 
-        if (!cancelled) {
-          cachedTenant = data;
-          setTenant(data);
-        }
-      } catch (err) {
-        if (!cancelled) {
-          const message = err instanceof Error ? err.message : 'Failed to resolve tenant';
-          setError(message);
-        }
-      } finally {
-        if (!cancelled) {
-          isFetching = false;
-          fetchPromise = null;
-          setIsLoading(false);
-        }
-      }
-    }
+    //     if (!cancelled) {
+    //       cachedTenant = data;
+    //       setTenant(data);
+    //     }
+    //   } catch (err) {
+    //     if (!cancelled) {
+    //       const message = err instanceof Error ? err.message : 'Failed to resolve tenant';
+    //       setError(message);
+    //     }
+    //   } finally {
+    //     if (!cancelled) {
+    //       isFetching = false;
+    //       fetchPromise = null;
+    //       setIsLoading(false);
+    //     }
+    //   }
+    // }
 
-    resolveTenant();
+    // resolveTenant();
+
+    setIsLoading(false)
 
     return () => {
       cancelled = true;
