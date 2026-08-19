@@ -1,19 +1,24 @@
+import { COMPANIES, getCurrentCompany } from '@/lib/utils/helpers';
 import React, { type JSX } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function BreadcrumbSearch(): JSX.Element {
   const navigate = useNavigate()
   const onSubmit = (e: React.FormEvent) => { e.preventDefault(); navigate('/patients/search-doctor/search1') }
+  const company = getCurrentCompany() ?? COMPANIES[0];
   return (
     <div className="breadcrumb-bar overflow-visible">
       <div className="container">
         <div className="row align-items-center inner-banner">
           <div className="col-md-12 col-12 text-center">
             <nav aria-label="breadcrumb" className="page-breadcrumb">
-              <ol className="breadcrumb">
+              <Link to="/" className="vetllama-logo flex justify-center w-full">
+                <img src={company.logo} alt={company.name} className={`w-52 h-auto object-cover`} />
+              </Link>
+              {/* <ol className="breadcrumb">
                 <li className="breadcrumb-item"><a href="/"><i className="isax isax-home-15"></i></a></li>
                 <li className="breadcrumb-item">Book Appointment</li>
-              </ol>
+              </ol> */}
             </nav>
           </div>
         </div>
