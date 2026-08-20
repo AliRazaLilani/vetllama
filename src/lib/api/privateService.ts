@@ -149,6 +149,7 @@ export async function getDashboardStats(): Promise<any[]> {
 export async function getCompanyTenants(params?: {
   page?: number;
   per_page?: number;
+  can_prescribe?: boolean;
 }): Promise<any> {
   try {
     const companyId = getCompanyId();
