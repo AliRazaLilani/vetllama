@@ -46,7 +46,7 @@ export default function BreadcrumbSearch(): JSX.Element {
       </div>
       <div className="breadcrumb-bg">
         <img src="/assets/images/bg/image1.png" alt="img" className="breadcrumb-bg-01" />
-        <img src="/assets/images/bg/image2.png" alt="img" className="breadcrumb-bg-02" />
+        <img src="/assets/images/bg/image2.png" alt="img" className="breadcrumb-bg-02 hidden md:block" />
         <img src="/assets/images/bg/breadcrumb-icon.png" alt="img" className="breadcrumb-bg-03" />
         <img src="/assets/images/bg/breadcrumb-icon.png" alt="img" className="breadcrumb-bg-04" />
       </div>
