@@ -1,7 +1,7 @@
 import BreadcrumbSearch from '@/components/common/BreadCrumbSearch'
 import { Loader } from '@/components/common/Loader'
 import { getCompanyTenants } from '@/lib/api/privateService'
-import { ArrowRight, ChevronRight, Heart, MapPin, PawPrint, Pill, ShieldAlert, ShieldCheck, User } from 'lucide-react'
+import { ArrowRight, ChevronRight, FileCheck, FileX, Heart, MapPin, PawPrint, Pill, ShieldAlert, ShieldCheck, User } from 'lucide-react'
 import React, { useCallback, useEffect, useMemo, useRef, useState, type JSX } from 'react'
 
 type TenantDomain = {
@@ -417,7 +417,7 @@ export default function MapGrid(): JSX.Element {
         <div className="text-center py-5">
           <p className="text-danger">{error}</p>
         </div>
-      ) : isLoading ? <Loader message="Loading..." fullScreen /> : (
+      ) : (
         <div className="content top-space pet-bg">
           <div className="container">
             <div className="row align-items-center">
@@ -430,19 +430,6 @@ export default function MapGrid(): JSX.Element {
                   </h3>
                 </div>
               </div>
-              {/* <div className="col-md-6">
-                <div className="d-flex align-items-center justify-content-end mb-4">
-                  <div className="dropdown header-dropdown me-2">
-                    <a className="dropdown-toggle sort-dropdown" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
-                      <span>Sort By</span>Name (A - Z)
-                    </a>
-                    <div className="dropdown-menu dropdown-menu-end">
-                      <a href="#" className="dropdown-item"> Name (A - Z) </a>
-                      <a href="#" className="dropdown-item"> Name (Z - A) </a>
-                    </div>
-                  </div>
-                </div>
-              </div> */}
             </div>
 
             <div className="row">
@@ -488,9 +475,6 @@ export default function MapGrid(): JSX.Element {
                       )}
                     </div>
                     {locationError && <p className="text-danger fs-13 mt-1 mb-0">{locationError}</p>}
-                    {/* {searchAddress && searchLat == null && !locationError && (
-                      <p className="text-muted fs-13 mt-1 mb-0">Select a suggestion from the list, or tap "Near Me".</p>
-                    )} */}
                   </div>
 
                   <div className="col-md-3">
@@ -515,131 +499,13 @@ export default function MapGrid(): JSX.Element {
                     )}
                   </div>
                 </div>
-                <div className="row align-items-center mb-4">
-                  <div className="col-md-10">
-                    <div className="row">
-                      {/* <div className="col-sm-4 col-6">
-                        <div className="mb-4">
-                          <select className="form-select custom-mat-select select" value={clinic} onChange={(e) => setClinic(e.target.value)}>
-                            {clinicOptions.map((item) => (
-                              <option value={item} key={item}>{item}</option>
-                            ))}
-                          </select>
-                        </div>
-                      </div> */}
-                      {/* <div className="col-sm-4 col-6">
-                        <div className="mb-4">
-                          <select className="form-select select" value={onboarding} onChange={(e) => setOnboarding(e.target.value)}>
-                            {STATUS_OPTIONS.map((item) => (
-                              <option value={item} key={item}>{item}</option>
-                            ))}
-                          </select>
-                        </div>
-                      </div> */}
-                    </div>
-                  </div>
-                  {/* <div className="col-md-2">
-                    <div className="text-end mb-3">
-                      <button
-                        type="button"
-                        className="fw-medium text-secondary text-decoration-underline btn btn-link p-0"
-                        onClick={() => {
-                          setClinic(ALL_CLINICS)
-                          setPrescribe(PRESCRIBE_OPTIONS[0])
-                          setOnboarding(STATUS_OPTIONS[0])
-                          setAvailableOnly(false)
-                          handleClearLocation()
-                          setRadiusKm(MIN_RADIUS_KM)
-                        }}
-                      >
-                        Clear All
-                      </button>
-                    </div>
-                  </div> */}
-                </div>
-
-                {/* <div className="d-flex align-items-center justify-content-between border-bottom pb-3 mb-3">
-                  <div className="doctor-filter-availability d-flex align-items-center gap-3">
-                    <p className="mb-0">Active Only</p>
-                    <div className="status-toggle status-tog">
-                      <input
-                        type="checkbox"
-                        id="status_6"
-                        className="check"
-                        checked={availableOnly}
-                        onChange={() => setAvailableOnly((prev) => !prev)}
-                      />
-                      <label htmlFor="status_6" className="checktoggle">checkbox</label>
-                    </div>
-                  </div>
-                </div> */}
 
                 <div className="row">
-                  {doctors?.length === 0 ? (
+                  {isLoading ? <Loader message="Loading..." className='h-[90vh]' /> : doctors?.length === 0 ? (
                     <div className="col-12 text-center py-5">
                       <p>No clinics match these filters on this page.</p>
                     </div>
                   ) : (
-                    // doctors?.map((tenant) => {
-                    //   const websiteLink = tenant.primary_domain ? `https://${tenant.primary_domain.host}` : null
-                    //   const badgeClass = tenant.can_prescribe ? 'text-teal' : 'text-indigo'
-
-                    //   return (
-                    //     <div className="col-xxl-3 col-md-6" key={tenant.id}>
-                    //       <div className="card">
-                    //         <div className="card-img card-img-hover">
-                    //           <a href={websiteLink || '#'} target="_blank" rel="noreferrer">
-                    //             {tenant?.image ? 
-                    //             <img className="w-[250px] h-[250px] object-cover" src={tenant.image} alt={tenant.business_name || tenant.name} />
-                    //             : <div className="flex w-full h-[250px] justify-center items-center bg-gray-300"><User className="w-24 h-24 " /></div>  }
-                    //           </a>
-                    //           <div className="grid-overlay-item d-flex align-items-center justify-content-between">
-                    //             <span className={`badge ${tenant.is_active ? 'bg-success-light' : 'bg-danger-light'}`}>
-                    //               {tenant.is_active ? 'Active' : 'Inactive'}
-                    //             </span>
-                    //           </div>
-                    //         </div>
-                    //         <div className="card-body p-0">
-                    //           <div className={`d-flex active-bar align-items-center justify-content-between p-3 ${badgeClass}`}>
-                    //             <span className={`fw-medium fs-14 ${badgeClass}`}>
-                    //               {tenant.can_prescribe ? 'Can Prescribe' : 'General'}
-                    //             </span>
-                    //             <span className="badge bg-success-light d-inline-flex align-items-center">
-                    //               <i className="fa-solid fa-circle fs-5 me-1"></i>
-                    //               {tenant.status}
-                    //             </span>
-                    //           </div>
-                    //           <div className="p-3 pt-0">
-                    //             <div className="doctor-info-detail mb-3 pb-3">
-                    //               <h3 className="mb-1">
-                    //                 <a href={websiteLink || '#'} target="_blank" rel="noreferrer">
-                    //                   {tenant.business_name || tenant.name}
-                    //                 </a>
-                    //               </h3>
-                    //               <div className="d-flex align-items-center">
-                    //                 <p className="d-flex align-items-center mb-0 fs-14">
-                    //                   <i className="isax isax-location me-2"></i>
-                    //                   {tenant.home_address || 'Address not provided'}
-                    //                 </p>
-                    //               </div>
-                    //             </div>
-                    //             <div className="d-flex align-items-center justify-content-between">
-                    //               <div>
-                    //                 <p className="mb-1">Contact</p>
-                    //                 <h3 className="text-orange fs-16">{tenant.primary_phone || tenant.email || 'N/A'}</h3>
-                    //               </div>
-                    //               {websiteLink && (
-                    //                 <a href={websiteLink} target="_blank" rel="noreferrer" className="theme-btn btn-primary p-2 rounded-full">
-                    //                   <span className="get-started-content"><i className="isax isax-calendar-1 me-2"></i> Visit Site</span>
-                    //                 </a>
-                    //               )}
-                    //             </div>
-                    //           </div>
-                    //         </div>
-                    //       </div>
-                    //     </div>
-                    //   )
-                    // })
                     doctors?.map((tenant) => {
                       const websiteLink = tenant.primary_domain ? `https://${tenant.primary_domain.host}` : null;
 
@@ -647,9 +513,9 @@ export default function MapGrid(): JSX.Element {
                         <div className="col-xxl-4 col-md-6 mb-4" key={tenant.id}>
                           <div className="relative overflow-hidden rounded-3xl bg-white p-4 shadow-sm border border-amber-100/60 transition-all duration-300 hover:shadow-md">
                             
-                            <div className="absolute -top-6 -right-6 h-32 w-32 rounded-full bg-amber-50/70 pointer-events-none" />
-                              <PawPrint size={50} className="absolute top-4 right-6 rotate-[300deg] text-[#B46935] fill-[#B46935]" />
-                              <Heart size={30} className="absolute top-16 right-2 text-[#B46935] rotate-[340deg]" />
+                            <div className="absolute -top-6 -right-6 h-28 w-28 rounded-full bg-amber-50/70 pointer-events-none" />
+                              <PawPrint size={40} className="absolute top-4 right-6 rotate-[300deg] text-[#B46935] fill-[#B46935]" />
+                              <Heart size={25} className="absolute top-14 right-2 text-[#B46935] rotate-[340deg]" />
 
                             <div className="relative z-10 flex items-center gap-8 mb-4">
                               {/* Avatar Section */}
@@ -661,11 +527,6 @@ export default function MapGrid(): JSX.Element {
                                       src={tenant.image ?? "/assets/images/petvet-connect.jpg"}
                                       alt={tenant.business_name || tenant.name}
                                     />
-                                  {/* ) : (
-                                    <div className="flex h-28 w-28 items-center justify-center rounded-full bg-gray-100 text-gray-400">
-                                      <User className="h-10 w-10" />
-                                    </div>
-                                  )} */}
                                 </a>
                                 {/* Small Prescription Badge Icon */}
                                 <span 
@@ -677,76 +538,24 @@ export default function MapGrid(): JSX.Element {
 
                               {/* Text Details */}
                               <div className="flex-1 min-w-0">
-                                {/* Status Pill */}
-                                {/* <div className="flex items-center gap-2 mb-1">
-                                  <span className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold ${
-                                    tenant.is_active 
-                                      ? 'bg-emerald-50 text-emerald-700 border border-emerald-200/60' 
-                                      : 'bg-rose-50 text-rose-700 border border-rose-200/60'
-                                  }`}>
-                                    <span className={`h-1.5 w-1.5 rounded-full ${tenant.is_active ? 'bg-emerald-500' : 'bg-rose-500'}`} />
-                                    {tenant.is_active ? 'Active' : 'Inactive'}
-                                  </span>
-
-                                  {tenant.status && (
-                                    <span className="text-xs text-gray-500 font-medium truncate">
-                                      • {tenant.status}
-                                    </span>
-                                  )}
-                                </div> */}
 
                                 {/* Doctor/Clinic Title */}
+                                <span style={{ border: tenant.is_active ? "1px solid #047857" : "1px solid #be123c" }} className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 mb-2 text-xs font-semibold ${
+                                  tenant.is_active 
+                                    ? 'text-emerald-700' 
+                                    : 'text-rose-700'
+                                }`}>
+                                  <span className={`h-1.5 w-1.5 rounded-full ${tenant.is_active ? 'bg-emerald-700' : 'bg-rose-500'}`} />
+                                  {tenant.is_active ? 'Active' : 'Inactive'}
+                                </span>
                                 <h3 className="text-lg font-bold text-gray-900 leading-tight truncate">
                                   <a href={websiteLink || '#'} target="_blank" rel="noreferrer" className="hover:text-amber-600 transition-colors">
                                     {tenant.business_name || tenant.name}
                                   </a>
                                 </h3>
-                              </div>
-                            </div>
-
-                            {/* Feature Tags Row */}
-                            <div className={`grid ${tenant?.home_address && tenant?.can_prescribe ? "grid-cols-3" : "grid-cols-2"} gap-2 mb-4 min-h-[80px]`}>
-                              {tenant.can_prescribe ? (
-                                <div className="flex items-center gap-2 pl-1">
-                                  <div className="flex h-10 w-10 min-w-10 shrink-0 items-center justify-center rounded-full bg-amber-100 text-amber-700">
-                                    <Pill className="h-5 w-5" />
-                                  </div>
-
-                                  <div className="min-w-0">
-                                    <p className="text-xs font-semibold text-gray-800">
-                                      Can Prescribe
-                                    </p>
-                                  </div>
-                                </div>
-                              ) : null}
-
-                              <div className="flex items-center gap-2 rounded-xl pl-6">
-                                <div
-                                  className={`flex h-10 w-10 min-w-10 shrink-0 items-center justify-center rounded-full ${
-                                    tenant?.is_active
-                                      ? "bg-green-100 text-green-700"
-                                      : "bg-red-100 text-red-700"
-                                  }`}
-                                >
-                                  {tenant?.is_active ? (
-                                    <ShieldCheck className="h-7 w-7 fill-green-700 text-white" />
-                                  ) : (
-                                    <ShieldAlert className="h-7 w-7 fill-red-700 text-white" />
-                                  )}
-                                </div>
-
-                                <div className="min-w-0">
-                                  <p className="text-xs font-semibold text-gray-800">
-                                    {tenant.is_active ? "Active" : "Inactive"}
-                                  </p>
-                                </div>
-                              </div>
-
-                              {tenant?.home_address && (
-                                <div className="flex items-center gap-2 w-full rounded-xl pl-1">
-                                  <div className="flex h-10 w-10 min-w-10 shrink-0 items-center justify-center rounded-full bg-indigo-100">
-                                    <MapPin className="h-5 w-5 fill-indigo-700 text-white" />
-                                  </div>
+                                {tenant?.home_address && (
+                                <div className="flex items-center gap-2 w-full mt-1 -ml-1">
+                                  <MapPin className="h-5 w-5 fill-[#B46935]" />
 
                                   <div className="min-w-0 flex-1">
                                     <p className="text-xs text-gray-500 leading-5 break-words whitespace-normal">
@@ -755,7 +564,28 @@ export default function MapGrid(): JSX.Element {
                                   </div>
                                 </div>
                               )}
+                              </div>
                             </div>
+
+                              <div className={`flex items-center gap-2 rounded-lg my-6 py-2 pl-6 ${tenant?.can_prescribe ? "bg-[#F0EBF6] text-indigo-700" : "bg-[#FFF3E1] text-amber-700"}`}>
+                                <div
+                                  className={`flex h-10 w-10 min-w-10 shrink-0 items-center justify-center rounded-full`}>
+                                  {tenant?.can_prescribe ? (
+                                    <FileCheck size={36} />
+                                  ) : (
+                                    <FileX size={36} />
+                                  )}
+                                </div>
+
+                                <div className="min-w-0 flex flex-col">
+                                  <p className="text-md font-semibold text-gray-800 mb-0">
+                                    {tenant.can_prescribe ? "Licensed" : "General"} Vet Doctor
+                                  </p>
+                                  <p className="text-md font-semibold text-gray-800">
+                                    {tenant.can_prescribe ? "Can prescribe medication" : "Veterinary advice and care guidance."}
+                                  </p>
+                                </div>
+                              </div>
 
                             {/* Action Button */}
                             <a
@@ -763,7 +593,7 @@ export default function MapGrid(): JSX.Element {
                               target="_blank"
                               rel="noreferrer"
                               className="flex w-full items-center justify-center gap-2 rounded-xl py-2.5 px-4 text-md font-semibold text-gray-600 transition-all duration-200 shadow-sm"
-                              style={{ border: "2px solid #FFC269" }}
+                              style={{ border: "2px solid #C47116" }}
                             >
                               <span>Visit Website</span>
                               <ArrowRight className="w-5 h-5" />
