@@ -55,7 +55,7 @@ const DEFAULT_CENTER = { lat: 24.8607, lng: 67.0011 } // Karachi fallback
 const PER_PAGE = 12
 
 const ALL_CLINICS = 'All Clinics'
-const PRESCRIBE_OPTIONS = ['Yes', 'No']
+const PRESCRIBE_OPTIONS = ['All Clinics', 'License to Prescribe', 'General Vet Doctor']
 
 function parseCoord(value: string | null): number | null {
   if (!value) return null
@@ -118,7 +118,7 @@ export default function MapGrid(): JSX.Element {
 
   const radiusMiles = useMemo(() => radiusKm * KM_TO_MILES, [radiusKm])
 
-  const canPrescribeParam: boolean = prescribe === 'Yes'
+  const canPrescribeParam: boolean = prescribe === 'License to Prescribe'
 
   const hasLocationFilter = searchLat != null && searchLng != null
 
@@ -227,7 +227,10 @@ export default function MapGrid(): JSX.Element {
           ...(hasLocationFilter
             ? { latitude: searchLat, longitude: searchLng, radius: radiusKm }
             : {}),
-          can_prescribe: canPrescribeParam,
+          ...(prescribe !== 'All Clinics'
+          ? {
+              can_prescribe: canPrescribeParam,
+            } : {}),
         })
 
         if (!cancelled) {
@@ -252,7 +255,7 @@ export default function MapGrid(): JSX.Element {
       clearTimeout(timeout)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, hasLocationFilter, searchLat, searchLng, radiusKm, canPrescribeParam])
+  }, [page, hasLocationFilter, searchLat, searchLng, radiusKm, prescribe])
 
 
   const mappableDoctors = useMemo(() => {
@@ -272,7 +275,7 @@ export default function MapGrid(): JSX.Element {
     }
 
     const setInfo = (tenant: Tenant) => {
-      const badge = tenant.can_prescribe ? 'Can Prescribe' : 'General'
+      const badge = tenant.can_prescribe ? 'License Prescribe' : 'General'
       const websiteLink = tenant.primary_domain
         ? `https://${tenant.primary_domain.host}`
         : null
@@ -436,7 +439,7 @@ export default function MapGrid(): JSX.Element {
               <div className="col-lg-12">
                 <div className="row align-items-end mb-4">
                   <div className="col-md-3">
-                    <label className="form-label fw-medium mb-2">Can Prescribe</label>
+                    <label className="form-label fw-medium mb-2">License to Prescribe</label>
                     <div className="">
                       <select className="form-select select" value={prescribe} onChange={(e) => setPrescribe(e.target.value)}>
                         {PRESCRIBE_OPTIONS.map((item) => (
@@ -595,7 +598,7 @@ export default function MapGrid(): JSX.Element {
                               className="flex w-full items-center justify-center gap-2 rounded-xl py-2.5 px-4 text-md font-semibold text-gray-600 transition-all duration-200 shadow-sm"
                               style={{ border: "2px solid #C47116" }}
                             >
-                              <span>Visit Website</span>
+                              <span>Book an Appointment</span>
                               <ArrowRight className="w-5 h-5" />
                             </a>
 
