@@ -418,7 +418,7 @@ export default function MapGrid(): JSX.Element {
           <p className="text-danger">{error}</p>
         </div>
       ) : (
-        <div className="content top-space pet-bg">
+        <div className="pet-bg min-h-[200px] pt-12 md:pt-36">
           <div className="container">
             <div className="row align-items-center">
               <div className="col-md-6">
@@ -513,11 +513,11 @@ export default function MapGrid(): JSX.Element {
                         <div className="col-xxl-4 col-md-6 mb-4" key={tenant.id}>
                           <div className="relative overflow-hidden rounded-3xl bg-white p-4 shadow-sm border border-amber-100/60 transition-all duration-300 hover:shadow-md">
                             
-                            <div className="absolute -top-6 -right-6 h-28 w-28 rounded-full bg-amber-50/70 pointer-events-none" />
-                              <PawPrint size={40} className="absolute top-4 right-6 rotate-[300deg] text-[#B46935] fill-[#B46935]" />
-                              <Heart size={25} className="absolute top-14 right-2 text-[#B46935] rotate-[340deg]" />
+                            <div className="absolute -top-6 -right-6 h-24 w-24 md:h-28 md:w-28 rounded-full bg-amber-50/70 pointer-events-none" />
+                              <PawPrint className="h-8 w-8 md:h-10 md:w-10 absolute top-3 md:top-4 right-6 rotate-[300deg] text-[#B46935] fill-[#B46935]" />
+                              <Heart className="h-6 w-6 md:h-7 md:w-7 absolute top-10 md:top-14 right-2 text-[#B46935] rotate-[340deg]" />
 
-                            <div className="relative z-10 flex items-center gap-8 mb-4">
+                            <div className="relative z-10 flex items-center gap-4 md:gap-8 mb-4">
                               {/* Avatar Section */}
                               <div className="relative flex-shrink-0 border ring-4 ring-[#FFC269] p-1 rounded-full">
                                 <a href={websiteLink || '#'} target="_blank" rel="noreferrer" className="block">
@@ -555,10 +555,10 @@ export default function MapGrid(): JSX.Element {
                                 </h3>
                                 {tenant?.home_address && (
                                 <div className="flex items-center gap-2 w-full mt-1 -ml-1">
-                                  <MapPin className="h-5 w-5 fill-[#B46935]" />
+                                  <MapPin className="h-7 w-7 fill-[#B46935]" />
 
                                   <div className="min-w-0 flex-1">
-                                    <p className="text-xs text-gray-500 leading-5 break-words whitespace-normal">
+                                    <p className="text-sm text-gray-500 truncate">
                                       {tenant.home_address}
                                     </p>
                                   </div>
