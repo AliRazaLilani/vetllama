@@ -78,7 +78,7 @@ export default function Home(): JSX.Element {
                 <p>From prescriptions to vet advice and medicine delivery</p>
                 <span className="banner-icon"><img src="/assets/images/icons/banner-icon-5.png" alt="banner-icon" className="img-fluid img-one mob-simp-img block mt-4 md:hidden md:w-max md:h-max w-[125px] h-[125px]" /></span>
                  <div className="banner-mobile-cta">
-                  <Link to="/doctor-grid" className="btn-outline font-bold!">Book an Appointment</Link>
+                  {company?.id != 2 && <Link to="/doctor-grid" className="btn-outline font-bold!">Book an Appointment</Link>}
                   <a target="_blank" rel="noreferrer" href={company.signupUrl} className="btn-solid font-bold!">Get Started</a>
                 </div>
               </div>
