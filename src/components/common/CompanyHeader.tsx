@@ -19,7 +19,7 @@ export default function Header(): JSX.Element {
 
       {/* Get Started Button */}
       <div className='flex justify-center gap-2 items-center hidden md:block'>
-        <Link to="/doctor-grid" className="get-started-btn mr-2">
+        {company?.id != 2 && <Link to="/doctor-grid" className="get-started-btn mr-2">
           <span className="get-started-fill" />
 
           <span className="get-started-content">
@@ -27,7 +27,7 @@ export default function Header(): JSX.Element {
 
         <span>Book an Appointment</span>
           </span>
-        </Link>
+        </Link>}
         <a rel="noreferrer" href={company.signupUrl} className="get-started-btn">
           <span className="get-started-fill" />
 
